@@ -18,31 +18,40 @@ public class forces : MonoBehaviour
         G = gravity;
         k = coulomb;
     }
-    
-	//Calculates electrostatic and gravitational forces on all objects in gameobjects list every frame
+
+    private GameObject pauseCanvas;
+    void Start()
+    {
+        pauseCanvas = GameObject.Find("Pause Canvas");
+    }
+    //Calculates electrostatic and gravitational forces on all objects in gameobjects list every frame
     void Update()
     {
-		//Nested for loops + if statement to calculate force that each object exerts on every other object
-        foreach(GameObject a in gameobjects)
+        //Ensures that forces do not get caculated while paused
+        if (pauseCanvas.GetComponent<pauseScript>().isPaused == false)
         {
-            foreach(GameObject b in gameobjects)
+            //Nested for loops + if statement to calculate force that each object exerts on every other object
+            foreach (GameObject a in gameobjects)
             {
-                if(a != b)
+                foreach (GameObject b in gameobjects)
                 {
-					//all variable retrieval necessary for force math					
-                    float m1 = a.GetComponent<Rigidbody>().mass;
-                    float m2 = b.GetComponent<Rigidbody>().mass;
-                    float q1 = a.GetComponent<charger>().charge;
-                    float q2 = b.GetComponent<charger>().charge;
-                    Vector3 dir = Vector3.Normalize(b.transform.position - a.transform.position);
-                    float r = Vector3.Distance(a.transform.position, b.transform.position);
+                    if (a != b)
+                    {
+                        //all variable retrieval necessary for force math					
+                        float m1 = a.GetComponent<Rigidbody>().mass;
+                        float m2 = b.GetComponent<Rigidbody>().mass;
+                        float q1 = a.GetComponent<charger>().charge;
+                        float q2 = b.GetComponent<charger>().charge;
+                        Vector3 dir = Vector3.Normalize(b.transform.position - a.transform.position);
+                        float r = Vector3.Distance(a.transform.position, b.transform.position);
 
-					//individually calculates force of gravity and electrostatics
-                    float Fg = (m1 * m2 * G) / Mathf.Pow(r, 2);
-                    float Fe = (k * q1 * q2) / Mathf.Pow(r, 2);
-					
-					//applies force vector
-                    a.GetComponent<Rigidbody>().AddForce(dir * (Fg - Fe) * Time.fixedDeltaTime);
+                        //individually calculates force of gravity and electrostatics
+                        float Fg = (m1 * m2 * G) / Mathf.Pow(r, 2);
+                        float Fe = (k * q1 * q2) / Mathf.Pow(r, 2);
+
+                        //applies force vector
+                        a.GetComponent<Rigidbody>().AddForce(dir * (Fg - Fe) * Time.fixedDeltaTime);
+                    }
                 }
             }
         }
