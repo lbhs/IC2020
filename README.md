@@ -36,3 +36,5 @@ Built in Unity 2018.3.14f1 for WebGL
 -drag only allows moving opjects once while paused
 
 -stange table anamation
+
+-WebGl export leads to a bunch of pink circles
