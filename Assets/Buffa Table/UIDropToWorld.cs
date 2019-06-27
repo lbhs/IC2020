@@ -8,15 +8,15 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
     public GameObject prefab;
     public GameObject[] prefabs;
     public GameObject[] Images;
-    private Vector3 prefacWorldPosition;
+    private Vector3 prefabWorldPosition;
     private int objectToUse;
 
     public void OnDrop(PointerEventData eventData)
     {
         RectTransform Panel = transform as RectTransform;
-        prefacWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        prefacWorldPosition.z = 0;
-        Debug.Log(prefacWorldPosition);
+        prefabWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        prefabWorldPosition.z = 0;
+        Debug.Log(prefabWorldPosition);
         objectToUse = 2;
 
       
@@ -36,7 +36,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                     Debug.Log(objectToUse);
                 }
             }
-            Instantiate(prefabs[objectToUse], prefacWorldPosition, Quaternion.identity);
+            Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
             Debug.Log("created stuff");
         }
 
