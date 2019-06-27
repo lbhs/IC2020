@@ -14,7 +14,7 @@ public class main : MonoBehaviour
 		
 		//initializes forces
         gameObject.AddComponent<forces>().initialize(G, k);
-		
+
 		//example randomly adds several of 2 different kinds of particles
         for(int x = 0; x < n; x++)
         {
