@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class pauseScript : MonoBehaviour
 {
     public bool isPaused = false;
+    public Sprite pauseSprite;
+    public Sprite playSprite;
     public void Start()
     {
         pauseGame();
@@ -16,9 +18,11 @@ public class pauseScript : MonoBehaviour
         {
             Time.timeScale = 1;
             isPaused = false;
+            gameObject.GetComponentInChildren<Image>().sprite = pauseSprite;
         } else {
             Time.timeScale = 0;
-            isPaused = true; 
+            isPaused = true;
+            gameObject.GetComponentInChildren<Image>().sprite = playSprite;
         }
     }
 }
