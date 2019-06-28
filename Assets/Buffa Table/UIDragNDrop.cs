@@ -5,6 +5,12 @@ using UnityEngine.EventSystems;
 
 public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 {
+    public float mass;
+    public int charge;
+    public bool elastic;
+    public Color color;
+    public float scale;
+
     public bool UseingMe;
     public void OnDrag(PointerEventData eventData)
     {

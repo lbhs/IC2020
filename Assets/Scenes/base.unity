@@ -570,6 +570,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 0
+  charge: 0
+  elastic: 0
+  pos: {x: 0, y: 0, z: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  scale: 0
   UseingMe: 0
   num: 0
 --- !u!114 &490550200
@@ -659,6 +665,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 0
+  charge: 0
+  elastic: 0
+  pos: {x: 0, y: 0, z: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  scale: 0
   UseingMe: 0
   num: 0
 --- !u!114 &505523957
@@ -1119,6 +1131,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 0
+  charge: 0
+  elastic: 0
+  pos: {x: 0, y: 0, z: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  scale: 0
   UseingMe: 0
   num: 0
 --- !u!114 &1034975096
@@ -1208,6 +1226,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 0
+  charge: 0
+  elastic: 0
+  pos: {x: 0, y: 0, z: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  scale: 0
   UseingMe: 0
   num: 0
 --- !u!114 &1042130395
@@ -1635,6 +1659,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 0
+  charge: 0
+  elastic: 0
+  pos: {x: 0, y: 0, z: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  scale: 0
   UseingMe: 0
   num: 0
 --- !u!114 &1294259867
@@ -1803,6 +1833,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 0
+  charge: 0
+  elastic: 0
+  pos: {x: 0, y: 0, z: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  scale: 0
   UseingMe: 0
   num: 0
 --- !u!114 &1334174579
@@ -2008,6 +2044,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 0
+  charge: 0
+  elastic: 0
+  pos: {x: 0, y: 0, z: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  scale: 0
   UseingMe: 0
   num: 0
 --- !u!114 &1371989985
@@ -2097,6 +2139,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 0
+  charge: 0
+  elastic: 0
+  pos: {x: 0, y: 0, z: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  scale: 0
   UseingMe: 0
   num: 0
 --- !u!114 &1379013088
@@ -2290,6 +2338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
+  pauseSprite: {fileID: 21300002, guid: a7b63eac96b72e94f8b64b7aa7be3d26, type: 3}
+  playSprite: {fileID: 21300000, guid: a7b63eac96b72e94f8b64b7aa7be3d26, type: 3}
 --- !u!114 &1514393973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3040,7 +3090,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ee90d19b4a6e52446b93aca905eb69da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a7b63eac96b72e94f8b64b7aa7be3d26, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

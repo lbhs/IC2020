@@ -10,7 +10,12 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
     public GameObject[] Images;
     private Vector3 prefabWorldPosition;
     private int objectToUse;
+    private GameObject MainObject;
 
+    void Start()
+    {
+        MainObject = GameObject.Find("GameObject");
+    }
     public void OnDrop(PointerEventData eventData)
     {
         RectTransform Panel = transform as RectTransform;
@@ -19,7 +24,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
         Debug.Log(prefabWorldPosition);
         objectToUse = 2;
 
-      
+
         /*if(GameObject.Find(prefabs) && objectInQueston.GetComponent<UIDragNDrop>.UseingMe = true)
         {
             objectToUse = int.Parse(objectInQueston.name);
@@ -36,10 +41,11 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                     Debug.Log(objectToUse);
                 }
             }
-            Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
+            MainObject.GetComponent<forces>().addSphere(Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().charge, Images[objectToUse].GetComponent<UIDragNDrop>().elastic, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().color, Images[objectToUse].GetComponent<UIDragNDrop>().scale);
+            //Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
             Debug.Log("created stuff");
         }
-
+    
 
 
     }
