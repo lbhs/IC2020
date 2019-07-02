@@ -27,9 +27,9 @@ Built in Unity 2018.3.14f1 for WebGL
 -time slider?
 
 # Known bugs
--physics keeps calculating forces while paused
+-✔️physics keeps calculating forces while paused
 
--table cannot retract/open while paused
+-✔️table cannot retract/open while paused
 
 -loss of energy
 
