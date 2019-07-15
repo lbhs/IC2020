@@ -78,6 +78,7 @@ public class forces : MonoBehaviour
         sphere.transform.position = pos;
         sphere.transform.localScale = new Vector3(scale, scale, scale);
         sphere.GetComponent<Renderer>().material.color = color;
+        sphere.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
 
         //Adds the drag object script
         sphere.AddComponent<drag>();
