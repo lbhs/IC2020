@@ -22,7 +22,7 @@ public class forces : MonoBehaviour
     private GameObject pauseCanvas;
     void Start()
     {
-        pauseCanvas = GameObject.Find("Pause Canvas");
+        pauseCanvas = GameObject.Find("Control Canvas");
     }
     //Calculates electrostatic and gravitational forces on all objects in gameobjects list every frame
     void Update()
