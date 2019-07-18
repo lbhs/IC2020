@@ -1,13 +1,18 @@
-﻿using System.Collections;
+﻿/*
+- TODO:
+- Document this.
+- Fix the Pause / Dragging Glitch.
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class drag : MonoBehaviour
+public class Drag : MonoBehaviour
 {
     private Vector3 mOffset;
     private float mZCoord;
 
-    void OnMouseDown()
+    private void OnMouseDown()
     {
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 		
@@ -27,7 +32,7 @@ public class drag : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 
-    void OnMouseDrag()
+    private void OnMouseDrag()
     {
         transform.position = GetMouseAsWorldPoint() + mOffset;
         //Debug.Log(this.transform.position);

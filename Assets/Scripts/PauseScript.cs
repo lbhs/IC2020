@@ -1,9 +1,15 @@
-﻿using System.Collections;
+﻿/*
+- TODO:
+- Document this.
+- Fix the Pause / Drag Glitch.
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class pauseScript : MonoBehaviour
+public class PauseScript : MonoBehaviour
 {
     public bool isPaused = false;
     public Sprite pauseSprite;

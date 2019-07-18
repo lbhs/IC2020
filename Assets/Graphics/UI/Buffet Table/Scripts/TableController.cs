@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+- TODO:
+- Document this.
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
