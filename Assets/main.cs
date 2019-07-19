@@ -29,7 +29,7 @@ public class main : MonoBehaviour
         //adds n2 amount of bond breaker cubes
         for(int y = 0; y < n2; y++)
         {
-            gameObject.GetComponent<cubeForces>().addCube(10.0f, true, new Vector3(UnityEngine.Random.Range(-5, 5), Random.Range(-5, 5), 0), Color.gray, 1f, new Vector3(UnityEngine.Random.Range(15f, 30f), Random.Range(15f, 30f), 0));
+            gameObject.GetComponent<cubeForces>().addCube(10.0f, true, new Vector3(UnityEngine.Random.Range(-5, 5), Random.Range(-5, 5), 0), Color.gray, 1f, new Vector3(UnityEngine.Random.Range(30f, 50f), Random.Range(30f, 50f), 0));
         }
         
     }
