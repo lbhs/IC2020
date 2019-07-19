@@ -21,5 +21,11 @@ public class elastic : MonoBehaviour
         var speed = lastFrameVelocity.magnitude;
         var direction = Vector3.Reflect(lastFrameVelocity.normalized, collision.contacts[0].normal);
         GetComponent<Rigidbody>().velocity = direction * speed;
+        
+        
+        /*if (collision.gameObject.GetComponent<Rigidbody>()!=null){
+            gameObject.AddComponent(SpringJoint);
+            gameObject.GetComponent(SpringJoint).connectedBody=collision.rigidbody;
+        }*/
     }
 }

@@ -1,9 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIDropToWorld : MonoBehaviour, IDropHandler
+public class UIWaterDropToWorld : MonoBehaviour, IDropHandler
 {
     public GameObject prefab;
     public GameObject[] prefabs;
@@ -41,10 +41,10 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                     Debug.Log(objectToUse);
                 }
             }
+            //MainObject.GetComponent<forces>().addWater((float)prefabWorldPosition.x, (float)prefabWorldPosition.y);
             MainObject.GetComponent<forces>().addSphere(Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().charge, Images[objectToUse].GetComponent<UIDragNDrop>().elastic, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().color, Images[objectToUse].GetComponent<UIDragNDrop>().scale);
             Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
-			//MainObject.GetComponent<forces>().addWater((float)prefabWorldPosition.x, (float)prefabWorldPosition.y);
-			Debug.Log("created stuff");
+            Debug.Log("created stuff");
         }
     
 
