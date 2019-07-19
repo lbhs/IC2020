@@ -6,7 +6,10 @@ public class main : MonoBehaviour
 {
     public float G;
     public float k;
-    public int n;
+    public int n1;
+    public int n2;
+
+    
 	
     void Start()
     {
@@ -14,12 +17,25 @@ public class main : MonoBehaviour
 		
 		//initializes forces
         gameObject.AddComponent<forces>().initialize(G, k);
+        gameObject.AddComponent<cubeForces>();
 
 		//example randomly adds several of 2 different kinds of particles
-        for(int x = 0; x < n; x++)
+        for(int x = 0; x < n1; x++)
         {
-            gameObject.GetComponent<forces>().addSphere(1.0f, 1, true, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.blue, 1);
-            gameObject.GetComponent<forces>().addSphere(2.0f, 2, true, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.red, 2);
+            gameObject.GetComponent<forces>().addSphere(1.0f, -1, true, new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0), Color.blue, 1);
+            gameObject.GetComponent<forces>().addSphere(1.0f, 1, true, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.red, 1);
         }
+       
+        //adds n2 amount of bond breaker cubes
+        for(int y = 0; y < n2; y++)
+        {
+            gameObject.GetComponent<cubeForces>().addCube(10.0f, true, new Vector3(UnityEngine.Random.Range(-5, 5), Random.Range(-5, 5), 0), Color.gray, 1f, new Vector3(UnityEngine.Random.Range(15f, 30f), Random.Range(15f, 30f), 0));
+        }
+        
+    }
+
+    public void AdjustK(float newK)
+    {
+        k = newK;
     }
 }
