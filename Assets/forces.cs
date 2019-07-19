@@ -22,7 +22,7 @@ public class forces : MonoBehaviour
     private GameObject pauseCanvas;
     void Start()
     {
-        pauseCanvas = GameObject.Find("Pause Canvas");
+        pauseCanvas = GameObject.Find("Control Canvas");
     }
     //Calculates electrostatic and gravitational forces on all objects in gameobjects list every frame
     void Update()
@@ -78,6 +78,7 @@ public class forces : MonoBehaviour
         sphere.transform.position = pos;
         sphere.transform.localScale = new Vector3(scale, scale, scale);
         sphere.GetComponent<Renderer>().material.color = color;
+        sphere.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
 
         //Adds the drag object script
         sphere.AddComponent<drag>();
