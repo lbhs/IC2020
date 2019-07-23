@@ -6,6 +6,9 @@ public class drag : MonoBehaviour
 {
     private Vector3 mOffset;
     private float mZCoord;
+    private GameObject rightMenu;
+    private Vector3 menuOffest;
+    private Vector3 canvasOffest;
 
     void OnMouseDown()
     {
@@ -39,13 +42,24 @@ public class drag : MonoBehaviour
         
     }
 
+    void Start()
+    {
+        rightMenu = GameObject.Find("Right-Click Menu");
+
+        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        menuOffest = new Vector3(85f, -117.5f, mZCoord);
+
+        canvasOffest = new Vector3 (0, 0, 0);
+    }
     //updates everyframe
     void Update()
     {
        //like OnMouseDown, but for right-click
        if(Input.GetMouseButtonDown(1))
         {
-
+            mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
+            rightMenu.transform.position = transform.position - mOffset + menuOffest + canvasOffest;
+            
         }
     }
 }

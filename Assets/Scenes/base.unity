@@ -5166,12 +5166,12 @@ GameObject:
   - component: {fileID: 1600859991}
   - component: {fileID: 1600859990}
   m_Layer: 5
-  m_Name: Menu
+  m_Name: Right-Click Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1600859989
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5193,7 +5193,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 84.99998, y: -117.50001}
+  m_AnchoredPosition: {x: 85, y: -117.50001}
   m_SizeDelta: {x: 170, y: 235}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1600859990

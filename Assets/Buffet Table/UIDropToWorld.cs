@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class UIDropToWorld : MonoBehaviour, IDropHandler
 {
-    public GameObject prefab;
+    //public GameObject prefab;
     public GameObject[] prefabs;
     public GameObject[] Images;
     private Vector3 prefabWorldPosition;
