@@ -911,6 +911,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 1
+  useAddWater: 0
   mass: 1
   charge: -2
   elastic: 1
@@ -1005,6 +1007,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 0
+  useAddWater: 0
   mass: 0
   charge: 0
   elastic: 0
@@ -1635,7 +1639,6 @@ GameObject:
   - component: {fileID: 1034975097}
   - component: {fileID: 1034975096}
   - component: {fileID: 1034975095}
-  - component: {fileID: 1034975098}
   m_Layer: 5
   m_Name: 2
   m_TagString: Untagged
@@ -1669,11 +1672,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034975093}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 0
+  useAddWater: 1
   mass: 0
   charge: 0
   elastic: 0
@@ -1718,21 +1723,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034975093}
   m_CullTransparentMesh: 0
---- !u!114 &1034975098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1034975093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a038bd1e4a10bf1d5a3ae06e60b6d58b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  prefabs: []
-  Images: []
 --- !u!1 &1042130392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,6 +1773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 0
+  useAddWater: 0
   mass: 0
   charge: 0
   elastic: 0
@@ -2374,6 +2366,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 0
+  useAddWater: 0
   mass: 0
   charge: 0
   elastic: 0
@@ -2626,6 +2620,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 0
+  useAddWater: 0
   mass: 0
   charge: 0
   elastic: 0
@@ -2897,6 +2893,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 1
+  useAddWater: 0
   mass: 2
   charge: 2
   elastic: 1
@@ -2991,6 +2989,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 0
+  useAddWater: 0
   mass: 0
   charge: 0
   elastic: 0
