@@ -290,7 +290,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: H20
+  m_Text: "H\u20820"
 --- !u!222 &101159148
 CanvasRenderer:
   m_ObjectHideFlags: 0
