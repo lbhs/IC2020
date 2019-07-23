@@ -2973,6 +2973,7 @@ GameObject:
   - component: {fileID: 1129039530}
   - component: {fileID: 1129039529}
   - component: {fileID: 1129039528}
+  - component: {fileID: 1129039532}
   m_Layer: 5
   m_Name: Right-Click Canvas
   m_TagString: Untagged
@@ -3060,6 +3061,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1129039532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129039527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b38cea260913a44bff3e73b0bb5dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightMenu: {fileID: 0}
 --- !u!1 &1133472329
 GameObject:
   m_ObjectHideFlags: 0
@@ -4044,7 +4060,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacfaf0d87d450446bb331f2f4a20a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
   prefabs:
   - {fileID: 0}
   - {fileID: 0}
@@ -5193,7 +5208,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85, y: -117.50001}
+  m_AnchoredPosition: {x: 558, y: 18}
   m_SizeDelta: {x: 170, y: 235}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1600859990
