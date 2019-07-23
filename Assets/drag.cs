@@ -12,6 +12,7 @@ public class drag : MonoBehaviour
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 		
         // Store offset = gameobject world pos - mouse world pos
+        // offset allows you to grab the object from the side of the circle, not just the center
         mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
     }
 	
@@ -31,5 +32,20 @@ public class drag : MonoBehaviour
     {
         transform.position = GetMouseAsWorldPoint() + mOffset;
         //Debug.Log(this.transform.position);
+    }
+
+    void OnMouseUp()
+    {
+        
+    }
+
+    //updates everyframe
+    void Update()
+    {
+       //like OnMouseDown, but for right-click
+       if(Input.GetMouseButtonDown(1))
+        {
+
+        }
     }
 }
