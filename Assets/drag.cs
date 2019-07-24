@@ -8,6 +8,8 @@ public class drag : MonoBehaviour
     private float mZCoord;
     private GameObject rightMenu;
     private Vector3 menuOffest;
+    private Ray ray;
+    private RaycastHit hit;
 
     void OnMouseDown()
     {
@@ -51,11 +53,15 @@ public class drag : MonoBehaviour
     //updates everyframe
     void Update()
     {
-       //like OnMouseDown, but for right-click
-       if(Input.GetMouseButtonDown(1))
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //like OnMouseDown, but for right-click
+        if (Input.GetMouseButtonDown(1))
         {
-            rightMenu.transform.position = Input.mousePosition + menuOffest;
-            rightMenu.SetActive(true); 
+            if (Physics.Raycast(ray, out hit))
+            {
+                rightMenu.transform.position = Input.mousePosition + menuOffest;
+                rightMenu.SetActive(true);
+            }
         }
         if (Input.GetMouseButtonDown(0))
         {
