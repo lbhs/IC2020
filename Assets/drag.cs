@@ -46,7 +46,7 @@ public class drag : MonoBehaviour
 
     void Start()
     {
-        rightMenu = GameObject.Find("Right-Click Menu");
+        rightMenu = GameObject.Find("Right-Click Canvas").GetComponent<RightClickHelper>().rightMenu;
         rightMenu.SetActive(false);
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         menuOffest = new Vector3(85f, -117.5f, mZCoord);
@@ -63,18 +63,21 @@ public class drag : MonoBehaviour
                 rightMenu.transform.position = Input.mousePosition + menuOffest;
                 rightMenu.SetActive(true);
                 UpdateRightMenuStats();
+                Debug.Log("yep");
+
             }
         }
         if (Input.GetMouseButtonDown(0))
         {
-            rightMenu.SetActive(false);
+            //rightMenu.SetActive(false);
         }
+        
     }
 
     private float num;
     private void UpdateRightMenuStats()
     {
-        num = float.Parse(GameObject.Find("RightMenuInputField 1").GetComponent<InputField>().text); 
+        num = float.Parse(GameObject.Find("Right-Click Canvas").GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text); 
         num = gameObject.GetComponent<Rigidbody>().mass;
         Debug.Log("adjifg");
     }

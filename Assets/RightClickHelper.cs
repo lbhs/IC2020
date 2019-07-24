@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RightClickHelper : MonoBehaviour
 {
+    public GameObject rightMenu;
     public GameObject Mass;
     public GameObject Charge;
     public GameObject Elastic;

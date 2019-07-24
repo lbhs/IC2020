@@ -3073,9 +3073,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b38cea260913a44bff3e73b0bb5dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mass: {fileID: 0}
-  Charge: {fileID: 0}
-  Elastic: {fileID: 0}
+  rightMenu: {fileID: 1600859988}
+  Mass: {fileID: 1555107091}
+  Charge: {fileID: 2109135267}
+  Elastic: {fileID: 2021386482}
   Color1: {fileID: 1878266733}
   Color2: {fileID: 234229894}
   Color3: {fileID: 2067999803}
@@ -5186,6 +5187,7 @@ GameObject:
   - component: {fileID: 1600859989}
   - component: {fileID: 1600859991}
   - component: {fileID: 1600859990}
+  - component: {fileID: 1600859992}
   m_Layer: 5
   m_Name: Right-Click Menu
   m_TagString: Untagged
@@ -5254,6 +5256,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600859988}
   m_CullTransparentMesh: 0
+--- !u!114 &1600859992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600859988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332aa357a05c2e0409b073fc72f3d62c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldStartVisible: 1
 --- !u!1 &1675159742
 GameObject:
   m_ObjectHideFlags: 0
