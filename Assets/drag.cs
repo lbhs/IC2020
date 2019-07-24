@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class drag : MonoBehaviour
 {
@@ -61,11 +62,20 @@ public class drag : MonoBehaviour
             {
                 rightMenu.transform.position = Input.mousePosition + menuOffest;
                 rightMenu.SetActive(true);
+                UpdateRightMenuStats();
             }
         }
         if (Input.GetMouseButtonDown(0))
         {
             rightMenu.SetActive(false);
         }
+    }
+
+    private float num;
+    private void UpdateRightMenuStats()
+    {
+        num = float.Parse(GameObject.Find("RightMenuInputField 1").GetComponent<InputField>().text); 
+        num = gameObject.GetComponent<Rigidbody>().mass;
+        Debug.Log("adjifg");
     }
 }
