@@ -11,6 +11,7 @@ public class drag : MonoBehaviour
     private Vector3 menuOffest;
     private Ray ray;
     private RaycastHit hit;
+    private GameObject rightCanvas;
 
     void OnMouseDown()
     {
@@ -46,7 +47,8 @@ public class drag : MonoBehaviour
 
     void Start()
     {
-        rightMenu = GameObject.Find("Right-Click Canvas").GetComponent<RightClickHelper>().rightMenu;
+        rightCanvas = GameObject.Find("Right-Click Canvas");
+        rightMenu = rightCanvas.GetComponent<RightClickHelper>().rightMenu;
         rightMenu.SetActive(false);
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         menuOffest = new Vector3(85f, -117.5f, mZCoord);
@@ -77,8 +79,16 @@ public class drag : MonoBehaviour
     private float num;
     private void UpdateRightMenuStats()
     {
-        num = float.Parse(GameObject.Find("Right-Click Canvas").GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text); 
-        num = gameObject.GetComponent<Rigidbody>().mass;
-        Debug.Log("adjifg");
+            StringToFloat(rightCanvas.GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text, num );
+            num = gameObject.GetComponent<Rigidbody>().mass;
+            Debug.Log("adjifg");
+    }
+
+    public void StringToFloat(string inputString, float floatToRetrun)
+    {
+        if (inputString != null)
+        {
+             floatToRetrun = float.Parse(inputString);
+        }
     }
 }
