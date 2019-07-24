@@ -73,15 +73,20 @@ public class drag : MonoBehaviour
                 //makes menu visable
                 rightMenu.SetActive(true);
 
+                //update the varible so that RightClickHelper knows what sphere to edit
+                rightCanvas.GetComponent<RightClickHelper>().currentSphere = hit.rigidbody.gameObject;
 
                 //------------------------updates menu vaules on click------------------------
-                
+
                 //mass
                 rightCanvas.GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text = hit.rigidbody.mass.ToString();
+
                 //charge
                 rightCanvas.GetComponent<RightClickHelper>().Charge.GetComponent<InputField>().text = hit.rigidbody.gameObject.GetComponent<charger>().charge.ToString();
+                
                 //Temputure
-
+                //nothing to update
+                
                 //color
                 if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.red)
                 {
@@ -103,7 +108,6 @@ public class drag : MonoBehaviour
                     rightCanvas.GetComponent<RightClickHelper>().Color4.GetComponent<Toggle>().isOn = true;
                     rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color4.GetComponent<Toggle>());
                 }
-
 
                 //size
                 if (hit.rigidbody.gameObject.transform.localScale == new Vector3(1, 1, 1))
