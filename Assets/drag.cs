@@ -51,14 +51,14 @@ public class drag : MonoBehaviour
         //stores the values of the rigidbody and then destorys it
         if(gameObject.GetComponent<Rigidbody>() != null)
         {
-            gameObject.GetComponent<Rigidbody>().mass = tempMass;
-            gameObject.GetComponent<Rigidbody>().drag = tempDrag;
-            gameObject.GetComponent<Rigidbody>().angularDrag = tempAngularDrag;
-            gameObject.GetComponent<Rigidbody>().useGravity = tempUseGravity;
-            gameObject.GetComponent<Rigidbody>().isKinematic = tempIsKinematic;
-            gameObject.GetComponent<Rigidbody>().interpolation = tempInterpolation;
-            gameObject.GetComponent<Rigidbody>().collisionDetectionMode = tempCollisionDetectionMode;
-            gameObject.GetComponent<Rigidbody>().constraints = tempConstraints;
+            tempMass = gameObject.GetComponent<Rigidbody>().mass;
+            tempDrag = gameObject.GetComponent<Rigidbody>().drag;
+            tempAngularDrag = gameObject.GetComponent<Rigidbody>().angularDrag;
+            tempUseGravity = gameObject.GetComponent<Rigidbody>().useGravity;
+            tempIsKinematic = gameObject.GetComponent<Rigidbody>().isKinematic;
+            tempInterpolation = gameObject.GetComponent<Rigidbody>().interpolation;
+            tempCollisionDetectionMode = gameObject.GetComponent<Rigidbody>().collisionDetectionMode;
+            tempConstraints = gameObject.GetComponent<Rigidbody>().constraints;
             //elastic gave tons of erros while the rigidbody was disabled
             gameObject.GetComponent<elastic>().enabled = (false);
             Destroy(gameObject.GetComponent<Rigidbody>());
@@ -70,14 +70,14 @@ public class drag : MonoBehaviour
     {
         //restore rigidbody and varibles 
         gameObject.AddComponent<Rigidbody>();
-        tempMass = gameObject.GetComponent<Rigidbody>().mass;
-        tempDrag = gameObject.GetComponent<Rigidbody>().drag;
-        tempAngularDrag = gameObject.GetComponent<Rigidbody>().angularDrag;
-        tempUseGravity = gameObject.GetComponent<Rigidbody>().useGravity;
-        tempIsKinematic = gameObject.GetComponent<Rigidbody>().isKinematic;
-        tempInterpolation = gameObject.GetComponent<Rigidbody>().interpolation;
-        tempCollisionDetectionMode = gameObject.GetComponent<Rigidbody>().collisionDetectionMode;
-        tempConstraints = gameObject.GetComponent<Rigidbody>().constraints;
+        gameObject.GetComponent<Rigidbody>().mass = tempMass;
+        gameObject.GetComponent<Rigidbody>().drag = tempDrag;
+        gameObject.GetComponent<Rigidbody>().angularDrag = tempAngularDrag;
+        gameObject.GetComponent<Rigidbody>().useGravity = tempUseGravity;
+        gameObject.GetComponent<Rigidbody>().isKinematic = tempIsKinematic;
+        gameObject.GetComponent<Rigidbody>().interpolation = tempInterpolation;
+        gameObject.GetComponent<Rigidbody>().collisionDetectionMode = tempCollisionDetectionMode;
+        gameObject.GetComponent<Rigidbody>().constraints = tempConstraints;
         gameObject.GetComponent<elastic>().enabled = (true);
         //this was done to fix a bug where spheres could only be moved once while the simulation was paused
     }
