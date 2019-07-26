@@ -127,10 +127,11 @@ public class drag : MonoBehaviour
 
                 //charge
                 rightCanvas.GetComponent<RightClickHelper>().Charge.GetComponent<InputField>().text = hit.rigidbody.gameObject.GetComponent<charger>().charge.ToString();
-                
-                //Temputure
-                //nothing to update
-                
+
+                //anchor
+                rightCanvas.GetComponent<RightClickHelper>().anchorToggle.GetComponent<Toggle>().isOn = CheckConstraints(hit.rigidbody.gameObject.GetComponent<Rigidbody>());
+                Debug.Log("set");
+
                 //color
                 if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.red)
                 {
@@ -167,6 +168,19 @@ public class drag : MonoBehaviour
         }
         
       
+    }
+    private bool CheckConstraints(Rigidbody rb)
+    {
+        bool itWorks;
+        if (rb.constraints == rightCanvas.GetComponent<RightClickHelper>().AnchorConstraints)
+        {
+            itWorks = true;
+        }
+        else
+        {
+            itWorks = false;
+        }
+        return itWorks;
     }
 }
                 //else if (hit.rigidbody.gameObject.transform.localScale == new Vector3(2, 2, 2)

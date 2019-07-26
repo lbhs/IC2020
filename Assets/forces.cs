@@ -7,7 +7,7 @@ public class forces : MonoBehaviour
     private float G;
     private float k;
 	//List of all game objects that forces should act on (gravity, electrostatic, collisions, etc.)
-    List<GameObject> gameobjects = new List<GameObject>();
+    public List<GameObject> gameobjects = new List<GameObject>();
 
 	/*
 	-Gravitational and coulomb's constants must be initialized on start. i.e.: "gameObject.AddComponent<forces>().initialize(G, k);"

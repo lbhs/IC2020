@@ -9,8 +9,7 @@ public class RightClickHelper : MonoBehaviour
     public GameObject rightMenu;
     public GameObject Mass;
     public GameObject Charge;
-    public GameObject minusButton;
-    public GameObject plusButton;
+    public GameObject anchorToggle;
     public GameObject toggleGroup;
     public GameObject Color1;
     public GameObject Color2;
@@ -18,6 +17,8 @@ public class RightClickHelper : MonoBehaviour
     public GameObject Color4;
     public GameObject Size1;
     public GameObject Size2;
+    public RigidbodyConstraints AnchorConstraints;
+    public RigidbodyConstraints UnAnchorConstraints;
     public GameObject triggerPoint; //possibly useless
     [Header("Dont change this:")]
     public GameObject currentSphere;
@@ -36,14 +37,22 @@ public class RightClickHelper : MonoBehaviour
         currentSphere.GetComponent<charger>().charge = int.Parse(gameObject.GetComponent<RightClickHelper>().Charge.GetComponent<InputField>().text);
     }
 
-    //tempature buttons
-    public void IncreaseTemp()
+    //Anchor toggle
+    public void ToggleAnchor()
     {
-        currentSphere.GetComponent<Rigidbody>().AddForce(new Vector3(currentSphere.GetComponent<Rigidbody>().velocity.x * 2, currentSphere.GetComponent<Rigidbody>().velocity.y *2, 0), ForceMode.Impulse);
-    }
-    public void DecreaseTemp()
-    {
-        currentSphere.GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
+        if (anchorToggle.GetComponent<Toggle>().isOn == false)
+        {
+            currentSphere.GetComponent<Rigidbody>().constraints = AnchorConstraints;
+            currentSphere.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            Debug.Log("froze");
+            anchorToggle.GetComponent<Toggle>().isOn = true;
+        }
+        else
+        {
+            currentSphere.GetComponent<Rigidbody>().constraints = UnAnchorConstraints;
+            Debug.Log("unfreze");
+            anchorToggle.GetComponent<Toggle>().isOn = false;
+        }
     }
 
     //color buttons
@@ -77,3 +86,15 @@ public class RightClickHelper : MonoBehaviour
         rightMenu.SetActive(false);
     }
 }
+
+
+
+    /*//tempature buttons
+    public void IncreaseTemp()
+    {
+        currentSphere.GetComponent<Rigidbody>().AddForce(new Vector3(currentSphere.GetComponent<Rigidbody>().velocity.x * 2, currentSphere.GetComponent<Rigidbody>().velocity.y *2, 0), ForceMode.Impulse);
+    }
+    public void DecreaseTemp()
+    {
+        currentSphere.GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
+    }*/
