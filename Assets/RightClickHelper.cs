@@ -43,7 +43,7 @@ public class RightClickHelper : MonoBehaviour
     }
     public void DecreaseTemp()
     {
-        currentSphere.GetComponent<Rigidbody>().AddForce(new Vector3(currentSphere.GetComponent<Rigidbody>().velocity.x / 2, currentSphere.GetComponent<Rigidbody>().velocity.y / 2, 0), ForceMode.Impulse);
+        currentSphere.GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
     }
 
     //color buttons
