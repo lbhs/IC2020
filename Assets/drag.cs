@@ -21,6 +21,7 @@ public class drag : MonoBehaviour
         // Store offset = gameobject world pos - mouse world pos
         // offset allows you to grab the object from the side of the circle, not just the center
         mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
+        rightCanvas.GetComponent<RightClickHelper>().HideRightMenu();
     }
 
     private Vector3 GetMouseAsWorldPoint()
@@ -34,16 +35,51 @@ public class drag : MonoBehaviour
         // Convert it to world points
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
-
+    
+    //the tempary varible 
+    private float tempMass;
+    private float tempDrag;
+    private float tempAngularDrag;
+    private bool tempUseGravity;
+    private bool tempIsKinematic;
+    private RigidbodyInterpolation tempInterpolation;
+    private CollisionDetectionMode tempCollisionDetectionMode;
+    private RigidbodyConstraints tempConstraints;
     void OnMouseDrag()
     {
         transform.position = GetMouseAsWorldPoint() + mOffset;
+        //stores the values of the rigidbody and then destorys it
+        if(gameObject.GetComponent<Rigidbody>() != null)
+        {
+            gameObject.GetComponent<Rigidbody>().mass = tempMass;
+            gameObject.GetComponent<Rigidbody>().drag = tempDrag;
+            gameObject.GetComponent<Rigidbody>().angularDrag = tempAngularDrag;
+            gameObject.GetComponent<Rigidbody>().useGravity = tempUseGravity;
+            gameObject.GetComponent<Rigidbody>().isKinematic = tempIsKinematic;
+            gameObject.GetComponent<Rigidbody>().interpolation = tempInterpolation;
+            gameObject.GetComponent<Rigidbody>().collisionDetectionMode = tempCollisionDetectionMode;
+            gameObject.GetComponent<Rigidbody>().constraints = tempConstraints;
+            //elastic gave tons of erros while the rigidbody was disabled
+            gameObject.GetComponent<elastic>().enabled = (false);
+            Destroy(gameObject.GetComponent<Rigidbody>());
+        }
         //Debug.Log(this.transform.position);
     }
-
+   
     void OnMouseUp()
     {
-
+        //restore rigidbody and varibles 
+        gameObject.AddComponent<Rigidbody>();
+        tempMass = gameObject.GetComponent<Rigidbody>().mass;
+        tempDrag = gameObject.GetComponent<Rigidbody>().drag;
+        tempAngularDrag = gameObject.GetComponent<Rigidbody>().angularDrag;
+        tempUseGravity = gameObject.GetComponent<Rigidbody>().useGravity;
+        tempIsKinematic = gameObject.GetComponent<Rigidbody>().isKinematic;
+        tempInterpolation = gameObject.GetComponent<Rigidbody>().interpolation;
+        tempCollisionDetectionMode = gameObject.GetComponent<Rigidbody>().collisionDetectionMode;
+        tempConstraints = gameObject.GetComponent<Rigidbody>().constraints;
+        gameObject.GetComponent<elastic>().enabled = (true);
+        //this was done to fix a bug where spheres could only be moved once while the simulation was paused
     }
 
     void Start()
@@ -56,6 +92,7 @@ public class drag : MonoBehaviour
         //to do, figure out how to modify this when the image is off screen with -/+      V
         menuOffest = new Vector3(rightMenu.GetComponent<RectTransform>().rect.width / 2f, -rightMenu.GetComponent<RectTransform>().rect.height / 2f, mZCoord);
     }
+
     //updates everyframe
     void Update()
     {
@@ -70,6 +107,13 @@ public class drag : MonoBehaviour
             {
                 //------------------------sets the position of the right-click menu------------------------
                 rightMenu.transform.position = Input.mousePosition + menuOffest;
+                //makes sure that right click menu is in screen
+                /*if (rightCanvas.GetComponent<Rect>().Contains(rightCanvas.GetComponent<RightClickHelper>().triggerPoint.transform.position))
+                {
+                    // Inside
+                    Debug.Log("Inside");
+                }*/
+
                 //makes menu visable
                 rightMenu.SetActive(true);
 
@@ -121,6 +165,8 @@ public class drag : MonoBehaviour
                 
             }
         }
+        
+      
     }
 }
                 //else if (hit.rigidbody.gameObject.transform.localScale == new Vector3(2, 2, 2)

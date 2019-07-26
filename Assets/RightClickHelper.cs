@@ -39,11 +39,11 @@ public class RightClickHelper : MonoBehaviour
     //tempature buttons
     public void IncreaseTemp()
     {
-        currentSphere.GetComponent<Rigidbody>().AddForce(new Vector3(+1, +1, +1));
+        currentSphere.GetComponent<Rigidbody>().AddForce(new Vector3(+1, +1, +1), ForceMode.Impulse);
     }
     public void DecreaseTemp()
     {
-        currentSphere.GetComponent<Rigidbody>().AddForce(new Vector3(-1, -1, -1));
+        currentSphere.GetComponent<Rigidbody>().AddForce(new Vector3(-1, -1, -1), ForceMode.Impulse);
     }
 
     //color buttons
