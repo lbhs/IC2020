@@ -39,7 +39,7 @@ public class RightClickHelper : MonoBehaviour
 
     //Anchor toggle
     public void ToggleAnchor()
-    {
+    {/*
         if (anchorToggle.GetComponent<Toggle>().isOn == false)
         {
             currentSphere.GetComponent<Rigidbody>().constraints = AnchorConstraints;
@@ -52,7 +52,7 @@ public class RightClickHelper : MonoBehaviour
             currentSphere.GetComponent<Rigidbody>().constraints = UnAnchorConstraints;
             Debug.Log("unfreze");
             anchorToggle.GetComponent<Toggle>().isOn = false;
-        }
+        }*/
     }
 
     //color buttons

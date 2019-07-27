@@ -1945,7 +1945,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6911d929f6f50bd4bb62dedc0260837a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAnchored: 0
 --- !u!114 &568503933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4807,7 +4806,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1406939525
 GameObject:
   m_ObjectHideFlags: 0
