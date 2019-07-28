@@ -90,20 +90,39 @@ public class RightClickHelper : MonoBehaviour
         rightMenu.SetActive(false);
     }
 
-     void Update()
+     public void CheckRightVisablity()
     {
-        Rect rightCanvasRect = new Rect(gameObject.GetComponent<RectTransform>().position.x, gameObject.GetComponent<RectTransform>().position.y, gameObject.GetComponent<RectTransform>().rect.width, gameObject.GetComponent<RectTransform>().rect.height);
+        //Rect rightCanvasRect = new Rect(0, 0, gameObject.GetComponent<RectTransform>().rect.width * gameObject.GetComponent<Canvas>().scaleFactor, gameObject.GetComponent<RectTransform>().rect.height * gameObject.GetComponent<Canvas>().scaleFactor);
+        float trigger2x = triggerPoint2.GetComponent<RectTransform>().position.x;
+        float trigger2y = triggerPoint2.GetComponent<RectTransform>().position.y;
         //Rect rect = new Rect();
-        if (rightCanvasRect.Contains(new Vector2(triggerPoint1.GetComponent<RectTransform>().position.x, triggerPoint1.GetComponent<RectTransform>().position.y))) 
+        rightMenu.transform.position = Input.mousePosition + new Vector3(rightMenu.GetComponent<RectTransform>().rect.width / 2f, -rightMenu.GetComponent<RectTransform>().rect.height / 2f, Camera.main.WorldToScreenPoint(gameObject.transform.position).z);
+        //if the right menu it too far right
+        if (trigger2y < gameObject.GetComponent<RectTransform>().rect.height * gameObject.GetComponent<Canvas>().scaleFactor && trigger2x > gameObject.GetComponent<RectTransform>().rect.width * gameObject.GetComponent<Canvas>().scaleFactor)
+        {
+            Debug.Log("if the right menu it too far right");
+            rightMenu.transform.position = Input.mousePosition + new Vector3(-rightMenu.GetComponent<RectTransform>().rect.width / 2f, -rightMenu.GetComponent<RectTransform>().rect.height / 2f, Camera.main.WorldToScreenPoint(gameObject.transform.position).z);
+        }
+        //if it is too far down
+        if (trigger2y < gameObject.GetComponent<RectTransform>().rect.yMax * gameObject.GetComponent<Canvas>().scaleFactor && trigger2x < gameObject.GetComponent<RectTransform>().rect.width * gameObject.GetComponent<Canvas>().scaleFactor)
+        {
+            Debug.Log("too far down");
+            rightMenu.transform.position = Input.mousePosition + new Vector3(rightMenu.GetComponent<RectTransform>().rect.width / 2f, rightMenu.GetComponent<RectTransform>().rect.height / 2f, Camera.main.WorldToScreenPoint(gameObject.transform.position).z);
+        }
+        if (trigger2y < gameObject.GetComponent<RectTransform>().rect.yMax * gameObject.GetComponent<Canvas>().scaleFactor && trigger2x > gameObject.GetComponent<RectTransform>().rect.width * gameObject.GetComponent<Canvas>().scaleFactor)
+        {
+            Debug.Log("both");
+            rightMenu.transform.position = Input.mousePosition + new Vector3(-rightMenu.GetComponent<RectTransform>().rect.width / 2f, rightMenu.GetComponent<RectTransform>().rect.height / 2f, Camera.main.WorldToScreenPoint(gameObject.transform.position).z);
+        }
+
+        /*//if it is too far down and to the right
+        if (trigger2x > gameObject.GetComponent<RectTransform>().rect.width * gameObject.GetComponent<Canvas>().scaleFactor && trigger2y > gameObject.GetComponent<RectTransform>().rect.height * gameObject.GetComponent<Canvas>().scaleFactor) 
         {
             // Inside
-            Debug.Log("Inside");
-        }
-        else
-        {
-            Debug.Log(rightCanvasRect);
-            Debug.Log(triggerPoint1.GetComponent<RectTransform>().position.x + " then " + triggerPoint1.GetComponent<RectTransform>().position.y);
-        }
+            Debug.Log("both");
+            rightMenu.transform.position = Input.mousePosition + new Vector3(-rightMenu.GetComponent<RectTransform>().rect.width / 2f, -rightMenu.GetComponent<RectTransform>().rect.height / 2f, Camera.main.WorldToScreenPoint(gameObject.transform.position).z);
+        }*/
+        //if it is perfect
     }
 }
 

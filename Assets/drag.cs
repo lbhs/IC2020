@@ -88,9 +88,8 @@ public class drag : MonoBehaviour
         rightCanvas = GameObject.Find("Right-Click Canvas");
         rightMenu = rightCanvas.GetComponent<RightClickHelper>().rightMenu;
         rightMenu.SetActive(false);
-        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z; //     |
+        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z; 
         //to do, figure out how to modify this when the image is off screen with -/+      V
-        menuOffest = new Vector3(rightMenu.GetComponent<RectTransform>().rect.width / 2f, -rightMenu.GetComponent<RectTransform>().rect.height / 2f, mZCoord);
     }
 
     //updates everyframe
@@ -105,8 +104,12 @@ public class drag : MonoBehaviour
             //find out if an object was hit 
             if (Physics.Raycast(ray, out hit))
             {
+
+                //caculates where the menu must be
+                rightCanvas.GetComponent<RightClickHelper>().CheckRightVisablity();
+        
                 //------------------------sets the position of the right-click menu------------------------
-                rightMenu.transform.position = Input.mousePosition + menuOffest;
+                //rightMenu.transform.position = Input.mousePosition + menuOffest;
                 //makes sure that right click menu is in screen
                 
 
