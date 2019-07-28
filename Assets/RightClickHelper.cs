@@ -100,18 +100,18 @@ public class RightClickHelper : MonoBehaviour
         //if the right menu it too far right
         if (trigger2y < gameObject.GetComponent<RectTransform>().rect.height * gameObject.GetComponent<Canvas>().scaleFactor && trigger2x > gameObject.GetComponent<RectTransform>().rect.width * gameObject.GetComponent<Canvas>().scaleFactor)
         {
-            Debug.Log("if the right menu it too far right");
+            //Debug.Log("if the right menu it too far right");
             rightMenu.transform.position = Input.mousePosition + new Vector3(-rightMenu.GetComponent<RectTransform>().rect.width / 2f, -rightMenu.GetComponent<RectTransform>().rect.height / 2f, Camera.main.WorldToScreenPoint(gameObject.transform.position).z);
         }
         //if it is too far down
         if (trigger2y < gameObject.GetComponent<RectTransform>().rect.yMax * gameObject.GetComponent<Canvas>().scaleFactor && trigger2x < gameObject.GetComponent<RectTransform>().rect.width * gameObject.GetComponent<Canvas>().scaleFactor)
         {
-            Debug.Log("too far down");
+            //Debug.Log("too far down");
             rightMenu.transform.position = Input.mousePosition + new Vector3(rightMenu.GetComponent<RectTransform>().rect.width / 2f, rightMenu.GetComponent<RectTransform>().rect.height / 2f, Camera.main.WorldToScreenPoint(gameObject.transform.position).z);
         }
         if (trigger2y < gameObject.GetComponent<RectTransform>().rect.yMax * gameObject.GetComponent<Canvas>().scaleFactor && trigger2x > gameObject.GetComponent<RectTransform>().rect.width * gameObject.GetComponent<Canvas>().scaleFactor)
         {
-            Debug.Log("both");
+            //Debug.Log("both");
             rightMenu.transform.position = Input.mousePosition + new Vector3(-rightMenu.GetComponent<RectTransform>().rect.width / 2f, rightMenu.GetComponent<RectTransform>().rect.height / 2f, Camera.main.WorldToScreenPoint(gameObject.transform.position).z);
         }
 
@@ -119,7 +119,7 @@ public class RightClickHelper : MonoBehaviour
         if (trigger2x > gameObject.GetComponent<RectTransform>().rect.width * gameObject.GetComponent<Canvas>().scaleFactor && trigger2y > gameObject.GetComponent<RectTransform>().rect.height * gameObject.GetComponent<Canvas>().scaleFactor) 
         {
             // Inside
-            Debug.Log("both");
+            //Debug.Log("both");
             rightMenu.transform.position = Input.mousePosition + new Vector3(-rightMenu.GetComponent<RectTransform>().rect.width / 2f, -rightMenu.GetComponent<RectTransform>().rect.height / 2f, Camera.main.WorldToScreenPoint(gameObject.transform.position).z);
         }*/
         //if it is perfect
