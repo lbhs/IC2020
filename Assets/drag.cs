@@ -108,11 +108,7 @@ public class drag : MonoBehaviour
                 //------------------------sets the position of the right-click menu------------------------
                 rightMenu.transform.position = Input.mousePosition + menuOffest;
                 //makes sure that right click menu is in screen
-                /*if (rightCanvas.GetComponent<Rect>().Contains(rightCanvas.GetComponent<RightClickHelper>().triggerPoint.transform.position))
-                {
-                    // Inside
-                    Debug.Log("Inside");
-                }*/
+                
 
                 //makes menu visable
                 rightMenu.SetActive(true);
@@ -127,11 +123,6 @@ public class drag : MonoBehaviour
 
                 //charge
                 rightCanvas.GetComponent<RightClickHelper>().Charge.GetComponent<InputField>().text = hit.rigidbody.gameObject.GetComponent<charger>().charge.ToString();
-
-                //anchor
-                rightCanvas.GetComponent<RightClickHelper>().anchorToggle.GetComponent<Toggle>().isOn = true;
-                    /*CheckConstraints(hit.rigidbody.gameObject.GetComponent<Rigidbody>())*/
-                Debug.Log(CheckConstraints(hit.rigidbody.gameObject.GetComponent<Rigidbody>()));
 
                 //color
                 if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.red)
@@ -192,6 +183,14 @@ public class drag : MonoBehaviour
 
         
     //rightCanvas.GetComponent<RightClickHelper>().currentSphere = hit.rigidbody.gameObject;
+
+                //anchor   -this made the size bool act weird when setting the bool to is on- 
+                //bool test;
+                //test = CheckConstraints(hit.rigidbody.gameObject.GetComponent<Rigidbody>());
+                //rightCanvas.GetComponent<RightClickHelper>().anchorToggle.GetComponent<Toggle>().isOn = test;
+                    /*CheckConstraints(hit.rigidbody.gameObject.GetComponent<Rigidbody>())*/
+                //Debug.Log(test);
+
 
                 //UpdateRightMenuStats();
                 //Debug.Log("yep");

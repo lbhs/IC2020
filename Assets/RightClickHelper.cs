@@ -9,7 +9,7 @@ public class RightClickHelper : MonoBehaviour
     public GameObject rightMenu;
     public GameObject Mass;
     public GameObject Charge;
-    public GameObject anchorToggle;
+    public GameObject anchorButton;
     public GameObject toggleGroup;
     public GameObject Color1;
     public GameObject Color2;
@@ -19,7 +19,8 @@ public class RightClickHelper : MonoBehaviour
     public GameObject Size2;
     public RigidbodyConstraints AnchorConstraints;
     public RigidbodyConstraints UnAnchorConstraints;
-    public GameObject triggerPoint; //possibly useless
+    public GameObject triggerPoint1;
+    public GameObject triggerPoint2;
     [Header("Dont change this:")]
     public GameObject currentSphere;
 
@@ -39,20 +40,23 @@ public class RightClickHelper : MonoBehaviour
 
     //Anchor toggle
     public void ToggleAnchor()
-    {/*
-        if (anchorToggle.GetComponent<Toggle>().isOn == false)
+    {
+        //if the sphere is frozen
+        if (currentSphere.GetComponent<Rigidbody>().constraints == RigidbodyConstraints.FreezeAll)
         {
-            currentSphere.GetComponent<Rigidbody>().constraints = AnchorConstraints;
-            currentSphere.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            //un freeze it
+            currentSphere.GetComponent<Rigidbody>().constraints = UnAnchorConstraints;
             Debug.Log("froze");
-            anchorToggle.GetComponent<Toggle>().isOn = true;
         }
+        //if the sphere is not frozen
         else
         {
-            currentSphere.GetComponent<Rigidbody>().constraints = UnAnchorConstraints;
+            //freeze it
+            currentSphere.GetComponent<Rigidbody>().constraints = AnchorConstraints;
+            //and then stop it so it is for sure in place. sometimes an object will keep going even if it is frozen if it alredy has a force applided
+            currentSphere.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             Debug.Log("unfreze");
-            anchorToggle.GetComponent<Toggle>().isOn = false;
-        }*/
+        }
     }
 
     //color buttons
@@ -84,6 +88,22 @@ public class RightClickHelper : MonoBehaviour
     public void HideRightMenu()
     {
         rightMenu.SetActive(false);
+    }
+
+     void Update()
+    {
+        Rect rightCanvasRect = new Rect(gameObject.GetComponent<RectTransform>().position.x, gameObject.GetComponent<RectTransform>().position.y, gameObject.GetComponent<RectTransform>().rect.width, gameObject.GetComponent<RectTransform>().rect.height);
+        //Rect rect = new Rect();
+        if (rightCanvasRect.Contains(new Vector2(triggerPoint1.GetComponent<RectTransform>().position.x, triggerPoint1.GetComponent<RectTransform>().position.y))) 
+        {
+            // Inside
+            Debug.Log("Inside");
+        }
+        else
+        {
+            Debug.Log(rightCanvasRect);
+            Debug.Log(triggerPoint1.GetComponent<RectTransform>().position.x + " then " + triggerPoint1.GetComponent<RectTransform>().position.y);
+        }
     }
 }
 
