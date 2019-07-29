@@ -50,12 +50,18 @@ public class ModelSlector : MonoBehaviour
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, true, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.red, 2);
                 Debug.Log("stuff");
             }
+            dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
         }
 
         else if (dropDownValue == 2)
         {
-
+            GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, true, new Vector3(2, 3, 0), Color.blue, 1);
+            GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, true, new Vector3(0.5f, 0, 0), Color.blue, 1);
+            GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, true, new Vector3(4, 1, 0), Color.red, 2);
+            GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, true, new Vector3(0.2f, 2, 0), Color.red, 2);
+            dropDownMenu.GetComponent<Dropdown>().value = 0;
+            pannel.SetActive(false);
         }
     }
 }
