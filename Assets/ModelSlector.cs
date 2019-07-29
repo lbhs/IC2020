@@ -1,31 +1,61 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ModelSlector : MonoBehaviour
 {
-    public GameObject Pannel;
-    public int n;
+    public GameObject pannel;
+    public GameObject dropDownMenu;
+    private int dropDownValue;
+    [Header("Ionic Lattice Model Options")]
+    public int numberOfEachMonoculesPerColor;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
+ 
     // Update is called once per frame
     void Update()
     {
-        
+        dropDownValue = dropDownMenu.GetComponent<Dropdown>().value;
+        ChooseModel();
     }
+
 
     public void OpenEmptyScene()
     {
-        Pannel.SetActive(false);
+        pannel.SetActive(false);
+    }
+
+
+    public void ChooseModel()
+    {
+        //value 0 is the first option, 1 is the 2ed, ect...
+        if(dropDownValue == 0)
+        {
+            //nothing because it is the place holder text 'Choose Model'
+        }
+
+        else if(dropDownValue == 1)
+        {
+            //randomly adds several of 2 different kinds of particles
+            for(int x = 0; x < numberOfEachMonoculesPerColor; x++)
+            {
+            GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, true, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.blue, 1);
+            GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, true, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.red, 2);
+                Debug.Log("stuff");
+            }
+            pannel.SetActive(false);
+        }
+
+        else if (dropDownValue == 2)
+        {
+
+        }
     }
 }
-        //example randomly adds several of 2 different kinds of particles
-        /*for (int x = 0; x < n; x++)
-        {
-            gameObject.GetComponent<forces>().addSphere(1.0f, 1, true, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.blue, 1);
-            gameObject.GetComponent<forces>().addSphere(2.0f, 2, true, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.red, 2);
-        }*/
