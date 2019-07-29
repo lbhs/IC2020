@@ -21,17 +21,14 @@ public class cubeForces : MonoBehaviour
          *Collides with other game objects
          * returns cube gameobject
          * */
-    public GameObject addCube(float massC, bool elasticC, Vector3 posC, Color colorC, float scaleC, Vector3 velC)
+    public GameObject addCube(float massC, Vector3 posC, Color colorC, float scaleC, Vector3 velC)
     {
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);   //create primitive type of gameobject called cube
         cube.AddComponent<Rigidbody>();                                     //Makes cube a Rigidbody
         cube.GetComponent<Rigidbody>().mass = massC;                        //Defines mass as a property of cube
         cube.GetComponent<Rigidbody>().useGravity = false;                  //Disables Gravity
         cube.GetComponent<Rigidbody>().angularDrag = 0;                     //Disables angular drag
-        if (elasticC)                                                       //Defines elasticity as a property of cube
-        {
-            cube.AddComponent<elastic>();
-        }
+       
         cube.transform.position = posC;                                     //Defines position as a property of cube
         cube.GetComponent<Renderer>().material.color = colorC;              //Defines color as a property of cube
         cube.transform.localScale = new Vector3(scaleC, scaleC, scaleC);    //Scales the previously defined position
