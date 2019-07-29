@@ -12,7 +12,6 @@ public class drag : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
     private GameObject rightCanvas;
-    private bool hasBeenActivated;
 
     void OnMouseDown()
     {
@@ -50,8 +49,6 @@ public class drag : MonoBehaviour
         rightMenu = rightCanvas.GetComponent<RightClickHelper>().rightMenu;
         rightMenu.SetActive(false);
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-        hasBeenActivated = false;
-
     }
 
     //updates everyframe
