@@ -63,7 +63,7 @@ public class forces : MonoBehaviour
 	-Assumes forces should act on the particle
 	-Returns sphere gameobject
 	*/
-    public GameObject addSphere(float mass, int charge, bool elastic, Vector3 pos, Color color, float scale)
+    public GameObject addSphere(float mass, int charge, bool elastic, Vector3 pos, Color color, float scale, int imageToUse)
     {
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         sphere.AddComponent<Rigidbody>();
@@ -81,7 +81,13 @@ public class forces : MonoBehaviour
         sphere.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
 
         //Adds the drag object script
-        sphere.AddComponent<drag>();
+        sphere.AddComponent<DragNDrop>();
+
+        //sets the corrosponding image to the sphere
+        GameObject tempLable;
+        tempLable = Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[imageToUse], Vector3.zero , Quaternion.identity);
+        tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
+        tempLable.GetComponent<ImageFollower>().sphereToFollow = sphere;
 
         gameobjects.Add(sphere);
         return sphere;

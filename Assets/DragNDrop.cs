@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class drag : MonoBehaviour
+public class DragNDrop : MonoBehaviour
 {
     private Vector3 mOffset;
     private float mZCoord;
