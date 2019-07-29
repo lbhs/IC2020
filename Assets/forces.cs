@@ -70,10 +70,6 @@ public class forces : MonoBehaviour
         sphere.GetComponent<Rigidbody>().mass = mass;
         sphere.GetComponent<Rigidbody>().useGravity = false;
 		sphere.GetComponent<Rigidbody>().angularDrag = 0;
-        if (elastic)
-        {
-            sphere.AddComponent<elastic>();
-        }
         sphere.AddComponent<charger>().charge = charge;
         sphere.transform.position = pos;
         sphere.transform.localScale = new Vector3(scale, scale, scale);

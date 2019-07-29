@@ -28,10 +28,6 @@ public class cubeForces : MonoBehaviour
         cube.GetComponent<Rigidbody>().mass = massC;                        //Defines mass as a property of cube
         cube.GetComponent<Rigidbody>().useGravity = false;                  //Disables Gravity
         cube.GetComponent<Rigidbody>().angularDrag = 0;                     //Disables angular drag
-        if (elasticC)                                                       //Defines elasticity as a property of cube
-        {
-            cube.AddComponent<elastic>();
-        }
         cube.transform.position = posC;                                     //Defines position as a property of cube
         cube.GetComponent<Renderer>().material.color = colorC;              //Defines color as a property of cube
         cube.transform.localScale = new Vector3(scaleC, scaleC, scaleC);    //Scales the previously defined position
