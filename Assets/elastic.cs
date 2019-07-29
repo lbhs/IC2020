@@ -18,8 +18,11 @@ public class elastic : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (gameObject.HasComponent<Rigidbody>())
+        {
         var speed = lastFrameVelocity.magnitude;
         var direction = Vector3.Reflect(lastFrameVelocity.normalized, collision.contacts[0].normal);
         GetComponent<Rigidbody>().velocity = direction * speed;
+        }
     }
 }

@@ -12,7 +12,7 @@ public class drag : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
     private GameObject rightCanvas;
-    private GameObject shpereBeingRightCkicked;
+    private bool hasBeenActivated;
 
     void OnMouseDown()
     {
@@ -84,17 +84,46 @@ public class drag : MonoBehaviour
 
     void Start()
     {
+        //updating rigididbody when object is made, before object made with adshpere ot with table could not be draged
+        tempMass = gameObject.GetComponent<Rigidbody>().mass;
+        tempDrag = gameObject.GetComponent<Rigidbody>().drag;
+        tempAngularDrag = gameObject.GetComponent<Rigidbody>().angularDrag;
+        tempUseGravity = gameObject.GetComponent<Rigidbody>().useGravity;
+        tempIsKinematic = gameObject.GetComponent<Rigidbody>().isKinematic;
+        tempInterpolation = gameObject.GetComponent<Rigidbody>().interpolation;
+        tempCollisionDetectionMode = gameObject.GetComponent<Rigidbody>().collisionDetectionMode;
+        tempConstraints = gameObject.GetComponent<Rigidbody>().constraints;
+        gameObject.GetComponent<elastic>().enabled = (false);
+        Destroy(gameObject.GetComponent<Rigidbody>());
+        
+        
+
         //defining objects/varibles
         rightCanvas = GameObject.Find("Right-Click Canvas");
         rightMenu = rightCanvas.GetComponent<RightClickHelper>().rightMenu;
         rightMenu.SetActive(false);
-        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z; 
-        //to do, figure out how to modify this when the image is off screen with -/+      V
+        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        hasBeenActivated = false;
+
     }
 
     //updates everyframe
     void Update()
     {
+        if (hasBeenActivated == false)
+        {
+            gameObject.GetComponent<elastic>().enabled = (true);
+            gameObject.AddComponent<Rigidbody>();
+            gameObject.GetComponent<Rigidbody>().mass = tempMass;
+            gameObject.GetComponent<Rigidbody>().drag = tempDrag;
+            gameObject.GetComponent<Rigidbody>().angularDrag = tempAngularDrag;
+            gameObject.GetComponent<Rigidbody>().useGravity = tempUseGravity;
+            gameObject.GetComponent<Rigidbody>().isKinematic = tempIsKinematic;
+            gameObject.GetComponent<Rigidbody>().interpolation = tempInterpolation;
+            gameObject.GetComponent<Rigidbody>().collisionDetectionMode = tempCollisionDetectionMode;
+            gameObject.GetComponent<Rigidbody>().constraints = tempConstraints;
+            hasBeenActivated = true;
+        }
         //set up for finding the object that was right clicked
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

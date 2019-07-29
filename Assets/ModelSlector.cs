@@ -48,7 +48,7 @@ public class ModelSlector : MonoBehaviour
             {
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, true, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.blue, 1);
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, true, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.red, 2);
-                Debug.Log("stuff");
+            //Debug.Log("stuff");
             }
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);

@@ -35,7 +35,7 @@ public class forces : MonoBehaviour
             {
                 foreach (GameObject b in gameobjects)
                 {
-                    if (a != b)
+                    if (a != b && a.HasComponent<Rigidbody>() && b.HasComponent<Rigidbody>())
                     {
                         //all variable retrieval necessary for force math					
                         float m1 = a.GetComponent<Rigidbody>().mass;
