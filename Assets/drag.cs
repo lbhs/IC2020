@@ -36,15 +36,6 @@ public class drag : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
     
-    //the tempary varible 
-    private float tempMass;
-    private float tempDrag;
-    private float tempAngularDrag;
-    private bool tempUseGravity;
-    private bool tempIsKinematic;
-    private RigidbodyInterpolation tempInterpolation;
-    private CollisionDetectionMode tempCollisionDetectionMode;
-    private RigidbodyConstraints tempConstraints;
     void OnMouseDrag()
     {
         transform.position = GetMouseAsWorldPoint() + mOffset;
@@ -53,6 +44,7 @@ public class drag : MonoBehaviour
 
     void Start()
     {
+        gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
         //defining objects/varibles
         rightCanvas = GameObject.Find("Right-Click Canvas");
         rightMenu = rightCanvas.GetComponent<RightClickHelper>().rightMenu;
