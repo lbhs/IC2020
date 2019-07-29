@@ -2921,8 +2921,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1383625844}
-  - component: {fileID: 1383625845}
   - component: {fileID: 1383625846}
+  - component: {fileID: 1383625845}
   m_Layer: 0
   m_Name: ControllerRandy
   m_TagString: Untagged
@@ -2956,10 +2956,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ff9c70d8471e941b36c537667394bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  G: 100
+  G: 0
   k: 1000
   spawnSpheresOnStart: 0
-  numSpherePairs: 5
+  numSpherePairs: 0
 --- !u!114 &1383625846
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,18 +8,16 @@
 //////////////////////////////////////////////////////////
 
 /*
--Class Main is derived from Unity's built-in MonoBehaviour Class.
--Main.cs is a C# script that calls on other scripts to initialize graphics and forces.
+-Class main is derived from Unity's built-in MonoBehaviour Class.
+-main.cs is a C# script that calls on other scripts to initialize graphics and forces.
 -It should only ever be attached to the GameObject "ControllerRandy."
 -GameObject "ControllerRandy" is an empty object that holds any scripts necessary for the initialization / running of Force and Physics calculations,
 -as well as the initialization of Graphics and UI.
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Main : MonoBehaviour
+public class main : MonoBehaviour
 {
     // Debug variables for the initialization of Forces.
     public float G;
