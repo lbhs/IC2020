@@ -1,5 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Version 7.2--2 protons and 2 electron forms covalent bond with
-    cube colliders.unity
+- path: Assets/Version 2.1.unity
   isLoaded: 1
   isActive: 1
