@@ -6,7 +6,7 @@ public class cubeScript : MonoBehaviour
 {
     public Vector3 Velocity;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         gameObject.GetComponent<Rigidbody>().velocity = Velocity;
     }

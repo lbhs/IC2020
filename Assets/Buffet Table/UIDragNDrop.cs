@@ -11,10 +11,11 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     [Header(" ")]
     [Header("Settings for addSphere")]
     public float mass;
-    public int charge;
-    public bool elastic;
+    public float charge;
     public Color color;
     public float scale;
+    public float bounciness;
+    public int ImageToUse;
     [Header("  ")]
     [Header("Other")]
     [Header("No Settings for addWater")]

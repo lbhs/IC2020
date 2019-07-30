@@ -1652,6 +1652,7 @@ MonoBehaviour:
   imagePrefabs:
   - {fileID: 1778059490039022324, guid: 43691fde131ee4143b8d7f1568678636, type: 3}
   - {fileID: 8520551613667858557, guid: b4d9ba947cdb3894fbb66450481d9f9b, type: 3}
+  - {fileID: 0}
 --- !u!1 &428324403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1932,13 +1933,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 1
+  useAddWater: 0
   mass: 1
   charge: -2
-  elastic: 1
   color: {r: 0, g: 0, b: 1, a: 0}
   scale: 1
   bounciness: 0
-  ImageToUse: 1
+  ImageToUse: 0
   UseingMe: 0
   num: 0
 --- !u!114 &490550200
@@ -2028,9 +2030,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 0
+  useAddWater: 0
   mass: 0
   charge: 0
-  elastic: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   scale: 0
   bounciness: 0
@@ -3443,9 +3446,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 0
+  useAddWater: 1
   mass: 0
   charge: 0
-  elastic: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   scale: 0
   bounciness: 0
@@ -3465,14 +3469,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16470589, g: 0.1764706, b: 0.20000002, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: d3ed139d398413a0fb9e293c9d0c80d2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3539,9 +3543,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 0
+  useAddWater: 0
   mass: 0
   charge: 0
-  elastic: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   scale: 0
   bounciness: 0
@@ -4651,9 +4656,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 0
+  useAddWater: 0
   mass: 0
   charge: 0
-  elastic: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   scale: 0
   bounciness: 0
@@ -5108,9 +5114,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 0
+  useAddWater: 0
   mass: 0
   charge: 0
-  elastic: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   scale: 0
   bounciness: 0
@@ -5130,15 +5137,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16470589, g: 0.1764706, b: 0.20000002, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5215,11 +5222,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacfaf0d87d450446bb331f2f4a20a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 0}
   prefabs:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3680702012836678383, guid: 445571c11b9d7fb4db955da1251c2362, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -5563,9 +5571,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 1
+  useAddWater: 0
   mass: 2
   charge: 2
-  elastic: 1
   color: {r: 1, g: 0, b: 0, a: 0}
   scale: 2
   bounciness: 0
@@ -5659,9 +5668,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAddSphere: 0
+  useAddWater: 0
   mass: 0
   charge: 0
-  elastic: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   scale: 0
   bounciness: 0
@@ -7273,7 +7283,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Empty
+  m_Text: Collider
 --- !u!222 &1703449612
 CanvasRenderer:
   m_ObjectHideFlags: 0

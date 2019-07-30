@@ -44,7 +44,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
 
             if (Images[objectToUse].GetComponent<UIDragNDrop>().useAddSphere == true)
             {
-                MainObject.GetComponent<forces>().addSphere(Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().charge, Images[objectToUse].GetComponent<UIDragNDrop>().elastic, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().color, Images[objectToUse].GetComponent<UIDragNDrop>().scale);
+                MainObject.GetComponent<forces>().addSphere(Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().charge, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().color, Images[objectToUse].GetComponent<UIDragNDrop>().scale, Images[objectToUse].GetComponent<UIDragNDrop>().bounciness, Images[objectToUse].GetComponent<UIDragNDrop>().ImageToUse);
             }
             else if (Images[objectToUse].GetComponent<UIDragNDrop>().useAddWater == true)
             {
@@ -52,7 +52,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
             }
             else
             {
-                //Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
+                Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
             }
 			Debug.Log("created stuff");
         }

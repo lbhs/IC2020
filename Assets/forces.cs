@@ -63,7 +63,7 @@ public class forces : MonoBehaviour
 	-Assumes forces should act on the particle
 	-Returns sphere gameobject
 	*/
-    public GameObject addSphere(float mass, int charge, Vector3 pos, Color color, float scale, float bounciness, int imageToUse)
+    public GameObject addSphere(float mass, float charge, Vector3 pos, Color color, float scale, float bounciness, int imageToUse)
     {
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         sphere.AddComponent<Rigidbody>();
@@ -99,9 +99,9 @@ public class forces : MonoBehaviour
         float hhx = 0f;
         float hhy = .75f;
 
-        GameObject hydrogen = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, true, new Vector3(xd + hydrox, yd + hydroy, 0), Color.blue, 1);
-        GameObject oxygen = gameObject.GetComponent<forces>().addSphere(2.0f, -.2f, true, new Vector3(xd, yd, 0), Color.red, 2);
-        GameObject hh = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, true, new Vector3(xd + hhx, yd + hhy, 0), Color.blue, 1);
+        GameObject hydrogen = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, new Vector3(xd + hydrox, yd + hydroy, 0), Color.blue, 1, 0 ,3);
+        GameObject oxygen = gameObject.GetComponent<forces>().addSphere(2.0f, -.2f, new Vector3(xd, yd, 0), Color.red, 2, 0,3);
+        GameObject hh = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, new Vector3(xd + hhx, yd + hhy, 0), Color.blue, 1, 0,3);
 
         ConfigurableJoint cjoint;
         cjoint = hydrogen.AddComponent<ConfigurableJoint>();
