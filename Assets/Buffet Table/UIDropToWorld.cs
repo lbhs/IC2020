@@ -41,7 +41,11 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                     Debug.Log(objectToUse);
                 }
             }
+<<<<<<< HEAD
             MainObject.GetComponent<forces>().addSphere(Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().charge, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().color, Images[objectToUse].GetComponent<UIDragNDrop>().scale, 0.6f);
+=======
+            MainObject.GetComponent<forces>().addSphere(Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().charge, Images[objectToUse].GetComponent<UIDragNDrop>().elastic, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().color, Images[objectToUse].GetComponent<UIDragNDrop>().scale, Images[objectToUse].GetComponent<UIDragNDrop>().ImageToUse);
+>>>>>>> 964a4a739ceabcc923eb38f8a0ae86f787fcd5b4
             //Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
             Debug.Log("created stuff");
         }

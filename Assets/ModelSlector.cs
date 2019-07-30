@@ -46,8 +46,13 @@ public class ModelSlector : MonoBehaviour
             //randomly adds several of 2 different kinds of particles
             for(int x = 0; x < numberOfEachMonoculesPerColor; x++)
             {
+<<<<<<< HEAD
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.blue, 1, 0.6f);
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.red, 2, 0.6f);
+=======
+            GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, true, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.blue, 1, 1);
+            GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, true, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.red, 2, 0);
+>>>>>>> 964a4a739ceabcc923eb38f8a0ae86f787fcd5b4
             //Debug.Log("stuff");
             }
             dropDownMenu.GetComponent<Dropdown>().value = 0;
@@ -56,10 +61,17 @@ public class ModelSlector : MonoBehaviour
 
         else if (dropDownValue == 2)
         {
+<<<<<<< HEAD
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, new Vector3(2, 3, 0), Color.blue, 1, 0.6f);
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, new Vector3(0.5f, 0, 0), Color.blue, 1, 0.6f);
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, new Vector3(4, 1, 0), Color.red, 2, 0.6f);
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, new Vector3(0.2f, 2, 0), Color.red, 2, 0.6f);
+=======
+            GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, true, new Vector3(2, 3, 0), Color.blue, 1, 1);
+            GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, true, new Vector3(0.5f, 0, 0), Color.blue, 1, 1);
+            GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, true, new Vector3(4, 1, 0), Color.red, 2, 0);
+            GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, true, new Vector3(0.2f, 2, 0), Color.red, 2, 0);
+>>>>>>> 964a4a739ceabcc923eb38f8a0ae86f787fcd5b4
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
         }
