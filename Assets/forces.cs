@@ -80,7 +80,7 @@ public class forces : MonoBehaviour
 		sphere.GetComponent<Collider>().material.bounciness = bounciness;
         //Adds the drag object script
         sphere.AddComponent<drag>();
-
+		
         gameobjects.Add(sphere);
         return sphere;
     }

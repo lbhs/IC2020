@@ -2610,11 +2610,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 0
-  charge: 0
+  mass: 1
+  charge: 1
   elastic: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  scale: 0
+  scale: 1
   UseingMe: 0
   num: 0
 --- !u!114 &1334174579
@@ -2630,14 +2630,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16470589, g: 0.1764706, b: 0.20000002, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.96936965, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 37759f4d3a1c6f0468723fadacfc5a30, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3062,9 +3062,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ff9c70d8471e941b36c537667394bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  G: 100
+  G: 0
   k: 1000
-  n: 5
+  n: 1
 --- !u!1 &1406939525
 GameObject:
   m_ObjectHideFlags: 0
@@ -3665,7 +3665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3684,7 +3684,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Empty
+  m_Text: Breaker
 --- !u!222 &1703449612
 CanvasRenderer:
   m_ObjectHideFlags: 0
