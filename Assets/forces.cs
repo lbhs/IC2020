@@ -63,7 +63,7 @@ public class forces : MonoBehaviour
 	-Assumes forces should act on the particle
 	-Returns sphere gameobject
 	*/
-    public GameObject addSphere(float mass, int charge, Vector3 pos, Color color, float scale, float bounciness)
+    public GameObject addSphere(float mass, int charge, bool elastic, Vector3 pos, Color color, float scale)
     {
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         sphere.AddComponent<Rigidbody>();
@@ -75,9 +75,6 @@ public class forces : MonoBehaviour
         sphere.transform.localScale = new Vector3(scale, scale, scale);
         sphere.GetComponent<Renderer>().material.color = color;
         sphere.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
-        sphere.AddComponent<Collider>().material.bounciness = bounciness;
-        sphere.AddComponent<Collider>().material.dynamicFriction = 0;
-        sphere.AddComponent<Collider>().material.staticFriction = 0;
 
         //Adds the drag object script
         sphere.AddComponent<drag>();
