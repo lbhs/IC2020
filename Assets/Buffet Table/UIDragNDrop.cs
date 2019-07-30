@@ -10,10 +10,14 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     public bool elastic;
     public Color color;
     public float scale;
+    public float bounciness;
+    public int ImageToUse;
+    private GameObject rightCanvas;
 
     public bool UseingMe;
     public void OnDrag(PointerEventData eventData)
     {
+        rightCanvas.GetComponent<RightClickHelper>().HideRightMenu();
         transform.position = Input.mousePosition;
         UseingMe = true;
     }
@@ -27,6 +31,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     // Start is called before the first frame update
     void Start()
     {
+        rightCanvas = GameObject.Find("Right-Click Canvas");
         num = int.Parse(gameObject.name);
     }
 

@@ -7,7 +7,7 @@ public class forces : MonoBehaviour
     private float G;
     private float k;
 	//List of all game objects that forces should act on (gravity, electrostatic, collisions, etc.)
-    List<GameObject> gameobjects = new List<GameObject>();
+    public List<GameObject> gameobjects = new List<GameObject>();
 
 	/*
 	-Gravitational and coulomb's constants must be initialized on start. i.e.: "gameObject.AddComponent<forces>().initialize(G, k);"
@@ -35,7 +35,7 @@ public class forces : MonoBehaviour
             {
                 foreach (GameObject b in gameobjects)
                 {
-                    if (a != b)
+                    if (a != b && a.HasComponent<Rigidbody>() && b.HasComponent<Rigidbody>())
                     {
                         //all variable retrieval necessary for force math					
                         float m1 = a.GetComponent<Rigidbody>().mass;
@@ -63,7 +63,7 @@ public class forces : MonoBehaviour
 	-Assumes forces should act on the particle
 	-Returns sphere gameobject
 	*/
-    public GameObject addSphere(float mass, int charge, Vector3 pos, Color color, float scale, float bounciness)
+    public GameObject addSphere(float mass, int charge, Vector3 pos, Color color, float scale, float bounciness, int imageToUse)
     {
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         sphere.AddComponent<Rigidbody>();
@@ -79,7 +79,13 @@ public class forces : MonoBehaviour
 		sphere.GetComponent<Collider>().material.staticFriction = 0;
 		sphere.GetComponent<Collider>().material.bounciness = bounciness;
         //Adds the drag object script
-        sphere.AddComponent<drag>();
+        sphere.AddComponent<DragNDrop>();
+
+        //sets the corrosponding image to the sphere
+        GameObject tempLable;
+        tempLable = Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[imageToUse], Vector3.zero , Quaternion.identity);
+        tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
+        tempLable.GetComponent<ImageFollower>().sphereToFollow = sphere;
 
         gameobjects.Add(sphere);
         return sphere;
