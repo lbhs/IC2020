@@ -1652,7 +1652,7 @@ MonoBehaviour:
   imagePrefabs:
   - {fileID: 1778059490039022324, guid: 43691fde131ee4143b8d7f1568678636, type: 3}
   - {fileID: 8520551613667858557, guid: b4d9ba947cdb3894fbb66450481d9f9b, type: 3}
-  - {fileID: 0}
+  - {fileID: 8520551613667858557, guid: a6098b3de202abf45832b953cbc0f9ed, type: 3}
 --- !u!1 &428324403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,7 +1940,7 @@ MonoBehaviour:
   color: {r: 0, g: 0, b: 1, a: 0}
   scale: 1
   bounciness: 0
-  ImageToUse: 0
+  ImageToUse: 1
   UseingMe: 0
   num: 0
 --- !u!114 &490550200
