@@ -30,6 +30,7 @@ public class drag : MonoBehaviour
     void OnMouseDrag()
     {
         transform.position = GetMouseAsWorldPoint() + mOffset;
+		gameObject.GetComponent<Rigidbody>().MovePosition(transform.position);
         //Debug.Log(this.transform.position);
     }
 }
