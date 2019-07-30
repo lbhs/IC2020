@@ -22,14 +22,14 @@ public class main : MonoBehaviour
 		//example randomly adds several of 2 different kinds of particles
         for(int x = 0; x < n1; x++)
         {
-            gameObject.GetComponent<forces>().addSphere(1.0f, -1, true, new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0), Color.blue, 1);
-            gameObject.GetComponent<forces>().addSphere(1.0f, 1, true, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.red, 1);
+            gameObject.GetComponent<forces>().addSphere(1.0f, -1, new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0), Color.blue, 1, 0.1f);
+            gameObject.GetComponent<forces>().addSphere(1.0f, 1, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.red, 1, 0.1f);
         }
        
         //adds n2 amount of bond breaker cubes
         for(int y = 0; y < n2; y++)
         {
-            gameObject.GetComponent<cubeForces>().addCube(10.0f, true, new Vector3(UnityEngine.Random.Range(-5, 5), Random.Range(-5, 5), 0), Color.gray, 1f, new Vector3(UnityEngine.Random.Range(30f, 50f), Random.Range(30f, 50f), 0));
+            gameObject.GetComponent<cubeForces>().addCube(10.0f, new Vector3(UnityEngine.Random.Range(-5, 5), Random.Range(-5, 5), 0), Color.gray, 1f, new Vector3(UnityEngine.Random.Range(30f, 50f), Random.Range(30f, 50f), 0), 0.6f);
         }
         
     }

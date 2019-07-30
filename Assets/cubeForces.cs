@@ -21,7 +21,7 @@ public class cubeForces : MonoBehaviour
          *Collides with other game objects
          * returns cube gameobject
          * */
-    public GameObject addCube(float massC, bool elasticC, Vector3 posC, Color colorC, float scaleC, Vector3 velC)
+    public GameObject addCube(float massC, Vector3 posC, Color colorC, float scaleC, Vector3 velC, float bouncinessC)
     {
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);   //create primitive type of gameobject called cube
         cube.AddComponent<Rigidbody>();                                     //Makes cube a Rigidbody
@@ -32,8 +32,9 @@ public class cubeForces : MonoBehaviour
         cube.GetComponent<Renderer>().material.color = colorC;              //Defines color as a property of cube
         cube.transform.localScale = new Vector3(scaleC, scaleC, scaleC);    //Scales the previously defined position
         cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;           //Freezes Z position
-                                                                                                                                                                                   //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;           //Freezes X rotation
-                                                                                                                                                                                   //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationY;           //Freezes Y rotation
+        cube.AddComponent<Collider>().material.bounciness = bouncinessC;                                                                                                                                                                           //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;           //Freezes X rotation
+        cube.AddComponent<Collider>().material.dynamicFriction = 0;
+        cube.AddComponent<Collider>().material.staticFriction = 0;
 
         cube.GetComponent<Rigidbody>().velocity = velC;  //Adds initial velocity as a property of cube
         cube.AddComponent<drag>();
