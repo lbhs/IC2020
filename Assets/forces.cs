@@ -63,11 +63,7 @@ public class forces : MonoBehaviour
 	-Assumes forces should act on the particle
 	-Returns sphere gameobject
 	*/
-<<<<<<< HEAD
-    public GameObject addSphere(float mass, int charge, Vector3 pos, Color color, float scale, float bounciness)
-=======
-    public GameObject addSphere(float mass, int charge, bool elastic, Vector3 pos, Color color, float scale, int imageToUse)
->>>>>>> 964a4a739ceabcc923eb38f8a0ae86f787fcd5b4
+    public GameObject addSphere(float mass, int charge, Vector3 pos, Color color, float scale, float bounciness, int imageToUse)
     {
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         sphere.AddComponent<Rigidbody>();

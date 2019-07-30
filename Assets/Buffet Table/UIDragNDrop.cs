@@ -10,6 +10,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     public bool elastic;
     public Color color;
     public float scale;
+    public float bounciness;
     public int ImageToUse;
     private GameObject rightCanvas;
 

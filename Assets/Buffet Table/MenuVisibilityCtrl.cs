@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class MenuVisibilityCtrl : MonoBehaviour
 {
-    [SerializeField] bool shouldStartVisible;
+    [SerializeField] bool shouldStartVisible = default;
 
     GameObject _myGameObj;
     GameObject _invisibleBG;

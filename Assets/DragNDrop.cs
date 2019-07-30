@@ -39,6 +39,7 @@ public class DragNDrop : MonoBehaviour
     {
         transform.position = GetMouseAsWorldPoint() + mOffset;
 		gameObject.GetComponent<Rigidbody>().MovePosition(GetMouseAsWorldPoint() + mOffset);
+        gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
     }
 
     void Start()

@@ -1937,6 +1937,7 @@ MonoBehaviour:
   elastic: 1
   color: {r: 0, g: 0, b: 1, a: 0}
   scale: 1
+  bounciness: 0
   ImageToUse: 1
   UseingMe: 0
   num: 0
@@ -2032,6 +2033,7 @@ MonoBehaviour:
   elastic: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   scale: 0
+  bounciness: 0
   ImageToUse: 0
   UseingMe: 0
   num: 0
@@ -2471,7 +2473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &596816177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3508,6 +3510,7 @@ MonoBehaviour:
   elastic: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   scale: 0
+  bounciness: 0
   ImageToUse: 0
   UseingMe: 0
   num: 0
@@ -3603,6 +3606,7 @@ MonoBehaviour:
   elastic: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   scale: 0
+  bounciness: 0
   ImageToUse: 0
   UseingMe: 0
   num: 0
@@ -4714,6 +4718,7 @@ MonoBehaviour:
   elastic: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   scale: 0
+  bounciness: 0
   ImageToUse: 0
   UseingMe: 0
   num: 0
@@ -5170,6 +5175,7 @@ MonoBehaviour:
   elastic: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   scale: 0
+  bounciness: 0
   ImageToUse: 0
   UseingMe: 0
   num: 0
@@ -5624,6 +5630,7 @@ MonoBehaviour:
   elastic: 1
   color: {r: 1, g: 0, b: 0, a: 0}
   scale: 2
+  bounciness: 0
   ImageToUse: 0
   UseingMe: 0
   num: 0
@@ -5719,6 +5726,7 @@ MonoBehaviour:
   elastic: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   scale: 0
+  bounciness: 0
   ImageToUse: 0
   UseingMe: 0
   num: 0
@@ -7383,7 +7391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332aa357a05c2e0409b073fc72f3d62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shouldStartVisible: 1
+  shouldStartVisible: 0
 --- !u!1 &1624903303
 GameObject:
   m_ObjectHideFlags: 0
