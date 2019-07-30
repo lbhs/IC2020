@@ -1939,7 +1939,7 @@ MonoBehaviour:
   charge: -2
   color: {r: 0, g: 0, b: 1, a: 0}
   scale: 1
-  bounciness: 0
+  bounciness: 0.6
   ImageToUse: 1
   UseingMe: 0
   num: 0
@@ -5577,7 +5577,7 @@ MonoBehaviour:
   charge: 2
   color: {r: 1, g: 0, b: 0, a: 0}
   scale: 2
-  bounciness: 0
+  bounciness: 0.6
   ImageToUse: 0
   UseingMe: 0
   num: 0
@@ -5837,7 +5837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ff9c70d8471e941b36c537667394bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  G: 100
+  G: 0
   k: 1000
 --- !u!1 &1406939525
 GameObject:
@@ -6277,7 +6277,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Covalent Bonding
       m_Image: {fileID: 0}
-    - m_Text: '...'
+    - m_Text: Na+ in Water
       m_Image: {fileID: 0}
     - m_Text: '...'
       m_Image: {fileID: 0}
@@ -6548,6 +6548,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pannel: {fileID: 1535542201}
   dropDownMenu: {fileID: 1528985652}
+  cubePrefab: {fileID: 3680702012836678383, guid: 445571c11b9d7fb4db955da1251c2362,
+    type: 3}
   numberOfEachMonoculesPerColor: 6
 --- !u!1 &1537190289
 GameObject:

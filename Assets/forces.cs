@@ -25,7 +25,7 @@ public class forces : MonoBehaviour
         pauseCanvas = GameObject.Find("Control Canvas");
     }
     //Calculates electrostatic and gravitational forces on all objects in gameobjects list every frame
-    void Update()
+    void FixedUpdate()
     {
         //Ensures that forces do not get caculated while paused
         if (pauseCanvas.GetComponent<pauseScript>().isPaused == false)
@@ -50,7 +50,7 @@ public class forces : MonoBehaviour
                         float Fe = (k * q1 * q2) / Mathf.Pow(r, 2);
 
                         //applies force vector
-                        a.GetComponent<Rigidbody>().AddForce(dir * (Fg - Fe) * Time.fixedDeltaTime);
+                        a.GetComponent<Rigidbody>().AddForce(dir * (-Fe));
                     }
                 }
             }
@@ -99,9 +99,9 @@ public class forces : MonoBehaviour
         float hhx = 0f;
         float hhy = .75f;
 
-        GameObject hydrogen = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, new Vector3(xd + hydrox, yd + hydroy, 0), Color.blue, 1, 0 , 2);
-        GameObject oxygen = gameObject.GetComponent<forces>().addSphere(2.0f, -.2f, new Vector3(xd, yd, 0), Color.red, 2, 0, 2);
-        GameObject hh = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, new Vector3(xd + hhx, yd + hhy, 0), Color.blue, 1, 0, 2);
+        GameObject hydrogen = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, new Vector3(xd + hydrox, yd + hydroy, 0), Color.yellow, 1, 0.2f , 2);
+        GameObject oxygen = gameObject.GetComponent<forces>().addSphere(2.0f, -.2f, new Vector3(xd, yd, 0), Color.green, 2, 0.2f, 2);
+        GameObject hh = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, new Vector3(xd + hhx, yd + hhy, 0), Color.yellow, 1, 0.2f, 2);
 
         ConfigurableJoint cjoint;
         cjoint = hydrogen.AddComponent<ConfigurableJoint>();
