@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class UIDropToWorld : MonoBehaviour, IDropHandler
 {
-    //public GameObject prefab;
+    public GameObject prefab;
     public GameObject[] prefabs;
     public GameObject[] Images;
     private Vector3 prefabWorldPosition;
@@ -21,7 +21,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
         RectTransform Panel = transform as RectTransform;
         prefabWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         prefabWorldPosition.z = 0;
-        //Debug.Log(prefabWorldPosition);
+        Debug.Log(prefabWorldPosition);
         objectToUse = 2;
 
 
@@ -38,12 +38,23 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                 if (item.GetComponent<UIDragNDrop>().UseingMe == true)
                 {
                     objectToUse = int.Parse(item.name);
-                    //Debug.Log(objectToUse);
+                    Debug.Log(objectToUse);
                 }
             }
-            MainObject.GetComponent<forces>().addSphere(Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().charge, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().color, Images[objectToUse].GetComponent<UIDragNDrop>().scale, Images[objectToUse].GetComponent<UIDragNDrop>().bounciness, Images[objectToUse].GetComponent<UIDragNDrop>().ImageToUse);
-            //Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
-            //Debug.Log("created stuff");
+
+            if (Images[objectToUse].GetComponent<UIDragNDrop>().useAddSphere == true)
+            {
+                MainObject.GetComponent<forces>().addSphere(Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().charge, Images[objectToUse].GetComponent<UIDragNDrop>().elastic, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().color, Images[objectToUse].GetComponent<UIDragNDrop>().scale);
+            }
+            else if (Images[objectToUse].GetComponent<UIDragNDrop>().useAddWater == true)
+            {
+                MainObject.GetComponent<forces>().addWater((float)prefabWorldPosition.x, (float)prefabWorldPosition.y);
+            }
+            else
+            {
+                //Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
+            }
+			Debug.Log("created stuff");
         }
     
 
