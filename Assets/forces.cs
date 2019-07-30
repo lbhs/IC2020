@@ -75,7 +75,7 @@ public class forces : MonoBehaviour
         sphere.transform.localScale = new Vector3(scale, scale, scale);
         sphere.GetComponent<Renderer>().material.color = color;
         sphere.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
-		sphere.GetComponent<Collider>().material.dynamicFriction = 0;
+		sphere.GetComponent<Collider>().material.dynamicFriction = 0.2f;
 		sphere.GetComponent<Collider>().material.staticFriction = 0;
 		sphere.GetComponent<Collider>().material.bounciness = bounciness;
         //Adds the drag object script

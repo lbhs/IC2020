@@ -6,6 +6,7 @@ public class CubeScript : MonoBehaviour
 {
     Rigidbody Cube;
     public Vector3 CubeVelocity;
+    private Vector3 vel;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,14 @@ public class CubeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        vel = Cube.velocity;
+        if (vel.sqrMagnitude < 40)
+        {
+        print("slow cube");
+        print(Cube.velocity);
+        Cube.velocity = 1.4f*vel;
+        print("speed boost");
+        print(Cube.velocity);
+        }
     }
 }

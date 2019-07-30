@@ -16,8 +16,9 @@ public class main : MonoBehaviour
         gameObject.AddComponent<forces>().initialize(k);
 
 		//example randomly adds several of 2 different kinds of particles
-        for(int x = 0; x < 4; x++)
+        for(int x = 0; x < n; x++)
         {
+            //parameters = mass, charge, position, color, size (scale), bounciness)
             gameObject.GetComponent<forces>().addSphere(1.0f, -1, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.blue, 1, 0.4f);
             gameObject.GetComponent<forces>().addSphere(1f, +1, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.red, 1, 1.0f);
         }
