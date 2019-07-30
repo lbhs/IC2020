@@ -50,7 +50,7 @@ public class forces : MonoBehaviour
                         float Fe = (k * q1 * q2) / Mathf.Pow(r, 2);
 
                         //applies force vector
-                        a.GetComponent<Rigidbody>().AddForce(dir * (-Fe));
+                        a.GetComponent<Rigidbody>().AddForce(dir * (Fg - Fe));
                     }
                 }
             }

@@ -21,7 +21,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
         RectTransform Panel = transform as RectTransform;
         prefabWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         prefabWorldPosition.z = 0;
-        Debug.Log(prefabWorldPosition);
+        //Debug.Log(prefabWorldPosition);
         objectToUse = 2;
 
 
@@ -38,7 +38,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                 if (item.GetComponent<UIDragNDrop>().UseingMe == true)
                 {
                     objectToUse = int.Parse(item.name);
-                    Debug.Log(objectToUse);
+                    //Debug.Log(objectToUse);
                 }
             }
 
@@ -54,7 +54,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
             {
                 Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
             }
-			Debug.Log("created stuff");
+			//Debug.Log("created stuff");
         }
     
 
