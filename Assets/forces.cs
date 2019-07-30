@@ -90,4 +90,78 @@ public class forces : MonoBehaviour
         gameobjects.Add(sphere);
         return sphere;
     }
+
+    public GameObject addWater(float xd, float yd)
+    {
+        float hydrox = 0.5f;
+        float hydroy = -0.6f;
+
+        float hhx = 0f;
+        float hhy = .75f;
+
+        GameObject hydrogen = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, true, new Vector3(xd + hydrox, yd + hydroy, 0), Color.blue, 1);
+        GameObject oxygen = gameObject.GetComponent<forces>().addSphere(2.0f, -.2f, true, new Vector3(xd, yd, 0), Color.red, 2);
+        GameObject hh = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, true, new Vector3(xd + hhx, yd + hhy, 0), Color.blue, 1);
+
+        ConfigurableJoint cjoint;
+        cjoint = hydrogen.AddComponent<ConfigurableJoint>();
+        cjoint.xMotion = ConfigurableJointMotion.Limited;
+        cjoint.yMotion = ConfigurableJointMotion.Limited;
+        cjoint.zMotion = ConfigurableJointMotion.Locked;
+        cjoint.angularXMotion = ConfigurableJointMotion.Limited;
+        cjoint.angularYMotion = ConfigurableJointMotion.Limited;
+        cjoint.angularZMotion = ConfigurableJointMotion.Locked;
+        cjoint.connectedBody = oxygen.GetComponent<Rigidbody>();
+        cjoint.anchor = Vector3.down;
+        cjoint.angularXMotion = ConfigurableJointMotion.Limited;
+        cjoint.angularYMotion = ConfigurableJointMotion.Limited;
+        cjoint.angularZMotion = ConfigurableJointMotion.Locked;
+
+        cjoint.autoConfigureConnectedAnchor = false;
+
+
+        cjoint.connectedAnchor = new Vector3(hydrox, hydroy, 0);
+
+        var limit = new SoftJointLimit();
+        limit.limit = 0.1f;
+        //limit.SoftJointLimitSpring = 40.0f;
+        cjoint.linearLimit = limit;
+
+        limit.limit = 10.0f;
+        cjoint.angularYLimit = limit;
+        cjoint.angularZLimit = limit;
+        cjoint.lowAngularXLimit = limit;
+        cjoint.highAngularXLimit = limit;
+
+
+
+        ConfigurableJoint ccjoint;
+        ccjoint = hh.AddComponent<ConfigurableJoint>();
+        ccjoint.xMotion = ConfigurableJointMotion.Limited;
+        ccjoint.yMotion = ConfigurableJointMotion.Limited;
+        ccjoint.zMotion = ConfigurableJointMotion.Locked;
+
+        ccjoint.connectedBody = oxygen.GetComponent<Rigidbody>();
+
+        ccjoint.angularXMotion = ConfigurableJointMotion.Limited;
+        ccjoint.angularYMotion = ConfigurableJointMotion.Limited;
+        ccjoint.angularZMotion = ConfigurableJointMotion.Locked;
+
+        ccjoint.autoConfigureConnectedAnchor = false;
+        ccjoint.connectedAnchor = new Vector3(hhx, hhy, 0f);
+
+        var llimit = new SoftJointLimit();
+        llimit.limit = 0.1f;
+        //limit.SoftJointLimitSpring = 40.0f;
+        cjoint.linearLimit = llimit;
+
+        llimit.limit = 10.0f;
+        cjoint.angularYLimit = llimit;
+        cjoint.angularZLimit = llimit;
+        cjoint.lowAngularXLimit = llimit;
+        cjoint.highAngularXLimit = llimit;
+
+
+        return null;
+    }
 }
