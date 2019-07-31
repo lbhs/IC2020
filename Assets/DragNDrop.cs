@@ -66,7 +66,7 @@ public class DragNDrop : MonoBehaviour
         //Debug.Log(Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMax)).y);
         //makes sure the gameobject is inside the camera
         //if it is above the Camera
-        /*if (gameObject.transform.position.y > -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMin)).y)
+        if (gameObject.transform.position.y > -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMin)).y)
         {
             gameObject.transform.position = new Vector3 (gameObject.transform.position.x, -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMin)).y -2, 0);
             gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
@@ -81,22 +81,24 @@ public class DragNDrop : MonoBehaviour
             mousePos.y = gameObject.transform.position.y;
             //Debug.Log("below");
         }
+        
         //if it is to far to the right of the camera 
-        else if (gameObject.transform.position.x > Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x)
+        else if (gameObject.transform.position.x > -Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x)
         {
-            gameObject.transform.position = new Vector3(Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x - 2, gameObject.transform.position.y, 0);
+            gameObject.transform.position = new Vector3(-Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x - 2, gameObject.transform.position.y, 0);
             gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
             mousePos.x = gameObject.transform.position.x;
-            //Debug.Log("right");
+            Debug.Log("right");
         }
         //if it is to far to the left of the camera
-        else if (gameObject.transform.position.x < Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMax, 0)).x)
+        else if (gameObject.transform.position.x < -Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMax, 0)).x)
         {
             gameObject.transform.position = new Vector3(-Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMax,0)).x + 2, gameObject.transform.position.y, 0);
             gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
             mousePos.x = gameObject.transform.position.x;
-            //Debug.Log("left");
-        }*/
+            Debug.Log("left");
+        }
+        Debug.Log(-Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x);
 
         //logic to determin flick vs drag && caculating force vector to be added
         //Debug.Log(Vector3.Distance(mouseStartPos, mouseEndPos));
