@@ -82,6 +82,7 @@ public class forces : MonoBehaviour
 
         //Adds the drag object script
         sphere.AddComponent<drag>();
+        sphere.AddComponent<TimeBody>();
 
         gameobjects.Add(sphere);
         return sphere;
@@ -89,12 +90,13 @@ public class forces : MonoBehaviour
 
     public GameObject addWater(float xd, float yd)
     {
-        float hydrox = 0.5f;
+        float hydrox = 0.55f;
         float hydroy = -0.6f;
 
         float hhx = 0f;
         float hhy = .75f;
-        
+
+
         GameObject hydrogen = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, true, new Vector3(xd+hydrox, yd+hydroy, 0), Color.blue, 1);
         GameObject oxygen = gameObject.GetComponent<forces>().addSphere(2.0f, -.2f, true, new Vector3(xd, yd, 0), Color.red, 2);
         GameObject hh =  gameObject.GetComponent<forces>().addSphere(1.0f, .1f, true, new Vector3(xd+hhx, yd+hhy, 0), Color.blue, 1);
