@@ -59,6 +59,8 @@ public class ModelSlector : MonoBehaviour
         //Covalent Bonding
         else if (dropDownValue == 2)
         {
+            //float vx = UnityEngine.Random.Range(-5, 5);
+            //float vy = Mathf.Sqrt(50 - (vx * vx));
             Instantiate(cubePrefab, new Vector3(5, 5, 0), Quaternion.identity);
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, new Vector3(2, 3, 0), Color.blue, 1, 0.6f, 1);
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, new Vector3(0.5f, 0, 0), Color.blue, 1, 0.6f, 1);
