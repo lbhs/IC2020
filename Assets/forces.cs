@@ -25,7 +25,7 @@ public class forces : MonoBehaviour
         pauseCanvas = GameObject.Find("Control Canvas");
     }
     //Calculates electrostatic and gravitational forces on all objects in gameobjects list every frame
-    void Update()
+    void FixedUpdate()
     {
         //Ensures that forces do not get caculated while paused
         if (pauseCanvas.GetComponent<pauseScript>().isPaused == false)
