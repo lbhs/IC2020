@@ -6057,7 +6057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   G: 0
-  k: 200
+  k: 20000
 --- !u!114 &1383625846
 MonoBehaviour:
   m_ObjectHideFlags: 0
