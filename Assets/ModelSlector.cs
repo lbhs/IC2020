@@ -7,6 +7,7 @@ public class ModelSlector : MonoBehaviour
 {
     public GameObject pannel;
     public GameObject dropDownMenu;
+    public GameObject cubePrefab;
     private int dropDownValue;
     [Header("Ionic Lattice Model Options")]
     public int numberOfEachMonoculesPerColor;
@@ -41,7 +42,8 @@ public class ModelSlector : MonoBehaviour
             //nothing because it is the place holder text 'Choose Model'
         }
 
-        else if(dropDownValue == 1)
+        //Ionic Lattice Model
+        else if (dropDownValue == 1)
         {
             //randomly adds several of 2 different kinds of particles
             for(int x = 0; x < numberOfEachMonoculesPerColor; x++)
@@ -54,12 +56,35 @@ public class ModelSlector : MonoBehaviour
             pannel.SetActive(false);
         }
 
+        //Covalent Bonding
         else if (dropDownValue == 2)
         {
+            Instantiate(cubePrefab, new Vector3(5, 5, 0), Quaternion.identity);
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, new Vector3(2, 3, 0), Color.blue, 1, 0.6f, 1);
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(1.0f, -2, new Vector3(0.5f, 0, 0), Color.blue, 1, 0.6f, 1);
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, new Vector3(4, 1, 0), Color.red, 2, 0.6f, 0);
             GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, new Vector3(0.2f, 2, 0), Color.red, 2, 0.6f, 0);
+            dropDownMenu.GetComponent<Dropdown>().value = 0;
+            pannel.SetActive(false);
+        }
+
+        //Na+ in Water
+        else if (dropDownValue == 3)
+        {
+            GameObject.Find("GameObject").GetComponent<forces>().addWater(0,4 );
+            GameObject.Find("GameObject").GetComponent<forces>().addWater(5, 0);
+            GameObject.Find("GameObject").GetComponent<forces>().addWater(0, -5);
+            GameObject.Find("GameObject").GetComponent<forces>().addWater(-5, 2);
+            GameObject.Find("GameObject").GetComponent<forces>().addSphere(2.0f, 2, new Vector3(0, 0, 0), Color.red, 2, 0.6f, 0);
+            Instantiate(cubePrefab, new Vector3(5, 5, 0), Quaternion.identity);
+            dropDownMenu.GetComponent<Dropdown>().value = 0;
+            pannel.SetActive(false);
+        }
+
+        //...
+        else if (dropDownValue == 4)
+        {
+            //do stuff here
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
         }

@@ -35,7 +35,7 @@ public class RightClickHelper : MonoBehaviour
     //updates the charge when the value of the Inputfeild is cahnged
     public void ChangeCharge()
     {
-        currentSphere.GetComponent<charger>().charge = int.Parse(gameObject.GetComponent<RightClickHelper>().Charge.GetComponent<InputField>().text);
+        currentSphere.GetComponent<charger>().charge = float.Parse(gameObject.GetComponent<RightClickHelper>().Charge.GetComponent<InputField>().text);
     }
 
     //Anchor toggle
