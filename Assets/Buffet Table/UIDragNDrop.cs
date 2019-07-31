@@ -39,10 +39,4 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         num = int.Parse(gameObject.name);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

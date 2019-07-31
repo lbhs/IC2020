@@ -21,6 +21,7 @@ public class main : MonoBehaviour
         {
             gameObject.GetComponent<forces>().addSphere(1.0f, -1, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.blue, 1, 0.6f, 1);
             gameObject.GetComponent<forces>().addSphere(2.0f, 2, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), Color.red, 2, 0.6f, 0);
-        }*/
+        }
+		*/
     }
 }

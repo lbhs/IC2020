@@ -28,7 +28,7 @@ public class forces : MonoBehaviour
     void FixedUpdate()
     {
         //Ensures that forces do not get caculated while paused
-        if (pauseCanvas.GetComponent<pauseScript>().isPaused == false)
+        if (Time.timeScale != 0)
         {
             //Nested for loops + if statement to calculate force that each object exerts on every other object
             foreach (GameObject a in gameobjects)
@@ -80,13 +80,11 @@ public class forces : MonoBehaviour
 		sphere.GetComponent<Collider>().material.bounciness = bounciness;
         //Adds the drag object script
         sphere.AddComponent<DragNDrop>();
-
         //sets the corrosponding image to the sphere
         GameObject tempLable;
         tempLable = Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[imageToUse], Vector3.zero , Quaternion.identity);
         tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
         tempLable.GetComponent<ImageFollower>().sphereToFollow = sphere;
-
         gameobjects.Add(sphere);
         return sphere;
     }
