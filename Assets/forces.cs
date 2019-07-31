@@ -50,6 +50,7 @@ public class forces : MonoBehaviour
                         float Fe = (k * q1 * q2) / Mathf.Pow(r, 2);
 
                         //applies force vector
+						//must use time.fixeddeltatime here to keep constant framerate with different timescales
                         a.GetComponent<Rigidbody>().AddForce(dir * (Fg - Fe) * Time.fixedDeltaTime);
                     }
                 }
