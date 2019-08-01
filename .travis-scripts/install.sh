@@ -28,7 +28,7 @@ install() {
 	download $1
 
 	echo "Installing `basename "$PACKAGE_URL"`"
-	#sudo installer -dumplog -package $UNITY_DOWNLOAD_CACHE/`basename "$PACKAGE_URL"` -target /
+	sudo installer -dumplog -package $UNITY_DOWNLOAD_CACHE/`basename "$PACKAGE_URL"` -target /
 }
 
 
