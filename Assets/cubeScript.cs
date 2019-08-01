@@ -26,9 +26,9 @@ public class cubeScript : MonoBehaviour
     {
         if(gameObject.GetComponent<Rigidbody>().velocity.sqrMagnitude < 50)
         {
-            print("old velocity =" + velocity);
+            //print("old velocity =" + velocity);
             gameObject.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity.normalized * 5 * Mathf.Sqrt(2);
-            print("new velocity =" + velocity);
+            //print("new velocity =" + velocity);
         }
     }
 }
