@@ -102,6 +102,19 @@ public class forces : MonoBehaviour
         GameObject oxygen = gameObject.GetComponent<forces>().addSphere(2.0f, -.2f, new Vector3(xd, yd, 0), Color.green, 2, 0.2f, 2);
         GameObject hh = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, new Vector3(xd + hhx, yd + hhy, 0), Color.yellow, 1, 0.2f, 2);
 
+        //adding tags
+        hydrogen.tag = "isInWater";
+        oxygen.tag = "isInWater";
+        hh.tag = "isInWater";
+
+        //set hydrogen as a child of oxygen
+        hydrogen.transform.SetParent(oxygen.transform);
+        hh.transform.SetParent(oxygen.transform);
+
+        //destroy Drag N Drop on hydrogen
+        Destroy(hydrogen.GetComponent<DragNDrop>());
+        Destroy(hh.GetComponent<DragNDrop>());
+
         ConfigurableJoint cjoint;
         cjoint = hydrogen.AddComponent<ConfigurableJoint>();
         cjoint.xMotion = ConfigurableJointMotion.Limited;

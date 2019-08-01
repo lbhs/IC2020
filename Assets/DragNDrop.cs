@@ -141,59 +141,62 @@ public class DragNDrop : MonoBehaviour
             //find out if an object was hit 
             if (Physics.Raycast(ray, out hit))
             {
-
-                //caculates where the menu must be
-                rightCanvas.GetComponent<RightClickHelper>().CheckRightVisablity();
-        
-                //------------------------sets the position of the right-click menu------------------------
-                //rightMenu.transform.position = Input.mousePosition + menuOffest;
-                //makes sure that right click menu is in screen
-                
-
-                //makes menu visable
-                rightMenu.SetActive(true);
-
-                //update the varible so that RightClickHelper knows what sphere to edit
-                rightCanvas.GetComponent<RightClickHelper>().currentSphere = hit.rigidbody.gameObject;
-
-                //------------------------updates menu vaules on click------------------------
-
-                //mass
-                rightCanvas.GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text = hit.rigidbody.mass.ToString();
-
-                //charge
-                rightCanvas.GetComponent<RightClickHelper>().Charge.GetComponent<InputField>().text = hit.rigidbody.gameObject.GetComponent<charger>().charge.ToString();
-
-                //color
-                if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.red)
+                //makes sure water is not modified 
+                if (hit.rigidbody.gameObject.tag != "isInWater")
                 {
-                    rightCanvas.GetComponent<RightClickHelper>().Color1.GetComponent<Toggle>().isOn = true;
-                    rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color1.GetComponent<Toggle>());
-                }else
-                if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.blue)
-                {
-                    rightCanvas.GetComponent<RightClickHelper>().Color2.GetComponent<Toggle>().isOn = true;
-                    rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color2.GetComponent<Toggle>());
-                }else
-                if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.green)
-                {
-                    rightCanvas.GetComponent<RightClickHelper>().Color3.GetComponent<Toggle>().isOn = true;
-                    rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color3.GetComponent<Toggle>());
-                }else
-                if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.yellow)
-                {
-                    rightCanvas.GetComponent<RightClickHelper>().Color4.GetComponent<Toggle>().isOn = true;
-                    rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color4.GetComponent<Toggle>());
-                }
+                    //caculates where the menu must be
+                    rightCanvas.GetComponent<RightClickHelper>().CheckRightVisablity();
 
-                //size
-                if (hit.rigidbody.gameObject.transform.localScale == new Vector3(1, 1, 1))
-                {
-                    rightCanvas.GetComponent<RightClickHelper>().Size1.GetComponent<Toggle>().isOn = true;
-                }
-                else
-                {
-                    rightCanvas.GetComponent<RightClickHelper>().Size2.GetComponent<Toggle>().isOn = true;
+                    //------------------------sets the position of the right-click menu------------------------
+                    //rightMenu.transform.position = Input.mousePosition + menuOffest;
+                    //makes sure that right click menu is in screen
+
+
+                    //makes menu visable
+                    rightMenu.SetActive(true);
+
+                    //update the varible so that RightClickHelper knows what sphere to edit
+                    rightCanvas.GetComponent<RightClickHelper>().currentSphere = hit.rigidbody.gameObject;
+
+                    //------------------------updates menu vaules on click------------------------
+
+                    //mass
+                    rightCanvas.GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text = hit.rigidbody.mass.ToString();
+
+                    //charge
+                    rightCanvas.GetComponent<RightClickHelper>().Charge.GetComponent<InputField>().text = hit.rigidbody.gameObject.GetComponent<charger>().charge.ToString();
+
+                    //color
+                    if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.red)
+                    {
+                        rightCanvas.GetComponent<RightClickHelper>().Color1.GetComponent<Toggle>().isOn = true;
+                        rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color1.GetComponent<Toggle>());
+                    } else
+                    if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.blue)
+                    {
+                        rightCanvas.GetComponent<RightClickHelper>().Color2.GetComponent<Toggle>().isOn = true;
+                        rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color2.GetComponent<Toggle>());
+                    } else
+                    if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.green)
+                    {
+                        rightCanvas.GetComponent<RightClickHelper>().Color3.GetComponent<Toggle>().isOn = true;
+                        rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color3.GetComponent<Toggle>());
+                    } else
+                    if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.yellow)
+                    {
+                        rightCanvas.GetComponent<RightClickHelper>().Color4.GetComponent<Toggle>().isOn = true;
+                        rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color4.GetComponent<Toggle>());
+                    }
+
+                    //size
+                    if (hit.rigidbody.gameObject.transform.localScale == new Vector3(1, 1, 1))
+                    {
+                        rightCanvas.GetComponent<RightClickHelper>().Size1.GetComponent<Toggle>().isOn = true;
+                    }
+                    else
+                    {
+                        rightCanvas.GetComponent<RightClickHelper>().Size2.GetComponent<Toggle>().isOn = true;
+                    }
                 }
                 
             }
