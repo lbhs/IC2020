@@ -7,7 +7,7 @@ os: osx
 # only run builds on pushes to the master branch
 branches:
   only:
-    - master
+    #    - master
     - feature-travis-ci
 
 # send email notifications when the build changes from succeeding to broken
@@ -16,9 +16,14 @@ notifications:
     on_success: never
     on_failure: change
 
-# decrypt the encrypted SSH key file so it can be used for scp auth in post_build.sh
-#before_install:
-#  - openssl aes-256-cbc -k "$KEYFILE_PASS" -in "${UPLOAD_KEYPATH}.enc" -out "${UPLOAD_KEYPATH}" -d
+cache:
+  directories:
+    - $UNITY_DOWNLOAD_CACHE
+
+
+before_install:
+  # Enable execution flag on the scripts
+  - chmod a+x ./.travis-scripts/*.sh
 
 # run the script to download and install Unity editor
 install:
@@ -26,11 +31,14 @@ install:
 
 # run the script for unit tests and builds
 script:
-  - sudo -E sh ./.travis-scripts/build.sh
+  # Build the webGL Target
+  - sudo -E sh ./.travis-scripts/build-target.sh Build Build/unity-webgl.log webGL -buildTarget WebGL
+  # Execute unit tests
+  - sudo -E sh ./.travis-scripts/build-target.sh Build Build/unity-unittests.log UnitTests -runEditorTests -editorTestsResultFile $(pwd)/test.xml
 
 # run the script to upload the builds as tarballs
-after_success:
-  - sudo -E sh ./.travis-scripts/post_build.sh
+#after_success:
+#  - sudo -E sh ./.travis-scripts/post-build.sh
 
 # environment variables used in bash scripts
 env:
