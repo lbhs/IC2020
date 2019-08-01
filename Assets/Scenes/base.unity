@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 42501310}
   m_Layer: 0
   m_Name: upper Cube
-  m_TagString: Untagged
+  m_TagString: isWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6552,7 +6552,7 @@ GameObject:
   - component: {fileID: 1533065613}
   m_Layer: 0
   m_Name: left Cube
-  m_TagString: Untagged
+  m_TagString: isWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7643,7 +7643,7 @@ GameObject:
   - component: {fileID: 1737610042}
   m_Layer: 0
   m_Name: lower Cube
-  m_TagString: Untagged
+  m_TagString: isWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8323,7 +8323,7 @@ GameObject:
   - component: {fileID: 1855624156}
   m_Layer: 0
   m_Name: right Cube
-  m_TagString: Untagged
+  m_TagString: isWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

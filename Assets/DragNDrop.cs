@@ -142,7 +142,7 @@ public class DragNDrop : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 //makes sure water is not modified 
-                if (hit.rigidbody.gameObject.tag != "isInWater")
+                if (hit.rigidbody.gameObject.tag == "isSphere")
                 {
                     //caculates where the menu must be
                     rightCanvas.GetComponent<RightClickHelper>().CheckRightVisablity();

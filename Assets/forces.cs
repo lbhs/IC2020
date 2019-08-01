@@ -87,6 +87,7 @@ public class forces : MonoBehaviour
         tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
         tempLable.GetComponent<ImageFollower>().sphereToFollow = sphere;
         gameobjects.Add(sphere);
+        sphere.tag = "isSphere";
         return sphere;
     }
 
