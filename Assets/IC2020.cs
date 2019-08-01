@@ -2,7 +2,7 @@
 //                                                      //
 //            IC2020 (Interactive Chemistry)            //
 //                                                      //
-//                    Now with Color!                   //
+//                   Now with Color!                    //
 //                                                      //
 //////////////////////////////////////////////////////////
 
@@ -91,16 +91,19 @@ namespace IC2020
         }
 
         // Particle.Spawn() creates a particle GameObject with all of the predefined attributes above.
-        public GameObject Spawn(Vector3 _pos = new Vector3(), bool overridden = true)
+        public GameObject Spawn(Vector3 _pos = new Vector3(), bool overridden = false)
         {
             /*
             - Particle.Spawn() creates a primitive sphere GameObject with all of the 
               predefined attributes that were passed into the constructor.
             - Vector3 _pos is a 3d position vector that can be used to override the position
               that was passed into the constructor. It will only be used if the bool overriden
-              evaluates to true. (overidden = true by default).
+              evaluates to true. (overidden = false by default).
             - Particle.Spawn() returns GameObject "p" on successful creation,
               and returns null on an unsuccessful creation.
+            - the names of all GameObjects created with Particle.Spawn() begin with [P],
+              so that they can be recognized by Update() in the forces script
+              and added to the gameObjects list to have forces applied to them.
             */
             try
             {
@@ -153,7 +156,8 @@ namespace IC2020
         {
             /*
             - function AddWater() creates a water molecule.
-            - I'll add more documentation to this later.
+            - it creates three Particle objects, two representing hydrogen and one representing oxygen.
+            - the three particles are tied together using configurable joints.
             */
             float hydrox = 0.5f;
             float hydroy = -0.6f;
@@ -168,10 +172,6 @@ namespace IC2020
             GameObject _hydrogen1 = hydrogen1.Spawn(new Vector3(xd + hydrox, yd + hydroy, 0));
             GameObject _hydrogen2 = hydrogen2.Spawn(new Vector3(xd + hhx, yd + hhy, 0));
             GameObject _oxygen = oxygen.Spawn(new Vector3(xd, yd, 0));
-
-            //GameObject _hydrogen1 = GameObject.Find("Hydrogen 1 (" + numWater + ")");
-            //GameObject _hydrogen2 = GameObject.Find("Hydrogen 2 (" + numWater + ")");
-            //GameObject _oxygen = GameObject.Find("Oxygen (" + numWater + ")");
             
             ConfigurableJoint cjoint;
             cjoint = _hydrogen1.AddComponent<ConfigurableJoint>();
@@ -188,8 +188,6 @@ namespace IC2020
             cjoint.angularZMotion = ConfigurableJointMotion.Locked;
 
             cjoint.autoConfigureConnectedAnchor = false;
-
-
             cjoint.connectedAnchor = new Vector3(hydrox, hydroy, 0);
 
             var limit = new SoftJointLimit();
@@ -202,8 +200,6 @@ namespace IC2020
             cjoint.angularZLimit = limit;
             cjoint.lowAngularXLimit = limit;
             cjoint.highAngularXLimit = limit;
-
-
 
             ConfigurableJoint ccjoint;
             ccjoint = _hydrogen2.AddComponent<ConfigurableJoint>();
@@ -235,3 +231,115 @@ namespace IC2020
         }
     }
 }
+
+// old functions to be deleted / referenced
+
+/*
+- Benny's notes from original addSphere() function:
+-Method to add particles to world via scripting
+-Takes necessary parameters: mass, charge, elastic, position, color, and scale
+-Assumes forces should act on the particle
+-Returns sphere gameobject
+*/
+/*
+public GameObject addSphere(float mass, float charge, Vector3 pos, Color color, float scale, float bounciness, int imageToUse)
+{
+    GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+    sphere.AddComponent<Rigidbody>();
+    sphere.GetComponent<Rigidbody>().mass = mass;
+    sphere.GetComponent<Rigidbody>().useGravity = false;
+    sphere.GetComponent<Rigidbody>().angularDrag = 0;
+    sphere.AddComponent<charger>().charge = charge;
+    sphere.transform.position = pos;
+    sphere.transform.localScale = new Vector3(scale, scale, scale);
+    sphere.GetComponent<Renderer>().material.color = color;
+    sphere.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
+    sphere.GetComponent<Collider>().material.dynamicFriction = 0;
+    sphere.GetComponent<Collider>().material.staticFriction = 0;
+    sphere.GetComponent<Collider>().material.bounciness = bounciness;
+    //Adds the drag object script
+    sphere.AddComponent<DragNDrop>();
+    //sets the corrosponding image to the sphere
+    GameObject tempLable;
+    tempLable = Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[imageToUse], Vector3.zero , Quaternion.identity);
+    tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
+    tempLable.GetComponent<ImageFollower>().sphereToFollow = sphere;
+    gameobjects.Add(sphere);
+    return sphere;
+}
+*/
+/*
+public GameObject addWater(float xd, float yd)
+{
+    float hydrox = 0.5f;
+    float hydroy = -0.6f;
+
+    float hhx = 0f;
+    float hhy = .75f;
+
+    GameObject hydrogen = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, new Vector3(xd + hydrox, yd + hydroy, 0), Color.yellow, 1, 0.2f , 2);
+    GameObject oxygen = gameObject.GetComponent<forces>().addSphere(2.0f, -.2f, new Vector3(xd, yd, 0), Color.green, 2, 0.2f, 2);
+    GameObject hh = gameObject.GetComponent<forces>().addSphere(1.0f, .1f, new Vector3(xd + hhx, yd + hhy, 0), Color.yellow, 1, 0.2f, 2);
+
+    ConfigurableJoint cjoint;
+    cjoint = hydrogen.AddComponent<ConfigurableJoint>();
+    cjoint.xMotion = ConfigurableJointMotion.Limited;
+    cjoint.yMotion = ConfigurableJointMotion.Limited;
+    cjoint.zMotion = ConfigurableJointMotion.Locked;
+    cjoint.angularXMotion = ConfigurableJointMotion.Limited;
+    cjoint.angularYMotion = ConfigurableJointMotion.Limited;
+    cjoint.angularZMotion = ConfigurableJointMotion.Locked;
+    cjoint.connectedBody = oxygen.GetComponent<Rigidbody>();
+    cjoint.anchor = Vector3.down;
+    cjoint.angularXMotion = ConfigurableJointMotion.Limited;
+    cjoint.angularYMotion = ConfigurableJointMotion.Limited;
+    cjoint.angularZMotion = ConfigurableJointMotion.Locked;
+
+    cjoint.autoConfigureConnectedAnchor = false;
+
+
+    cjoint.connectedAnchor = new Vector3(hydrox, hydroy, 0);
+
+    var limit = new SoftJointLimit();
+    limit.limit = 0.1f;
+    //limit.SoftJointLimitSpring = 40.0f;
+    cjoint.linearLimit = limit;
+
+    limit.limit = 10.0f;
+    cjoint.angularYLimit = limit;
+    cjoint.angularZLimit = limit;
+    cjoint.lowAngularXLimit = limit;
+    cjoint.highAngularXLimit = limit;
+
+
+
+    ConfigurableJoint ccjoint;
+    ccjoint = hh.AddComponent<ConfigurableJoint>();
+    ccjoint.xMotion = ConfigurableJointMotion.Limited;
+    ccjoint.yMotion = ConfigurableJointMotion.Limited;
+    ccjoint.zMotion = ConfigurableJointMotion.Locked;
+
+    ccjoint.connectedBody = oxygen.GetComponent<Rigidbody>();
+
+    ccjoint.angularXMotion = ConfigurableJointMotion.Limited;
+    ccjoint.angularYMotion = ConfigurableJointMotion.Limited;
+    ccjoint.angularZMotion = ConfigurableJointMotion.Locked;
+
+    ccjoint.autoConfigureConnectedAnchor = false;
+    ccjoint.connectedAnchor = new Vector3(hhx, hhy, 0f);
+
+    var llimit = new SoftJointLimit();
+    llimit.limit = 0.1f;
+    //limit.SoftJointLimitSpring = 40.0f;
+    cjoint.linearLimit = llimit;
+
+    llimit.limit = 10.0f;
+    cjoint.angularYLimit = llimit;
+    cjoint.angularZLimit = llimit;
+    cjoint.lowAngularXLimit = llimit;
+    cjoint.highAngularXLimit = llimit;
+
+
+    return null;
+}
+*/

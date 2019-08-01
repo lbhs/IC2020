@@ -12,11 +12,8 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
     private Vector3 prefabWorldPosition;
     private int objectToUse;
     private GameObject MainObject;
-
-    void Start()
-    {
-        // MainObject = GameObject.Find("GameObject");
-    }
+    private MoleculeSpawner mSpawner = new MoleculeSpawner();
+    
     public void OnDrop(PointerEventData eventData)
     {
         RectTransform Panel = transform as RectTransform;
@@ -24,12 +21,6 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
         prefabWorldPosition.z = 0;
         //Debug.Log(prefabWorldPosition);
         objectToUse = 2;
-
-
-        /*if(GameObject.Find(prefabs) && objectInQueston.GetComponent<UIDragNDrop>.UseingMe = true)
-        {
-            objectToUse = int.Parse(objectInQueston.name);
-        }*/
 
         if (!RectTransformUtility.RectangleContainsScreenPoint(Panel,
             Input.mousePosition))
@@ -50,14 +41,14 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
             }
             else if (Images[objectToUse].GetComponent<UIDragNDrop>().useAddWater == true)
             {
-                //TODO: Edit me!!
+                mSpawner.AddWater((float) prefabWorldPosition.x, (float) prefabWorldPosition.y);
                 //MainObject.GetComponent<forces>().addWater((float)prefabWorldPosition.x, (float)prefabWorldPosition.y);
             }
             else
             {
                 Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
             }
-			//Debug.Log("created stuff");
+			//Debug.Log("[DEBUG]: created stuff");
         }
     
 
