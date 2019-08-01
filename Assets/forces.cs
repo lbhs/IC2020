@@ -1,13 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class forces : MonoBehaviour
 {
+    
     private float G;
     private float k;
+    private GameObject pauseCanvas;
+    private Scene scene;
+
 	//List of all game objects that forces should act on (gravity, electrostatic, collisions, etc.)
-    public List<GameObject> gameobjects = new List<GameObject>();
+    [FormerlySerializedAs("gameobjects")] public List<GameObject> gameObjects = new List<GameObject>();
+    private List<GameObject> rootObjects = new List<GameObject>();
+    
+    
 
 	/*
 	-Gravitational and coulomb's constants must be initialized on start. i.e.: "gameObject.AddComponent<forces>().initialize(G, k);"
@@ -19,21 +30,39 @@ public class forces : MonoBehaviour
         k = coulomb;
     }
 
-    private GameObject pauseCanvas;
+    
     void Start()
     {
         pauseCanvas = GameObject.Find("Control Canvas");
+        scene = SceneManager.GetActiveScene();
+    }
+
+    // Lines 40-50 need to be re-optimized, causing slow physics.
+    private void Update()
+    {
+        scene.GetRootGameObjects(rootGameObjects: rootObjects);
+        foreach (GameObject o in rootObjects)
+        {
+            string objIdentifier = o.name[0].ToString() + o.name[1].ToString() + o.name[2].ToString();
+            // Debug.Log("[DEBUG]: " + objIdentifier);
+            
+            if (!gameObjects.Contains(o) && objIdentifier == "[P]")
+            {
+                gameObjects.Add(o);
+                Debug.Log("[DEBUG]: Object + " + o.name + " successfully added to list gameobjects.");
+            }
+        }
     }
     //Calculates electrostatic and gravitational forces on all objects in gameobjects list every frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        //Ensures that forces do not get caculated while paused
+        //Ensures that forces do not get calculated while paused
         if (Time.timeScale != 0)
         {
             //Nested for loops + if statement to calculate force that each object exerts on every other object
-            foreach (GameObject a in gameobjects)
+            foreach (GameObject a in gameObjects)
             {
-                foreach (GameObject b in gameobjects)
+                foreach (GameObject b in gameObjects)
                 {
                     if (a != b && a.HasComponent<Rigidbody>() && b.HasComponent<Rigidbody>())
                     {
@@ -57,13 +86,15 @@ public class forces : MonoBehaviour
             }
         }
     }
-	
-	/*
+
+    /*
 	-Method to add particles to world via scripting
 	-Takes necessary parameters: mass, charge, elastic, position, color, and scale
 	-Assumes forces should act on the particle
 	-Returns sphere gameobject
 	*/
+    
+    /*
     public GameObject addSphere(float mass, float charge, Vector3 pos, Color color, float scale, float bounciness, int imageToUse)
     {
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -89,7 +120,11 @@ public class forces : MonoBehaviour
         gameobjects.Add(sphere);
         return sphere;
     }
+    */
 
+    
+    //TODO: Edit me!!
+    /*
     public GameObject addWater(float xd, float yd)
     {
         float hydrox = 0.5f;
@@ -163,4 +198,5 @@ public class forces : MonoBehaviour
 
         return null;
     }
+    */
 }

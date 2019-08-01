@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using IC2020;
 
 public class UIDropToWorld : MonoBehaviour, IDropHandler
 {
@@ -14,7 +15,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
 
     void Start()
     {
-        MainObject = GameObject.Find("GameObject");
+        // MainObject = GameObject.Find("GameObject");
     }
     public void OnDrop(PointerEventData eventData)
     {
@@ -44,11 +45,13 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
 
             if (Images[objectToUse].GetComponent<UIDragNDrop>().useAddSphere == true)
             {
-                MainObject.GetComponent<forces>().addSphere(Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().charge, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().color, Images[objectToUse].GetComponent<UIDragNDrop>().scale, Images[objectToUse].GetComponent<UIDragNDrop>().bounciness, Images[objectToUse].GetComponent<UIDragNDrop>().ImageToUse);
+                Particle p = new Particle("BuffetParticle", Images[objectToUse].GetComponent<UIDragNDrop>().charge, Images[objectToUse].GetComponent<UIDragNDrop>().color, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().scale, Images[objectToUse].GetComponent<UIDragNDrop>().bounciness); // Temporary name before a convention is decided on.
+                p.Spawn();
             }
             else if (Images[objectToUse].GetComponent<UIDragNDrop>().useAddWater == true)
             {
-                MainObject.GetComponent<forces>().addWater((float)prefabWorldPosition.x, (float)prefabWorldPosition.y);
+                //TODO: Edit me!!
+                //MainObject.GetComponent<forces>().addWater((float)prefabWorldPosition.x, (float)prefabWorldPosition.y);
             }
             else
             {
