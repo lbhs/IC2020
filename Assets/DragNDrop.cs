@@ -141,8 +141,8 @@ public class DragNDrop : MonoBehaviour
             //find out if an object was hit 
             if (Physics.Raycast(ray, out hit))
             {
-                //makes sure water is not modified 
-                if (hit.rigidbody.gameObject.tag == "isSphere")
+                //makes sure only spheres are modified 
+                if (hit.rigidbody.gameObject.tag == "isSphere" && hit.rigidbody.gameObject.tag != "isInWater" && hit.rigidbody.gameObject.tag != "isWall")
                 {
                     //caculates where the menu must be
                     rightCanvas.GetComponent<RightClickHelper>().CheckRightVisablity();
