@@ -34,5 +34,8 @@ fi
 echo 'Build logs:'
 cat ${LOG_FILE}
 
+echo 'Build Dir:'
+ls "$UNITY_BUILD_DIR"
+
 echo "Finishing with code $ERROR_CODE"
 exit ${ERROR_CODE}
