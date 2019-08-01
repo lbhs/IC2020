@@ -41,12 +41,14 @@ script:
 #  - sudo -E sh ./.travis-scripts/post-build.sh
 
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
-  on:
-    branch: feature-travis-ci
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+    keep_history: false
+    verbose: true
+#    fqdn: lbhs.github.io/IC2020
+    on:
+      branch: feature-travis-ci
 
 # environment variables used in bash scripts
 env:
