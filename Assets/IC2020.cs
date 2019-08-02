@@ -1,10 +1,10 @@
-﻿//////////////////////////////////////////////////////////
-//                                                      //
-//                   IC2020 Library                     //
-//                                                      //
-//                   Now with Color!                    //
-//                                                      //
-//////////////////////////////////////////////////////////
+﻿//////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                  //
+//                              IC2020 (Interactive Chemistry) Library                              //
+//                                                                                                  //
+//                                          Now with Color!                                         //
+//                                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
 - namespace "IC2020" holds the "Particle" class, "ParticleSpawner" class and "ICColor" static class.
@@ -24,18 +24,22 @@ namespace IC2020
     public static class ICColor
     {
         /*
+        - static class ICColor is NOT an interface (though its name would imply this).
+          "IC" simply stands for "interactive chemistry."
         - "ICColor" uses the same syntax as the "Color" static class.
         - e.g: instead of using Color.red, you would use ICColor.Oxygen.
+        - A majority of these colors are not final (especially the electron color).
         */
+        public static Color Electron = new Color32(50, 185, 250, 255);
         public static Color Carbon = new Color32(200, 200, 200, 255); 
         public static Color Oxygen = new Color32(240, 0, 0, 255);
         public static Color Hydrogen = new Color32(255, 255, 255, 255);
-        public static Color Nitrogen = new Color32(143, 143, 255, 255);
+        public static Color Nitrogen = new Color32(0, 0, 255, 255);
         public static Color Sulfur = new Color32(255, 200, 50, 255);
         public static Color Phosphorus = new Color32(255, 165, 0, 255);
-        public static Color Chlorine = new Color32(0, 255, 0, 255);
+        public static Color Chlorine = new Color32(31, 240, 31, 255);
         public static Color Zinc, Bromine = new Color32(165, 42, 42, 255);
-        public static Color Sodium = new Color32(0, 0, 255, 255);
+        public static Color Sodium = new Color32(170, 92, 246, 255);
         public static Color Iron = new Color32(255, 165, 0, 255);
         public static Color Magnesium = new Color32(42, 128, 42, 255);
         public static Color Calcium = new Color32(128, 128, 128, 255);
@@ -46,21 +50,21 @@ namespace IC2020
     {
         /*
         - "Particle" objects are to be treated similarly to "GameObject" objects, but not the same.
-        - i.e; both a Particle and a GameObject have a position, but the GameObject is being tied to the scene,
+        - i.e; both a Particle and a GameObject have a position variable, but the GameObject drawn to the screen,
           while the Particle just has a 'hypothetical position' for where it will be when it is spawned
           as a GameObject.
         */
         
         // Attributes
-        private string name;
-        private float mass;
-        private bool grav;
-        private float charge;
-        private Vector3 pos = new Vector3(0, 0, 0);
-        private Color color;
-        private float scale;
-        private float bounciness;
-        private int imgToUse;
+        private string name; // name of the created GameObject
+        private float mass; // mass of the created GameObject's RigidBody
+        private bool grav; // if grav = true, the created GameObject's Rigidbody will interact with gravity.
+        private float charge; // the charge value of the created GameObject's "charger.cs" script.
+        private Vector3 pos = new Vector3(0, 0, 0); // the transform of the created GameObject
+        private Color color; // the color of the created GameObject
+        private float scale; // the scale of the created GameObject
+        private float bounciness; // the bounciness factor of the created GameObject
+        private int imgToUse; // the image overlaid on the GameObject (+ or -).
 
         // Constructor
         public Particle(string name, float charge, Color color, Vector3 pos = new Vector3(), float mass = 1f, float scale = 1f, float bounciness = 0.6f, bool grav = false)
@@ -72,10 +76,10 @@ namespace IC2020
               while the other parameters are optional, and have default values.
             - the default values are as follows:
                 - Vector3 pos = default(Vector3()) // the position of the particle on spawn.
-                - float mass = 1.0f // the mass of the created GameObject
+                - float mass = 1.0f
                 - float scale = 1.0f // the scale of the created primitive.
                 - float bounciness = 0.6f // the bounciness factor of the created GameObject.
-                - bool grav = false // if grav = true, the created GameObject will interact with gravity.
+                - bool grav = false 
             */
             // Initializing attributes...
             this.name = name;
@@ -116,12 +120,14 @@ namespace IC2020
                 GameObject p = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 p.name = "[P] " + name;
 
+                // rigidbody initialization
                 p.AddComponent<Rigidbody>();
                 p.GetComponent<Rigidbody>().mass = mass;
                 p.GetComponent<Rigidbody>().useGravity = grav;
                 p.GetComponent<Rigidbody>().angularDrag = 0;
                 p.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
 
+                // initialization of other components
                 p.AddComponent<charger>().charge = charge;
                 p.GetComponent<Renderer>().material.color = color;
                 p.GetComponent<Collider>().material.dynamicFriction = 0;
@@ -129,10 +135,12 @@ namespace IC2020
                 p.GetComponent<Collider>().material.bounciness = bounciness;
                 p.AddComponent<DragNDrop>();
 
+                // if the position is overriden in Particle.Spawn() and overridden == true
                 if (overridden) p.transform.position = _pos;
                 else p.transform.position = pos;
                 p.transform.localScale = new Vector3(scale, scale, scale);
 
+                // overlays the label on top of the GameObject
                 GameObject tempLable;
                 tempLable = MonoBehaviour.Instantiate(
                     GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[imgToUse], Vector3.zero,

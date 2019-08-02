@@ -39,33 +39,35 @@ public class ModelSlector : MonoBehaviour
             //randomly adds several of 2 different kinds of particles
             for(int x = 0; x < numberOfEachMonoculesPerColor; x++)
             { 
-            Particle Negative = new Particle("Anion", -2f, Color.blue, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), 2.0f, scale: 2.0f);
-            Particle Positive = new Particle("Ion", 2f, Color.red, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), 2.0f, scale: 2.0f);
+            Particle Chloride = new Particle("Chloride", -2f, ICColor.Chlorine, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), 2.0f, scale: 2.0f);
+            Particle Sodium = new Particle("Sodium Ion", 2f, ICColor.Sodium, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), 2.0f, scale: 2.0f);
             
-            Negative.Spawn();
-            Positive.Spawn();
+            Chloride.Spawn();
+            Sodium.Spawn();
             }
+            
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
-            Debug.Log("[DEBUG]: Spawned Ionic Lattice.");
+            Debug.Log("[DEBUG]: Spawned NaCl Ionic Lattice.");
         }
 
         //Covalent Bonding Model
         else if (dropDownValue == 2)
         {
-            Particle Neg1 = new Particle("Negative 1", -2f, Color.blue, new Vector3(2, 3, 0));
-            Particle Neg2 = new Particle("Negative 2", -2f, Color.blue, new Vector3(0.5f, 0, 0));
-            Particle Pos1 = new Particle("Positive 1", 2f, Color.red, new Vector3(4, 1, 0), scale: 2f);
-            Particle Pos2 = new Particle("Positive 2", 2f, Color.red, new Vector3(0.2f, 2, 0), scale: 2f);
+            Particle Elec1 = new Particle("Electron 1", -2f, ICColor.Electron, new Vector3(2, 3, 0));
+            Particle Elec2 = new Particle("Electron 2", -2f, ICColor.Electron, new Vector3(0.5f, 0, 0));
+            Particle Hyd1 = new Particle("Hydrogen 1", 2f, ICColor.Hydrogen, new Vector3(4, 1, 0), scale: 2f);
+            Particle Hyd2 = new Particle("Hydrogen 2", 2f, ICColor.Hydrogen, new Vector3(0.2f, 2, 0), scale: 2f);
 
-            Neg1.Spawn();
-            Neg2.Spawn();
-            Pos1.Spawn();
-            Pos2.Spawn();
+            Elec1.Spawn();
+            Elec2.Spawn();
+            Hyd1.Spawn();
+            Hyd2.Spawn();
             Instantiate(cubePrefab, new Vector3(5, 5, 0), Quaternion.identity);
             
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
+            Debug.Log("[DEBUG]: Spawned H2 Covalent Bonding Model.");
         }
         
         //Na+ in Water
@@ -78,12 +80,10 @@ public class ModelSlector : MonoBehaviour
             pSpawner.AddWater(5, 0);
             pSpawner.AddWater(0, -5);
             pSpawner.AddWater(-5, 2);
-            
-            Debug.Log("[DEBUG]: before");
             Instantiate(cubePrefab, new Vector3(5, 5, 0), Quaternion.identity);
+            
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
-            Debug.Log("[DEBUG]: after");
         }
         
         //...

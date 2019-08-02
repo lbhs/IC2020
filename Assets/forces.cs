@@ -27,7 +27,7 @@ public class forces : MonoBehaviour
         k = coulomb;
     }
     
-    void Start()
+    private void Start()
     {
         pauseCanvas = GameObject.Find("Control Canvas");
         scene = SceneManager.GetActiveScene();
