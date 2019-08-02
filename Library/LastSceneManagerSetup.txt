@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Version 2.1.unity
+- path: Assets/Scenes/Version S1--changed colors, learning about buffet table.unity
   isLoaded: 1
   isActive: 1

@@ -5,12 +5,22 @@ using UnityEngine.EventSystems;
 
 public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 {
+    [Header("What is spawning (Only check one)")]
+    public bool useAddSphere;
+    public bool useAddWater;
+    [Header(" ")]
+    [Header("Settings for addSphere")]
     public float mass;
-    public int charge;
-    public bool elastic;
+    public float charge;
     public Color color;
     public float scale;
-
+    public float bounciness;
+    public int ImageToUse;
+    [Header("  ")]
+    [Header("Other")]
+    [Header("No Settings for addWater")]
+    
+    //[Header("Other")]
     public bool UseingMe;
     public void OnDrag(PointerEventData eventData)
     {
@@ -28,11 +38,5 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     void Start()
     {
         num = int.Parse(gameObject.name);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

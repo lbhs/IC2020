@@ -1,32 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CubeScript : MonoBehaviour
+public class cubeScript : MonoBehaviour
 {
-    Rigidbody Cube;
-    public Vector3 CubeVelocity;
-    private Vector3 vel;
 
+    public Vector3 velocity;
+    public float velocitySpeedUp;
+    [HideInInspector] public float teamptureMutiplyer;
+    private Slider tempatureSlider;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        Cube = GetComponent<Rigidbody>();
-        Cube.velocity = CubeVelocity;
-        //Cube.angularVelocity = new Vector3 (0,0,25);  this would make cube spin. . .
+        tempatureSlider = GameObject.Find("Teampture Slider").GetComponent<Slider>();
+        float vx = UnityEngine.Random.Range(-5, 6);
+        float vy = Mathf.Sqrt(50 - (vx * vx));
+        float vPlaceholder = UnityEngine.Random.Range(0, 2) *2 -1;
+        //print(vPlaceholder);
+        
+      
+        velocity = new Vector3(vx, vy *vPlaceholder, 0);
+
+        gameObject.GetComponent<Rigidbody>().velocity = velocity;
+
+        GameObject.Find("GameObject").GetComponent<forces>().cubeList.Add(gameObject);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        vel = Cube.velocity;
-        if (vel.sqrMagnitude < 40)
+        teamptureMutiplyer = tempatureSlider.value;
+        if (gameObject.GetComponent<Rigidbody>().velocity.sqrMagnitude < velocitySpeedUp * teamptureMutiplyer)
         {
-        print("slow cube");
-        print(Cube.velocity);
-        Cube.velocity = 1.4f*vel;
-        print("speed boost");
-        print(Cube.velocity);
+            //print("old velocity =" + velocity);
+            gameObject.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity.normalized * 5 * teamptureMutiplyer * Mathf.Sqrt(2);
+            //print("new velocity =" + velocity);
         }
     }
 }
