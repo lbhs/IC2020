@@ -122,4 +122,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 10, y: 8, z: 0}
-  velocitySpeedUp: 50
+  velocitySpeedUp: 70
+  teamptureMutiplyer: 0

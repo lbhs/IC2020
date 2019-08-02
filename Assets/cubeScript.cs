@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class cubeScript : MonoBehaviour
 {
 
     public Vector3 velocity;
-    public int velocitySpeedUp;
+    public float velocitySpeedUp;
+    [HideInInspector] public float teamptureMutiplyer;
+    private Slider tempatureSlider;
     // Start is called before the first frame update
     void OnEnable()
     {
+        tempatureSlider = GameObject.Find("Teampture Slider").GetComponent<Slider>();
         float vx = UnityEngine.Random.Range(-5, 6);
         float vy = Mathf.Sqrt(50 - (vx * vx));
         float vPlaceholder = UnityEngine.Random.Range(0, 2) *2 -1;
@@ -26,10 +30,11 @@ public class cubeScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(gameObject.GetComponent<Rigidbody>().velocity.sqrMagnitude < 50)
+        teamptureMutiplyer = tempatureSlider.value;
+        if (gameObject.GetComponent<Rigidbody>().velocity.sqrMagnitude < velocitySpeedUp * teamptureMutiplyer)
         {
             //print("old velocity =" + velocity);
-            gameObject.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity.normalized * 5 * Mathf.Sqrt(2);
+            gameObject.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity.normalized * 5 * teamptureMutiplyer * Mathf.Sqrt(2);
             //print("new velocity =" + velocity);
         }
     }

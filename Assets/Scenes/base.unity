@@ -1449,7 +1449,6 @@ GameObject:
   m_Component:
   - component: {fileID: 300510390}
   - component: {fileID: 300510391}
-  - component: {fileID: 300510392}
   m_Layer: 5
   m_Name: Teampture Slider
   m_TagString: Untagged
@@ -1519,38 +1518,15 @@ MonoBehaviour:
   m_FillRect: {fileID: 484063699}
   m_HandleRect: {fileID: 52664781}
   m_Direction: 0
-  m_MinValue: 1
-  m_MaxValue: 5
+  m_MinValue: 2
+  m_MaxValue: 6
   m_WholeNumbers: 1
-  m_Value: 1
+  m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1383625843}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &300510392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 300510389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a7fb3db008531a4c97d6008b241564f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &301821756
 GameObject:
   m_ObjectHideFlags: 0
