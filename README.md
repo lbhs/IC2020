@@ -8,13 +8,11 @@ Built in Unity 2018.3.14f1 for WebGL
 
 -add/make flasky
 
--save system
-
 -forces arrow
 
--speed slider
-
 -advanced tab (empty, settings, save)
+
+-repeatable rewind
 
 # Known bugs
 
