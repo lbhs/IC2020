@@ -4,34 +4,14 @@ using UnityEngine;
 
 public class TimeBody : MonoBehaviour
 {
-	private List<SpaceTime> points;
+    public bool isRewinding = false;
+	private int frame = 0;
+
+    private List<SpaceTime> points;
+
     public Rigidbody Arbies;
     public GameObject McDonalds;
-	private bool rewind = false;
-    
-	public static bool isRewinding
-	{
-		get
-		{
-			return rewind;
-		}
-		set
-		{
-			rewind = value;
-			if (rewind)
-			{
-				Arbies.isKinematic = true;
-			}
-			else
-			{
-				SpaceTime point = points[0];
-				points.RemoveAt(0);
-				Arbies.isKinematic = false;
-				Arbies.velocity = point.velocity;
-			}
-		}
-	}
-	
+        
     void Start()
     {
         points = new List<SpaceTime>();
@@ -40,31 +20,54 @@ public class TimeBody : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (rewind)
+        if (isRewinding)
+			frame--;
             Rewind();
-        else
-            Record();
+        else if(#ARRAY#[frameNumber] != null)
+			frame++;
+			Playback();
+		else
+			frame++;
+			Record();
     }
 
     void Rewind()
     {
-		GetComponent<forces>().frameNumber--;
-        if (points.Count == 0)
+        if (frame == 0)
         {
-            isRewinding = false;
-            //Destroy(McDonalds);
+            StopRewind();
         }
         else
         {
-            SpaceTime point = points[0];
+            SpaceTime point = points[frame];
             transform.position = point.position;
             transform.rotation = point.rotation;
-            points.RemoveAt(0);
         }
     }
     
     void Record()
-    {   
-        points[GameObject.Find("GameObject").GetComponent<forces>().frameNumber] = new SpaceTime(Arbies.velocity, transform.position, transform.rotation);
+    {
+		points[frame] = new SpaceTime(Arbies.velocity, transform.position, transform.rotation);
+    }
+	
+	void Playback()
+	{
+		
+	}
+
+    public void StartRewind()
+    {
+        isRewinding = true;
+        Arbies.isKinematic = true;
+    }
+	
+	public void StartPlayback()
+	{
+		
+	}
+    
+    public void StopRewind()
+    {
+        isRewinding = false;
     }
 }

@@ -6,10 +6,51 @@ public class forces : MonoBehaviour
 {
     private float G;
     private float k;
-	public int frameNumber = 0;
+	//private bool rewind = false;
 	//List of all game objects that forces should act on (gravity, electrostatic, collisions, etc.)
     public List<GameObject> gameobjects = new List<GameObject>();
 
+	/*
+	public bool isRewinding
+	{
+		get
+		{
+			return rewind;
+		}
+		set
+		{
+			rewind = value;
+			if (rewind)
+			{
+				foreach(GameObject gameObject in gameobjects)
+				{
+					gameObject.GetComponent<TimeBody>().StartRewind();
+				}
+			}
+			else
+			{
+				foreach(GameObject gameObject in gameobjects)
+				{
+					gameObject.GetComponent<TimeBody>().StopRewind();
+				}
+			}
+		}
+	}
+	*/
+
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space))
+			foreach(GameObject gameObject in gameobjects)
+			{
+				gameObject.GetComponent<TimeBody>().StartRewind();
+			}
+		if (Input.GetKeyUp(KeyCode.Space))
+			foreach(GameObject gameObject in gameobjects)
+			{
+				gameObject.GetComponent<TimeBody>().StopRewind();
+			}
+	}
 	/*
 	-Gravitational and coulomb's constants must be initialized on start. i.e.: "gameObject.AddComponent<forces>().initialize(G, k);"
 	-Script doesn't run automatically because UI elements must be initialized before forces are applied
@@ -28,9 +69,8 @@ public class forces : MonoBehaviour
     //Calculates electrostatic and gravitational forces on all objects in gameobjects list every frame
     void FixedUpdate()
     {
-		frameNumber++;
         //Ensures that forces do not get caculated while paused
-        if (Time.timeScale != 0)
+        if (!(Time.timeScale == 0 || #ARRAY#[frameNumber] != null))
         {
             //Nested for loops + if statement to calculate force that each object exerts on every other object
             foreach (GameObject a in gameobjects)
