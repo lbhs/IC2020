@@ -24,4 +24,9 @@ public class main : MonoBehaviour
         }
 		*/
     }
-}
+
+    public void changeTemperature(float scale)
+    {
+
+    }
+    }
