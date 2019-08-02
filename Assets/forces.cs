@@ -8,6 +8,8 @@ public class forces : MonoBehaviour
     private float k;
 	//List of all game objects that forces should act on (gravity, electrostatic, collisions, etc.)
     public List<GameObject> gameobjects = new List<GameObject>();
+    //list of all cubes that should be affected by tempature slider
+    public List<GameObject> cubeList = new List<GameObject>();
 
 	/*
 	-Gravitational and coulomb's constants must be initialized on start. i.e.: "gameObject.AddComponent<forces>().initialize(G, k);"

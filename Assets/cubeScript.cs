@@ -19,6 +19,8 @@ public class cubeScript : MonoBehaviour
         velocity = new Vector3(vx, vy *vPlaceholder, 0);
 
         gameObject.GetComponent<Rigidbody>().velocity = velocity;
+
+        GameObject.Find("GameObject").GetComponent<forces>().cubeList.Add(gameObject);
     }
 
     // Update is called once per frame
