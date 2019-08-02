@@ -6,6 +6,7 @@ public class forces : MonoBehaviour
 {
     private float G;
     private float k;
+	public int frameNumber = 0;
 	//List of all game objects that forces should act on (gravity, electrostatic, collisions, etc.)
     public List<GameObject> gameobjects = new List<GameObject>();
 
@@ -27,6 +28,7 @@ public class forces : MonoBehaviour
     //Calculates electrostatic and gravitational forces on all objects in gameobjects list every frame
     void FixedUpdate()
     {
+		frameNumber++;
         //Ensures that forces do not get caculated while paused
         if (Time.timeScale != 0)
         {
@@ -81,6 +83,7 @@ public class forces : MonoBehaviour
 		sphere.GetComponent<Collider>().material.bounciness = bounciness;
         //Adds the drag object script
         sphere.AddComponent<DragNDrop>();
+		sphere.AddComponent<TimeBody>();
         //sets the corrosponding image to the sphere
         GameObject tempLable;
         tempLable = Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[imageToUse], Vector3.zero , Quaternion.identity);
