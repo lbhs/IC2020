@@ -1,13 +1,14 @@
 ﻿//////////////////////////////////////////////////////////
 //                                                      //
-//            IC2020 (Interactive Chemistry)            //
+//                   IC2020 Library                     //
 //                                                      //
 //                   Now with Color!                    //
 //                                                      //
 //////////////////////////////////////////////////////////
 
 /*
-- namespace "IC2020" holds the "Particle" class, "ParticleSpawner" class and "ICColor" static class. 
+- namespace "IC2020" holds the "Particle" class, "ParticleSpawner" class and "ICColor" static class.
+- to use, place 'using IC2020;' (with no quotes) with the other references at the top of a program.
 - class "Particle" is a class used to design particles and then spawn them at will.
 - class "ParticleSpawner" is a class used to spawn water molecules (and eventually more molecules too).
 - static class "ICColor" is a class that holds all of the colors of particles used in IC2020.
@@ -96,6 +97,10 @@ namespace IC2020
             /*
             - Particle.Spawn() creates a primitive sphere GameObject with all of the 
               predefined attributes that were passed into the constructor.
+            - It is important to realize that objects of class Particle are NOT GameObjects,
+              and never will be, even after using Particle.Spawn(). The Particle object is simply
+              a set of instructions for unity to use when creating GameObjects; this is why you can call
+              Particle.Spawn() multiple times on the same Particle object.
             - Vector3 _pos is a 3d position vector that can be used to override the position
               that was passed into the constructor. It will only be used if the bool overriden
               evaluates to true. (overidden = false by default).
@@ -104,6 +109,7 @@ namespace IC2020
             - the names of all GameObjects created with Particle.Spawn() begin with [P],
               so that they can be recognized by Update() in the forces script
               and added to the gameObjects list to have forces applied to them.
+            - all GameObjects created with Particle.Spawn() are given the tag "particle".
             */
             try
             {
@@ -133,6 +139,8 @@ namespace IC2020
                     Quaternion.identity);
                 tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
                 tempLable.GetComponent<ImageFollower>().sphereToFollow = p;
+
+                // p.tag = "Particle"; // raising errors?
                 
                 Debug.Log("[DEBUG]: Particle " + p.name + " Successfully created.");
                 return p;
@@ -158,6 +166,7 @@ namespace IC2020
             - function AddWater() creates a water molecule.
             - it creates three Particle objects, two representing hydrogen and one representing oxygen.
             - the three particles are tied together using configurable joints.
+            - all GameObjects created are given the tag "inWater."
             */
             float hydrox = 0.5f;
             float hydroy = -0.6f;
@@ -172,6 +181,13 @@ namespace IC2020
             GameObject _hydrogen1 = hydrogen1.Spawn(new Vector3(xd + hydrox, yd + hydroy, 0));
             GameObject _hydrogen2 = hydrogen2.Spawn(new Vector3(xd + hhx, yd + hhy, 0));
             GameObject _oxygen = oxygen.Spawn(new Vector3(xd, yd, 0));
+
+            /*
+            - raising errors?
+            _hydrogen1.tag = "inWater";
+            _hydrogen2.tag = "inWater";
+            _oxygen.tag = "inWater";
+            */
             
             ConfigurableJoint cjoint;
             cjoint = _hydrogen1.AddComponent<ConfigurableJoint>();

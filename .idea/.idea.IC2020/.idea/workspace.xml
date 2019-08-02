@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ead15cb-efe8-40e9-bcb5-09003b80ce88" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Buffet Table/UIDropToWorld.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Buffet Table/UIDropToWorld.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IC2020/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IC2020/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IC2020/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IC2020/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/IC2020.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/IC2020.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ModelSlector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ModelSlector.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/forces.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/forces.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/main.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/main.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +14,67 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/IC2020.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-315">
+              <caret line="185" column="15" selection-start-line="185" selection-start-column="15" selection-end-line="185" selection-end-column="15" />
+              <folding>
+                <marker date="1564763832093" expanded="true" signature="0:411" ph="/* IC2020 Library ... */" />
+                <marker date="1564763832093" expanded="true" signature="413:901" ph="/* - namespace &quot;IC2020&quot; holds the &quot;Particle&quot; class, &quot;ParticleSpawner&quot; class and &quot;ICColor&quot; static class. ... */" />
+                <marker date="1564763832093" expanded="true" signature="909:995" ph="..." />
+                <marker date="1564763832093" expanded="true" signature="1013:11742" ph="{...}" />
+                <marker date="1564763832093" expanded="true" signature="1047:2135" ph="{...}" />
+                <marker date="1564763832093" expanded="true" signature="1062:1218" ph="/* - &quot;ICColor&quot; uses the same syntax as the &quot;Color&quot; static class. ... */" />
+                <marker date="1564763832093" expanded="true" signature="2162:7625" ph="{...}" />
+                <marker date="1564763832093" expanded="true" signature="2177:2533" ph="/* - &quot;Particle&quot; objects are to be treated similarly to &quot;GameObject&quot; objects, but not the same. ... */" />
+                <marker date="1564763832093" expanded="true" signature="3048:4291" ph="{...}" />
+                <marker date="1564763832093" expanded="true" signature="3071:3895" ph="/* - constructor Particle() assigns arguments passed into this function ... */" />
+                <marker date="1564763832093" expanded="true" signature="4482:7619" ph="{...}" />
+                <marker date="1564763832093" expanded="true" signature="4505:5782" ph="/* - Particle.Spawn() creates a primitive sphere GameObject with all of the ... */" />
+                <marker date="1564763832093" expanded="true" signature="5798:7458" ph="{...}" />
+                <marker date="1564763832093" expanded="true" signature="7490:7609" ph="{...}" />
+                <marker date="1564763832093" expanded="true" signature="7659:11740" ph="{...}" />
+                <marker date="1564763832093" expanded="true" signature="7674:7895" ph="/* - class &quot;MoleculeSpawner&quot; is a class that holds functions for spawning molecules. ... */" />
+                <marker date="1564763832093" expanded="true" signature="7950:11734" ph="{...}" />
+                <marker date="1564763832093" expanded="true" signature="7973:8300" ph="/* - function AddWater() creates a water molecule. ... */" />
+                <marker date="1564763832093" expanded="true" signature="9114:9278" ph="/* - raising errors? ... */" />
+                <marker date="1564763832093" expanded="true" signature="11789:12043" ph="/* - Benny's notes from original addSphere() function: ... */" />
+                <marker date="1564763832093" expanded="true" signature="12044:13454" ph="/* public GameObject addSphere(float mass, float charge, Vector3 pos, Color color, float scale, float bounciness, ... */" />
+                <marker date="1564763832093" expanded="true" signature="13455:16092" ph="/* public GameObject addWater(float xd, float yd) ... */" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/forces.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="736">
+              <caret line="46" column="67" lean-forward="true" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
+              <folding>
+                <marker date="1564763679696" expanded="true" signature="6:179" ph="..." />
+                <marker date="1564763679696" expanded="true" signature="216:3454" ph="{...}" />
+                <marker date="1564763679696" expanded="true" signature="597:834" ph="/* -Gravitational and coulomb's constants must be initialized on start. i.e.: &quot;gameObject.AddComponent&lt;forces&gt;(). ... */" />
+                <marker date="1564763679696" expanded="true" signature="891:945" ph="{...}" />
+                <marker date="1564763679696" expanded="true" signature="967:1083" ph="{...}" />
+                <marker date="1564763679696" expanded="true" signature="1114:1746" ph="{...}" />
+                <marker date="1564763679696" expanded="true" signature="1129:1273" ph="/* - Update() finds all of the objects in the scene and adds the ones which start with [P] ... */" />
+                <marker date="1564763679696" expanded="true" signature="1383:1740" ph="{...}" />
+                <marker date="1564763679696" expanded="true" signature="1565:1730" ph="{...}" />
+                <marker date="1564763679696" expanded="true" signature="1885:3452" ph="{...}" />
+                <marker date="1564763679696" expanded="true" signature="1989:3446" ph="{...}" />
+                <marker date="1564763679696" expanded="true" signature="2160:3436" ph="{...}" />
+                <marker date="1564763679696" expanded="true" signature="2228:3422" ph="{...}" />
+                <marker date="1564763679696" expanded="true" signature="2340:3404" ph="{...}" />
+                <marker date="1564763679696" expanded="true" signature="3164:3281" ph="/* applies force vector ... */" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -28,11 +87,11 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/main.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Buffet Table/UIDropToWorld.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Editor.meta" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/IC2020.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ModelSlector.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Plugins.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/charger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/IC2020.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Editor.meta" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/forces.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -40,8 +99,8 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Buffet Table/UIDropToWorld.cs" />
         <option value="$PROJECT_DIR$/Assets/ModelSlector.cs" />
-        <option value="$PROJECT_DIR$/Assets/forces.cs" />
         <option value="$PROJECT_DIR$/Assets/main.cs" />
+        <option value="$PROJECT_DIR$/Assets/forces.cs" />
         <option value="$PROJECT_DIR$/Assets/IC2020.cs" />
       </list>
     </option>
@@ -55,8 +114,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="57" />
-    <option name="y" value="26" />
+    <option name="x" value="25" />
+    <option name="y" value="57" />
     <option name="width" value="1400" />
     <option name="height" value="781" />
   </component>
@@ -68,12 +127,21 @@
       <pane id="SolutionExplorer">
         <option name="show-all-files" value="false" />
       </pane>
+      <pane id="AssemblyExplorer" />
       <pane id="UnityExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="8711f2a6:AssetsRoot" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
         <option name="show-hidden-items" value="false" />
         <option name="show-project-names" value="true" />
       </pane>
       <pane id="FileSystemExplorer" />
-      <pane id="AssemblyExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -138,6 +206,7 @@
       <workItem from="1564686782635" duration="1967000" />
       <workItem from="1564690912845" duration="51000" />
       <workItem from="1564691013752" duration="72000" />
+      <workItem from="1564762484321" duration="1372000" />
     </task>
     <task id="LOCAL-00001" summary="Adding IC2020 namespace">
       <created>1564686891287</created>
@@ -150,7 +219,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14523000" />
+    <option name="totallyTimeSpent" value="15895000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -162,9 +231,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="57" y="26" width="1400" height="781" extended-state="0" />
+    <frame x="26" y="57" width="1400" height="781" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2790869" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2827688" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -222,60 +292,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/IC2020.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4814">
-          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-          <folding>
-            <marker date="1564690955131" expanded="true" signature="0:412" ph="/* IC2020 (Interactive Chemistry) ... */" />
-            <marker date="1564690955131" expanded="true" signature="414:803" ph="/* - namespace &quot;IC2020&quot; holds the &quot;Particle&quot; class, &quot;ParticleSpawner&quot; class and &quot;ICColor&quot; static class. ... */" />
-            <marker date="1564690955131" expanded="true" signature="811:897" ph="..." />
-            <marker date="1564690955131" expanded="true" signature="915:10879" ph="{...}" />
-            <marker date="1564690955131" expanded="true" signature="949:2037" ph="{...}" />
-            <marker date="1564690955131" expanded="true" signature="964:1120" ph="/* - &quot;ICColor&quot; uses the same syntax as the &quot;Color&quot; static class. ... */" />
-            <marker date="1564690955131" expanded="true" signature="2064:7007" ph="{...}" />
-            <marker date="1564690955131" expanded="true" signature="2079:2435" ph="/* - &quot;Particle&quot; objects are to be treated similarly to &quot;GameObject&quot; objects, but not the same. ... */" />
-            <marker date="1564690955131" expanded="true" signature="2950:4193" ph="{...}" />
-            <marker date="1564690955131" expanded="true" signature="2973:3797" ph="/* - constructor Particle() assigns arguments passed into this function ... */" />
-            <marker date="1564690955131" expanded="true" signature="4384:7001" ph="{...}" />
-            <marker date="1564690955131" expanded="true" signature="4407:5223" ph="/* - Particle.Spawn() creates a primitive sphere GameObject with all of the ... */" />
-            <marker date="1564690955131" expanded="true" signature="5239:6840" ph="{...}" />
-            <marker date="1564690955131" expanded="true" signature="6872:6991" ph="{...}" />
-            <marker date="1564690955131" expanded="true" signature="7041:10877" ph="{...}" />
-            <marker date="1564690955131" expanded="true" signature="7056:7277" ph="/* - class &quot;MoleculeSpawner&quot; is a class that holds functions for spawning molecules. ... */" />
-            <marker date="1564690955131" expanded="true" signature="7332:10871" ph="{...}" />
-            <marker date="1564690955131" expanded="true" signature="7355:7615" ph="/* - function AddWater() creates a water molecule. ... */" />
-            <marker date="1564690955131" expanded="true" signature="10926:11180" ph="/* - Benny's notes from original addSphere() function: ... */" />
-            <marker date="1564690955131" expanded="true" signature="11181:12591" ph="/* public GameObject addSphere(float mass, float charge, Vector3 pos, Color color, float scale, float bounciness, ... */" />
-            <marker date="1564690955131" expanded="true" signature="12592:15229" ph="/* public GameObject addWater(float xd, float yd) ... */" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/forces.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
-          <folding>
-            <marker date="1564690040000" expanded="false" signature="6:179" ph="..." />
-            <marker date="1564690040000" expanded="true" signature="216:3521" ph="{...}" />
-            <marker date="1564690040000" expanded="true" signature="597:834" ph="/* -Gravitational and coulomb's constants must be initialized on start. i.e.: &quot;gameObject.AddComponent&lt;forces&gt;(). ... */" />
-            <marker date="1564690040000" expanded="true" signature="891:945" ph="{...}" />
-            <marker date="1564690040000" expanded="true" signature="967:1083" ph="{...}" />
-            <marker date="1564690040000" expanded="true" signature="1114:1813" ph="{...}" />
-            <marker date="1564690040000" expanded="true" signature="1129:1273" ph="/* - Update() finds all of the objects in the scene and adds the ones which start with [P] ... */" />
-            <marker date="1564690040000" expanded="true" signature="1383:1807" ph="{...}" />
-            <marker date="1564690040000" expanded="true" signature="1632:1797" ph="{...}" />
-            <marker date="1564690040000" expanded="true" signature="1952:3519" ph="{...}" />
-            <marker date="1564690040000" expanded="true" signature="2056:3513" ph="{...}" />
-            <marker date="1564690040000" expanded="true" signature="2227:3503" ph="{...}" />
-            <marker date="1564690040000" expanded="true" signature="2295:3489" ph="{...}" />
-            <marker date="1564690040000" expanded="true" signature="2407:3471" ph="{...}" />
-            <marker date="1564690040000" expanded="true" signature="3231:3348" ph="/* applies force vector ... */" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/ModelSlector.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-671">
@@ -323,6 +339,61 @@
             <marker date="1564690127000" expanded="true" signature="141:797" ph="{...}" />
             <marker date="1564690127000" expanded="true" signature="290:404" ph="{...}" />
             <marker date="1564690127000" expanded="true" signature="429:795" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/IC2020.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315">
+          <caret line="185" column="15" selection-start-line="185" selection-start-column="15" selection-end-line="185" selection-end-column="15" />
+          <folding>
+            <marker date="1564763832093" expanded="true" signature="0:411" ph="/* IC2020 Library ... */" />
+            <marker date="1564763832093" expanded="true" signature="413:901" ph="/* - namespace &quot;IC2020&quot; holds the &quot;Particle&quot; class, &quot;ParticleSpawner&quot; class and &quot;ICColor&quot; static class. ... */" />
+            <marker date="1564763832093" expanded="true" signature="909:995" ph="..." />
+            <marker date="1564763832093" expanded="true" signature="1013:11742" ph="{...}" />
+            <marker date="1564763832093" expanded="true" signature="1047:2135" ph="{...}" />
+            <marker date="1564763832093" expanded="true" signature="1062:1218" ph="/* - &quot;ICColor&quot; uses the same syntax as the &quot;Color&quot; static class. ... */" />
+            <marker date="1564763832093" expanded="true" signature="2162:7625" ph="{...}" />
+            <marker date="1564763832093" expanded="true" signature="2177:2533" ph="/* - &quot;Particle&quot; objects are to be treated similarly to &quot;GameObject&quot; objects, but not the same. ... */" />
+            <marker date="1564763832093" expanded="true" signature="3048:4291" ph="{...}" />
+            <marker date="1564763832093" expanded="true" signature="3071:3895" ph="/* - constructor Particle() assigns arguments passed into this function ... */" />
+            <marker date="1564763832093" expanded="true" signature="4482:7619" ph="{...}" />
+            <marker date="1564763832093" expanded="true" signature="4505:5782" ph="/* - Particle.Spawn() creates a primitive sphere GameObject with all of the ... */" />
+            <marker date="1564763832093" expanded="true" signature="5798:7458" ph="{...}" />
+            <marker date="1564763832093" expanded="true" signature="7490:7609" ph="{...}" />
+            <marker date="1564763832093" expanded="true" signature="7659:11740" ph="{...}" />
+            <marker date="1564763832093" expanded="true" signature="7674:7895" ph="/* - class &quot;MoleculeSpawner&quot; is a class that holds functions for spawning molecules. ... */" />
+            <marker date="1564763832093" expanded="true" signature="7950:11734" ph="{...}" />
+            <marker date="1564763832093" expanded="true" signature="7973:8300" ph="/* - function AddWater() creates a water molecule. ... */" />
+            <marker date="1564763832093" expanded="true" signature="9114:9278" ph="/* - raising errors? ... */" />
+            <marker date="1564763832093" expanded="true" signature="11789:12043" ph="/* - Benny's notes from original addSphere() function: ... */" />
+            <marker date="1564763832093" expanded="true" signature="12044:13454" ph="/* public GameObject addSphere(float mass, float charge, Vector3 pos, Color color, float scale, float bounciness, ... */" />
+            <marker date="1564763832093" expanded="true" signature="13455:16092" ph="/* public GameObject addWater(float xd, float yd) ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/forces.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="46" column="67" lean-forward="true" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
+          <folding>
+            <marker date="1564763679696" expanded="true" signature="6:179" ph="..." />
+            <marker date="1564763679696" expanded="true" signature="216:3454" ph="{...}" />
+            <marker date="1564763679696" expanded="true" signature="597:834" ph="/* -Gravitational and coulomb's constants must be initialized on start. i.e.: &quot;gameObject.AddComponent&lt;forces&gt;(). ... */" />
+            <marker date="1564763679696" expanded="true" signature="891:945" ph="{...}" />
+            <marker date="1564763679696" expanded="true" signature="967:1083" ph="{...}" />
+            <marker date="1564763679696" expanded="true" signature="1114:1746" ph="{...}" />
+            <marker date="1564763679696" expanded="true" signature="1129:1273" ph="/* - Update() finds all of the objects in the scene and adds the ones which start with [P] ... */" />
+            <marker date="1564763679696" expanded="true" signature="1383:1740" ph="{...}" />
+            <marker date="1564763679696" expanded="true" signature="1565:1730" ph="{...}" />
+            <marker date="1564763679696" expanded="true" signature="1885:3452" ph="{...}" />
+            <marker date="1564763679696" expanded="true" signature="1989:3446" ph="{...}" />
+            <marker date="1564763679696" expanded="true" signature="2160:3436" ph="{...}" />
+            <marker date="1564763679696" expanded="true" signature="2228:3422" ph="{...}" />
+            <marker date="1564763679696" expanded="true" signature="2340:3404" ph="{...}" />
+            <marker date="1564763679696" expanded="true" signature="3164:3281" ph="/* applies force vector ... */" />
           </folding>
         </state>
       </provider>

@@ -43,8 +43,7 @@ public class forces : MonoBehaviour
         foreach (GameObject o in rootObjects)
         {
             string objIdentifier = o.name[0].ToString() + o.name[1].ToString() + o.name[2].ToString();
-            // Debug.Log("[DEBUG]: " + objIdentifier);
-            
+
             if (!gameObjects.Contains(o) && objIdentifier == "[P]")
             {
                 gameObjects.Add(o);
