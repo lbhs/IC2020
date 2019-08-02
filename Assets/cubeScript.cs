@@ -24,11 +24,13 @@ public class cubeScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(gameObject.GetComponent<Rigidbody>().velocity.sqrMagnitude < velocitySpeedUp)
+        if(gameObject.GetComponent<Rigidbody>().velocity.sqrMagnitude < 50)
         {
-            gameObject.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity*1.4f;
+            //print("old velocity =" + velocity);
+            gameObject.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity.normalized * 5 * Mathf.Sqrt(2);
+            //print("new velocity =" + velocity);
         }
     }
 }
