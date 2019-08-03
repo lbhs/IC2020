@@ -55,12 +55,13 @@ public class TimeBody : MonoBehaviour
         {
             SpaceTime point = points[frame];
             transform.position = point.position;
+			transform.rotation = point.rotation;
         }
     }
     
     void Record()
     {
-		points[frame] = new SpaceTime(Arbies.velocity, transform.position);
+		points[frame] = new SpaceTime(Arbies.velocity, transform.position, transform.rotation);
     }
 	
 	void Playback()
@@ -68,6 +69,7 @@ public class TimeBody : MonoBehaviour
 		if(frame > -1)
 		{
 			transform.position = points[frame].position;
+			transform.rotation = points[frame].rotation;
 			if(points[frame+1] == null)
 			{
 				Arbies.isKinematic = false;

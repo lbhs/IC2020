@@ -17,18 +17,21 @@ public class cubeScript : MonoBehaviour
         
       
         velocity = new Vector3(vx, vy *vPlaceholder, 0);
-
+		GameObject.Find("GameObject").GetComponent<forces>().nonobjects.Add(gameObject);
         gameObject.GetComponent<Rigidbody>().velocity = velocity;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(gameObject.GetComponent<Rigidbody>().velocity.sqrMagnitude < 50)
+        if (Time.timeScale != 0 && GameObject.Find("GameObject").GetComponent<forces>().recording)
         {
-            //print("old velocity =" + velocity);
-            gameObject.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity.normalized * 5 * Mathf.Sqrt(2);
-            //print("new velocity =" + velocity);
-        }
+			if(gameObject.GetComponent<Rigidbody>().velocity.sqrMagnitude < 50)
+			{
+				//print("old velocity =" + velocity);
+				gameObject.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity.normalized * 5 * Mathf.Sqrt(2);
+				//print("new velocity =" + velocity);
+			}
+		}
     }
 }

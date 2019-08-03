@@ -10,12 +10,11 @@ public class speedText : MonoBehaviour
     void Start()
     {
         speed = GetComponent<Text>();
-		GameObject.Find("Slider").GetComponent<time>().updateTimeScale(0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        speed.text = "Speed: " + Time.timeScale.ToString() + "x";
+        speed.text = "Speed: " + GameObject.Find("Slider").GetComponent<time>().timespeed.ToString() + "x";
     }
 }

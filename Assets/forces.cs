@@ -9,52 +9,9 @@ public class forces : MonoBehaviour
 	public bool recording = true;
 	public bool pressed = false;
 	//private bool rewind = false;
-	//List of all game objects that forces should act on (gravity, electrostatic, collisions, etc.)
+	//List of all game objects that forces should act on (gravity, electrostatic, etc.)
     public List<GameObject> gameobjects = new List<GameObject>();
-
-	/*
-	public bool isRewinding
-	{
-		get
-		{
-			return rewind;
-		}
-		set
-		{
-			rewind = value;
-			if (rewind)
-			{
-				foreach(GameObject gameObject in gameobjects)
-				{
-					gameObject.GetComponent<TimeBody>().StartRewind();
-				}
-			}
-			else
-			{
-				foreach(GameObject gameObject in gameobjects)
-				{
-					gameObject.GetComponent<TimeBody>().StopRewind();
-				}
-			}
-		}
-	}
-	*/
-
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			pressed = !pressed;
-			if(pressed)
-			{
-				startRewind();
-			}
-			else
-			{
-				stopRewind();
-			}
-		}
-	}
+	public List<GameObject> nonobjects = new List<GameObject>();
 	/*
 	-Gravitational and coulomb's constants must be initialized on start. i.e.: "gameObject.AddComponent<forces>().initialize(G, k);"
 	-Script doesn't run automatically because UI elements must be initialized before forces are applied
@@ -72,6 +29,10 @@ public class forces : MonoBehaviour
 			gameObject.GetComponent<TimeBody>().isRewinding = false;
 		}
 		GetComponent<TimeBody>().isRewinding = false;
+		foreach(GameObject gameObject in nonobjects)
+		{
+			gameObject.GetComponent<TimeBody>().isRewinding = false;
+		}
 	}
 	
 	public void startRewind()
@@ -81,6 +42,10 @@ public class forces : MonoBehaviour
 			gameObject.GetComponent<TimeBody>().StartRewind();
 		}
 		GetComponent<TimeBody>().StartRewind();
+		foreach(GameObject gameObject in nonobjects)
+		{
+			gameObject.GetComponent<TimeBody>().StartRewind();
+		}
 	}
 
     private GameObject pauseCanvas;
@@ -135,6 +100,7 @@ public class forces : MonoBehaviour
         sphere.GetComponent<Rigidbody>().mass = mass;
         sphere.GetComponent<Rigidbody>().useGravity = false;
 		sphere.GetComponent<Rigidbody>().angularDrag = 0;
+		sphere.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
         sphere.AddComponent<charger>().charge = charge;
         sphere.transform.position = pos;
         sphere.transform.localScale = new Vector3(scale, scale, scale);
