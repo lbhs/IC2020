@@ -6,6 +6,8 @@ public class forces : MonoBehaviour
 {
     private float G;
     private float k;
+	public bool recording = true;
+	public bool pressed = false;
 	//private bool rewind = false;
 	//List of all game objects that forces should act on (gravity, electrostatic, collisions, etc.)
     public List<GameObject> gameobjects = new List<GameObject>();
@@ -41,15 +43,17 @@ public class forces : MonoBehaviour
 	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
-			foreach(GameObject gameObject in gameobjects)
+		{
+			pressed = !pressed;
+			if(pressed)
 			{
-				gameObject.GetComponent<TimeBody>().StartRewind();
+				startRewind();
 			}
-		if (Input.GetKeyUp(KeyCode.Space))
-			foreach(GameObject gameObject in gameobjects)
+			else
 			{
-				gameObject.GetComponent<TimeBody>().StopRewind();
+				stopRewind();
 			}
+		}
 	}
 	/*
 	-Gravitational and coulomb's constants must be initialized on start. i.e.: "gameObject.AddComponent<forces>().initialize(G, k);"
@@ -61,6 +65,24 @@ public class forces : MonoBehaviour
         k = coulomb;
     }
 
+	public void stopRewind()
+	{
+		foreach(GameObject gameObject in gameobjects)
+		{
+			gameObject.GetComponent<TimeBody>().isRewinding = false;
+		}
+		GetComponent<TimeBody>().isRewinding = false;
+	}
+	
+	public void startRewind()
+	{
+		foreach(GameObject gameObject in gameobjects)
+		{
+			gameObject.GetComponent<TimeBody>().StartRewind();
+		}
+		GetComponent<TimeBody>().StartRewind();
+	}
+
     private GameObject pauseCanvas;
     void Start()
     {
@@ -70,7 +92,7 @@ public class forces : MonoBehaviour
     void FixedUpdate()
     {
         //Ensures that forces do not get caculated while paused
-        if (!(Time.timeScale == 0 || #ARRAY#[frameNumber] != null))
+        if (Time.timeScale != 0 && recording)
         {
             //Nested for loops + if statement to calculate force that each object exerts on every other object
             foreach (GameObject a in gameobjects)

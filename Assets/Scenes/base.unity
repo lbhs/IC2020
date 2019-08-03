@@ -3439,6 +3439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 949075184}
   - component: {fileID: 949075185}
+  - component: {fileID: 949075186}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -3508,14 +3509,14 @@ MonoBehaviour:
   m_FillRect: {fileID: 503878560}
   m_HandleRect: {fileID: 2040806854}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: -16
   m_MaxValue: 16
   m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1383625846}
+      - m_Target: {fileID: 949075186}
         m_MethodName: updateTimeScale
         m_Mode: 0
         m_Arguments:
@@ -3528,6 +3529,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &949075186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949075183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3706410f444085f4cb9d366cc5cb27ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &996881833
 GameObject:
   m_ObjectHideFlags: 0
@@ -6022,7 +6035,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1383625844}
   - component: {fileID: 1383625845}
-  - component: {fileID: 1383625846}
+  - component: {fileID: 1383625847}
+  - component: {fileID: 1383625848}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -6038,7 +6052,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383625843}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -15, y: 0, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6058,7 +6072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   G: 0
   k: 20000
---- !u!114 &1383625846
+--- !u!114 &1383625847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6067,9 +6081,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1383625843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3706410f444085f4cb9d366cc5cb27ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f8fdb7671a09b348ac33d8716ef502a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRewinding: 0
+  frame: -2
+  Arbies: {fileID: 0}
+--- !u!54 &1383625848
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383625843}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1406939525
 GameObject:
   m_ObjectHideFlags: 0
