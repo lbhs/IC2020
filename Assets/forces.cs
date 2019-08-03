@@ -1,16 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class forces : MonoBehaviour
 {
-	private float G;
-	private float k;
-	public bool recording = true;
-	public bool pressed = false;
-	//private bool rewind = false;
-	//List of all game objects that forces should act on (gravity, electrostatic, etc.)
-	public List<GameObject> gameobjects = new List<GameObject>();
+  private float G;
+  private float k;
+  public bool recording = true;
+  public bool pressed = false;
+  private GameObject pauseCanvas;
+  private Scene scene;
+
+  //List of all game objects that forces should act on (gravity, electrostatic, collisions, etc.)
+  [FormerlySerializedAs("gameobjects")] public List<GameObject> gameObjects = new List<GameObject>();
+  private List<GameObject> rootObjects = new List<GameObject>();
 	public List<GameObject> nonobjects = new List<GameObject>();
 	/*
 	-Gravitational and coulomb's constants must be initialized on start. i.e.: "gameObject.AddComponent<forces>().initialize(G, k);"
@@ -18,41 +25,62 @@ public class forces : MonoBehaviour
 	*/
 	public void initialize(float gravity, float coulomb)
 	{
-		G = gravity;
-		k = coulomb;
+  		G = gravity;
+	  	k = coulomb;
 	}
 
 	public void stopRewind()
 	{
-		foreach(GameObject gameObject in gameobjects)
-		{
-			gameObject.GetComponent<TimeBody>().isRewinding = false;
-		}
-		GetComponent<TimeBody>().isRewinding = false;
-		foreach(GameObject gameObject in nonobjects)
-		{
-			gameObject.GetComponent<TimeBody>().isRewinding = false;
-		}
-	}
+	    	foreach(GameObject gameObject in gameobjects)
+	    	{
+	      		gameObject.GetComponent<TimeBody>().isRewinding = false;
+    		}
+    		GetComponent<TimeBody>().isRewinding = false;
+	    	foreach(GameObject gameObject in nonobjects)
+  		  {
+  		    	gameObject.GetComponent<TimeBody>().isRewinding = false;
+  		  }
+  	}
 	
-	public void startRewind()
-	{
-		foreach(GameObject gameObject in gameobjects)
-		{
-			gameObject.GetComponent<TimeBody>().StartRewind();
-		}
-		GetComponent<TimeBody>().StartRewind();
-		foreach(GameObject gameObject in nonobjects)
-		{
-			gameObject.GetComponent<TimeBody>().StartRewind();
-		}
-	}
+   public void startRewind()
+   {
+    		foreach(GameObject gameObject in gameobjects)
+    		{
+    			  gameObject.GetComponent<TimeBody>().StartRewind();
+    		}
+    		GetComponent<TimeBody>().StartRewind();
+	    	foreach(GameObject gameObject in nonobjects)
+	    	{
+	  		    gameObject.GetComponent<TimeBody>().StartRewind();
+	  	  }
+	  }
 
-	private GameObject pauseCanvas;
-	void Start()
-	{
-		pauseCanvas = GameObject.Find("Control Canvas");
-	}
+	  private GameObject pauseCanvas;
+	  void Start()
+	  {
+		    pauseCanvas = GameObject.Find("Control Canvas");
+        scene = SceneManager.GetActiveScene();
+	  }
+  
+    private void Update()
+    {
+        /*
+        - Update() finds all of the objects in the scene and adds the ones which start with [P]
+          to the list gameObjects.
+        */
+        scene.GetRootGameObjects(rootGameObjects: rootObjects);
+        foreach (GameObject o in rootObjects)
+        {
+            string objIdentifier = o.name[0].ToString() + o.name[1].ToString() + o.name[2].ToString();
+
+            if (!gameObjects.Contains(o) && objIdentifier == "[P]")
+            {
+                gameObjects.Add(o);
+                Debug.Log("[DEBUG]: Object " + o.name + " successfully added to list gameObjects.");
+            }
+        }
+    }
+  
 	//Calculates electrostatic and gravitational forces on all objects in gameobjects list every frame
 	void FixedUpdate()
 	{
