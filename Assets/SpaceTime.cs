@@ -11,6 +11,6 @@ public class SpaceTime
     {
         position = pos;
         velocity = vel;
-		rotation = rot;
+	rotation = rot;
     }
 }
