@@ -17,7 +17,7 @@ public class cubeScript : MonoBehaviour
 		
 	  
 		velocity = new Vector3(vx, vy *vPlaceholder, 0);
-		GameObject.Find("GameObject").GetComponent<forces>().nonobjects.Add(gameObject);
+		GameObject.Find("GameObject").GetComponent<forces>().nonObjects.Add(gameObject);
 		gameObject.GetComponent<Rigidbody>().velocity = velocity;
 	}
 

@@ -126,6 +126,7 @@ namespace IC2020
                 p.GetComponent<Rigidbody>().useGravity = grav;
                 p.GetComponent<Rigidbody>().angularDrag = 0;
                 p.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
+                p.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
 
                 // initialization of other components
                 p.AddComponent<charger>().charge = charge;
@@ -134,6 +135,7 @@ namespace IC2020
                 p.GetComponent<Collider>().material.staticFriction = 0;
                 p.GetComponent<Collider>().material.bounciness = bounciness;
                 p.AddComponent<DragNDrop>();
+                p.AddComponent<TimeBody>();
 
                 // if the position is overriden in Particle.Spawn() and overridden == true
                 if (overridden) p.transform.position = _pos;
