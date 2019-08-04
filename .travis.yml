@@ -1,0 +1,34 @@
+sudo: required
+language: bash
+env:
+  global:
+    - BUILD_NAME=IC2020
+services:
+  - docker
+before_install:
+  - openssl aes-256-cbc -K $encrypted_d4473614101c_key -iv $encrypted_d4473614101c_iv
+    -in Unity_v2018.x.ulf.enc -out Unity_v2018.x.ulf -d
+  - export UNITY_LICENSE_CONTENT=`cat Unity_v2018.x.ulf`
+  - rm Unity_v2018.x.ulf
+  - docker pull $IMAGE_NAME
+jobs:
+  include:
+    - stage: build
+      name: "Build WebGL"
+      env: BUILD_TARGET=WebGL
+      script: chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh
+      addons:
+        artifacts:
+          target_paths:
+            - "./Builds/"
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    local_dir: Builds/WebGL
+    target_branch: pages-preprod
+    on:
+      repo: lbhs/IC2020
+      branch: master
+after_deploy:
+  - chmod +x ./ci/post_deploy.sh && ./ci/post_deploy.sh
