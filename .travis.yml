@@ -2,57 +2,42 @@ sudo: required
 language: bash
 env:
   global:
-  - IMAGE_NAME=gableroux/unity3d:2018.3.14f1-webgl-feature-add-2019-1-3f1
-  - BUILD_NAME=IC2020
+    - IMAGE_NAME=gableroux/unity3d:2018.3.14f1-webgl-feature-add-2019-1-3f1
+    - BUILD_NAME=IC2020
 services:
-- docker
+  - docker
 before_install:
-#- openssl aes-256-cbc -K $encrypted_82766e747237_key -iv $encrypted_82766e747237_iv
-#  -in Unity_v2018.x.ulf.enc -out ./Unity_v2018.x.ulf -d
-#- export UNITY_LICENSE_CONTENT=`cat Unity_v2018.x.ulf`
-#- rm Unity_v2018.x.ulf
-- docker pull $IMAGE_NAME
+  - openssl aes-256-cbc -K $encrypted_d4473614101c_key -iv $encrypted_d4473614101c_iv -in Unity_v2018.x.ulf.enc -out Unity_v2018.x.ulf -d
+  - export UNITY_LICENSE_CONTENT=`cat Unity_v2018.x.ulf`
+  - rm Unity_v2018.x.ulf
+  - docker pull $IMAGE_NAME
 jobs:
   include:
-#  - stage: test
-#    script: "chmod +x ./ci/docker_test.sh && ./ci/docker_test.sh"
-#    env: TEST_PLATFORM=editmode
-#    addons:
-#      artifacts:
-#        target_paths:
-#        - "$(pwd)/$TEST_PLATFORM-results.xml"
-#  - stage: test
-#    script: "chmod +x ./ci/docker_test.sh && ./ci/docker_test.sh"
-#    env: TEST_PLATFORM=playmode
-#    addons:
-#      artifacts:
-#        target_paths:
-#        - "$(pwd)/$TEST_PLATFORM-results.xml"
-  - stage: build
-    env: BUILD_TARGET=StandaloneLinux64
-    script: "chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh"
-    addons:
-      artifacts:
-        target_paths:
-        - "./Builds/"
-  - stage: build
-    env: BUILD_TARGET=StandaloneOSX
-    script: "chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh"
-    addons:
-      artifacts:
-        target_paths:
-        - "./Builds/"
-  - stage: build
-    env: BUILD_TARGET=StandaloneWindows64
-    script: "chmod +x ./ci/docker_build.sh &&./ci/docker_build.sh"
-    addons:
-      artifacts:
-        target_paths:
-        - "./Builds/"
-  - stage: build
-    env: BUILD_TARGET=WebGL
-    script: "chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh"
-    addons:
-      artifacts:
-        target_paths:
-        - "./Builds/"
+    - stage: build
+      env: BUILD_TARGET=StandaloneLinux64
+      script: "chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh"
+      addons:
+        artifacts:
+          target_paths:
+            - "./Builds/"
+    - stage: build
+      env: BUILD_TARGET=StandaloneOSX
+      script: "chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh"
+      addons:
+        artifacts:
+          target_paths:
+            - "./Builds/"
+    - stage: build
+      env: BUILD_TARGET=StandaloneWindows64
+      script: "chmod +x ./ci/docker_build.sh &&./ci/docker_build.sh"
+      addons:
+        artifacts:
+          target_paths:
+            - "./Builds/"
+    - stage: build
+      env: BUILD_TARGET=WebGL
+      script: "chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh"
+      addons:
+        artifacts:
+          target_paths:
+            - "./Builds/"
