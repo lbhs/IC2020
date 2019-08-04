@@ -2,42 +2,51 @@ sudo: required
 language: bash
 env:
   global:
-    - IMAGE_NAME=gableroux/unity3d:2018.3.14f1-webgl-feature-add-2019-1-3f1
-    - BUILD_NAME=IC2020
+  - IMAGE_NAME=gableroux/unity3d:2018.3.14f1-webgl-feature-add-2019-1-3f1
+  - BUILD_NAME=IC2020
 services:
-  - docker
+- docker
 before_install:
-  - openssl aes-256-cbc -K $encrypted_d4473614101c_key -iv $encrypted_d4473614101c_iv -in Unity_v2018.x.ulf.enc -out Unity_v2018.x.ulf -d
-  - export UNITY_LICENSE_CONTENT=`cat Unity_v2018.x.ulf`
-  - rm Unity_v2018.x.ulf
-  - docker pull $IMAGE_NAME
+- openssl aes-256-cbc -K $encrypted_d4473614101c_key -iv $encrypted_d4473614101c_iv
+  -in Unity_v2018.x.ulf.enc -out Unity_v2018.x.ulf -d
+- export UNITY_LICENSE_CONTENT=`cat Unity_v2018.x.ulf`
+- rm Unity_v2018.x.ulf
+- docker pull $IMAGE_NAME
 jobs:
   include:
-    - stage: build
-      env: BUILD_TARGET=StandaloneLinux64
-      script: "chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh"
-      addons:
-        artifacts:
-          target_paths:
-            - "./Builds/"
-    - stage: build
-      env: BUILD_TARGET=StandaloneOSX
-      script: "chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh"
-      addons:
-        artifacts:
-          target_paths:
-            - "./Builds/"
-    - stage: build
-      env: BUILD_TARGET=StandaloneWindows64
-      script: "chmod +x ./ci/docker_build.sh &&./ci/docker_build.sh"
-      addons:
-        artifacts:
-          target_paths:
-            - "./Builds/"
-    - stage: build
-      env: BUILD_TARGET=WebGL
-      script: "chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh"
-      addons:
-        artifacts:
-          target_paths:
-            - "./Builds/"
+  - stage: build
+    env: BUILD_TARGET=StandaloneLinux64
+    script: chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh
+    addons:
+      artifacts:
+        target_paths:
+        - "./Builds/"
+  - stage: build
+    env: BUILD_TARGET=StandaloneOSX
+    script: chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh
+    addons:
+      artifacts:
+        target_paths:
+        - "./Builds/"
+  - stage: build
+    env: BUILD_TARGET=StandaloneWindows64
+    script: chmod +x ./ci/docker_build.sh &&./ci/docker_build.sh
+    addons:
+      artifacts:
+        target_paths:
+        - "./Builds/"
+  - stage: build
+    env: BUILD_TARGET=WebGL
+    script: chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh
+    addons:
+      artifacts:
+        target_paths:
+        - "./Builds/"
+deploy:
+  provider: releases
+  api_key:
+    secure: fgpSVkA9URKYPW9yEFlonJEtfpFMjgf8+hvJBFbZgv++7SJfQtsTENlLwswJIpJACs8CIo+vDwUedc2vskaUSqtwPs3Gkfhol/V6wAcnzLz0YR9mhWKF7LCiyZQJhB5HseUq+i7vZcei0jCCi0w1wnTTyGzfGjYvtaHDuEuNCwtXBMYUuWIkYiZMbVHSLltTqb4/H+wRvAZcXMtSzAxS4nBjXdW3oEsmSlBFRKthH0PEybquMGnLlwb+qHrXe4DsJIzs9jGPWi/yNws69LKyInQzCgt9nLPuIdatVKRjlaS4KkOxPSPq4my7y4xw8W38c5dIr6CJDywakzsRR0DGVs4D3koZy5tbqx2BwLu/HhxVmmUQyDLzrq0ljrb4Ec15/FU6y6NN2o5gkXtYr31fkW3lqBQFhw1ZjDMtForfu0JddKEevADkCQrTBuSzJbWD+msOogXrQdIjZmAH+3UdZ24oBy2L/FF+Kkhjz7cvhXV96Rs9144BD6iXLtw1zhmJ1rDgAjkAYQCvSvbR8GiXRPTOrI4PirP5z1ZVv0buZNZwWP4WbfsmpdgrGMCpcOJQWwOuJ1knsCWRA2pjcinDajJtrIHb9Vs5WywQEw81bU6zv3Ft9fETpq7QJQWjCzGz+YywJ+QwcpTbQ+RN2L5bQN3t9xIMCUQqaFL0zIMnsoM=
+  file: FILE_TO_UPLOAD
+  on:
+    repo: lbhs/IC2020
+    branch: feature-ci
