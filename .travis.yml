@@ -16,11 +16,6 @@ notifications:
     on_success: never
     on_failure: change
 
-cache:
-  directories:
-    - $UNITY_DOWNLOAD_CACHE
-
-
 before_install:
   # Enable execution flag on the scripts
   - chmod a+x ./.travis-scripts/*.sh
@@ -34,11 +29,11 @@ script:
   # Build the webGL Target
   - sudo -E sh ./.travis-scripts/build-target.sh Build Build/unity-webgl.log webGL -buildTarget WebGL
   # Execute unit tests
-  - sudo -E sh ./.travis-scripts/build-target.sh Build Build/unity-unittests.log UnitTests -runEditorTests -editorTestsResultFile $(pwd)/test.xml
+#  - sudo -E sh ./.travis-scripts/build-target.sh Build Build/unity-unittests.log UnitTests -runEditorTests -editorTestsResultFile $(pwd)/test.xml
 
 # run the script to upload the builds as tarballs
-#after_success:
-#  - sudo -E sh ./.travis-scripts/post-build.sh
+after_success:
+  - cd Build; find .
 
 deploy:
   - provider: pages
