@@ -16,3 +16,5 @@ Built in Unity 2018.3.14f1 for WebGL
 # Known bugs
 
 -stange table animation (fixed but not in master yet)
+
+-particles disappearing when timescale slider initially changed from 0x (only occurs in webgl builds)
