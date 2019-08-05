@@ -6,16 +6,15 @@ using UnityEngine.UI;
 public class speedText : MonoBehaviour
 {
 	Text speed;
-    // Start is called before the first frame update
-    void Start()
-    {
-        speed = GetComponent<Text>();
-		GameObject.Find("Slider").GetComponent<time>().updateTimeScale(0f);
-    }
+	// Start is called before the first frame update
+	void Start()
+	{
+		speed = GetComponent<Text>();
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        speed.text = "Speed: " + Time.timeScale.ToString() + "x";
-    }
+	// Update is called once per frame
+	void Update()
+	{
+		speed.text = "Speed: " + GameObject.Find("Slider").GetComponent<time>().timespeed.ToString() + "x";
+	}
 }
