@@ -16,12 +16,10 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     public float scale;
     public float bounciness;
     public int ImageToUse;
-    [Header("  ")]
-    [Header("Other")]
     [Header("No Settings for addWater")]
-    
+
     //[Header("Other")]
-    public bool UseingMe;
+    [HideInInspector] public bool UseingMe;
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = Input.mousePosition;
@@ -33,7 +31,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
         transform.localPosition = Vector3.zero;
         UseingMe = false;
     }
-    public int num;
+    [HideInInspector] public int num;
     // Start is called before the first frame update
     void Start()
     {
