@@ -1,0 +1,8 @@
+[submodule "prod"]
+	path = prod
+	url = https://github.com/lbhs/IC2020.git
+	branch = pages-prod
+[submodule "preprod"]
+	path = preprod
+	url = https://github.com/lbhs/IC2020.git
+	branch = pages-preprod
