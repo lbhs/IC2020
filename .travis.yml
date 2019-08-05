@@ -40,5 +40,15 @@ deploy:
       tag: true
       repo: lbhs/IC2020
       condition: "$TRAVIS_TAG =~ ^prod.*$"
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    local_dir: Builds/WebGL
+    target_branch: pages-integ
+    on:
+      all_branches: true
+      tag: true
+      repo: lbhs/IC2020
+      condition: "$TRAVIS_TAG =~ ^integ.*$"
 after_deploy:
   - chmod +x ./ci/post_deploy.sh && ./ci/post_deploy.sh

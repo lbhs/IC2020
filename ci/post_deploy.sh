@@ -2,6 +2,9 @@
 
 set -e
 
+echo "Starting the post-deployment update to gh-pages."
+echo "Using git version: $(git --version)"
+
 git add -A .
 git stash
 git fetch origin gh-pages
