@@ -36,10 +36,8 @@ deploy:
     local_dir: Builds/WebGL
     target_branch: pages-prod
     on:
-      all_branches: true
-      tag: true
       repo: lbhs/IC2020
-      condition: "$TRAVIS_TAG =~ ^prod.*$"
+      branch: feature-ci
   - provider: pages
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
