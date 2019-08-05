@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class time : MonoBehaviour
 {
-	public float timespeed;
+	Text speed;
 	
 	public void updateTimeScale(float scale)
 	{
-		timespeed = scale/4;
+		GameObject.Find("speedText").GetComponent<Text>().text = "Speed: " + (scale/4).ToString() + "x";
 		if(scale < 0)
 		{
 			if(GameObject.Find("GameObject").GetComponent<TimeBody>().frame == -1)

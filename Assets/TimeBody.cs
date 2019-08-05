@@ -44,7 +44,7 @@ public class TimeBody : MonoBehaviour
 			if(frame == gameobject.GetComponent<TimeBody>().frame)
 			{
 				gameobject.GetComponent<forces>().stopRewind();
-				GameObject.Find("temperatureSlider").GetComponent<time>().updateTimeScale(0f);
+				GameObject.Find("speedSlider").GetComponent<time>().updateTimeScale(0f);
 			}
 			else
 			{
@@ -73,6 +73,7 @@ public class TimeBody : MonoBehaviour
 			if(points[frame+1] == null)
 			{
 				Arbies.isKinematic = false;
+                Arbies.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 				Arbies.velocity = points[frame].velocity;
 				gameobject.GetComponent<forces>().recording = true;
 			}
@@ -84,6 +85,7 @@ public class TimeBody : MonoBehaviour
 	{
 		isRewinding = true;
 		gameobject.GetComponent<forces>().recording = false;
+        Arbies.collisionDetectionMode = CollisionDetectionMode.Discrete;
 		Arbies.isKinematic = true;
 	}
 }
