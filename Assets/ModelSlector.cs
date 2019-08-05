@@ -36,14 +36,19 @@ public class ModelSlector : MonoBehaviour
         //Ionic Lattice Model
         else if (dropDownValue == 1)
         {
+			//private List<Vector3> coordinates = new List<Vector3>();
             //randomly adds several of 2 different kinds of particles
             for(int x = 0; x < numberOfEachMonoculesPerColor; x++)
-            { 
-            Particle Chloride = new Particle("Chloride", -2f, ICColor.Chlorine, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), 2.0f, scale: 2.0f);
-            Particle Sodium = new Particle("Sodium Ion", 2f, ICColor.Sodium, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), 2.0f, scale: 2.0f);
-            
-            Chloride.Spawn();
-            Sodium.Spawn();
+            {
+				//Vector3 coord1 = new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0);
+				//Vector3 coord2 = new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0);
+				//coordinates.Add(coord2);
+				
+				Particle Chloride = new Particle("Chloride", -2f, ICColor.Chlorine, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), 2.0f, scale: 2.0f);
+				Particle Sodium = new Particle("Sodium Ion", 2f, ICColor.Sodium, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), 2.0f, scale: 2.0f);
+				
+				Chloride.Spawn();
+				Sodium.Spawn();
             }
             
             dropDownMenu.GetComponent<Dropdown>().value = 0;

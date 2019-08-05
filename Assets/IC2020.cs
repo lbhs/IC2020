@@ -127,6 +127,7 @@ namespace IC2020
                 p.GetComponent<Rigidbody>().angularDrag = 0;
                 p.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
                 p.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
+                p.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
                 // initialization of other components
                 p.AddComponent<charger>().charge = charge;
@@ -144,9 +145,7 @@ namespace IC2020
 
                 // overlays the label on top of the GameObject
                 GameObject tempLable;
-                tempLable = MonoBehaviour.Instantiate(
-                    GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[imgToUse], Vector3.zero,
-                    Quaternion.identity);
+                tempLable = MonoBehaviour.Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[imgToUse], Vector3.zero, Quaternion.identity);
                 tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
                 tempLable.GetComponent<ImageFollower>().sphereToFollow = p;
 
