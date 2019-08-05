@@ -44,7 +44,7 @@ public class TimeBody : MonoBehaviour
 			if(frame == gameobject.GetComponent<TimeBody>().frame)
 			{
 				gameobject.GetComponent<forces>().stopRewind();
-				GameObject.Find("Slider").GetComponent<time>().updateTimeScale(0f);
+				GameObject.Find("temperatureSlider").GetComponent<time>().updateTimeScale(0f);
 			}
 			else
 			{
