@@ -39,6 +39,6 @@ deploy:
       all_branches: true
       tag: true
       repo: lbhs/IC2020
-      condition: "$TRAVIS_TAG =~ ^prod*$"
+      condition: "$TRAVIS_TAG =~ ^prod.*$"
 after_deploy:
   - chmod +x ./ci/post_deploy.sh && ./ci/post_deploy.sh
