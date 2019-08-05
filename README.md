@@ -6,12 +6,15 @@ Built in Unity 2018.3.14f1 for WebGL
 [![Preprod Build Status](https://travis-ci.org/lbhs/IC2020.svg?branch=master)](https://travis-ci.org/lbhs/IC2020)
 
 # To-Do
-
 -different shapes (triangles)
 
 -add/make flasky
 
+-save system
+
 -forces arrow
+
+-speed slider
 
 -advanced tab (empty, settings, save)
 
