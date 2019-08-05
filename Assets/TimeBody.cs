@@ -5,26 +5,26 @@ using System.Linq;
 
 public class TimeBody : MonoBehaviour
 {
-    public bool isRewinding = false;
+	public bool isRewinding = false;
 	public int frame = -1;
 	private GameObject gameobject;
-    private List<SpaceTime> points = Enumerable.Repeat<SpaceTime>(null, 1).ToList();
-    public Rigidbody Arbies;
-        
-    void Start()
-    {
+	private List<SpaceTime> points = Enumerable.Repeat<SpaceTime>(null, 1).ToList();
+	public Rigidbody Arbies;
+		
+	void Start()
+	{
 		gameobject = GameObject.Find("GameObject");
-        Arbies = GetComponent<Rigidbody>();
-    }
+		Arbies = GetComponent<Rigidbody>();
+	}
 
-    void FixedUpdate()
-    {
-        if (isRewinding)
+	void FixedUpdate()
+	{
+		if (isRewinding)
 		{
 			frame--;
-            Rewind();
+			Rewind();
 		}
-        else if(frame < -1 || points[frame+1] != null)
+		else if(frame < -1 || points[frame+1] != null)
 		{
 			frame++;
 			Playback();
@@ -35,12 +35,12 @@ public class TimeBody : MonoBehaviour
 			frame++;
 			Record();
 		}
-    }
+	}
 
-    void Rewind()
-    {
-        if (frame < 0)
-        {
+	void Rewind()
+	{
+		if (frame < 0)
+		{
 			if(frame == gameobject.GetComponent<TimeBody>().frame)
 			{
 				gameobject.GetComponent<forces>().stopRewind();
@@ -50,24 +50,26 @@ public class TimeBody : MonoBehaviour
 			{
 				transform.position = new Vector3(-15, 0, -15);
 			}
-        }
-        else
-        {
-            SpaceTime point = points[frame];
-            transform.position = point.position;
-        }
-    }
-    
-    void Record()
-    {
-		points[frame] = new SpaceTime(Arbies.velocity, transform.position);
-    }
+		}
+		else
+		{
+			SpaceTime point = points[frame];
+			transform.position = point.position;
+			transform.rotation = point.rotation;
+		}
+	}
+	
+	void Record()
+	{
+		points[frame] = new SpaceTime(Arbies.velocity, transform.position, transform.rotation);
+	}
 	
 	void Playback()
 	{
 		if(frame > -1)
 		{
 			transform.position = points[frame].position;
+			transform.rotation = points[frame].rotation;
 			if(points[frame+1] == null)
 			{
 				Arbies.isKinematic = false;
@@ -78,10 +80,10 @@ public class TimeBody : MonoBehaviour
 		}
 	}
 
-    public void StartRewind()
-    {
-        isRewinding = true;
+	public void StartRewind()
+	{
+		isRewinding = true;
 		gameobject.GetComponent<forces>().recording = false;
-        Arbies.isKinematic = true;
-    }
+		Arbies.isKinematic = true;
+	}
 }
