@@ -13,10 +13,16 @@ Built in Unity 2018.3.14f1 for WebGL
 
 -forces arrow
 
--advanced tab (empty, settings, save)
+-save and load scenes from drop down
+
+-create scenes from within game
+
+-edit buffet table from within game
+
+-implement acids/bases with realistic functionality
 
 # Known bugs
 
--stange table animation (fixed but not in master yet)
-
 -particles disappearing when timescale slider initially changed from 0x (only occurs in webgl builds)
+
+-water molecule randomly spawns when adjusting temperature slider
