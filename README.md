@@ -3,6 +3,8 @@ IC2020 is the browser-based physics simulator for teaching chemistry and physics
 
 Built in Unity 2018.3.14f1 for WebGL
 
+[![Preprod Build Status](https://travis-ci.org/lbhs/IC2020.svg?branch=master)](https://travis-ci.org/lbhs/IC2020)
+
 # To-Do
 -different shapes (triangles)
 
@@ -18,4 +20,6 @@ Built in Unity 2018.3.14f1 for WebGL
 
 # Known bugs
 
--stange table animation
+-stange table animation (fixed but not in master yet)
+
+-particles disappearing when timescale slider initially changed from 0x (only occurs in webgl builds)
