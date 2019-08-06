@@ -5,6 +5,8 @@ env:
     - BUILD_NAME=IC2020
 services:
   - docker
+git: 
+  depth: false
 before_install:
   - openssl aes-256-cbc -K $encrypted_d4473614101c_key -iv $encrypted_d4473614101c_iv
     -in Unity_v2018.x.ulf.enc -out Unity_v2018.x.ulf -d

@@ -12,15 +12,12 @@ git add -A .
 git stash
 
 # Setup the repo for fetching normally
-echo "Setting up the repo"
-git config --replace-all remote.origin.fetch +refs/head/*:refs/remotes/origin/*
 echo "Fetching origin:"
 git fetch origin
 
 # Change to the gh-pages branch and update the submodules
 echo "Checking out gh-pages branch"
-git branch dummy-temp-work
-git checkout gh-pages
+git checkout -b gh-pages -t origin/gh-pages
 
 echo "Before updating submodules"
 git submodule update --recursive --remote --merge --init
