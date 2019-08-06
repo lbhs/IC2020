@@ -4,6 +4,8 @@ set -e
 
 echo "Starting the post-deployment update to gh-pages."
 echo "Using git version: $(git --version)"
+echo "Having remotes: $(git remote -v show)"
+echo "Having branches: $(git branch --list)"
 
 # Stash the existing changes
 git add -A .
