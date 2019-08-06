@@ -75,7 +75,7 @@ public class forces : MonoBehaviour
             if (!gameObjects.Contains(o) && objIdentifier == "[P]")
             {
                 gameObjects.Add(o);
-                Debug.Log("[DEBUG]: Object " + o.name + " successfully added to list gameObjects.");
+                // Debug.Log("[DEBUG]: Object " + o.name + " successfully added to list gameObjects.");
             }
         }
     }

@@ -12,20 +12,23 @@
 - class "Particle" is a class used to design particles and then spawn them at will.
 - class "ParticleSpawner" is a class used to spawn water molecules (and eventually more molecules too).
 - static class "ICColor" is a class that holds all of the colors of particles used in IC2020.
+- static class "ICParticles" is a class that holds all of the pre-build particles used in IC2020.
+- note: classes beginning with "I" are not interfaces; any classes beginning with "IC" are static
+  classes that act as libraries with pre-set values and particles to be used in scripts.
 */
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
+using UnityEngine.Animations;
 
 namespace IC2020
 {
     public static class ICColor
     {
         /*
-        - static class ICColor is NOT an interface (though its name would imply this).
-          "IC" simply stands for "interactive chemistry."
         - "ICColor" uses the same syntax as the "Color" static class.
         - e.g: instead of using Color.red, you would use ICColor.Oxygen.
         - A majority of these colors are not final (especially the electron color).
@@ -41,9 +44,25 @@ namespace IC2020
         public static Color Zinc, Bromine = new Color32(165, 42, 42, 255);
         public static Color Sodium = new Color32(170, 92, 246, 255);
         public static Color Iron = new Color32(255, 165, 0, 255);
-        public static Color Magnesium = new Color32(42, 128, 42, 255);
+        public static Color Magnesium = new Color32(22, 142, 241, 255);
         public static Color Calcium = new Color32(128, 128, 128, 255);
         public static Color Potassium = new Color32(255, 20, 147, 255);
+    }
+
+    public static class ICParticles
+    {
+        /*
+        - static class ICParticles acts as a library of particles to be used in scripts.
+        - Particles spawned with ICParticles MUST be spawned with a Vector3 "override" arg
+          e.g: ICParticles.SodiumIon.Spawn(new Vector3([insert spawn position here]))
+        */
+        public static Particle SodiumIon = new Particle("Sodium Ion", 1f, ICColor.Sodium, scale: 2f, mass: 2f, bounciness: 0.8f);
+        public static Particle Chloride = new Particle("Chloride", -1f, ICColor.Chlorine, scale: 2f, mass: 3f, bounciness: 0.8f);
+        public static Particle Sulfate = new Particle("Sulfate", -2f, ICColor.Sulfur, scale: 3f, mass: 3f);
+        public static Particle Hydrogen = new Particle("Hydrogen", 1f, ICColor.Hydrogen, scale: 1f, mass: 1f);
+        public static Particle Electron = new Particle("Electron", -1f, ICColor.Electron, scale:1f, mass:1f);
+        public static Particle Oxide = new Particle("Oxide", -2f, ICColor.Oxygen, scale: 1f, mass: 4f, bounciness: 0.2f, friction: 0.02f);
+        public static Particle MagnesiumIon = new Particle("Magnesium Ion", 2f, ICColor.Magnesium, scale: 1f, mass: 6f, bounciness: 0.2f);
     }
 
     public class Particle
@@ -65,9 +84,10 @@ namespace IC2020
         private float scale; // the scale of the created GameObject
         private float bounciness; // the bounciness factor of the created GameObject
         private int imgToUse; // the image overlaid on the GameObject (+ or -).
+        private float friction;
 
         // Constructor
-        public Particle(string name, float charge, Color color, Vector3 pos = new Vector3(), float mass = 1f, float scale = 1f, float bounciness = 0.6f, bool grav = false)
+        public Particle(string name, float charge, Color color, Vector3 pos = new Vector3(), float mass = 1f, float scale = 1f, float bounciness = 0.6f, bool grav = false, float friction = 0)
         {
             /*
             - constructor Particle() assigns arguments passed into this function
@@ -90,13 +110,14 @@ namespace IC2020
             this.scale = scale;
             this.bounciness = bounciness;
             this.grav = grav;
+            this.friction = friction;
             
             if (charge < 0) imgToUse = 1;
             else imgToUse = 0;
         }
 
         // Particle.Spawn() creates a particle GameObject with all of the predefined attributes above.
-        public GameObject Spawn(Vector3 _pos = new Vector3(), bool overridden = false)
+        public GameObject Spawn(Vector3 @override = default(Vector3))
         {
             /*
             - Particle.Spawn() creates a primitive sphere GameObject with all of the 
@@ -134,11 +155,12 @@ namespace IC2020
                 p.GetComponent<Collider>().material.dynamicFriction = 0;
                 p.GetComponent<Collider>().material.staticFriction = 0;
                 p.GetComponent<Collider>().material.bounciness = bounciness;
+                p.GetComponent<Collider>().material.dynamicFriction = friction;
                 p.AddComponent<DragNDrop>();
                 p.AddComponent<TimeBody>();
 
                 // if the position is overriden in Particle.Spawn() and overridden == true
-                if (overridden) p.transform.position = _pos;
+                if (@override != default(Vector3)) p.transform.position = @override;
                 else p.transform.position = pos;
                 p.transform.localScale = new Vector3(scale, scale, scale);
 
@@ -216,16 +238,7 @@ namespace IC2020
             cjoint.autoConfigureConnectedAnchor = false;
             cjoint.connectedAnchor = new Vector3(hydrox, hydroy, 0);
 
-            var limit = new SoftJointLimit();
-            limit.limit = 0.1f;
-            //limit.SoftJointLimitSpring = 40.0f;
-            cjoint.linearLimit = limit;
-
-            limit.limit = 10.0f;
-            cjoint.angularYLimit = limit;
-            cjoint.angularZLimit = limit;
-            cjoint.lowAngularXLimit = limit;
-            cjoint.highAngularXLimit = limit;
+            
 
             ConfigurableJoint ccjoint;
             ccjoint = _hydrogen2.AddComponent<ConfigurableJoint>();
@@ -241,17 +254,15 @@ namespace IC2020
 
             ccjoint.autoConfigureConnectedAnchor = false;
             ccjoint.connectedAnchor = new Vector3(hhx, hhy, 0f);
-
-            var llimit = new SoftJointLimit();
-            llimit.limit = 0.1f;
-            //limit.SoftJointLimitSpring = 40.0f;
-            cjoint.linearLimit = llimit;
-
-            llimit.limit = 10.0f;
-            cjoint.angularYLimit = llimit;
-            cjoint.angularZLimit = llimit;
-            cjoint.lowAngularXLimit = llimit;
-            cjoint.highAngularXLimit = llimit;
+            
+            // sets the hydrogen particles as parents
+            
+            _oxygen.AddComponent<RotationConstraint>().locked = true;
+            _hydrogen1.AddComponent<RotationConstraint>().locked = true;
+            _hydrogen2.AddComponent<RotationConstraint>().locked = true;
+            
+            _hydrogen1.transform.SetParent(_oxygen.transform);
+            _hydrogen2.transform.SetParent(_oxygen.transform);
 
             return null;
         }
@@ -369,3 +380,31 @@ public GameObject addWater(float xd, float yd)
     return null;
 }
 */
+
+// addwater limits for breakable water
+/*
+    var limit = new SoftJointLimit();
+    limit.limit = 0.01f;
+    //limit.SoftJointLimitSpring = 40.0f;
+    cjoint.linearLimit = limit;
+
+    limit.limit = 0.01f;
+    cjoint.angularYLimit = limit;
+    cjoint.angularZLimit = limit;
+    cjoint.lowAngularXLimit = limit;
+    cjoint.highAngularXLimit = limit;
+*/
+/*
+    var llimit = new SoftJointLimit();
+    llimit.limit = 0.01f;
+    //limit.SoftJointLimitSpring = 40.0f;
+    cjoint.linearLimit = llimit;
+
+    llimit.limit = 0.01f;
+    cjoint.angularYLimit = llimit;
+    cjoint.angularZLimit = llimit;
+    cjoint.lowAngularXLimit = llimit;
+    cjoint.highAngularXLimit = llimit;
+*/
+// public static Particle Hybrogen = new Particle("Hybrogen", .999f, new Color32(245, 255, 245, 255), scale: 1.2f, mass: 1.001f, bounciness: 0.59f);
+

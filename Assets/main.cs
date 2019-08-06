@@ -21,13 +21,8 @@ public class main : MonoBehaviour
 
     private void ParticleTest()
     {
-	    // just a debugging function used to test the Particle class and Particle.Spawn() function.
-	    Particle electron = new Particle("Electron", -1, ICColor.Electron, new Vector3(-5, 0, 0), scale:1f);
-	    Particle nitrogen = new Particle("Nitrogen", -3, ICColor.Nitrogen, new Vector3(5, 0, 0), scale: 2f);
-	    // Particle chloride1 = new Particle("Chloride1", -1, ICColor.Chlorine, new Vector3(-5, 0, 0), scale: 2f);
-
-	    electron.Spawn();
-	    nitrogen.Spawn();
-	    // chloride1.Spawn();
+	    ICParticles.SodiumIon.Spawn(new Vector3(5, 0,0 ));
+	    ICParticles.SodiumIon.Spawn(new Vector3(-5, 0, 0));
+	    ICParticles.Sulfate.Spawn(new Vector3(0, 0, 0));
     }
 }

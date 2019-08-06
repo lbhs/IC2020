@@ -5925,8 +5925,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1383625844}
   - component: {fileID: 1383625845}
-  - component: {fileID: 1383625847}
   - component: {fileID: 1383625848}
+  - component: {fileID: 1383625846}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -6689,7 +6689,7 @@ MonoBehaviour:
   dropDownMenu: {fileID: 1528985652}
   cubePrefab: {fileID: 3680702012836678383, guid: 445571c11b9d7fb4db955da1251c2362,
     type: 3}
-  numberOfEachMonoculesPerColor: 6
+  numberOfEachMonoculesPerColor: 4
 --- !u!1 &1537190289
 GameObject:
   m_ObjectHideFlags: 0

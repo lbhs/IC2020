@@ -11,7 +11,8 @@ public class ModelSlector : MonoBehaviour
     public GameObject cubePrefab;
     private int dropDownValue;
     [Header("Ionic Lattice Model Options")]
-    public int numberOfEachMonoculesPerColor;
+    [SerializeField]
+    private int numberOfEachMonoculesPerColor = 4;
     private MoleculeSpawner pSpawner = new MoleculeSpawner();
     
     void Update()
@@ -39,11 +40,12 @@ public class ModelSlector : MonoBehaviour
             //randomly adds several of 2 different kinds of particles
             for(int x = 0; x < numberOfEachMonoculesPerColor; x++)
             { 
-            Particle Chloride = new Particle("Chloride", -2f, ICColor.Chlorine, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), 2.0f, scale: 2.0f);
-            Particle Sodium = new Particle("Sodium Ion", 2f, ICColor.Sodium, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), 2.0f, scale: 2.0f);
+            // Particle Chloride = new Particle("Chloride", -2f, ICColor.Chlorine, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), 2.0f, scale: 2.0f);
+            // Particle Sodium = new Particle("Sodium Ion", 2f, ICColor.Sodium, new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0), 2.0f, scale: 2.0f);
             
-            Chloride.Spawn();
-            Sodium.Spawn();
+            ICParticles.Sulfate.Spawn(new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0));
+            ICParticles.SodiumIon.Spawn(new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0));
+            ICParticles.SodiumIon.Spawn(new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0));
             }
             
             dropDownMenu.GetComponent<Dropdown>().value = 0;
@@ -54,15 +56,16 @@ public class ModelSlector : MonoBehaviour
         //Covalent Bonding Model
         else if (dropDownValue == 2)
         {
-            Particle Elec1 = new Particle("Electron 1", -2f, ICColor.Electron, new Vector3(2, 3, 0));
-            Particle Elec2 = new Particle("Electron 2", -2f, ICColor.Electron, new Vector3(0.5f, 0, 0));
-            Particle Hyd1 = new Particle("Hydrogen 1", 2f, ICColor.Hydrogen, new Vector3(4, 1, 0), scale: 2f);
-            Particle Hyd2 = new Particle("Hydrogen 2", 2f, ICColor.Hydrogen, new Vector3(0.2f, 2, 0), scale: 2f);
+            ICParticles.Electron.Spawn(new Vector3(2, 3, 0));
+            ICParticles.Electron.Spawn(new Vector3(.5f, 0, 0));
 
-            Elec1.Spawn();
-            Elec2.Spawn();
-            Hyd1.Spawn();
-            Hyd2.Spawn();
+            GameObject Hyd1 = ICParticles.Hydrogen.Spawn(new Vector3(4, 1, 0));
+            GameObject Hyd2 = ICParticles.Hydrogen.Spawn(new Vector3(.2f, 2, 0));
+            // GameObject Hyd2 = ICParticles.Hybrogen.Spawn(new Vector3(.2f, 2, 0));
+
+            Hyd1.transform.localScale = new Vector3(2f, 2f, 2f);
+            Hyd2.transform.localScale = new Vector3(2f, 2f, 2f);
+            
             Instantiate(cubePrefab, new Vector3(5, 5, 0), Quaternion.identity);
             
             dropDownMenu.GetComponent<Dropdown>().value = 0;
