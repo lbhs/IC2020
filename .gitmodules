@@ -6,3 +6,7 @@
 	path = preprod
 	url = https://github.com/lbhs/IC2020.git
 	branch = pages-preprod
+[submodule "integ"]
+	path = integ
+	url = https://github.com/lbhs/IC2020.git
+	branch = pages-integ
