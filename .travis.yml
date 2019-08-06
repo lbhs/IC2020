@@ -59,4 +59,4 @@ deploy:
     repo: lbhs/IC2020
     condition: "$TRAVIS_TAG =~ ^integ.*$"
 after_deploy:
-- chmod +x ./ci/post_deploy.sh && ./ci/post_deploy.sh
+- chmod +x ./ci/post_deploy.sh && ./ci/post_deploy.sh 
