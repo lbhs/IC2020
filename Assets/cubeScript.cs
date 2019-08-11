@@ -7,34 +7,35 @@ public class cubeScript : MonoBehaviour
 {
 
     public Vector3 velocity;
-    public float temp;
-    private Rigidbody cube;
-    private Slider temperatureSlider;
-
+    public float velocitySpeedUp;
+    [HideInInspector] public float teamptureMutiplyer;
+    private Slider tempatureSlider;
     // Start is called before the first frame update
     void OnEnable()
     {
-        cube = gameObject.GetComponent<Rigidbody>();
-        temperatureSlider = GameObject.Find("temperatureSlider").GetComponent<Slider>();
-
+        tempatureSlider = GameObject.Find("Teampture Slider").GetComponent<Slider>();
         float vx = UnityEngine.Random.Range(-5, 6);
         float vy = Mathf.Sqrt(50 - (vx * vx));
-        velocity = new Vector3(vx, vy, 0);
-        cube.velocity = velocity;
-        temp = temperatureSlider.value;
+        float vPlaceholder = UnityEngine.Random.Range(0, 2) *2 -1;
+        //print(vPlaceholder);
+        
+      
+        velocity = new Vector3(vx, vy *vPlaceholder, 0);
 
-        GameObject.Find("GameObject").GetComponent<forces>().nonObjects.Add(gameObject);
+        gameObject.GetComponent<Rigidbody>().velocity = velocity;
+
+        GameObject.Find("GameObject").GetComponent<forces>().cubeList.Add(gameObject);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        temp = temperatureSlider.value;
-
-        if (Time.timeScale != 0 && GameObject.Find("GameObject").GetComponent<forces>().recording && cube.velocity.magnitude < (7 * temp))
+        teamptureMutiplyer = tempatureSlider.value;
+        if (gameObject.GetComponent<Rigidbody>().velocity.sqrMagnitude < velocitySpeedUp * teamptureMutiplyer)
         {
-            cube.velocity *= 1.4f;
-            print("new velocity = " + velocity.magnitude);
+            //print("old velocity =" + velocity);
+            gameObject.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity.normalized * 5 * teamptureMutiplyer * Mathf.Sqrt(2);
+            //print("new velocity =" + velocity);
         }
     }
 }
