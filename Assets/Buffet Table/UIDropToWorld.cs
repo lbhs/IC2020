@@ -13,7 +13,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
     private int objectToUse;
     private GameObject MainObject;
     private MoleculeSpawner mSpawner = new MoleculeSpawner();
-    
+
     public void OnDrop(PointerEventData eventData)
     {
         RectTransform Panel = transform as RectTransform;
@@ -36,7 +36,12 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
 
             if (Images[objectToUse].GetComponent<UIDragNDrop>().useAddSphere == true)
             {
-                Particle p = new Particle("BuffetParticle", Images[objectToUse].GetComponent<UIDragNDrop>().charge, Images[objectToUse].GetComponent<UIDragNDrop>().color, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().scale, Images[objectToUse].GetComponent<UIDragNDrop>().bounciness); // Temporary name before a convention is decided on.
+                Particle p = new Particle("BuffetParticle", Images[objectToUse].GetComponent<UIDragNDrop>().charge,
+                    Images[objectToUse].GetComponent<UIDragNDrop>().color, prefabWorldPosition,
+                    Images[objectToUse].GetComponent<UIDragNDrop>().mass,
+                    Images[objectToUse].GetComponent<UIDragNDrop>().scale,
+                    Images[objectToUse].GetComponent<UIDragNDrop>()
+                        .bounciness); // Temporary name before a convention is decided on.
                 p.Spawn();
             }
             else if (Images[objectToUse].GetComponent<UIDragNDrop>().useAddWater == true)
@@ -48,10 +53,11 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
             {
                 Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
             }
-			//Debug.Log("[DEBUG]: created stuff");
+
+            //Debug.Log("[DEBUG]: created stuff");
         }
-    
-
-
+        
+        FindObjectOfType<forces>().Update();
+        FindObjectOfType<forces>().CalculateForces(false);
     }
 }

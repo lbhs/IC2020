@@ -10,10 +10,10 @@ public class main : MonoBehaviour
     public float k;
     public List<GameObject> particles = new List<GameObject>();
     public int numWater;
-
     private void Start()
     {
 	    // Initializes forces
-		gameObject.AddComponent<forces>().initialize(G, k);
+	    forces f = gameObject.GetComponent<forces>(); 
+		f.initialize(G, k);
     }
 }

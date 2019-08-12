@@ -2320,17 +2320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9c39c330c410642b32365f389ae0f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: {fileID: 0}
 --- !u!114 &727737757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5081,6 +5070,7 @@ GameObject:
   - component: {fileID: 1383625845}
   - component: {fileID: 1383625848}
   - component: {fileID: 1383625846}
+  - component: {fileID: 1383625847}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -5133,6 +5123,24 @@ MonoBehaviour:
   isRewinding: 0
   frame: -2
   Arbies: {fileID: 0}
+--- !u!114 &1383625847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383625843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79649786de47c244c95ca2154b93aedc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recording: 1
+  pressed: 0
+  BondPrefab: {fileID: 8463347649046139849, guid: 95c57c877466b1d40ad818ffd9c02efc,
+    type: 3}
+  gameObjects: []
+  nonObjects: []
 --- !u!54 &1383625848
 Rigidbody:
   m_ObjectHideFlags: 0

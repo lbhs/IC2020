@@ -13,12 +13,15 @@ public class forces : MonoBehaviour
     public bool recording = true;
     public bool pressed = false;
     private GameObject pauseCanvas;
+    public GameObject BondPrefab;
     private Scene scene;
 
     //List of all game objects that forces should act on (gravity, electrostatic, collisions, etc.)
     [FormerlySerializedAs("gameobjects")] public List<GameObject> gameObjects = new List<GameObject>();
     private List<GameObject> rootObjects = new List<GameObject>();
+
     public List<GameObject> nonObjects = new List<GameObject>();
+
     /*
     -Gravitational and coulomb's constants must be initialized on start. i.e.: "gameObject.AddComponent<forces>().initialize(G, k);"
     -Script doesn't run automatically because UI elements must be initialized before forces are applied
@@ -31,25 +34,27 @@ public class forces : MonoBehaviour
 
     public void stopRewind()
     {
-        foreach(GameObject gameObject in gameObjects)
+        foreach (GameObject gameObject in gameObjects)
         {
             gameObject.GetComponent<TimeBody>().isRewinding = false;
         }
+
         GetComponent<TimeBody>().isRewinding = false;
-        foreach(GameObject gameObject in nonObjects)
+        foreach (GameObject gameObject in nonObjects)
         {
             gameObject.GetComponent<TimeBody>().isRewinding = false;
         }
     }
-    
+
     public void startRewind()
     {
-        foreach(GameObject gameObject in gameObjects)
+        foreach (GameObject gameObject in gameObjects)
         {
             gameObject.GetComponent<TimeBody>().StartRewind();
         }
+
         GetComponent<TimeBody>().StartRewind();
-        foreach(GameObject gameObject in nonObjects)
+        foreach (GameObject gameObject in nonObjects)
         {
             gameObject.GetComponent<TimeBody>().StartRewind();
         }
@@ -60,8 +65,8 @@ public class forces : MonoBehaviour
         pauseCanvas = GameObject.Find("Control Canvas");
         scene = SceneManager.GetActiveScene();
     }
-  
-    private void Update()
+
+    public void Update()
     {
         /*
         - Update() finds all of the objects in the scene and adds the ones which start with [P]
@@ -79,36 +84,55 @@ public class forces : MonoBehaviour
             }
         }
     }
-  
+
     //Calculates electrostatic and gravitational forces on all objects in gameobjects list every frame
     void FixedUpdate()
     {
-        //Ensures that forces do not get caculated while paused
         if (Time.timeScale != 0 && recording)
         {
-            //Nested for loops + if statement to calculate force that each object exerts on every other object
-            foreach (GameObject a in gameObjects)
+            CalculateForces(true);
+        }
+    }
+
+    public void CalculateForces(bool apply)
+    {
+        List<GameObject> bonds = new List<GameObject>(GameObject.FindGameObjectsWithTag("Bond"));
+        int current = 0;
+        //Ensures that forces do not get caculated while paused
+        //Nested for loops + if statement to calculate force that each object exerts on every other object
+        foreach (GameObject a in gameObjects)
+        {
+            foreach (GameObject b in gameObjects)
             {
-                foreach (GameObject b in gameObjects)
+                if (!ReferenceEquals(a, b) && a.HasComponent<Rigidbody>() && b.HasComponent<Rigidbody>())
                 {
-                    if (a != b && a.HasComponent<Rigidbody>() && b.HasComponent<Rigidbody>())
+                    //all variable retrieval necessary for force math                   
+                    float m1 = a.GetComponent<Rigidbody>().mass;
+                    float m2 = b.GetComponent<Rigidbody>().mass;
+                    float q1 = a.GetComponent<charger>().charge;
+                    float q2 = b.GetComponent<charger>().charge;
+                    Vector3 dir = Vector3.Normalize(b.transform.position - a.transform.position);
+                    float r = Vector3.Distance(a.transform.position, b.transform.position);
+
+                    //individually calculates force of gravity and electrostatics
+                    float Fg = (m1 * m2 * G) / Mathf.Pow(r, 2);
+                    float Fe = (k * q1 * q2) / Mathf.Pow(r, 2);
+
+                    //applies force vector
+                    float force = (Fg - Fe) * Time.fixedDeltaTime;
+                    //must use time.fixeddeltatime here to keep constant framerate with different timescales
+                    if (apply)
                     {
-                        //all variable retrieval necessary for force math                   
-                        float m1 = a.GetComponent<Rigidbody>().mass;
-                        float m2 = b.GetComponent<Rigidbody>().mass;
-                        float q1 = a.GetComponent<charger>().charge;
-                        float q2 = b.GetComponent<charger>().charge;
-                        Vector3 dir = Vector3.Normalize(b.transform.position - a.transform.position);
-                        float r = Vector3.Distance(a.transform.position, b.transform.position);
-
-                        //individually calculates force of gravity and electrostatics
-                        float Fg = (m1 * m2 * G) / Mathf.Pow(r, 2);
-                        float Fe = (k * q1 * q2) / Mathf.Pow(r, 2);
-
-                        //applies force vector
-                        //must use time.fixeddeltatime here to keep constant framerate with different timescales
-                        a.GetComponent<Rigidbody>().AddForce(dir * (Fg - Fe) * Time.fixedDeltaTime);
+                        a.GetComponent<Rigidbody>().AddForce(dir * force);
                     }
+
+                    if (bonds.Count <= current)
+                    {
+                        bonds.Add(Instantiate(BondPrefab));
+                    }
+
+                    bonds[current++].GetComponent<Bond>().UpdateOnForce(a.GetComponent<charger>(),
+                        b.GetComponent<charger>(), force);
                 }
             }
         }

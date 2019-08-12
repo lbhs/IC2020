@@ -98,6 +98,8 @@ public class ModelSlector : MonoBehaviour
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
         }
+        FindObjectOfType<forces>().Update();
+        FindObjectOfType<forces>().CalculateForces(false);
     }
 	
 	public List<Vector3> generateRandomCoords(int n)
