@@ -3,19 +3,28 @@ IC2020 is the browser-based physics simulator for teaching chemistry and physics
 
 Built in Unity 2018.3.14f1 for WebGL
 
+[![Preprod Build Status](https://travis-ci.org/lbhs/IC2020.svg?branch=master)](https://travis-ci.org/lbhs/IC2020)
+
 # To-Do
+
 -different shapes (triangles)
 
 -add/make flasky
 
--save system
-
 -forces arrow
 
--speed slider
+-save and load scenes from drop down
 
--advanced tab (empty, settings, save)
+-create scenes from within game
+
+-edit buffet table from within game
+
+-implement acids/bases with realistic functionality
+
+-update rewind to recalculate on scene edit
 
 # Known bugs
 
--stange table animation
+-particles disappearing when timescale slider quickly changed from 0x (only occurs in webgl builds)
+
+-water molecule randomly spawns when adjusting temperature slider
