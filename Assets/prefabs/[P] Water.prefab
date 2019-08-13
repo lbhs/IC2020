@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 539749759784109462}
   - component: {fileID: 1347937287224810596}
   - component: {fileID: 2524492163008360572}
+  - component: {fileID: 7573253616545613151}
   m_Layer: 0
   m_Name: '[P] Water'
   m_TagString: Water
@@ -153,6 +154,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeRightClicked: 0
+--- !u!114 &7573253616545613151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215635987691934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8fdb7671a09b348ac33d8716ef502a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRewinding: 0
+  frame: -1
+  Arbies: {fileID: 838215635987691929}
 --- !u!1 &838215636911785444
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +185,7 @@ GameObject:
   - component: {fileID: 838215636911785447}
   - component: {fileID: 1730131990470983146}
   - component: {fileID: 6792610176554966157}
+  - component: {fileID: 8187646349016559297}
   m_Layer: 0
   m_Name: '[P] Hydrogen'
   m_TagString: Water
@@ -385,6 +402,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeRightClicked: 0
+--- !u!114 &8187646349016559297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215636911785444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b03adc97e158bb45bf85988846aeb55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &838215637822072589
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +430,7 @@ GameObject:
   - component: {fileID: 838215637822072588}
   - component: {fileID: 5053527154993996400}
   - component: {fileID: 6093527348424183728}
+  - component: {fileID: 5238520554260352079}
   m_Layer: 0
   m_Name: '[P] Hydrogen (1)'
   m_TagString: Water
@@ -617,3 +647,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeRightClicked: 0
+--- !u!114 &5238520554260352079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215637822072589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b03adc97e158bb45bf85988846aeb55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
