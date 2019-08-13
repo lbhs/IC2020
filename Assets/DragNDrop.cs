@@ -16,6 +16,7 @@ public class DragNDrop : MonoBehaviour
     private Vector3 mouseEndPos;
     private float mouseStartTime;
     private float mouseEndTime;
+    public bool canBeRightClicked = true;
 
     void OnMouseDown()
     {
@@ -163,7 +164,7 @@ public class DragNDrop : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             //find out if an object was hit 
-            if (Physics.Raycast(ray, out hit) && hit.rigidbody.gameObject.tag == "Particle")
+            if (Physics.Raycast(ray, out hit) && canBeRightClicked)
             {
 
                 //caculates where the menu must be
