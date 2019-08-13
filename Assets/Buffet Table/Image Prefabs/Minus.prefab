@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8520551613667858497}
   - component: {fileID: 8520551613667858496}
   - component: {fileID: 8520551613667858559}
-  - component: {fileID: 7599934075959759246}
   m_Layer: 5
   m_Name: Minus
   m_TagString: Untagged
@@ -89,16 +88,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereToFollow: {fileID: 0}
---- !u!114 &7599934075959759246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520551613667858557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acc76fa310a384643834a4fc1e526842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anchorImage: {fileID: 21300000, guid: 79039249e09abaa4ea39fb40d1ce0d8b, type: 3}

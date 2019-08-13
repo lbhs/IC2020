@@ -65,8 +65,33 @@ public class DragNDrop : MonoBehaviour
         //Debug.Log("Min" + Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMin)).y);
         //Debug.Log(Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMax)).y);
         //makes sure the gameobject is inside the camera
-        //-----------------------do so that if it is draged out diagonal it will still work-------
         //if it is above the Camera
+        if (gameObject.transform.position.y > -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMin)).y)
+        {
+            gameObject.transform.position = new Vector3 (gameObject.transform.position.x, -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMin)).y -2, 0);
+            gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
+            mousePos.y = gameObject.transform.position.y;
+            //Debug.Log("up");
+        }
+        //if it is below the camera
+        else if (gameObject.transform.position.y < -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMax)).y)
+        {
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMax)).y + 2, 0);
+            gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
+            mousePos.y = gameObject.transform.position.y;
+            //Debug.Log("below");
+        }
+        
+        //if it is to far to the right of the camera 
+        else if (gameObject.transform.position.x > -Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x)
+        {
+            gameObject.transform.position = new Vector3(-Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x - 2, gameObject.transform.position.y, 0);
+            gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
+            mousePos.x = gameObject.transform.position.x;
+            //Debug.Log("right");
+        }
+
+        //-----------------------do it twice so that if it is draged out diagonal it will still work-------
         if (gameObject.transform.position.y > -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMin)).y)
         {
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMin)).y - 2, 0);
@@ -75,7 +100,7 @@ public class DragNDrop : MonoBehaviour
             //Debug.Log("up");
         }
         //if it is below the camera
-        if (gameObject.transform.position.y < -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMax)).y)
+        else if (gameObject.transform.position.y < -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMax)).y)
         {
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMax)).y + 2, 0);
             gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
@@ -84,18 +109,17 @@ public class DragNDrop : MonoBehaviour
         }
 
         //if it is to far to the right of the camera 
-        if (gameObject.transform.position.x > -Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x)
+        else if (gameObject.transform.position.x > -Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x)
         {
             gameObject.transform.position = new Vector3(-Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x - 2, gameObject.transform.position.y, 0);
             gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
             mousePos.x = gameObject.transform.position.x;
             //Debug.Log("right");
         }
-
         //if it is to far to the left of the camera
-        if (gameObject.transform.position.x < -Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMax, 0)).x)
+        else if (gameObject.transform.position.x < -Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMax, 0)).x)
         {
-            gameObject.transform.position = new Vector3(-Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMax, 0)).x + 2, gameObject.transform.position.y, 0);
+            gameObject.transform.position = new Vector3(-Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMax,0)).x + 2, gameObject.transform.position.y, 0);
             gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
             mousePos.x = gameObject.transform.position.x;
             //Debug.Log("left");
@@ -141,62 +165,59 @@ public class DragNDrop : MonoBehaviour
             //find out if an object was hit 
             if (Physics.Raycast(ray, out hit))
             {
-                //makes sure only spheres are modified 
-                if (hit.rigidbody.gameObject.tag == "isSphere" && hit.rigidbody.gameObject.tag != "isInWater" && hit.rigidbody.gameObject.tag != "isWall")
+
+                //caculates where the menu must be
+                rightCanvas.GetComponent<RightClickHelper>().CheckRightVisablity();
+        
+                //------------------------sets the position of the right-click menu------------------------
+                //rightMenu.transform.position = Input.mousePosition + menuOffest;
+                //makes sure that right click menu is in screen
+                
+
+                //makes menu visable
+                rightMenu.SetActive(true);
+
+                //update the varible so that RightClickHelper knows what sphere to edit
+                rightCanvas.GetComponent<RightClickHelper>().currentSphere = hit.rigidbody.gameObject;
+
+                //------------------------updates menu vaules on click------------------------
+
+                //mass
+                rightCanvas.GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text = hit.rigidbody.mass.ToString();
+
+                //charge
+                rightCanvas.GetComponent<RightClickHelper>().Charge.GetComponent<InputField>().text = hit.rigidbody.gameObject.GetComponent<charger>().charge.ToString();
+
+                //color
+                if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.red)
                 {
-                    //caculates where the menu must be
-                    rightCanvas.GetComponent<RightClickHelper>().CheckRightVisablity();
+                    rightCanvas.GetComponent<RightClickHelper>().Color1.GetComponent<Toggle>().isOn = true;
+                    rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color1.GetComponent<Toggle>());
+                }else
+                if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.blue)
+                {
+                    rightCanvas.GetComponent<RightClickHelper>().Color2.GetComponent<Toggle>().isOn = true;
+                    rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color2.GetComponent<Toggle>());
+                }else
+                if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.green)
+                {
+                    rightCanvas.GetComponent<RightClickHelper>().Color3.GetComponent<Toggle>().isOn = true;
+                    rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color3.GetComponent<Toggle>());
+                }else
+                if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.yellow)
+                {
+                    rightCanvas.GetComponent<RightClickHelper>().Color4.GetComponent<Toggle>().isOn = true;
+                    rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color4.GetComponent<Toggle>());
+                }
 
-                    //------------------------sets the position of the right-click menu------------------------
-                    //rightMenu.transform.position = Input.mousePosition + menuOffest;
-                    //makes sure that right click menu is in screen
-
-
-                    //makes menu visable
-                    rightMenu.SetActive(true);
-
-                    //update the varible so that RightClickHelper knows what sphere to edit
-                    rightCanvas.GetComponent<RightClickHelper>().currentSphere = hit.rigidbody.gameObject;
-
-                    //------------------------updates menu vaules on click------------------------
-
-                    //mass
-                    rightCanvas.GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text = hit.rigidbody.mass.ToString();
-
-                    //charge
-                    rightCanvas.GetComponent<RightClickHelper>().Charge.GetComponent<InputField>().text = hit.rigidbody.gameObject.GetComponent<charger>().charge.ToString();
-
-                    //color
-                    if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.red)
-                    {
-                        rightCanvas.GetComponent<RightClickHelper>().Color1.GetComponent<Toggle>().isOn = true;
-                        rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color1.GetComponent<Toggle>());
-                    } else
-                    if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.blue)
-                    {
-                        rightCanvas.GetComponent<RightClickHelper>().Color2.GetComponent<Toggle>().isOn = true;
-                        rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color2.GetComponent<Toggle>());
-                    } else
-                    if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.green)
-                    {
-                        rightCanvas.GetComponent<RightClickHelper>().Color3.GetComponent<Toggle>().isOn = true;
-                        rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color3.GetComponent<Toggle>());
-                    } else
-                    if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.yellow)
-                    {
-                        rightCanvas.GetComponent<RightClickHelper>().Color4.GetComponent<Toggle>().isOn = true;
-                        rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color4.GetComponent<Toggle>());
-                    }
-
-                    //size
-                    if (hit.rigidbody.gameObject.transform.localScale == new Vector3(1, 1, 1))
-                    {
-                        rightCanvas.GetComponent<RightClickHelper>().Size1.GetComponent<Toggle>().isOn = true;
-                    }
-                    else
-                    {
-                        rightCanvas.GetComponent<RightClickHelper>().Size2.GetComponent<Toggle>().isOn = true;
-                    }
+                //size
+                if (hit.rigidbody.gameObject.transform.localScale == new Vector3(1, 1, 1))
+                {
+                    rightCanvas.GetComponent<RightClickHelper>().Size1.GetComponent<Toggle>().isOn = true;
+                }
+                else
+                {
+                    rightCanvas.GetComponent<RightClickHelper>().Size2.GetComponent<Toggle>().isOn = true;
                 }
                 
             }
