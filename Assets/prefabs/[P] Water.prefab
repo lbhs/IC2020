@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 838215635987691928}
   - component: {fileID: 838215635987691929}
   - component: {fileID: 539749759784109462}
+  - component: {fileID: 1347937287224810596}
   m_Layer: 0
-  m_Name: Water
-  m_TagString: Untagged
+  m_Name: '[P] Water'
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,6 +126,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   temp: 0
+--- !u!114 &1347937287224810596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215635987691934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275dd7e633a1dc34b839f4d7b533912b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charge: -0.4
 --- !u!1 &838215636911785444
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,9 +153,10 @@ GameObject:
   - component: {fileID: 838215636911785441}
   - component: {fileID: 838215636911785446}
   - component: {fileID: 838215636911785447}
+  - component: {fileID: 1730131990470983146}
   m_Layer: 0
-  m_Name: Hydrogen
-  m_TagString: Untagged
+  m_Name: '[P] Hydrogen'
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,6 +344,19 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1730131990470983146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215636911785444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275dd7e633a1dc34b839f4d7b533912b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charge: 0.2
 --- !u!1 &838215637822072589
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,9 +371,10 @@ GameObject:
   - component: {fileID: 838215637822072590}
   - component: {fileID: 838215637822072591}
   - component: {fileID: 838215637822072588}
+  - component: {fileID: 5053527154993996400}
   m_Layer: 0
-  m_Name: Hydrogen (1)
-  m_TagString: Untagged
+  m_Name: '[P] Hydrogen (1)'
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -533,3 +562,16 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &5053527154993996400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215637822072589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275dd7e633a1dc34b839f4d7b533912b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charge: 0.2

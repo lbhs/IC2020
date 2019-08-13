@@ -163,7 +163,7 @@ public class DragNDrop : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             //find out if an object was hit 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit) && hit.rigidbody.gameObject.tag == "Particle")
             {
 
                 //caculates where the menu must be
