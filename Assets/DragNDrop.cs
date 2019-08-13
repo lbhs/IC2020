@@ -100,7 +100,7 @@ public class DragNDrop : MonoBehaviour
                 //Debug.Log("right");
             }
             //if it is to far to the left of the camera
-            if (gameObject.transform.position.x < -Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMax, 0)).x)
+            if (gameObject.transform.position.x < Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x)
             {
                 gameObject.transform.position = new Vector3(-Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMax, 0)).x + 2, gameObject.transform.position.y, 0);
                 gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
@@ -136,7 +136,7 @@ public class DragNDrop : MonoBehaviour
                 //Debug.Log("right");
             }
             //if it is to far to the left of the camera
-            else if (gameObject.transform.position.x < -Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMax, 0)).x)
+            else if (gameObject.transform.position.x < Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x + GameObject.Find("Panel").GetComponent<RectTransform>().sizeDelta.x)
             {
                 Destroy(gameObject);
                 //Debug.Log("left");
