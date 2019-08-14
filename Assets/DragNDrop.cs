@@ -142,14 +142,14 @@ public class DragNDrop : MonoBehaviour
                 Debug.Log("right");
             }
             //if it is to far to the left of the buffet table
-            else if (gameObject.transform.position.x < -((GameObject.Find("Panel").GetComponent<RectTransform>().sizeDelta.x/2) + GameObject.Find("Panel").GetComponent<RectTransform>().position.x) / 17)
+            else if (gameObject.transform.position.x < GameObject.Find("left wall").transform.position.x)
             {
                 gameObject.name = "destroyed";
                 GameObject.Find("GameObject").GetComponent<forces>().gameObjects.Remove(gameObject);
                 Destroy(gameObject);
-                Debug.Log("left");
+                //Debug.Log("left");
             }
-            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0); 
         }
     }
 
