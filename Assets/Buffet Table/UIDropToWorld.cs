@@ -6,8 +6,9 @@ using IC2020;
 
 public class UIDropToWorld : MonoBehaviour, IDropHandler
 {
-    public GameObject prefab;
     public GameObject[] prefabs;
+    public GameObject[] possibleParticles;
+    [Header("Ignore:")]
     public GameObject[] Images;
     private Vector3 prefabWorldPosition;
     private int objectToUse;

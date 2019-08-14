@@ -4699,7 +4699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacfaf0d87d450446bb331f2f4a20a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
   prefabs:
   - {fileID: 0}
   - {fileID: 0}
@@ -4709,6 +4708,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  possibleParticles:
+  - {fileID: 838215635987691934, guid: 495c4a81cb8fb3740b9f0a6fd6d9b202, type: 3}
   Images:
   - {fileID: 1371989982}
   - {fileID: 490550197}
