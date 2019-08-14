@@ -15,10 +15,10 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
     private GameObject MainObject;
     private MoleculeSpawner mSpawner = new MoleculeSpawner();
 
-    public string ChangeBuffetTable()
+    public void ChangeBuffetTable(string string0, string Particle1, string Particle2, string Particle3, string Particle4, string Particle5)
     {
 
-        return "4";
+        
     }
     
     public void OnDrop(PointerEventData eventData)
