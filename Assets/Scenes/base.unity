@@ -1747,7 +1747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useAddSphere: 1
+  useAddSphere: 0
   useAddWater: 0
   mass: 4
   charge: -2
@@ -3261,7 +3261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useAddSphere: 1
+  useAddSphere: 0
   useAddWater: 0
   mass: 3
   charge: -0.7
@@ -4135,7 +4135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useAddSphere: 1
+  useAddSphere: 0
   useAddWater: 0
   mass: 2
   charge: 0.7
@@ -4700,12 +4700,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3845422906327184440, guid: a3f3eeb698c5b42f29d1c847081b4998, type: 3}
+  - {fileID: 6450641329218374421, guid: 0ae1b1a11031d4f17a63e83f1c0b444a, type: 3}
   - {fileID: 838215635987691934, guid: 495c4a81cb8fb3740b9f0a6fd6d9b202, type: 3}
   - {fileID: 3680702012836678383, guid: 445571c11b9d7fb4db955da1251c2362, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4167671325498934118, guid: c194c5de505e9452eb5976613a17bc21, type: 3}
+  - {fileID: 8521043326856526923, guid: d43a85b37cb094ef79193033a59348b5, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   possibleParticles:
@@ -4933,7 +4933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fe098e8a847b4e8bcf97d63d165c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useAddSphere: 1
+  useAddSphere: 0
   useAddWater: 0
   mass: 6
   charge: 2
