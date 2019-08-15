@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 743811004147936176}
   - component: {fileID: 5788490156201273}
   - component: {fileID: 9017937904478919809}
+  - component: {fileID: 7876487097713535859}
   m_Layer: 0
   m_Name: '[P] Na+ ion'
   m_TagString: Untagged
@@ -122,3 +123,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charge: 0.7
+--- !u!114 &7876487097713535859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4167671325498934118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a86380fa4264d76825bcea6c874dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
