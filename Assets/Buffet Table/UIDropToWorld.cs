@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using IC2020;
 
 public class UIDropToWorld : MonoBehaviour, IDropHandler
@@ -10,15 +11,39 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
     public GameObject[] possibleParticles;
     [Header("Ignore:")]
     public GameObject[] Images;
+    public Sprite plus;
+    public Sprite minus;
+    public Sprite Water;
+    public Sprite Sphere;
+    public Sprite transparent;
     private Vector3 prefabWorldPosition;
     private int objectToUse;
     private GameObject MainObject;
     private MoleculeSpawner mSpawner = new MoleculeSpawner();
 
-    public void ChangeBuffetTable(string string0, string Particle1, string Particle2, string Particle3, string Particle4, string Particle5)
+    public void ChangeBuffetTable(string[] strings)
     {
+        foreach (GameObject P in possibleParticles)
+        {
+            foreach (string item in collection)
+            {
 
-        
+            if(P.name == string0)
+            {
+                prefabs[0] = P;
+                if(P.name != "[P] Water")
+                {
+                Images[0].GetComponent<Image>().sprite = Sphere;
+                Images[0].GetComponent<Image>().color = P.GetComponent<Renderer>().material.color;
+                //put charge stuff here
+                }
+                else
+                {
+                Images[0].GetComponent<Image>().sprite = Water;
+                }
+            }
+            }
+        }
     }
     
     public void OnDrop(PointerEventData eventData)

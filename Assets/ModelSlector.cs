@@ -13,10 +13,13 @@ public class ModelSlector : MonoBehaviour
     [Header("Ionic Lattice Model Options")]
     public int numberOfEachMonoculesPerColor;
     private MoleculeSpawner pSpawner = new MoleculeSpawner();
-	//private List<Vector3> coordinates = new List<Vector3>();
-    
+    private GameObject BuffetTable;
+
+    //private List<Vector3> coordinates = new List<Vector3>();
+
     void Update()
     {
+        BuffetTable = GameObject.Find("Panel");
         dropDownValue = dropDownMenu.GetComponent<Dropdown>().value;
         ChooseModel();
     }
@@ -50,7 +53,11 @@ public class ModelSlector : MonoBehaviour
 				Carbonate.Spawn();
 				Copper.Spawn();
             }
-            
+
+            //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
+            //for options. Make sure to spell them exactly the same
+            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Na+ ion","", "", "", "", "");
+
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
             Debug.Log("[DEBUG]: Spawned NaCl Ionic Lattice.");
