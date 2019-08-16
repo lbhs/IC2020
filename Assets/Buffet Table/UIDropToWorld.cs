@@ -21,29 +21,45 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
     private GameObject MainObject;
     private MoleculeSpawner mSpawner = new MoleculeSpawner();
 
-    public void ChangeBuffetTable(string[] strings)
+    public void ChangeBuffetTable(string string0, string string1, string string2, string string3, string string4, string string5, string string6, bool useWildCard)
     {
         foreach (GameObject P in possibleParticles)
         {
-            foreach (string item in collection)
-            {
-
             if(P.name == string0)
             {
                 prefabs[0] = P;
-                if(P.name != "[P] Water")
+
+                //sets the charge to plus or minus
+                if(P.GetComponent<charger>().charge > 0)
                 {
-                Images[0].GetComponent<Image>().sprite = Sphere;
-                Images[0].GetComponent<Image>().color = P.GetComponent<Renderer>().material.color;
-                //put charge stuff here
+                    Images[0].transform.GetChild(0).GetComponent<Image>().sprite = plus;
+                }
+                else if (P.GetComponent<charger>().charge < 0)
+                {
+                    Images[0].transform.GetChild(0).GetComponent<Image>().sprite = minus;
                 }
                 else
                 {
-                Images[0].GetComponent<Image>().sprite = Water;
+                    Images[0].transform.GetChild(0).GetComponent<Image>().sprite = transparent;
                 }
+
+                //sets the sprite and color of the particle
+                if(P.name != "[P] Water")
+                {
+                    Images[0].GetComponent<Image>().sprite = Sphere;
+                    Images[0].GetComponent<Image>().color = P.GetComponent<Renderer>().sharedMaterial.color;
+                    Images[0].transform.parent.transform.GetChild(1).GetComponent<Text>().text = P.name;
+                }
+                else
+                {
+                    Images[0].GetComponent<Image>().sprite = Water;
+                    Images[0].GetComponent<Image>().color = Color.white;
+                    Images[0].transform.GetChild(0).GetComponent<Image>().sprite = transparent;
+                    Images[0].transform.parent.transform.GetChild(1).GetComponent<Text>().text = "H₂0";
+                }
+                
             }
-            }
-        }
+        } 
     }
     
     public void OnDrop(PointerEventData eventData)

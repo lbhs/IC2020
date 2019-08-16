@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8521043326856526922}
   - component: {fileID: 2238417365898664343}
   - component: {fileID: 4414012223502966765}
+  - component: {fileID: 3346956287848811599}
   m_Layer: 0
   m_Name: '[P] Cl- ion'
   m_TagString: Untagged
@@ -135,3 +136,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a86380fa4264d76825bcea6c874dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3346956287848811599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8521043326856526923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6911d929f6f50bd4bb62dedc0260837a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeRightClicked: 1

@@ -56,7 +56,7 @@ public class ModelSlector : MonoBehaviour
 
             //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
             //for options. Make sure to spell them exactly the same
-            //BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Na+ ion","", "", "", "", "");
+            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Cl- ion", "[P] Water",  "", "", "", "", "", false);
 
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
