@@ -125,7 +125,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                 }
             }
 
-            if (Images[objectToUse].GetComponent<UIDragNDrop>().useAddSphere == true)
+            /*if (Images[objectToUse].GetComponent<UIDragNDrop>().useAddSphere == true)
             {
                 Particle p = new Particle("BuffetParticle", Images[objectToUse].GetComponent<UIDragNDrop>().charge, Images[objectToUse].GetComponent<UIDragNDrop>().color, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().scale, Images[objectToUse].GetComponent<UIDragNDrop>().bounciness); // Temporary name before a convention is decided on.
                 p.Spawn();
@@ -136,9 +136,9 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                 //MainObject.GetComponent<forces>().addWater((float)prefabWorldPosition.x, (float)prefabWorldPosition.y);
             }
             else
-            {
+            {*/
                 Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
-            }
+            //}
 			//Debug.Log("[DEBUG]: created stuff");
         }
     

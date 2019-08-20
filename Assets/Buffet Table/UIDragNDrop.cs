@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 {
+    /*
     [Header("What is spawning (Only check one)")]
     public bool useAddSphere;
     public bool useAddWater;
@@ -18,7 +19,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     public int ImageToUse;
     [Header("  ")]
     [Header("Other")]
-    [Header("No Settings for addWater")]
+    [Header("No Settings for addWater")]*/
     
     //[Header("Other")]
     public bool UseingMe;
