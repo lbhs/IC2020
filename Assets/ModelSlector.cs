@@ -26,6 +26,9 @@ public class ModelSlector : MonoBehaviour
     
     public void OpenEmptyScene()
     {
+        //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
+        //for options. Make sure to spell them exactly the same
+        BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Cu2+ Ion", "[P] Carbonate ion", "[P] Cl- ion", "[P] Na+ ion", "[P] Water", "[P] Water");
         pannel.SetActive(false);
     }
     
@@ -56,7 +59,7 @@ public class ModelSlector : MonoBehaviour
 
             //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
             //for options. Make sure to spell them exactly the same
-            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Water", "[P] Water", "[P] Cl- ion", "[P] Water", "[P] Water", "[P] Water", "[P] Water", false);
+            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Cu2+ Ion", "[P] Carbonate ion", "[P] Cl- ion", "[P] Na+ ion", "[P] Water", "[P] Water");
 
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
@@ -79,7 +82,11 @@ public class ModelSlector : MonoBehaviour
 				Chloride.Spawn();
 				Sodium.Spawn();
             }
-            
+
+            //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
+            //for options. Make sure to spell them exactly the same
+            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Cu2+ Ion", "[P] Carbonate ion", "[P] Cl- ion", "[P] Na+ ion", "[P] Water", "[P] Water");
+
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
             Debug.Log("[DEBUG]: Spawned NaCl Ionic Lattice.");
@@ -88,7 +95,10 @@ public class ModelSlector : MonoBehaviour
         //EMPTY
         else if (dropDownValue == 3)
         {
-           
+            //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
+            //for options. Make sure to spell them exactly the same
+            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Cu2+ Ion", "[P] Carbonate ion", "[P] Cl- ion", "[P] Na+ ion", "[P] Water", "[P] Water");
+
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
         }
@@ -97,6 +107,9 @@ public class ModelSlector : MonoBehaviour
         else if (dropDownValue == 4)
         {
             //do stuff here
+            //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
+            //for options. Make sure to spell them exactly the same
+            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Cu2+ Ion", "[P] Carbonate ion", "[P] Cl- ion", "[P] Na+ ion", "[P] Water", "[P] Water");
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
         }

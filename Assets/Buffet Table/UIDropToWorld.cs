@@ -23,7 +23,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
     private GameObject MainObject; // "Main" controller gameobject.
     private MoleculeSpawner mSpawner = new MoleculeSpawner(); // A molecule spawner object used to add water molecules.
 
-    public void ChangeBuffetTable(string string0, string string1, string string2, string string3, string string4, string string5, string string6, bool useWildCard)
+    public void ChangeBuffetTable(string string0, string string1, string string2, string string3, string string4, string string5)
     {
         List<string> strings = new List<string>();
         strings.Add(string0);
@@ -32,7 +32,6 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
         strings.Add(string3);
         strings.Add(string4);
         strings.Add(string5);
-        strings.Add(string6);
 
         foreach (GameObject P in possibleParticles)
         {
