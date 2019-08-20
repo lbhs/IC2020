@@ -48,7 +48,8 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                 {
                     Images[0].GetComponent<Image>().sprite = Sphere;
                     Images[0].GetComponent<Image>().color = P.GetComponent<Renderer>().sharedMaterial.color;
-                    Images[0].transform.parent.transform.GetChild(1).GetComponent<Text>().text = P.name;
+                    string[] tempName = P.name.Split(']');
+                    Images[0].transform.parent.transform.GetChild(1).GetComponent<Text>().text = tempName[1].TrimStart(' ');
                 }
                 else
                 {
