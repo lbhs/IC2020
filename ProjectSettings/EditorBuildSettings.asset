@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/base.unity
     guid: 4b250195835e0e54ab11fe92f65beeb5
+  - enabled: 1
+    path: Assets/Scenes/EnergyWell/EnergyWell.unity
+    guid: 1c0aef8b62e60d444bdf3877ee82190d
   m_configObjects: {}
