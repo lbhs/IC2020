@@ -5318,7 +5318,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Na+ in Water
       m_Image: {fileID: 0}
-    - m_Text: '...'
+    - m_Text: Energy Well
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
