@@ -111,7 +111,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
         prefabWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         prefabWorldPosition.z = 0;
         //Debug.Log(prefabWorldPosition);
-        //objectToUse = 2;
+        objectToUse = 2;
 
         if (!RectTransformUtility.RectangleContainsScreenPoint(Panel,
             Input.mousePosition))
