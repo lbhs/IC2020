@@ -40,23 +40,23 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
             { 
                 ChangeBuffetTableAction(P,0);
             } 
-            else if (P.name == string1)
+             if (P.name == string1)
             {
                 ChangeBuffetTableAction(P, 1);
             }
-            else if (P.name == string2)
+             if (P.name == string2)
             {
                 ChangeBuffetTableAction(P, 2);
             }
-            else if (P.name == string3)
+            if (P.name == string3)
             {
                 ChangeBuffetTableAction(P, 3);
             }
-            else if (P.name == string4)
+             if (P.name == string4)
             {
                 ChangeBuffetTableAction(P, 4);
             }
-            else if (P.name == string5)
+            if (P.name == string5)
             {
                 ChangeBuffetTableAction(P, 5);
             }
