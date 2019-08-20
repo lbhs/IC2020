@@ -9,7 +9,7 @@ public class speedText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = GetComponent<Text>();
+        speed = gameObject.GetComponent<Text>();
 		GameObject.Find("GameObject").GetComponent<time>().updateTimeScale(0f);
     }
 
