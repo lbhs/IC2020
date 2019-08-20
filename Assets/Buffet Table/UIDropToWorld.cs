@@ -23,16 +23,9 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
     private GameObject MainObject; // "Main" controller gameobject.
     private MoleculeSpawner mSpawner = new MoleculeSpawner(); // A molecule spawner object used to add water molecules.
 
-    public void ChangeBuffetTable(string string0, string string1, string string2, string string3, string string4, string string5)
+    public void ChangeBuffetTable(string string0, string string1, string string2, string string3, string string4, string string5) // see Buffet Table > Panel > UIDropToWorld > PossibleParticles for options. Make sure to spell them exactly the same                                                                                                                               
     {
-        List<string> strings = new List<string>();
-        strings.Add(string0);
-        strings.Add(string1);
-        strings.Add(string2);
-        strings.Add(string3);
-        strings.Add(string4);
-        strings.Add(string5);
-
+        //checks if any of the input strings match 
         foreach (GameObject P in possibleParticles)
         {
             if (P.name == string0)
@@ -64,7 +57,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
 
     private void ChangeBuffetTableAction(GameObject P, int counter)
     {
-
+        //sets the particle given (the prefab Water for example) to be able to be spawned
         prefabs[counter] = P;
 
         //sets the charge to plus or minus
@@ -81,26 +74,24 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
             Images[counter].transform.GetChild(0).GetComponent<Image>().sprite = transparent;
         }
 
-        //Debug.Log("P= " + P);
-        //sets the sprite and color of the particle
+        
+        //sets the sprite, color, and size of the buffet table image according to how the prefab looks
         if (P.name == "[P] Water")
         {
-            print("waterwatrwrsefasbfgbhagj");
-            Images[counter].GetComponent<Image>().sprite = Water;
-            Images[counter].GetComponent<Image>().color = Color.white;
-            Images[counter].GetComponent<RectTransform>().sizeDelta = new Vector2(40, 40);
-            Images[counter].transform.GetChild(0).GetComponent<Image>().sprite = transparent;
-            Images[counter].transform.parent.transform.GetChild(1).GetComponent<Text>().text = "H₂0";
+            Images[counter].GetComponent<Image>().sprite = Water; //image of a water monocule
+            Images[counter].GetComponent<Image>().color = Color.white; //white will be the true color of the image, anything else will show up as a tint
+            Images[counter].GetComponent<RectTransform>().sizeDelta = new Vector2(40, 40); //size of image to be dragged
+            Images[counter].transform.GetChild(0).GetComponent<Image>().sprite = transparent; //no plus or minus
+            Images[counter].transform.parent.transform.GetChild(1).GetComponent<Text>().text = "H₂0"; //name of buffet table particle
         }
         else
         {
-            print("kjdbgaoeghebijcsidv");
-            Images[counter].GetComponent<Image>().sprite = Sphere;
-            Images[counter].GetComponent<Image>().color = P.GetComponent<Renderer>().sharedMaterial.color;
-            string[] tempName = P.name.Split(']');
-            Images[counter].transform.parent.transform.GetChild(1).GetComponent<Text>().text = tempName[1].TrimStart(' ');
-            float size = P.transform.localScale.x;
-            Images[counter].GetComponent<RectTransform>().sizeDelta = new Vector2((20 * size) + 5, (20 * size) + 5);
+            Images[counter].GetComponent<Image>().sprite = Sphere; //normal round sphere 
+            Images[counter].GetComponent<Image>().color = P.GetComponent<Renderer>().sharedMaterial.color; //sets the color to 
+            string[] tempName = P.name.Split(']'); // splits "[P] Particle" into "[P" and " Particle"
+            Images[counter].transform.parent.transform.GetChild(1).GetComponent<Text>().text = tempName[1].TrimStart(' '); //removes the space before the name
+            float size = P.transform.localScale.x; //sets the size of the prefab
+            Images[counter].GetComponent<RectTransform>().sizeDelta = new Vector2((20 * size) + 5, (20 * size) + 5); //converts the prefab size to ui size using y=20x+5
         }
 
     }
