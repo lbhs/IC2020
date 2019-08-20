@@ -23,42 +23,75 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
 
     public void ChangeBuffetTable(string string0, string string1, string string2, string string3, string string4, string string5, string string6, bool useWildCard)
     {
+        List<string> strings = new List<string>();
+        strings.Add(string0);
+        strings.Add(string1);
+        strings.Add(string2);
+        strings.Add(string3);
+        strings.Add(string4);
+        strings.Add(string5);
+        strings.Add(string6);
+        //Debug.Log("string0 " + strings[0]);
+        //Debug.Log(strings[1]);
+
+        int counter = 0;
+
         foreach (GameObject P in possibleParticles)
         {
-            if(P.name == string0)
+            foreach (string S in strings)
             {
-                prefabs[0] = P;
+                Debug.Log("current string: " + S);
+                Debug.Log("P name: " + P.name);
+                if (P.name == S)
+                {
+                    prefabs[counter] = P;
 
-                //sets the charge to plus or minus
-                if(P.GetComponent<charger>().charge > 0)
-                {
-                    Images[0].transform.GetChild(0).GetComponent<Image>().sprite = plus;
-                }
-                else if (P.GetComponent<charger>().charge < 0)
-                {
-                    Images[0].transform.GetChild(0).GetComponent<Image>().sprite = minus;
-                }
-                else
-                {
-                    Images[0].transform.GetChild(0).GetComponent<Image>().sprite = transparent;
+                    //sets the charge to plus or minus
+                    if (P.GetComponent<charger>().charge > 0)
+                    {
+                        Images[counter].transform.GetChild(0).GetComponent<Image>().sprite = plus;
+                    }
+                    else if (P.GetComponent<charger>().charge < 0)
+                    {
+                        Images[counter].transform.GetChild(0).GetComponent<Image>().sprite = minus;
+                    }
+                    else
+                    {
+                        Images[counter].transform.GetChild(0).GetComponent<Image>().sprite = transparent;
+                    }
+
+                    //Debug.Log("P= " + P);
+                    //sets the sprite and color of the particle
+                    if(P.name == "[P] Water")
+                    {
+                        print("waterwatrwrsefasbfgbhagj");
+                        Images[counter].GetComponent<Image>().sprite = Water;
+                        Images[counter].GetComponent<Image>().color = Color.white;
+                        Images[counter].GetComponent<RectTransform>().sizeDelta = new Vector2(40, 40);
+                        Images[counter].transform.GetChild(0).GetComponent<Image>().sprite = transparent;
+                        Images[counter].transform.parent.transform.GetChild(1).GetComponent<Text>().text = "H₂0";
+                    }
+                    else
+                    {
+                        print("kjdbgaoeghebijcsidv");
+                        Images[counter].GetComponent<Image>().sprite = Sphere;
+                        Images[counter].GetComponent<Image>().color = P.GetComponent<Renderer>().sharedMaterial.color;
+                        string[] tempName = P.name.Split(']');
+                        Images[counter].transform.parent.transform.GetChild(1).GetComponent<Text>().text = tempName[1].TrimStart(' ');
+                        float size = P.transform.localScale.x;
+                        Images[counter].GetComponent<RectTransform>().sizeDelta = new Vector2((20 * size) + 5, (20 * size) + 5);
+                    }                     
                 }
 
-                //sets the sprite and color of the particle
-                if(P.name != "[P] Water")
+                if (counter <= 5)
                 {
-                    Images[0].GetComponent<Image>().sprite = Sphere;
-                    Images[0].GetComponent<Image>().color = P.GetComponent<Renderer>().sharedMaterial.color;
-                    string[] tempName = P.name.Split(']');
-                    Images[0].transform.parent.transform.GetChild(1).GetComponent<Text>().text = tempName[1].TrimStart(' ');
-                }
-                else
+                    counter++;
+                    //Debug.Log(counter);
+                    //Debug.Log(strings);
+                }else
                 {
-                    Images[0].GetComponent<Image>().sprite = Water;
-                    Images[0].GetComponent<Image>().color = Color.white;
-                    Images[0].transform.GetChild(0).GetComponent<Image>().sprite = transparent;
-                    Images[0].transform.parent.transform.GetChild(1).GetComponent<Text>().text = "H₂0";
+                    return;
                 }
-                
             }
         } 
     }
