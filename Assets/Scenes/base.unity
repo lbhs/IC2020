@@ -3030,7 +3030,7 @@ MonoBehaviour:
   m_MinValue: -16
   m_MaxValue: 16
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: -0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
