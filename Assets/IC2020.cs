@@ -155,7 +155,7 @@ namespace IC2020
 
                 // p.tag = "Particle"; // raising errors?
                 
-                Debug.Log("[DEBUG]: Particle " + p.name + " Successfully created.");
+                //Debug.Log("[DEBUG]: Particle " + p.name + " Successfully created.");
                 return p;
             }
             catch (Exception e)

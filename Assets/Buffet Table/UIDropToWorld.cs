@@ -38,10 +38,12 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
 
         foreach (GameObject P in possibleParticles)
         {
+            counter = 0;
             foreach (string S in strings)
             {
-                Debug.Log("current string: " + S);
-                Debug.Log("P name: " + P.name);
+                Debug.Log("P name : " + P.name);
+                //Debug.Log("current string: " + S);
+                //Debug.Log("P name: " + P.name);
                 if (P.name == S)
                 {
                     prefabs[counter] = P;
@@ -80,18 +82,25 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                         Images[counter].transform.parent.transform.GetChild(1).GetComponent<Text>().text = tempName[1].TrimStart(' ');
                         float size = P.transform.localScale.x;
                         Images[counter].GetComponent<RectTransform>().sizeDelta = new Vector2((20 * size) + 5, (20 * size) + 5);
-                    }                     
+                    }
+                    break;
+                }
+                else
+                {
+                    if (counter <= 6)
+                    {
+                        counter++;
+                        Debug.Log(counter);
+                        //Debug.Log(counter);
+                        //Debug.Log(strings);
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
 
-                if (counter <= 5)
-                {
-                    counter++;
-                    //Debug.Log(counter);
-                    //Debug.Log(strings);
-                }else
-                {
-                    return;
-                }
+                
             }
         } 
     }
