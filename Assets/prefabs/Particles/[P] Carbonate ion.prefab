@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6579153652095444058}
   - component: {fileID: 7103625422983752186}
   - component: {fileID: 8355711362408608263}
+  - component: {fileID: 8274506864405917698}
   m_Layer: 0
   m_Name: '[P] Carbonate ion'
   m_TagString: Untagged
@@ -149,3 +150,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeRightClicked: 1
+--- !u!114 &8274506864405917698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6450641329218374421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8fdb7671a09b348ac33d8716ef502a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRewinding: 0
+  frame: -1
+  Arbies: {fileID: 0}

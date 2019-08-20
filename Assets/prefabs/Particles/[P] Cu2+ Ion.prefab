@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 161411859657223564}
   - component: {fileID: 6920965722469523575}
   - component: {fileID: 6323791342248127287}
+  - component: {fileID: 1130148215593200895}
   m_Layer: 0
   m_Name: '[P] Cu2+ Ion'
   m_TagString: Untagged
@@ -149,3 +150,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeRightClicked: 1
+--- !u!114 &1130148215593200895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845422906327184440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8fdb7671a09b348ac33d8716ef502a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRewinding: 0
+  frame: -1
+  Arbies: {fileID: 0}
