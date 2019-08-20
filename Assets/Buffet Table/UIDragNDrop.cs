@@ -16,6 +16,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     public float scale;
     public float bounciness;
     public int ImageToUse;
+    public float friction;
     [Header("  ")]
     [Header("Other")]
     [Header("No Settings for addWater")]

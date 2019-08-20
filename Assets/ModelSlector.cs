@@ -64,9 +64,9 @@ public class ModelSlector : MonoBehaviour
 			int count = 0;
             for(int x = 0; x < 1; x++)
             {
-				Particle Chloride = new Particle("Chloride", charge: -0.7f, ICColor.Chlorine, coords[count], mass: 3.0f, scale: 1.5f, bounciness: 0.6f);
+				Particle Chloride = new Particle("Chloride", charge: -1f, ICColor.Chlorine, coords[count], mass: 3.0f, scale: 1.5f, bounciness: 0.4f);
 				count++;
-				Particle Sodium = new Particle("Sodium Ion", charge: 0.7f, ICColor.Sodium, coords[count], mass: 2.0f, scale: 1.5f, bounciness: 0.6f);
+				Particle Sodium = new Particle("Sodium Ion", charge: 1f, ICColor.Sodium, coords[count], mass: 2.0f, scale: 1.5f, bounciness: 0.4f);
 				count++;
 				
 				Chloride.Spawn();

@@ -65,6 +65,7 @@
      <Compile Include="Assets\forces.cs" />
      <Compile Include="Assets\IC2020.cs" />
      <Compile Include="Assets\ImageFollower.cs" />
+     <Compile Include="Assets\IncludeParticleInList.cs" />
      <Compile Include="Assets\LableManager.cs" />
      <Compile Include="Assets\main.cs" />
      <Compile Include="Assets\ModelSlector.cs" />
