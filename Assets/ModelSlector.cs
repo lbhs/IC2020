@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ModelSlector : MonoBehaviour
@@ -87,6 +88,7 @@ public class ModelSlector : MonoBehaviour
         else if (dropDownValue == 4)
         {
             //do stuff here
+            SceneManager.LoadScene("EnergyWell", LoadSceneMode.Single);
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
         }
