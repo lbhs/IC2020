@@ -15,4 +15,6 @@ public class wellModifier : MonoBehaviour
     {
         
     }
+
+    //Change energy well energy requirement
 }
