@@ -8,15 +8,15 @@ public class moveOnClick : MonoBehaviour {
     Rigidbody m_Rigidbody;
     void Start()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
-        m_Rigidbody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        m_Rigidbody = GetComponent<Rigidbody>(); //defines the rigidbody as m_Rigidbody 
+        m_Rigidbody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY; //Freezes constraints
     }
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space")) //When space is pressed
         {
             // gameObject.GetComponent<Rigidbody>(). = !gameObject.GetComponent<Rigidbody>().useGravity;
-            m_Rigidbody.isKinematic = false;
+            m_Rigidbody.isKinematic = false; //Disables kinematics, allowing movement
         }
     }
 }
