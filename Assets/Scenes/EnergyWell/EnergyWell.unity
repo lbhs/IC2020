@@ -1138,9 +1138,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnergyWell
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: fc7648d75e27cfe468fc17bc2574dd46, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc7648d75e27cfe468fc17bc2574dd46, type: 3}
       propertyPath: m_Name
       value: well
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: fc7648d75e27cfe468fc17bc2574dd46, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: fc7648d75e27cfe468fc17bc2574dd46, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1227,9 +1235,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bondbreaker
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3df30329fc8376646bb0486b815e433b, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 3df30329fc8376646bb0486b815e433b, type: 3}
       propertyPath: m_Name
       value: bondbreaker
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 3df30329fc8376646bb0486b815e433b, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3df30329fc8376646bb0486b815e433b, type: 3}
       propertyPath: m_LocalPosition.x
