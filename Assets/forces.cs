@@ -70,8 +70,8 @@ public class forces : MonoBehaviour
 		foreach(GameObject gameObject in gameobjects)
 		{
 			gameObject.GetComponent<TimeBody>().isRewinding = false;
-		}
-		GetComponent<TimeBody>().isRewinding = false;
+            GetComponent<TimeBody>().isRewinding = false;
+        }
 	}
 	
 	public void startRewind()
@@ -79,8 +79,8 @@ public class forces : MonoBehaviour
 		foreach(GameObject gameObject in gameobjects)
 		{
 			gameObject.GetComponent<TimeBody>().StartRewind();
-		}
-		GetComponent<TimeBody>().StartRewind();
+            GetComponent<TimeBody>().StartRewind();
+        }
 	}
 
     private GameObject pauseCanvas;
