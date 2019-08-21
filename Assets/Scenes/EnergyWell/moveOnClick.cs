@@ -4,17 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class moveOnClick : MonoBehaviour {
-    public RigidbodyType2D bodyType;
+    public Rigidbody bodyType;
+    Rigidbody m_Rigidbody;
     void Start()
     {
-        gameObject.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        m_Rigidbody = GetComponent<Rigidbody>();
+        m_Rigidbody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
     }
     void Update()
     {
         if (Input.GetKeyDown("space"))
         {
             // gameObject.GetComponent<Rigidbody>(). = !gameObject.GetComponent<Rigidbody>().useGravity;
-            gameObject.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            m_Rigidbody.isKinematic = false;
         }
     }
 }
+
