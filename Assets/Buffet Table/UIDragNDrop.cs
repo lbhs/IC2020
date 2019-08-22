@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 {
+    public bool isWildCard;
+
     // usingMe is set to true whenever the UI element containing the UIDragNDrop is being dragged.
     public bool UseingMe;
     public void OnDrag(PointerEventData eventData)
@@ -28,6 +30,16 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         num = int.Parse(gameObject.name);
     }
+
+    void update()
+    {
+        //if this tile was right clicked
+        if (RectTransformUtility.RectangleContainsScreenPoint(gameObject.transform.parent.GetComponent<RectTransform>(), Input.mousePosition) && Input.GetMouseButtonDown(1) && isWildCard)
+        {
+            //do stuff
+        }
+    }
+
 }
 
 /*
@@ -45,5 +57,5 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     [Header("  ")]
     [Header("Other")]
     [Header("No Settings for addWater")]*/
-    
+
 //[Header("Other")]
