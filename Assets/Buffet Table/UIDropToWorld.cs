@@ -18,6 +18,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
     public Sprite Water; // Water Sprite
     public Sprite Sphere; // Sphere sprite. Color is controlled by prefab material color.
     public Sprite transparent; // Transparent placeholder image when no other image is used.
+    public Sprite WildCardImage; //image for wild card tiles before it was set
     private Vector3 prefabWorldPosition; // Position that the prefab spawns in.
     private int objectToUse; // Index used in prefabs[] to determine which particle is spawned.
     private GameObject MainObject; // "Main" controller gameobject.
@@ -83,6 +84,13 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
             Images[counter].GetComponent<RectTransform>().sizeDelta = new Vector2(40, 40); //size of image to be dragged
             Images[counter].transform.GetChild(0).GetComponent<Image>().sprite = transparent; //no plus or minus
             Images[counter].transform.parent.transform.GetChild(1).GetComponent<Text>().text = "H₂0"; //name of buffet table particle
+            Images[counter].GetComponent<UIDragNDrop>().isWildCard = false; //disables wild card scripts
+        }
+        else if (P.name == "Wild Card")
+        {
+            Images[counter].GetComponent<UIDragNDrop>().isWildCard = true; //enables wild card scripts
+            Images[counter].GetComponent<Image>().color = Color.white; //white will be the true color of the image, anything else will show up as a tint
+            Images[counter].GetComponent<Image>().sprite = WildCardImage; //image of a water monocule
         }
         else
         {
@@ -92,7 +100,9 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
             Images[counter].transform.parent.transform.GetChild(1).GetComponent<Text>().text = tempName[1].TrimStart(' '); //removes the space before the name
             float size = P.transform.localScale.x; //sets the size of the prefab
             Images[counter].GetComponent<RectTransform>().sizeDelta = new Vector2((20 * size) + 5, (20 * size) + 5); //converts the prefab size to ui size using y=20x+5
+            Images[counter].GetComponent<UIDragNDrop>().isWildCard = false; //disables wild card scripts
         }
+
 
     }
 

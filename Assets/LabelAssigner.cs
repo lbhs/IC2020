@@ -14,7 +14,7 @@ public class LabelAssigner : MonoBehaviour
                 tempLable = MonoBehaviour.Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[imgToUse], Vector3.zero, Quaternion.identity);
                 tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
                 tempLable.GetComponent<ImageFollower>().sphereToFollow = gameObject;
-        Debug.Log(imgToUse);
+        //.Log(imgToUse);
     }
 
 }

@@ -25,18 +25,20 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
         UseingMe = false;
     }
     public int num;
-    
+    private GameObject WildCardMenu;
     void Start()
     {
+        WildCardMenu = GameObject.Find("WildCardMenu");
         num = int.Parse(gameObject.name);
     }
 
-    void update()
+    private void Update()
     {
         //if this tile was right clicked
-        if (RectTransformUtility.RectangleContainsScreenPoint(gameObject.transform.parent.GetComponent<RectTransform>(), Input.mousePosition) && Input.GetMouseButtonDown(1) && isWildCard)
+        if (RectTransformUtility.RectangleContainsScreenPoint(gameObject.transform.parent.GetComponent<RectTransform>(), Input.mousePosition) && Input.GetMouseButtonDown(1) && isWildCard == true)
         {
-            //do stuff
+            WildCardMenu.GetComponent<WildCardController>().currentTile = gameObject;
+            Debug.Log(gameObject.name);
         }
     }
 
