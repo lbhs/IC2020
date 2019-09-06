@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\asa\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\asa\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_IC2020.-316534228.00" t="ExcludeRecursive" />
+    <e p="C:\Users\asa\Documents\IC2020" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Buffet Table" t="Include">
+          <e p="hasComponent.cs" t="Include" />
+          <e p="InvisibleBGCtrl.cs" t="Include" />
+          <e p="MenuVisibilityCtrl.cs" t="Include" />
+          <e p="TableController.cs" t="Include" />
+          <e p="UIDragNDrop.cs" t="Include" />
+          <e p="UIDropToWorld.cs" t="Include" />
+        </e>
+        <e p="Scenes" t="Include">
+          <e p="EnergyWell" t="Include">
+            <e p="moveOnClick.cs" t="Include" />
+            <e p="wellModifier.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="charger.cs" t="Include" />
+          <e p="cubeScript.cs" t="Include" />
+          <e p="DragNDrop.cs" t="Include" />
+          <e p="forces.cs" t="Include" />
+          <e p="IC2020.cs" t="Include" />
+          <e p="ImageFollower.cs" t="Include" />
+          <e p="LableManager.cs" t="Include" />
+          <e p="main.cs" t="Include" />
+          <e p="ModelSlector.cs" t="Include" />
+          <e p="RightClickHelper.cs" t="Include" />
+          <e p="SpaceTime.cs" t="Include" />
+          <e p="time.cs" t="Include" />
+          <e p="TimeBody.cs" t="Include" />
+        </e>
+        <e p="Tools" t="Include">
+          <e p="Editor" t="Include">
+            <e p="BuildCommand.cs" t="Include" />
+            <e p="BuildHelper.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="IC2020.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
