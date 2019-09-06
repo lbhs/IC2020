@@ -26,38 +26,51 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
 
     public void ChangeBuffetTable(string string0, string string1, string string2, string string3, string string4, string string5) // see Buffet Table > Panel > UIDropToWorld > PossibleParticles for options. Make sure to spell them exactly the same                                                                                                                               
     {
-        //checks if any of the input strings match 
+        //checks if any of the input strings match or it is a wild card then it calls the right function
+        //I know this looks like a job for foreach loops, but i couldnt get it to work, so if you can figure it out, do it!
         foreach (GameObject P in possibleParticles)
         {
             if (P.name == string0)
             { 
                 ChangeBuffetTableAction(P,0);
-            } 
-             if (P.name == string1)
+            }
+            else if (string0 == "Wild Card") { ChangeBuffetTableWild(0); }
+
+            if (P.name == string1)
             {
                 ChangeBuffetTableAction(P, 1);
             }
-             if (P.name == string2)
+            else if (string0 == "Wild Card") { ChangeBuffetTableWild(1); }
+
+            if (P.name == string2)
             {
                 ChangeBuffetTableAction(P, 2);
             }
+            else if (string0 == "Wild Card") { ChangeBuffetTableWild(2); }
+
             if (P.name == string3)
             {
                 ChangeBuffetTableAction(P, 3);
             }
-             if (P.name == string4)
+            else if (string0 == "Wild Card") { ChangeBuffetTableWild(3); }
+
+            if (P.name == string4)
             {
                 ChangeBuffetTableAction(P, 4);
             }
+            else if (string0 == "Wild Card") { ChangeBuffetTableWild(4); }
+
             if (P.name == string5)
             {
                 ChangeBuffetTableAction(P, 5);
             }
+            else if (string0 == "Wild Card") { ChangeBuffetTableWild(5); }
         }
     }
 
     private void ChangeBuffetTableAction(GameObject P, int counter)
     {
+
         //sets the particle given (the prefab Water for example) to be able to be spawned
         prefabs[counter] = P;
 
@@ -86,12 +99,6 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
             Images[counter].transform.parent.transform.GetChild(1).GetComponent<Text>().text = "H₂0"; //name of buffet table particle
             Images[counter].GetComponent<UIDragNDrop>().isWildCard = false; //disables wild card scripts
         }
-        else if (P.name == "Wild Card")
-        {
-            Images[counter].GetComponent<UIDragNDrop>().isWildCard = true; //enables wild card scripts
-            Images[counter].GetComponent<Image>().color = Color.white; //white will be the true color of the image, anything else will show up as a tint
-            Images[counter].GetComponent<Image>().sprite = WildCardImage; //image of a water monocule
-        }
         else
         {
             Images[counter].GetComponent<Image>().sprite = Sphere; //normal round sphere 
@@ -106,8 +113,17 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
 
     }
 
-        public void OnDrop(PointerEventData eventData)
+    private void ChangeBuffetTableWild(int counter)
     {
+        Images[counter].GetComponent<UIDragNDrop>().isWildCard = true; //enables wild card scripts
+        Images[counter].GetComponent<UIDragNDrop>().isInteractable = false; //diables dragging until presets are set
+        Images[counter].GetComponent<Image>().color = Color.white; //white will be the true color of the image, anything else will show up as a tint
+        Images[counter].GetComponent<Image>().sprite = WildCardImage; //image of a wild card
+        Images[counter].GetComponent<RectTransform>().sizeDelta = new Vector2(50, 60); //size of image
+    }
+
+        public void OnDrop(PointerEventData eventData)
+        {
         // The buffet table's position
         RectTransform panel = transform as RectTransform; 
         prefabWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -125,9 +141,18 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                     objectToUse = int.Parse(item.name);
                 }
             }
-            
-            // Spawns the actual prefab.
-            Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
+
+            if (Images[objectToUse].GetComponent<UIDragNDrop>().isWildCard == true)
+            {
+                //if its a wild card, instanciate with custom varibles
+                Particle p = new Particle(Images[objectToUse].GetComponent<UIDragNDrop>().particleName, Images[objectToUse].GetComponent<UIDragNDrop>().charge, Images[objectToUse].GetComponent<UIDragNDrop>().color, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().scale, Images[objectToUse].GetComponent<UIDragNDrop>().bounciness, Images[objectToUse].GetComponent<UIDragNDrop>().precipitate, Images[objectToUse].GetComponent<UIDragNDrop>().friction); // Temporary name before a convention is decided on. add friction+perciptates
+                p.Spawn();
+            }
+            else
+            {
+                // Spawns the actual prefab.
+                Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
+            }
         }
     }
 }

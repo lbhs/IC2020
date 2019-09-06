@@ -4810,6 +4810,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWildCard: 0
+  isInteractable: 1
+  particleName: 
+  charge: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  mass: 0
+  scale: 0
+  bounciness: 0
+  precipitate: 0
+  friction: 0
   UseingMe: 0
   num: 0
 --- !u!114 &490550200
@@ -8191,6 +8200,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWildCard: 0
+  isInteractable: 1
+  particleName: 
+  charge: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  mass: 0
+  scale: 0
+  bounciness: 0
+  precipitate: 0
+  friction: 0
   UseingMe: 0
   num: 0
 --- !u!114 &1034975096
@@ -8318,6 +8336,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWildCard: 0
+  isInteractable: 1
+  particleName: 
+  charge: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  mass: 0
+  scale: 0
+  bounciness: 0
+  precipitate: 0
+  friction: 0
   UseingMe: 0
   num: 0
 --- !u!114 &1042130395
@@ -9567,6 +9594,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWildCard: 0
+  isInteractable: 1
+  particleName: 
+  charge: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  mass: 0
+  scale: 0
+  bounciness: 0
+  precipitate: 0
+  friction: 0
   UseingMe: 0
   num: 0
 --- !u!114 &1294259867
@@ -10371,6 +10407,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWildCard: 0
+  isInteractable: 1
+  particleName: 
+  charge: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  mass: 0
+  scale: 0
+  bounciness: 0
+  precipitate: 0
+  friction: 0
   UseingMe: 0
   num: 0
 --- !u!114 &1334174579
@@ -10494,7 +10539,7 @@ MonoBehaviour:
   Water: {fileID: 21300000, guid: 2de53062140b69e40a5077427af40955, type: 3}
   Sphere: {fileID: 21300000, guid: f743f2dedb05a584e8670e695e2a252f, type: 3}
   transparent: {fileID: 21300000, guid: 98301934469fce24a981f197758f4f0f, type: 3}
-  WildCardImage: {fileID: 0}
+  WildCardImage: {fileID: 21300000, guid: 795183b37537bad4886a80b1975f7b39, type: 3}
 --- !u!114 &1345369975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11047,6 +11092,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWildCard: 0
+  isInteractable: 1
+  particleName: 
+  charge: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  mass: 0
+  scale: 0
+  bounciness: 0
+  precipitate: 0
+  friction: 0
   UseingMe: 0
   num: 0
 --- !u!114 &1371989985
@@ -15650,6 +15704,7 @@ GameObject:
   - component: {fileID: 1868773852}
   - component: {fileID: 1868773851}
   - component: {fileID: 1868773853}
+  - component: {fileID: 1868773854}
   m_Layer: 5
   m_Name: WildCardMenu
   m_TagString: Untagged
@@ -15732,6 +15787,19 @@ MonoBehaviour:
   customView: {fileID: 365220555}
   prefabView: {fileID: 60599591}
   currentTile: {fileID: 0}
+--- !u!114 &1868773854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868773849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332aa357a05c2e0409b073fc72f3d62c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldStartVisible: 1
 --- !u!1 &1873783905
 GameObject:
   m_ObjectHideFlags: 0

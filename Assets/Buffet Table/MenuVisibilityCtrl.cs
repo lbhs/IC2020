@@ -33,6 +33,11 @@ public class MenuVisibilityCtrl : MonoBehaviour
         tempTransform.offsetMax = new Vector2(0f, 0f);
         tempTransform.SetParent(GetComponentsInParent<Transform>()[1], false);
         tempTransform.SetSiblingIndex(transform.GetSiblingIndex()); // put it right beind this panel in the hierarchy
+        if (gameObject.name == "WildCardMenu")
+        {
+            tempTransform.offsetMin = new Vector2(150f, 0);
+        }
+
     }
 
     void OnEnable()

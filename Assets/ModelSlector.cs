@@ -27,8 +27,8 @@ public class ModelSlector : MonoBehaviour
     public void OpenEmptyScene()
     {
         //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
-        //for options. Make sure to spell them exactly the same
-        BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Cu2+ Ion", "[P] Carbonate ion", "[P] Cl- ion", "[P] Na+ ion", "[P] Water", "[P] Water");
+        //for options ("Wild Card" is also an option). Make sure to spell them exactly the same
+        BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
         pannel.SetActive(false);
     }
     

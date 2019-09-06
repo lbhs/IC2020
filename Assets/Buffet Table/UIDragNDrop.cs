@@ -5,16 +5,28 @@ using UnityEngine.EventSystems;
 
 public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 {
-    public bool isWildCard;
+    [HideInInspector] public bool isWildCard; //varible to know if this tile should be a wild card
+    [HideInInspector] public bool isInteractable = true;
+    //all the vaible determining what gets spawned
+    [HideInInspector] public string particleName;
+    [HideInInspector] public float charge;
+    [HideInInspector] public Color color;
+    [HideInInspector] public float mass;
+    [HideInInspector] public float scale;
+    [HideInInspector] public float bounciness;
+    [HideInInspector] public bool precipitate;
+    [HideInInspector] public float friction;
 
     // usingMe is set to true whenever the UI element containing the UIDragNDrop is being dragged.
-    public bool UseingMe;
+    [HideInInspector] public bool UseingMe;
     public void OnDrag(PointerEventData eventData)
     {
         // Sets usingMe to true when dragging.
-        
-        transform.position = Input.mousePosition; // Makes the image follow the mouse.
-        UseingMe = true;
+        if (isInteractable)
+        {
+            transform.position = Input.mousePosition; // Makes the image follow the mouse.
+            UseingMe = true;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -24,11 +36,19 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
         transform.localPosition = Vector3.zero; // Resets the image's position to the buffet table.
         UseingMe = false;
     }
-    public int num;
+    [HideInInspector] public int num;
     private GameObject WildCardMenu;
-    void Start()
+    private GameObject RightClickMenu;
+
+    void Awake()
     {
         WildCardMenu = GameObject.Find("WildCardMenu");
+        RightClickMenu = GameObject.Find("Right-Click Menu");
+    }
+
+    void Start()
+    {
+        WildCardMenu.SetActive(false);
         num = int.Parse(gameObject.name);
     }
 
@@ -37,8 +57,12 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
         //if this tile was right clicked
         if (RectTransformUtility.RectangleContainsScreenPoint(gameObject.transform.parent.GetComponent<RectTransform>(), Input.mousePosition) && Input.GetMouseButtonDown(1) && isWildCard == true)
         {
+
+            WildCardMenu.SetActive(true);
+            RightClickMenu.SetActive(false);
             WildCardMenu.GetComponent<WildCardController>().currentTile = gameObject;
             Debug.Log(gameObject.name);
+            WildCardMenu.GetComponent<WildCardController>().updateWildMenu();
         }
     }
 
