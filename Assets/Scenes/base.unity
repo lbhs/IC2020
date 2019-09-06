@@ -1751,7 +1751,7 @@ MonoBehaviour:
   useAddWater: 0
   mass: 4
   charge: -2
-  color: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 1}
+  color: {r: 0.990566, g: 0, b: 0.7226122, a: 1}
   scale: 1
   bounciness: 0.2
   ImageToUse: 1
@@ -1771,7 +1771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 1}
+  m_Color: {r: 0.990566, g: 0, b: 0.7226122, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3271,7 +3271,7 @@ MonoBehaviour:
   scale: 1.5
   bounciness: 0.6
   ImageToUse: 1
-  friction: 0
+  friction: 0.02
   UseingMe: 0
   num: 0
 --- !u!114 &1042130395
@@ -4142,11 +4142,11 @@ MonoBehaviour:
   useAddWater: 0
   mass: 2
   charge: 1
-  color: {r: 0.6666667, g: 0.36078432, b: 0.9647059, a: 0}
+  color: {r: 0.9622642, g: 0.61616963, b: 0.022694906, a: 1}
   scale: 1.5
   bounciness: 0.6
   ImageToUse: 0
-  friction: 0.01
+  friction: 0.02
   UseingMe: 0
   num: 0
 --- !u!114 &1294259867
@@ -4162,7 +4162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6666667, g: 0.36078432, b: 0.9647059, a: 1}
+  m_Color: {r: 0.9622642, g: 0.61616963, b: 0.022694906, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
