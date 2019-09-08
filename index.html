@@ -7,33 +7,87 @@
 
     <title>IC 2020</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
 <div class="container-fluid">
+    <div class="jumbotron" style="padding-bottom: .25rem; padding-top: .75rem;">
+        <h2>
+            Welcome to IC 2020!
+        </h2>
+        <p>
+            IC2020 is the browser-based physics simulator for teaching chemistry and physics by LBHS.
+        </p>
+        <p>
+            <a href="https://github.com/lbhs/IC2020" target="_blank" class="btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" style="height: 20px;">
+                    <path d="M14 0C6.27 0 0 6.43 0 14.36c0 6.34 4.01 11.72 9.57 13.62.7.13.96-.31.96-.69 0-.34-.01-1.24-.02-2.44-3.89.87-4.72-1.92-4.72-1.92-.64-1.66-1.55-2.1-1.55-2.1-1.27-.89.1-.87.1-.87 1.4.1 2.14 1.48 2.14 1.48 1.25 2.19 3.28 1.56 4.07 1.19.13-.93.49-1.56.89-1.92-3.11-.36-6.38-1.59-6.38-7.09 0-1.57.55-2.85 1.44-3.85-.14-.36-.62-1.82.14-3.8 0 0 1.18-.39 3.85 1.47a12.8 12.8 0 013.5-.48c1.19.01 2.39.16 3.5.48 2.67-1.86 3.85-1.47 3.85-1.47.76 1.98.28 3.44.14 3.8.9 1 1.44 2.28 1.44 3.85 0 5.51-3.27 6.73-6.39 7.08.5.44.95 1.32.95 2.66 0 1.92-.02 3.47-.02 3.94 0 .38.25.83.96.69C23.99 26.07 28 20.7 28 14.36 28 6.43 21.73 0 14 0z"
+                          fill-rule="evenodd" clip-rule="evenodd"></path>
+                </svg>
+                View on Github</a>
+    </div>
     <div class="row">
-        <div class="col-md-12">
-            <div class="jumbotron">
-                <h2>
-                    Welcome to IC 2020!
-                </h2>
-                <p style="height:100px;">
-                    IC2020 is the browser-based physics simulator for teaching chemistry and physics by LBHS.
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-large" href="prod/index.html">Stable Release</a>
-                    <a class="btn btn-large" href="preprod/index.html">Unstable Release</a>
-                    <a class="btn btn-danger btn-large" href="integ/index.html">Integ Release</a>
-                </p>
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+                <a href="prod/"><img class="card-img-top" src="prod-preview.png" alt="Production"></a>
+                <div class="card-body">
+                    <h5 class="card-title">Production</h5>
+                    <p class="card-text" style="height: 100px;">Our most stable version. Please start here if you've
+                        never played with
+                        IC2020!</p>
+                    <a href="prod/" class="btn btn-primary">Take me to Prod</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+                <a href="preprod/"><img class="card-img-top" src="preprod-preview.png" alt="Pre-production"></a>
+                <div class="card-body">
+                    <h5 class="card-title">Pre-production</h5>
+                    <p class="card-text" style="height: 100px;">Pre-production builds has new features and bug-fixes
+                        that aren't
+                        ready for prod. Feeling somewhat adventurous? Come explore!</p>
+                    <a href="preprod/" class="btn btn-success">Take me to Preprod</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+                <a href="integ/"><img class="card-img-top" src="integ-preview.png" alt="Integ"></a>
+                <div class="card-body">
+                    <h5 class="card-title">Integ</h5>
+                    <p class="card-text" style="height: 100px;">Integ builds are where we share prototypes and crazy
+                        ideas that are not
+                        anywhere ready for being in the main product. May crash!</p>
+                    <a href="integ/" class="btn btn-danger">Take me to Integ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:2rem;">
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+                <a href="sogo/"><img class="card-img-top" src="sogo-preview.png" alt="Sogo"></a>
+                <div class="card-body">
+                    <h5 class="card-title">Sogo's Build</h5>
+                    <p class="card-text" style="height: 100px;">A special branch of the project built by Mr. Sogo</p>
+                    <a href="sogo/" class="btn btn-dark">Take me to Sogo's Build</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/scripts.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
 </body>
 </html>
