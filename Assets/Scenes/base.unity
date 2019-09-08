@@ -1043,7 +1043,7 @@ GameObject:
   - component: {fileID: 104055675}
   - component: {fileID: 104055676}
   m_Layer: 5
-  m_Name: Content
+  m_Name: WildContent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15436,6 +15436,7 @@ GameObject:
   - component: {fileID: 1853801204}
   - component: {fileID: 1853801203}
   - component: {fileID: 1853801202}
+  - component: {fileID: 1853801205}
   m_Layer: 5
   m_Name: Water Button
   m_TagString: Untagged
@@ -15543,6 +15544,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853801200}
   m_CullTransparentMesh: 0
+--- !u!114 &1853801205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853801200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0021b0b6fc2a4014bafd5273844b15f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thePrefab: {fileID: 838215635987691934, guid: 495c4a81cb8fb3740b9f0a6fd6d9b202,
+    type: 3}
 --- !u!1 &1855624151
 GameObject:
   m_ObjectHideFlags: 0
@@ -15787,6 +15802,14 @@ MonoBehaviour:
   customView: {fileID: 365220555}
   prefabView: {fileID: 60599591}
   currentTile: {fileID: 0}
+  PName: {fileID: 0}
+  PMass: {fileID: 0}
+  PPercipatae: {fileID: 0}
+  PCharge: {fileID: 0}
+  Pcolor: {r: 0, g: 0, b: 0, a: 0}
+  PSize: {fileID: 0}
+  PBounciness: {fileID: 0}
+  PFriction: {fileID: 0}
 --- !u!114 &1868773854
 MonoBehaviour:
   m_ObjectHideFlags: 0

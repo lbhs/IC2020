@@ -43,6 +43,8 @@ public class ParticleList : MonoBehaviour
                 button.transform.GetChild(0).GetComponent<Image>().color = P.GetComponent<Renderer>().sharedMaterial.color;
                 string[] tempName = P.name.Split(']'); // splits "[P] Particle" into "[P" and " Particle"
                 button.transform.GetChild(1).GetComponent<Text>().text = tempName[1].TrimStart(' ');  //removes the space before the name
+
+                button.GetComponent<PrefabButtonSetter>().thePrefab = P;
             }
         }
     }
