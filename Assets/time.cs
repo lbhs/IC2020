@@ -10,7 +10,7 @@ public class time : MonoBehaviour
 	
 	public void updateTimeScale(float scale)
 	{
-		GameObject.Find("speedText").GetComponent<Text>().text = "Speed: " + (scale/4).ToString() + "x";
+		GameObject.Find("speedText").GetComponent<Text>().text = "Simulation: " + (scale/4).ToString() + "x";
 		if(scale < 0)
 		{
 			if(GameObject.Find("GameObject").GetComponent<TimeBody>().frame == -1)

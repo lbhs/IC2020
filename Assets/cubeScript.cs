@@ -26,7 +26,7 @@ public class cubeScript : MonoBehaviour
 			{ vy = 2;}
 
 		velocity = new Vector3(vx, vy, 0);
-		cube.velocity = velocity;
+		cube.velocity = velocity.normalized*10;
 		temp = temperatureSlider.value;
 		
 		GameObject.Find("GameObject").GetComponent<forces>().nonObjects.Add(gameObject);
