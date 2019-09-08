@@ -19,6 +19,7 @@ branches:
     - "/^integ\\..*$/"
     - "/^preprod\\..*$/"
     - "/^prod\\..*$/"
+    - Sogo-deploy
 jobs:
   include:
     - stage: build
@@ -26,6 +27,14 @@ jobs:
       env: BUILD_TARGET=WebGL
       script: chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh
 deploy:
+  - provider: pages
+    skip_cleanup: true
+    github_token: "$GITHUB_TOKEN"
+    local_dir: Builds/WebGL
+    target_branch: pages-sogo
+    on:
+      repo: lbhs/IC2020
+      branch: Sogo-deploy
   - provider: pages
     skip_cleanup: true
     github_token: "$GITHUB_TOKEN"

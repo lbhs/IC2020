@@ -67,7 +67,7 @@ static class BuildCommand
 			buildName = buildName + ".exe";
 		} else if (buildTarget.ToString().ToLower().Contains("webgl")) {
 			// webgl produces a folder with index.html inside, there is no executable name for this buildTarget
-			buildName = "";
+			buildName = "WebGL";
 		}
 		return buildPath + buildName;
 	}
