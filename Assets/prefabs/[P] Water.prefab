@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 838215635987691929}
   - component: {fileID: 539749759784109462}
   - component: {fileID: 3300819692106368355}
+  - component: {fileID: 4828747812107385535}
   m_Layer: 0
   m_Name: '[P] Water'
   m_TagString: Untagged
@@ -139,6 +140,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charge: 0
+--- !u!114 &4828747812107385535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215635987691934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8fdb7671a09b348ac33d8716ef502a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRewinding: 0
+  frame: -1
+  Arbies: {fileID: 0}
 --- !u!1 &838215636911785444
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +171,7 @@ GameObject:
   - component: {fileID: 838215636911785447}
   - component: {fileID: 341243805959927791}
   - component: {fileID: 4755695697840474479}
+  - component: {fileID: 8667350364520216400}
   m_Layer: 0
   m_Name: '[P] Hydrogen'
   m_TagString: Untagged
@@ -370,6 +387,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbfefe5555e019146a1d3db91e53d727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8667350364520216400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215636911785444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8fdb7671a09b348ac33d8716ef502a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRewinding: 0
+  frame: -1
+  Arbies: {fileID: 0}
 --- !u!1 &838215637822072589
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +418,7 @@ GameObject:
   - component: {fileID: 838215637822072588}
   - component: {fileID: 1270834699835529329}
   - component: {fileID: 61746259509243302}
+  - component: {fileID: 3349014142746062482}
   m_Layer: 0
   m_Name: '[P] Hydrogen (1)'
   m_TagString: Untagged
@@ -601,3 +634,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbfefe5555e019146a1d3db91e53d727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3349014142746062482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215637822072589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8fdb7671a09b348ac33d8716ef502a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRewinding: 0
+  frame: -1
+  Arbies: {fileID: 0}
