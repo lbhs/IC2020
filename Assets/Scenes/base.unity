@@ -5307,9 +5307,9 @@ MonoBehaviour:
     m_Options:
     - m_Text: Choose a Model
       m_Image: {fileID: 0}
-    - m_Text: Insoluble Salt Model
+    - m_Text: Copper Carbonate Model
       m_Image: {fileID: 0}
-    - m_Text: Soluble Salt Model
+    - m_Text: Sodium Chloride Model
       m_Image: {fileID: 0}
     - m_Text: Empty
       m_Image: {fileID: 0}
