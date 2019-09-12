@@ -35,7 +35,7 @@ public class WildCardController : MonoBehaviour
 
     public void updateWildMenu()
     {
-        currentTile.transform.parent.GetChild(1).GetComponent<Text>().text = currentTile.GetComponent<UIDragNDrop>().particleName;
+        //currentTile.transform.parent.GetChild(1).GetComponent<Text>().text = currentTile.GetComponent<UIDragNDrop>().particleName;
         // look at uidroptoworld lines 104-110
     }
 

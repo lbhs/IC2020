@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     [HideInInspector] public bool isWildCard; //varible to know if this tile should be a wild card
+    [HideInInspector] public bool useAddShpere = false;
     [HideInInspector] public bool isInteractable = true;
     //all the vaible determining what gets spawned
     [HideInInspector] public string particleName;
@@ -27,6 +28,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
             transform.position = Input.mousePosition; // Makes the image follow the mouse.
             UseingMe = true;
         }
+        WildCardMenu.SetActive(false);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -35,6 +37,8 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
         
         transform.localPosition = Vector3.zero; // Resets the image's position to the buffet table.
         UseingMe = false;
+
+        //Debug.Log("yep");
     }
     [HideInInspector] public int num;
     private GameObject WildCardMenu;

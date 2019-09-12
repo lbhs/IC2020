@@ -130,8 +130,8 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
         prefabWorldPosition.z = 0;
         //Debug.Log(prefabWorldPosition);
         //objectToUse = 2;
-
-        // Lines 119-127 determine whether an should be spawned object depending on whether it is spawned inside or outside of the world.
+        Debug.Log("?");
+        // the 9 lines below this comment determine whether an should be spawned object depending on whether it is spawned inside or outside of the world.
         if (!RectTransformUtility.RectangleContainsScreenPoint(panel, Input.mousePosition))
         {
             foreach (GameObject item in Images)
@@ -141,16 +141,18 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                     objectToUse = int.Parse(item.name);
                 }
             }
-
-            if (Images[objectToUse].GetComponent<UIDragNDrop>().isWildCard == true)
+            Debug.Log("nope!");
+            if (Images[objectToUse].GetComponent<UIDragNDrop>().useAddShpere == true)
             {
                 //if its a wild card, instanciate with custom varibles
                 Particle p = new Particle(Images[objectToUse].GetComponent<UIDragNDrop>().particleName, Images[objectToUse].GetComponent<UIDragNDrop>().charge, Images[objectToUse].GetComponent<UIDragNDrop>().color, prefabWorldPosition, Images[objectToUse].GetComponent<UIDragNDrop>().mass, Images[objectToUse].GetComponent<UIDragNDrop>().scale, Images[objectToUse].GetComponent<UIDragNDrop>().bounciness, Images[objectToUse].GetComponent<UIDragNDrop>().precipitate, Images[objectToUse].GetComponent<UIDragNDrop>().friction); // Temporary name before a convention is decided on. add friction+perciptates
                 p.Spawn();
+                Debug.Log("nope");
             }
             else
             {
                 // Spawns the actual prefab.
+                Debug.Log("yep");
                 Instantiate(prefabs[objectToUse], prefabWorldPosition, Quaternion.identity);
             }
         }
