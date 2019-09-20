@@ -160,7 +160,7 @@ namespace IC2020
             }
             catch (Exception e)
             {
-                Debug.Log("[DEBUG]: Exception Raised: " + e);
+               //Debug.Log("[DEBUG]: Exception Raised: " + e);
                 return null;
             }
         }

@@ -122,7 +122,7 @@ public class DragNDrop : MonoBehaviour
                 gameObject.name = "destroyed";
                 GameObject.Find("GameObject").GetComponent<forces>().gameObjects.Remove(gameObject);
                 Destroy(gameObject);
-                Debug.Log("up");
+               //Debug.Log("up");
             }
             //if it is below the camera
             else if (gameObject.transform.position.y < -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMax)).y)
@@ -130,7 +130,7 @@ public class DragNDrop : MonoBehaviour
                 gameObject.name = "destroyed";
                 GameObject.Find("GameObject").GetComponent<forces>().gameObjects.Remove(gameObject);
                 Destroy(gameObject);
-                Debug.Log("below");
+               //Debug.Log("below");
             }
 
             //if it is to far to the right of the camera 
@@ -139,7 +139,7 @@ public class DragNDrop : MonoBehaviour
                 gameObject.name = "destroyed";
                 GameObject.Find("GameObject").GetComponent<forces>().gameObjects.Remove(gameObject);
                 Destroy(gameObject);
-                Debug.Log("right");
+               //Debug.Log("right");
             }
             //if it is to far to the left of the buffet table
             else if (gameObject.transform.position.x < GameObject.Find("left wall").transform.position.x)
@@ -281,7 +281,7 @@ public class DragNDrop : MonoBehaviour
                 if(gameObject.GetComponent<SphereCollider>().bounds.Contains(rightCanvas.GetComponent<RightClickHelper>().triggerPoint.transform.position))
                 {
                     rightCanvas.GetComponent<RightClickHelper>().currentSphere = gameObject;
-                    Debug.Log("target aquired: " + rightCanvas.GetComponent<RightClickHelper>().currentSphere);
+                   //Debug.Log("target aquired: " + rightCanvas.GetComponent<RightClickHelper>().currentSphere);
                 }*/
 
 
@@ -299,7 +299,7 @@ public class DragNDrop : MonoBehaviour
 
 
             tempText = tempMass.ToString();
-                Debug.Log(tempText);
+               //Debug.Log(tempText);
 
                 StringToFloat(rightCanvas.GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text, num );
                 num = 3;

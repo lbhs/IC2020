@@ -63,7 +63,7 @@ public class ModelSlector : MonoBehaviour
 
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
-            Debug.Log("[DEBUG]: Spawned NaCl Ionic Lattice.");
+           //Debug.Log("[DEBUG]: Spawned NaCl Ionic Lattice.");
         }
 
         //Ionic Bonding Model--SOLUBLE SALT
@@ -89,7 +89,7 @@ public class ModelSlector : MonoBehaviour
 
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
-            Debug.Log("[DEBUG]: Spawned NaCl Ionic Lattice.");
+           //Debug.Log("[DEBUG]: Spawned NaCl Ionic Lattice.");
         }
         
         //EMPTY
