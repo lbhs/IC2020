@@ -31,6 +31,12 @@ public class PrefabButtonSetter : MonoBehaviour
         if (gameObject.name != "Water Button") //if it exitst (in the water one, it dosen't
         {
             WildCard.currentTile.transform.GetChild(0).GetComponent<Image>().sprite = gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite; //set the charge iamge
+            float size = thePrefab.transform.localScale.x;
+            WildCard.currentTile.GetComponent<RectTransform>().sizeDelta = new Vector2((20 * size) + 5, (20 * size) + 5);
+        }
+        else
+        {
+            WildCard.currentTile.GetComponent<RectTransform>().sizeDelta = new Vector2(40, 40);
         }
     }
 }

@@ -641,7 +641,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2031337298}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.33
+  m_Size: 0.33000004
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1786,7 +1786,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1664297763}
   m_HandleRect: {fileID: 1664297762}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4810,6 +4810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWildCard: 0
+  useAddShpere: 0
   isInteractable: 1
   particleName: 
   charge: 0
@@ -7890,7 +7891,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1814247512}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8200,6 +8201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWildCard: 0
+  useAddShpere: 0
   isInteractable: 1
   particleName: 
   charge: 0
@@ -8336,6 +8338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWildCard: 0
+  useAddShpere: 0
   isInteractable: 1
   particleName: 
   charge: 0
@@ -9594,6 +9597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWildCard: 0
+  useAddShpere: 0
   isInteractable: 1
   particleName: 
   charge: 0
@@ -10407,6 +10411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWildCard: 0
+  useAddShpere: 0
   isInteractable: 1
   particleName: 
   charge: 0
@@ -11092,6 +11097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWildCard: 0
+  useAddShpere: 0
   isInteractable: 1
   particleName: 
   charge: 0
@@ -14556,7 +14562,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000015258789, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1768588934
@@ -15558,6 +15564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thePrefab: {fileID: 838215635987691934, guid: 495c4a81cb8fb3740b9f0a6fd6d9b202,
     type: 3}
+  WildCard: {fileID: 0}
 --- !u!1 &1855624151
 GameObject:
   m_ObjectHideFlags: 0
