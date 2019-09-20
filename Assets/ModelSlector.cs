@@ -92,12 +92,14 @@ public class ModelSlector : MonoBehaviour
            //Debug.Log("[DEBUG]: Spawned NaCl Ionic Lattice.");
         }
         
-        //EMPTY
+        //...
         else if (dropDownValue == 3)
         {
+            //logic here
+
             //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
             //for options. Make sure to spell them exactly the same
-            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Cu2+ Ion", "[P] Carbonate ion", "[P] Cl- ion", "[P] Na+ ion", "[P] Water", "[P] Water");
+            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
 
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
@@ -106,13 +108,16 @@ public class ModelSlector : MonoBehaviour
         //...
         else if (dropDownValue == 4)
         {
+            //logic here
+
             //do stuff here
             //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
             //for options. Make sure to spell them exactly the same
-            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Cu2+ Ion", "[P] Carbonate ion", "[P] Cl- ion", "[P] Na+ ion", "[P] Water", "[P] Water");
+            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
         }
+
     }
 	
 	public List<Vector3> generateRandomCoords(int n)
