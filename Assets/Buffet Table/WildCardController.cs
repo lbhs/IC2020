@@ -18,6 +18,7 @@ public class WildCardController : MonoBehaviour
     public InputField PSize;
     public InputField PBounciness;
     public InputField PFriction;
+    public Toggle[] colors;
 
     
 
