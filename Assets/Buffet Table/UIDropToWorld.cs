@@ -130,7 +130,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
         prefabWorldPosition.z = 0;
         //Debug.Log(prefabWorldPosition);
         //objectToUse = 2;
-        Debug.Log("?");
+        //Debug.Log("?");
         // the 9 lines below this comment determine whether an should be spawned object depending on whether it is spawned inside or outside of the world.
         if (!RectTransformUtility.RectangleContainsScreenPoint(panel, Input.mousePosition))
         {
@@ -141,7 +141,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                     objectToUse = int.Parse(item.name);
                 }
             }
-            Debug.Log("nope!");
+            //Debug.Log("nope!");
             if (Images[objectToUse].GetComponent<UIDragNDrop>().useAddShpere == true)
             {
                 //if its a wild card, instanciate with custom varibles

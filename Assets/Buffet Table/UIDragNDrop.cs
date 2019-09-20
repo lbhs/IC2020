@@ -66,7 +66,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
             RightClickMenu.SetActive(false);
             WildCardMenu.GetComponent<WildCardController>().currentTile = gameObject;
             Debug.Log(gameObject.name);
-            WildCardMenu.GetComponent<WildCardController>().updateWildMenu();
+            //WildCardMenu.GetComponent<WildCardController>().updateWildMenu();
         }
     }
 
