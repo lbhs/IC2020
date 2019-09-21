@@ -8,7 +8,8 @@ using IC2020;
 public class UIDropToWorld : MonoBehaviour, IDropHandler
 {
     //  Variable Definitions
-    
+
+    public bool startWithAllWildCards; // a bool to change all tiles to whild card when standalone scenes are present
     public GameObject[] prefabs; // the list of actual objects to be spawned 
     public GameObject[] possibleParticles; // A list of objects that can be pulled from the buffet table in a specific scene.
     [Header("Ignore:")]
@@ -23,6 +24,14 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
     private int objectToUse; // Index used in prefabs[] to determine which particle is spawned.
     private GameObject MainObject; // "Main" controller gameobject.
     private MoleculeSpawner mSpawner = new MoleculeSpawner(); // A molecule spawner object used to add water molecules.
+
+    void Start()
+    {
+        if(startWithAllWildCards == true)
+        {
+            ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
+        }
+    }
 
     public void ChangeBuffetTable(string string0, string string1, string string2, string string3, string string4, string string5) // see Buffet Table > Panel > UIDropToWorld > PossibleParticles for options. Make sure to spell them exactly the same                                                                                                                               
     {

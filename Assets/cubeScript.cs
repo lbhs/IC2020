@@ -40,7 +40,7 @@ public class cubeScript : MonoBehaviour
 		if (Time.timeScale != 0 && GameObject.Find("GameObject").GetComponent<forces>().recording && cube.velocity.sqrMagnitude < (50 * temp))
 		{
 			cube.velocity *= 1.4f;
-			print("new velocity = " + velocity.magnitude);
+			//print("new velocity = " + velocity.magnitude);
 		}
 	}
 }

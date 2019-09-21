@@ -29,7 +29,7 @@ public class Redox : MonoBehaviour
             Redox otherP = collision.gameObject.GetComponent<Redox>(); //otherP stands for other particle
             if (otherP.isReducingAgent == true && isOxidizingAgent == true)
             {
-                if (EP + otherP.EP >= 0)
+                if (EP + otherP.EP > 0)
                 {
                     //gets positions of both objects
                     Vector3 Rpos = gameObject.transform.position;
