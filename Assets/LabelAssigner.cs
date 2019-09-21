@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LabelAssigner : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class LabelAssigner : MonoBehaviour
             tempLable = MonoBehaviour.Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().TextPrefab, Vector3.zero, Quaternion.identity);
             tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
             tempLable.GetComponent<ImageFollower>().sphereToFollow = gameObject;
+            tempLable.GetComponent<Text>().text = Lable;
         }
     }
 
