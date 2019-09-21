@@ -12,7 +12,7 @@ public class main : MonoBehaviour
     public int numWater;
     public bool useFlick;
 
-    private void Start()
+    private void Awake()
     {
 	    // Initializes forces
 		gameObject.AddComponent<forces>().initialize(G, k);
