@@ -10,7 +10,7 @@ public class Redox : MonoBehaviour
     public bool isReducingAgent;
     public bool isOxidizingAgent;
 
-    [Rename("ElectrodePotentialEº (Volts)")]
+    [Rename("Electrode Potential Eº (Volts)")]
     public float EP;
 
     [Header("This is the particle that should replace the current one when the reaxtion occurs")]
