@@ -119,37 +119,57 @@ public class DragNDrop : MonoBehaviour
             //makes sure flick is in the screen and corrects it
             if (gameObject.transform.position.y > -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMin)).y)
             {
-                gameObject.name = "destroyed";
-                GameObject.Find("GameObject").GetComponent<forces>().gameObjects.Remove(gameObject);
-                Destroy(gameObject);
-               //Debug.Log("up");
+                DestroyParticle();
+                //Debug.Log("up");
             }
             //if it is below the camera
             else if (gameObject.transform.position.y < -Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMax)).y)
             {
-                gameObject.name = "destroyed";
-                GameObject.Find("GameObject").GetComponent<forces>().gameObjects.Remove(gameObject);
-                Destroy(gameObject);
-               //Debug.Log("below");
+                DestroyParticle();
+
+                //Debug.Log("below");
             }
 
             //if it is to far to the right of the camera 
             else if (gameObject.transform.position.x > -Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x)
             {
-                gameObject.name = "destroyed";
-                GameObject.Find("GameObject").GetComponent<forces>().gameObjects.Remove(gameObject);
-                Destroy(gameObject);
-               //Debug.Log("right");
+                DestroyParticle();
+
+                //Debug.Log("right");
             }
             //if it is to far to the left of the buffet table
             else if (gameObject.transform.position.x < GameObject.Find("left wall").transform.position.x)
             {
-                gameObject.name = "destroyed";
-                GameObject.Find("GameObject").GetComponent<forces>().gameObjects.Remove(gameObject);
-                Destroy(gameObject);
+                DestroyParticle();
                 //Debug.Log("left");
             }
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0); 
+        }
+    }
+
+    private void DestroyParticle()
+    {
+        if (gameObject.name.Contains("[P] Water"))
+        {
+            //hydrogen one
+            gameObject.transform.GetChild(0).name = "destroyed";
+            GameObject.Find("GameObject").GetComponent<forces>().gameObjects.Remove(gameObject.transform.GetChild(0).gameObject);
+            Destroy(gameObject.transform.GetChild(0).gameObject);
+            //hydrogen two
+            gameObject.transform.GetChild(1).name = "destroyed";
+            GameObject.Find("GameObject").GetComponent<forces>().gameObjects.Remove(gameObject.transform.GetChild(1).gameObject);
+            Destroy(gameObject.transform.GetChild(1).gameObject);
+            //oxygen
+            gameObject.name = "destroyed";
+            GameObject.Find("GameObject").GetComponent<forces>().gameObjects.Remove(gameObject);
+            GameObject.Find("GameObject").GetComponent<forces>().nonObjects.Remove(gameObject);
+            Destroy(gameObject);
+        }
+        else
+        {
+            gameObject.name = "destroyed";
+            GameObject.Find("GameObject").GetComponent<forces>().gameObjects.Remove(gameObject);
+            Destroy(gameObject);
         }
     }
 
