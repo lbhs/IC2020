@@ -12,6 +12,7 @@ public class main : MonoBehaviour
     public int numWater;
     public bool useFlick;
 
+    //Awake is called before start()
     private void Awake()
     {
 	    // Initializes forces
