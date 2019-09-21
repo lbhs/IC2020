@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using IC2020;
 
 public class ModelSlector : MonoBehaviour
@@ -10,6 +11,7 @@ public class ModelSlector : MonoBehaviour
     public GameObject dropDownMenu;
     public GameObject cubePrefab;
     private int dropDownValue;
+    public string RedoxScene;
     [Header("Ionic Lattice Model Options")]
     public int numberOfEachMonoculesPerColor;
     private MoleculeSpawner pSpawner = new MoleculeSpawner();
@@ -92,17 +94,17 @@ public class ModelSlector : MonoBehaviour
            //Debug.Log("[DEBUG]: Spawned NaCl Ionic Lattice.");
         }
         
-        //...
+        //Redox Reaction Scene
         else if (dropDownValue == 3)
         {
-            //logic here
+            SceneManager.LoadScene(RedoxScene);
 
+            //this is now useless because a new scene has just loaded
             //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
             //for options. Make sure to spell them exactly the same
-            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
-
-            dropDownMenu.GetComponent<Dropdown>().value = 0;
-            pannel.SetActive(false);
+            //BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
+            //dropDownMenu.GetComponent<Dropdown>().value = 0;
+            //pannel.SetActive(false);
         }
         
         //...

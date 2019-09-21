@@ -3288,7 +3288,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Soluble Salt Model
       m_Image: {fileID: 0}
-    - m_Text: '...'
+    - m_Text: Redox Reaction
       m_Image: {fileID: 0}
     - m_Text: '...'
       m_Image: {fileID: 0}
@@ -3523,6 +3523,7 @@ MonoBehaviour:
   dropDownMenu: {fileID: 1528985652}
   cubePrefab: {fileID: 3680702012836678383, guid: 445571c11b9d7fb4db955da1251c2362,
     type: 3}
+  RedoxScene: Redox Reaction
   numberOfEachMonoculesPerColor: 6
 --- !u!1 &1537190289
 GameObject:
