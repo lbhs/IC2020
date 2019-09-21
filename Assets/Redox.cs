@@ -13,7 +13,7 @@ public class Redox : MonoBehaviour
     [Rename("Electrode Potential Eº (Volts)")]
     public float EP;
 
-    [Header("This is the particle that should replace the current one when the reaxtion occurs")]
+    [Header("This is the particle that should replace the current one when the reaction occurs")]
     public GameObject ReactionPrefab;
 
     // Start is called before the first frame update
@@ -35,7 +35,7 @@ public class Redox : MonoBehaviour
                     Vector3 Rpos = gameObject.transform.position;
                     Vector3 Opos = otherP.transform.position;
 
-                    //spawn the new objects with the old cordanates but fliped
+                    //spawn the new objects with the old coordinates but flipped
                     Instantiate(otherP.ReactionPrefab, Rpos, Quaternion.identity);
                     Instantiate(ReactionPrefab, Opos, Quaternion.identity);
 
@@ -47,9 +47,9 @@ public class Redox : MonoBehaviour
                     otherP.gameObject.name = "destroyed";
                     mainObject.gameObjects.Remove(otherP.gameObject);
                     Destroy(gameObject);
-                    //The need to rename the gameobject is so that it looses the [P] tag
-                    //The tag will automatilly re-add the particle to the physics list
-                    //If an object is destoryed without being removede from the physics list,
+                    //The need to rename the gameobject is so that it loses the [P] tag
+                    //The tag will automatically re-add the particle to the physics list
+                    //If an object is destroyed without being removed from the physics list,
                     //all physics will stop until it is resolved
                 }
             }
