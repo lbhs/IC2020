@@ -9,7 +9,10 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
 {
     //  Variable Definitions
 
-    public bool startWithAllWildCards; // a bool to change all tiles to whild card when standalone scenes are present
+    [Header("Particles to start with for stand-alone scenes")]
+    public bool useStartingList; // sets stiles to particles listed on start
+    [Header("Options: 'Wild Card' and PossibleParticles list below")]
+    public string[] startingList; // options are "Wild Card" and all particles in possibleParticles
     public GameObject[] prefabs; // the list of actual objects to be spawned 
     public GameObject[] possibleParticles; // A list of objects that can be pulled from the buffet table in a specific scene.
     [Header("Ignore:")]
@@ -27,9 +30,9 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
 
     void Start()
     {
-        if(startWithAllWildCards == true)
+        if(useStartingList == true)
         {
-            ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
+            ChangeBuffetTable(startingList[0], startingList[1], startingList[2], startingList[3], startingList[4], startingList[5]);
         }
     }
 
