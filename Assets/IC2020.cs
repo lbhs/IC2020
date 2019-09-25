@@ -39,12 +39,12 @@ namespace IC2020
         public static Color Phosphorus = new Color32(255, 165, 0, 255);
         public static Color Chlorine = new Color32(31, 240, 31, 255);
         public static Color Zinc, Bromine = new Color32(165, 42, 42, 255);
-        public static Color Sodium = new Color32(245, 157, 6, 255);
+        public static Color Sodium = new Color32(170, 92, 246, 255);
         public static Color Iron = new Color32(255, 165, 0, 255);
         public static Color Magnesium = new Color32(22, 142, 241, 255);
         public static Color Calcium = new Color32(128, 128, 128, 255);
         public static Color Potassium = new Color32(255, 20, 147, 255);
-        public static Color Carbonate = new Color32(253,0,184,255);
+        public static Color Carbonate = new Color32(115,115,115,255);
     }
 
     public class Particle
@@ -155,12 +155,12 @@ namespace IC2020
 
                 // p.tag = "Particle"; // raising errors?
                 
-                Debug.Log("[DEBUG]: Particle " + p.name + " Successfully created.");
+                //Debug.Log("[DEBUG]: Particle " + p.name + " Successfully created.");
                 return p;
             }
             catch (Exception e)
             {
-                Debug.Log("[DEBUG]: Exception Raised: " + e);
+               //Debug.Log("[DEBUG]: Exception Raised: " + e);
                 return null;
             }
         }

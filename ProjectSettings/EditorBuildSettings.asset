@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/base.unity
     guid: 4b250195835e0e54ab11fe92f65beeb5
+  - enabled: 1
+    path: Assets/Scenes/Redox Reaction.unity
+    guid: f74417b74a0b27d45a09f2a7f9b68593
   m_configObjects: {}

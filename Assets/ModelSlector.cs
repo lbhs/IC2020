@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using IC2020;
 
 public class ModelSlector : MonoBehaviour
@@ -10,19 +11,26 @@ public class ModelSlector : MonoBehaviour
     public GameObject dropDownMenu;
     public GameObject cubePrefab;
     private int dropDownValue;
+    public string RedoxScene;
     [Header("Ionic Lattice Model Options")]
     public int numberOfEachMonoculesPerColor;
     private MoleculeSpawner pSpawner = new MoleculeSpawner();
-	//private List<Vector3> coordinates = new List<Vector3>();
-    
+    private GameObject BuffetTable;
+
+    //private List<Vector3> coordinates = new List<Vector3>();
+
     void Update()
     {
+        BuffetTable = GameObject.Find("Panel");
         dropDownValue = dropDownMenu.GetComponent<Dropdown>().value;
         ChooseModel();
     }
     
     public void OpenEmptyScene()
     {
+        //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
+        //for options ("Wild Card" is also an option). Make sure to spell them exactly the same
+        BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
         pannel.SetActive(false);
     }
     
@@ -50,10 +58,14 @@ public class ModelSlector : MonoBehaviour
 				Carbonate.Spawn();
 				Copper.Spawn();
             }
-            
+
+            //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
+            //for options. Make sure to spell them exactly the same
+            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Cu2+ Ion", "[P] Carbonate ion", "[P] Cl- ion", "[P] Na+ ion", "[P] Water", "[P] Water");
+
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
-            Debug.Log("[DEBUG]: Spawned CuCO3 Ionic Lattice.");
+           //Debug.Log("[DEBUG]: Spawned NaCl Ionic Lattice.");
         }
 
         //Ionic Bonding Model--SOLUBLE SALT
@@ -64,35 +76,50 @@ public class ModelSlector : MonoBehaviour
 			int count = 0;
             for(int x = 0; x < 1; x++)
             {
-				Particle Chloride = new Particle("Chloride", charge: -1f, ICColor.Chlorine, coords[count], mass: 3.0f, scale: 1.5f, bounciness: 0.4f);
+				Particle Chloride = new Particle("Chloride", charge: -0.7f, ICColor.Chlorine, coords[count], mass: 3.0f, scale: 1.5f, bounciness: 0.6f);
 				count++;
-				Particle Sodium = new Particle("Sodium Ion", charge: 1f, ICColor.Sodium, coords[count], mass: 2.0f, scale: 1.5f, bounciness: 0.4f);
+				Particle Sodium = new Particle("Sodium Ion", charge: 0.7f, ICColor.Sodium, coords[count], mass: 2.0f, scale: 1.5f, bounciness: 0.6f);
 				count++;
 				
 				Chloride.Spawn();
 				Sodium.Spawn();
             }
-            
+
+            //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
+            //for options. Make sure to spell them exactly the same
+            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("[P] Cu2+ Ion", "[P] Carbonate ion", "[P] Cl- ion", "[P] Na+ ion", "[P] Water", "[P] Water");
+
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
-            Debug.Log("[DEBUG]: Spawned NaCl Ionic Lattice.");
+           //Debug.Log("[DEBUG]: Spawned NaCl Ionic Lattice.");
         }
         
-        //EMPTY
+        //Redox Reaction Scene
         else if (dropDownValue == 3)
         {
-           
-            dropDownMenu.GetComponent<Dropdown>().value = 0;
-            pannel.SetActive(false);
+            SceneManager.LoadScene(RedoxScene);
+
+            //this is now useless because a new scene has just loaded
+            //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
+            //for options. Make sure to spell them exactly the same
+            //BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
+            //dropDownMenu.GetComponent<Dropdown>().value = 0;
+            //pannel.SetActive(false);
         }
         
         //...
         else if (dropDownValue == 4)
         {
+            //logic here
+
             //do stuff here
+            //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
+            //for options. Make sure to spell them exactly the same
+            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
         }
+
     }
 	
 	public List<Vector3> generateRandomCoords(int n)
