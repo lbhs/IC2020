@@ -39,17 +39,59 @@ public class WildCardController : MonoBehaviour
     {
         if(gameObject.activeSelf == true)
         {
-            if (PName.text != "" && PMass.text != "" && PCharge.text != "" && PSize.text != "" && PBounciness.text != "" && PFriction.text != "")
-            {
-                updateWildMenu();
-            }
+            updateWildMenu();
         }
     }
 
     public void updateWildMenu()
     {
-        //set the ui image
-        currentTile.GetComponent<Image>().sprite = Sphere;  
+        if (PName.text != "" && PMass.text != "" && PCharge.text != "" && PSize.text != "" && PBounciness.text != "" && PFriction.text != "")
+        {
+            //set the ui image
+            currentTile.GetComponent<Image>().sprite = Sphere;
+            //sets the name
+            currentTile.transform.parent.transform.GetChild(1).GetComponent<Text>().text = PName.text;
+            currentTile.GetComponent<UIDragNDrop>().particleName = PName.text;
+            //sets mass
+            currentTile.GetComponent<UIDragNDrop>().mass = float.Parse(PMass.text);
+            //sets percipate
+            currentTile.GetComponent<UIDragNDrop>().precipitate = PPercipatae.isOn;
+            //sets charge
+            currentTile.GetComponent<UIDragNDrop>().charge = float.Parse(PCharge.text);
+            if (float.Parse(PCharge.text) > 0)
+            {
+                currentTile.transform.GetChild(0).GetComponent<Image>().sprite = Plus;
+            }
+            else if (float.Parse(PCharge.text) < 0)
+            {
+                currentTile.transform.GetChild(0).GetComponent<Image>().sprite = Minus;
+            }
+            else
+            {
+                currentTile.transform.GetChild(0).GetComponent<Image>().sprite = Transparent;
+            }
+            //sets color
+            GetColor();
+            currentTile.GetComponent<Image>().color = CurrentColor;
+            currentTile.GetComponent<UIDragNDrop>().color = CurrentColor;
+            //sets size
+            currentTile.GetComponent<RectTransform>().sizeDelta = new Vector2((20 * int.Parse(PSize.text)) + 5, (20 * int.Parse(PSize.text)) + 5); //converts the prefab size to ui size using y=20x+5
+            currentTile.GetComponent<UIDragNDrop>().scale = int.Parse(PSize.text);
+            //sets bounciness
+            currentTile.GetComponent<UIDragNDrop>().bounciness = float.Parse(PBounciness.text);
+            //sets friction 
+            currentTile.GetComponent<UIDragNDrop>().friction = float.Parse(PFriction.text);
+            //sets up logic stuff
+            //currentTile.GetComponent<UIDragNDrop>().isWildCard = false; //disables wild card scripts
+            currentTile.GetComponent<UIDragNDrop>().useAddShpere = true;
+            currentTile.GetComponent<UIDragNDrop>().isInteractable = true;
+        }
+    }
+
+    public void ReverseUpdateWildMenu()
+    {
+        //To-Do: fix this code to update the wildMenu values on right click
+        /*
         //sets the name
         currentTile.transform.parent.transform.GetChild(1).GetComponent<Text>().text = PName.text;
         currentTile.GetComponent<UIDragNDrop>().particleName = PName.text;
@@ -59,7 +101,7 @@ public class WildCardController : MonoBehaviour
         currentTile.GetComponent<UIDragNDrop>().precipitate = PPercipatae.isOn;
         //sets charge
         currentTile.GetComponent<UIDragNDrop>().charge = float.Parse(PCharge.text);
-        if(float.Parse(PCharge.text) > 0)
+        if (float.Parse(PCharge.text) > 0)
         {
             currentTile.transform.GetChild(0).GetComponent<Image>().sprite = Plus;
         }
@@ -85,7 +127,7 @@ public class WildCardController : MonoBehaviour
         //sets up logic stuff
         //currentTile.GetComponent<UIDragNDrop>().isWildCard = false; //disables wild card scripts
         currentTile.GetComponent<UIDragNDrop>().useAddShpere = true;
-        currentTile.GetComponent<UIDragNDrop>().isInteractable = true;
+        currentTile.GetComponent<UIDragNDrop>().isInteractable = true; */
     }
 
     public void GetColor()
@@ -103,6 +145,7 @@ public class WildCardController : MonoBehaviour
     {
         customView.SetActive(false);
         prefabView.SetActive(true);
+        //To-Do: reset back to defalt states so one can replace a custom particel with prefab particle
     }
 
     public void CustomButton()

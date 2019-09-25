@@ -25,7 +25,6 @@ public class PrefabButtonSetter : MonoBehaviour
         WildCard.currentTile.GetComponent<Image>().sprite = gameObject.transform.GetChild(0).GetComponent<Image>().sprite; //image (sphere or water)
         WildCard.currentTile.GetComponent<Image>().color = gameObject.transform.GetChild(0).GetComponent<Image>().color; //color of above image
         WildCard.currentTile.transform.parent.transform.GetChild(1).GetComponent<Text>().text = gameObject.transform.GetChild(1).GetComponent<Text>().text; //sets the title
-        //TODO scale and fix title bug
         WildCard.currentTile.GetComponent<UIDragNDrop>().isInteractable = true;
         buffetTable.prefabs[int.Parse(WildCard.currentTile.name)] = thePrefab;
         if (gameObject.name != "Water Button") //if it exitst (in the water one, it dosen't
@@ -36,6 +35,7 @@ public class PrefabButtonSetter : MonoBehaviour
         }
         else
         {
+            WildCard.currentTile.transform.GetChild(0).GetComponent<Image>().sprite = gameObject.transform.parent.GetComponent<ParticleList>().transparent; // gets rid of +/- image
             WildCard.currentTile.GetComponent<RectTransform>().sizeDelta = new Vector2(40, 40);
         }
     }
