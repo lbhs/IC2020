@@ -36,8 +36,11 @@ public class Redox : MonoBehaviour
                     Vector3 Opos = otherP.transform.position;
 
                     //spawn the new objects with the old coordinates but flipped
-                    Instantiate(otherP.ReactionPrefab, Rpos, Quaternion.identity);
-                    Instantiate(ReactionPrefab, Opos, Quaternion.identity);
+                    GameObject P = Instantiate(otherP.ReactionPrefab, Opos, Quaternion.identity);
+                    GameObject G = Instantiate(ReactionPrefab, Rpos, Quaternion.identity);
+
+                    StartCoroutine(moveToX(G.transform, Opos, P.transform, Rpos, 1.5f, collision));
+                    //StartCoroutine(moveToX(P.transform, Rpos, 0.5f));
 
                     //Destroy the old objects
                     gameObject.name = "destroyed";
@@ -46,7 +49,8 @@ public class Redox : MonoBehaviour
 
                     otherP.gameObject.name = "destroyed";
                     mainObject.gameObjects.Remove(otherP.gameObject);
-                    Destroy(gameObject);
+                    //Destroy(gameObject);
+                    transform.position = new Vector3(100, 100, 100);
                     //The need to rename the gameobject is so that it loses the [P] tag
                     //The tag will automatically re-add the particle to the physics list
                     //If an object is destroyed without being removed from the physics list,
@@ -54,6 +58,54 @@ public class Redox : MonoBehaviour
                 }
             }
         }
+    }
+    bool isMoving = false;
+
+    IEnumerator moveToX(Transform AfromPosition, Vector3 AtoPosition, Transform BfromPosition, Vector3 BtoPosition, float duration, Collision collision)
+    {
+        //Make sure there is only one instance of this function running
+        if (isMoving)
+        {
+            yield break; ///exit if this is still running
+        }
+        isMoving = true;
+
+        float counter = 0;
+
+        //Get the current position of the object to be moved
+        Vector3 AstartPos = AfromPosition.position;
+        Vector3 BstartPos = BfromPosition.position;
+
+        float oldTime = Time.timeScale;
+        Time.timeScale = 0;
+
+        zoomIn(collision.contacts[0].point);
+
+        while (counter < duration)
+        {
+            counter += Time.unscaledDeltaTime;
+            AfromPosition.position = Vector3.Lerp(AstartPos, AtoPosition, counter / duration);
+            BfromPosition.position = Vector3.Lerp(BstartPos, BtoPosition, counter / duration);
+            yield return null;
+        }
+
+        zoomOut();
+
+        Time.timeScale = oldTime;
+
+        isMoving = false;
+    }
+
+    private void zoomIn(Vector3 pos)
+    {
+        Camera.main.orthographicSize = 2;
+        Camera.main.transform.position = new Vector3 (pos.x, pos.y, -10);
+    }
+
+    private void zoomOut()
+    {
+        Camera.main.orthographicSize = 8;
+        Camera.main.transform.position = new Vector3(0, 0, -10);
     }
 }
     /*
