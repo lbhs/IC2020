@@ -80,6 +80,7 @@ public class Redox : MonoBehaviour
         Time.timeScale = 0;
 
         zoomIn(collision.contacts[0].point);
+        yield return new WaitForSecondsRealtime(0.75f);
 
         while (counter < duration)
         {

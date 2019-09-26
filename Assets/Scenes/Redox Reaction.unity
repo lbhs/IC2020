@@ -4365,7 +4365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   G: 0
-  k: 20000
+  k: 20
   particles: []
   numWater: 0
   useFlick: 0
