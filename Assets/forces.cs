@@ -14,6 +14,7 @@ public class forces : MonoBehaviour
     public bool pressed = false;
     private GameObject pauseCanvas;
     private Scene scene;
+    [HideInInspector] public int RedoxNumber;
 
     //List of all game objects that forces should act on (gravity, electrostatic, collisions, etc.)
     [FormerlySerializedAs("gameobjects")] public List<GameObject> gameObjects = new List<GameObject>();
