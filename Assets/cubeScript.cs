@@ -26,20 +26,19 @@ public class cubeScript : MonoBehaviour
 			{ vy = 2;}
 
 		velocity = new Vector3(vx, vy, 0);
-		cube.velocity = velocity;
+		cube.velocity = velocity.normalized*4;
 		temp = temperatureSlider.value;
 		
 		GameObject.Find("GameObject").GetComponent<forces>().nonObjects.Add(gameObject);
-	}
-
+	}		
 	// Update is called once per frame
 	void FixedUpdate()
 	{
 		temp = temperatureSlider.value;
 		
-		if (Time.timeScale != 0 && GameObject.Find("GameObject").GetComponent<forces>().recording && cube.velocity.sqrMagnitude < (50 * temp))
+		if (Time.timeScale != 0 && GameObject.Find("GameObject").GetComponent<forces>().recording && cube.velocity.sqrMagnitude < (20 * temp))
 		{
-			cube.velocity *= 1.4f;
+			cube.velocity *= 1.3f;
 			//print("new velocity = " + velocity.magnitude);
 		}
 	}
