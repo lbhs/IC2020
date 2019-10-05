@@ -70,6 +70,7 @@
      <Compile Include="Assets\drag.cs" />
      <Compile Include="Assets\DragNDrop.cs" />
      <Compile Include="Assets\forces.cs" />
+     <Compile Include="Assets\GasFloat.cs" />
      <Compile Include="Assets\IC2020.cs" />
      <Compile Include="Assets\ImageFollower.cs" />
      <Compile Include="Assets\LabelAssigner.cs" />

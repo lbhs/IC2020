@@ -5,6 +5,7 @@ using UnityEngine;
 public class Redox : MonoBehaviour
 {
     private forces mainObject;
+    private float probability;
 
     [Header("Choose One (choosing none will make this a spectator ion)")]
     public bool isReducingAgent;
@@ -29,15 +30,18 @@ public class Redox : MonoBehaviour
             Redox otherP = collision.gameObject.GetComponent<Redox>(); //otherP stands for other particle
             if (otherP.isReducingAgent == true && isOxidizingAgent == true)
             {
-                if (EP + otherP.EP > 0)
+                probability = Random.Range(0.0f,1.2f);
+                print(probability);
+                if (probability < EP + otherP.EP)
                 {
+                                                                 
                     //gets positions of both objects
                     Vector3 Rpos = gameObject.transform.position;
                     Vector3 Opos = otherP.transform.position;
 
                     //spawn the new objects with the old coordinates but flipped
-                    Instantiate(otherP.ReactionPrefab, Rpos, Quaternion.identity);
-                    Instantiate(ReactionPrefab, Opos, Quaternion.identity);
+                    Instantiate(otherP.ReactionPrefab, Opos, Quaternion.identity);
+                    Instantiate(ReactionPrefab, Rpos, Quaternion.identity);
 
                     //Destroy the old objects
                     gameObject.name = "destroyed";
@@ -51,6 +55,7 @@ public class Redox : MonoBehaviour
                     //The tag will automatically re-add the particle to the physics list
                     //If an object is destroyed without being removed from the physics list,
                     //all physics will stop until it is resolved
+                    
                 }
             }
         }

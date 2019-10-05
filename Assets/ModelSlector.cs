@@ -42,7 +42,7 @@ public class ModelSlector : MonoBehaviour
             // nothing because it is the place holder text 'Choose Model'
         }
 
-        //Ionic Lattice Model--INSOLUBLE SALT
+        //ELECTRON TRANSFER Model--HCl + Zinc
         else if (dropDownValue == 1)
         {
             //randomly adds equal numbers of positive and negative ions (6 is default value)
@@ -50,13 +50,13 @@ public class ModelSlector : MonoBehaviour
 			int count = 0;
             for(int x = 0; x < numberOfEachMonoculesPerColor; x++)
             {
-				Particle Carbonate = new Particle("Carbonate", charge: -2f, ICColor.Carbonate, coords[count], mass: 4.0f, scale: 1.0f, bounciness: 0.2f, friction: 0.02f, grav: true);
+				Particle Chloride = new Particle("Chloride", charge: -1f, ICColor.Chlorine, coords[count], mass: 4.0f, scale: 1.5f, bounciness: 0.6f, friction: 0.02f, grav: false);
 				count++;
-				Particle Copper = new Particle("Copper Ion", charge: 2f, ICColor.Magnesium, coords[count], mass: 6.0f, scale: 1.0f, bounciness: 0.2f);
+				Particle Hydrogen_Ion = new Particle("Hydrogen Ion", charge: 1f, ICColor.Hydrogen, coords[count], mass: 1.0f, scale: 1.0f, bounciness: 0.6f);
 				count++;
 				
-				Carbonate.Spawn();
-				Copper.Spawn();
+				Chloride.Spawn();
+				Hydrogen_Ion.Spawn();
             }
 
             //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
@@ -97,7 +97,7 @@ public class ModelSlector : MonoBehaviour
         //Redox Reaction Scene
         else if (dropDownValue == 3)
         {
-            SceneManager.LoadScene(RedoxScene);
+            SceneManager.LoadScene("Redox Model");
 
             //this is now useless because a new scene has just loaded
             //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 

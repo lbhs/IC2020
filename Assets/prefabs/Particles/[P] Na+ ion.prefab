@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7876487097713535859}
   - component: {fileID: 4711528595709006756}
   - component: {fileID: 7650049293351751642}
+  - component: {fileID: 5088102628233826319}
   m_Layer: 0
   m_Name: '[P] Na+ ion'
   m_TagString: Untagged
@@ -124,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275dd7e633a1dc34b839f4d7b533912b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charge: 0.7
+  charge: 1
 --- !u!114 &7876487097713535859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,8 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a86380fa4264d76825bcea6c874dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useTextLable: 0
-  Lable: 
+  useTextLable: 1
+  Lable: Na+
 --- !u!114 &4711528595709006756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +168,17 @@ MonoBehaviour:
   isRewinding: 0
   frame: -1
   Arbies: {fileID: 0}
+--- !u!114 &5088102628233826319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4167671325498934118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c1ffd3219793f4aae7894f846f29bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  temp: 0
