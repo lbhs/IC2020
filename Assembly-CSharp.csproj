@@ -68,6 +68,7 @@
     <Compile Include="Assets\Buffet Table\numberCorrector.cs" />
     <Compile Include="Assets\Buffet Table\ParticleList.cs" />
     <Compile Include="Assets\Buffet Table\PrefabButtonSetter.cs" />
+    <Compile Include="Assets\Buffet Table\Reload.cs" />
     <Compile Include="Assets\Buffet Table\RenameAttribute.cs" />
     <Compile Include="Assets\Buffet Table\TableController.cs" />
     <Compile Include="Assets\Buffet Table\UIDragNDrop.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\main.cs" />
     <Compile Include="Assets\ModelSlector.cs" />
     <Compile Include="Assets\pauseScript.cs" />
+    <Compile Include="Assets\reactionCounter.cs" />
     <Compile Include="Assets\Redox.cs" />
     <Compile Include="Assets\RightClickHelper.cs" />
     <Compile Include="Assets\SpaceTime.cs" />

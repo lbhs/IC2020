@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class cubeScript : MonoBehaviour
+public class CubeScript : MonoBehaviour
 {
 
 	public Vector3 velocity;

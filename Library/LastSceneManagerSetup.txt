@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Base + Redox Model.unity
+- path: Assets/Scenes/Redox Model.unity
   isLoaded: 1
   isActive: 1
