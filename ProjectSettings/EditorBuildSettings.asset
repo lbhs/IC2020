@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Base + Redox Model.unity
+    guid: 04234944859b46d41bfc18cae36c9615
+  - enabled: 1
     path: Assets/Scenes/base.unity
     guid: 4b250195835e0e54ab11fe92f65beeb5
   - enabled: 1
