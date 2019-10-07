@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/base.unity
     guid: 4b250195835e0e54ab11fe92f65beeb5
+  - enabled: 1
+    path: Assets/Scenes/Magnesium + HCl model.unity
+    guid: cb0f5c0478f0a5340964cc3ba4266a70
+  - enabled: 1
+    path: Assets/Scenes/Zinc + HCl model.unity
+    guid: d1dd03eaee9e40b4eaeab8bf51674fec
   m_configObjects: {}
