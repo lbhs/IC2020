@@ -17,10 +17,9 @@ GameObject:
   - component: {fileID: 6920965722469523575}
   - component: {fileID: 6323791342248127287}
   - component: {fileID: 1130148215593200895}
-  - component: {fileID: 5046447219194752151}
-  - component: {fileID: 3364551085878243966}
+  - component: {fileID: 1143292009757863254}
   m_Layer: 0
-  m_Name: '[P] Pb2+ Ion'
+  m_Name: '[P] Sn metal'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 3845422906327184440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -65,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 42d3833b1daa75641a8c3529de500cd6, type: 2}
+  - {fileID: 2100000, guid: f098493395e15524ead1cb6e3a3be172, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,13 +105,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3845422906327184440}
   serializedVersion: 2
-  m_Mass: 6
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 72
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &161411859657223564
 MonoBehaviour:
@@ -126,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275dd7e633a1dc34b839f4d7b533912b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charge: 2
+  charge: 0
 --- !u!114 &6920965722469523575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useTextLable: 1
-  Lable: Pb2+
+  Lable: Sn (s)
 --- !u!114 &6323791342248127287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +168,7 @@ MonoBehaviour:
   isRewinding: 0
   frame: -1
   Arbies: {fileID: 0}
---- !u!114 &5046447219194752151
+--- !u!114 &1143292009757863254
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,22 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667f1b866ff51c440a77b8750e6ed065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isReducingAgent: 0
-  isOxidizingAgent: 1
-  EP: -0.13
-  ReactionPrefab: {fileID: 3845422906327184440, guid: 5519bce164f41264898fae3eed0d887c,
+  isReducingAgent: 1
+  isOxidizingAgent: 0
+  EP: 0.14
+  ReactionPrefab: {fileID: 3845422906327184440, guid: 89637be3146122044bd38e687c05f91c,
     type: 3}
---- !u!114 &3364551085878243966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3845422906327184440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c1ffd3219793f4aae7894f846f29bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0, z: 0}
-  temp: 0

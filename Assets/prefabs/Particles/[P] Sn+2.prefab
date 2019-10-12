@@ -17,10 +17,10 @@ GameObject:
   - component: {fileID: 6920965722469523575}
   - component: {fileID: 6323791342248127287}
   - component: {fileID: 1130148215593200895}
-  - component: {fileID: 5046447219194752151}
-  - component: {fileID: 3364551085878243966}
+  - component: {fileID: 1143292009757863254}
+  - component: {fileID: 205053416269766643}
   m_Layer: 0
-  m_Name: '[P] Pb2+ Ion'
+  m_Name: '[P] Sn+2'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   m_GameObject: {fileID: 3845422906327184440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 42d3833b1daa75641a8c3529de500cd6, type: 2}
+  - {fileID: 2100000, guid: f098493395e15524ead1cb6e3a3be172, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,7 +96,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3932801236425007388
 Rigidbody:
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useTextLable: 1
-  Lable: Pb2+
+  Lable: 'Sn+2 '
 --- !u!114 &6323791342248127287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
   isRewinding: 0
   frame: -1
   Arbies: {fileID: 0}
---- !u!114 &5046447219194752151
+--- !u!114 &1143292009757863254
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,10 +183,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isReducingAgent: 0
   isOxidizingAgent: 1
-  EP: -0.13
-  ReactionPrefab: {fileID: 3845422906327184440, guid: 5519bce164f41264898fae3eed0d887c,
+  EP: -0.14
+  ReactionPrefab: {fileID: 3845422906327184440, guid: f07f6053fc4efb1499c24adea9e227ce,
     type: 3}
---- !u!114 &3364551085878243966
+--- !u!114 &205053416269766643
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

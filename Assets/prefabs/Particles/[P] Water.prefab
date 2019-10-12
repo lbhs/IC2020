@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1347937287224810596}
   - component: {fileID: 2524492163008360572}
   - component: {fileID: 7573253616545613151}
+  - component: {fileID: 8032343780735355344}
   m_Layer: 0
   m_Name: '[P] Water'
   m_TagString: Water
@@ -92,7 +93,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838215635987691934}
-  m_Material: {fileID: 13400000, guid: 11009cc0040ed284ba6ded78833ca244, type: 2}
+  m_Material: {fileID: 13400000, guid: 89a05793cec81784f9cbb5a3cbd5493b, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -112,7 +113,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0
 --- !u!114 &539749759784109462
 MonoBehaviour:
@@ -121,7 +122,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838215635987691934}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86c1ffd3219793f4aae7894f846f29bd, type: 3}
   m_Name: 
@@ -169,6 +170,20 @@ MonoBehaviour:
   isRewinding: 0
   frame: -1
   Arbies: {fileID: 838215635987691929}
+--- !u!114 &8032343780735355344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215635987691934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c47fb2d1f1f794f9b2572d081ac504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  temp: 0
 --- !u!1 &838215636911785444
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +274,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838215636911785444}
-  m_Material: {fileID: 13400000, guid: 11009cc0040ed284ba6ded78833ca244, type: 2}
+  m_Material: {fileID: 13400000, guid: 89a05793cec81784f9cbb5a3cbd5493b, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -506,7 +521,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838215637822072589}
-  m_Material: {fileID: 13400000, guid: 11009cc0040ed284ba6ded78833ca244, type: 2}
+  m_Material: {fileID: 13400000, guid: 89a05793cec81784f9cbb5a3cbd5493b, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

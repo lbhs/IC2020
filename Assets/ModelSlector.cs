@@ -42,16 +42,16 @@ public class ModelSlector : MonoBehaviour
             // nothing because it is the place holder text 'Choose Model'
         }
 
-        //ELECTRON TRANSFER Model--Magnesium + HCl
+        //ELECTRON TRANSFER Model--Battle Royal
         else if (dropDownValue == 1)
         {
-            SceneManager.LoadScene("Magnesium + HCl model");
+            SceneManager.LoadScene("Battle Royal (activity series)");
         }
 
         //Redox Model--Zinc + HCl
         else if (dropDownValue == 2)
         {
-            SceneManager.LoadScene("Zinc + HCl model");
+            SceneManager.LoadScene("Breakout");
         }
         
         //Redox Reaction Scene

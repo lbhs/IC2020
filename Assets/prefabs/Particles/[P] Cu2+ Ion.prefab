@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6323791342248127287}
   - component: {fileID: 1130148215593200895}
   - component: {fileID: 5046447219194752151}
+  - component: {fileID: 3324206249918277548}
   m_Layer: 0
   m_Name: '[P] Cu2+ Ion'
   m_TagString: Untagged
@@ -91,7 +92,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3845422906327184440}
-  m_Material: {fileID: 13400000, guid: c76373ef27f35498ca2289ac72f530be, type: 2}
+  m_Material: {fileID: 13400000, guid: 89a05793cec81784f9cbb5a3cbd5493b, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -111,7 +112,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 72
   m_CollisionDetection: 0
 --- !u!114 &161411859657223564
 MonoBehaviour:
@@ -138,8 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a86380fa4264d76825bcea6c874dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useTextLable: 0
-  Lable: 
+  useTextLable: 1
+  Lable: Cu+2
 --- !u!114 &6323791342248127287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,3 +186,17 @@ MonoBehaviour:
   EP: 0.34
   ReactionPrefab: {fileID: 3845422906327184440, guid: e686c8e338ef4474ab1d05aab77dabfb,
     type: 3}
+--- !u!114 &3324206249918277548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845422906327184440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c1ffd3219793f4aae7894f846f29bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  temp: 0
