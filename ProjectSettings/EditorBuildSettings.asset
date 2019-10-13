@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Breakout.unity
     guid: 0913feee5ece08d4abdaf2ab017e8926
+  - enabled: 1
+    path: Assets/Scenes/Chemistry Art.unity
+    guid: 3a5c84c3235b790479110a76f975ecc3
   m_configObjects: {}

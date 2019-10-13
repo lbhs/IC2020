@@ -48,16 +48,16 @@ public class ModelSlector : MonoBehaviour
             SceneManager.LoadScene("Battle Royal (activity series)");
         }
 
-        //Redox Model--Zinc + HCl
+        //Redox Model--Breakout
         else if (dropDownValue == 2)
         {
             SceneManager.LoadScene("Breakout");
         }
         
-        //Redox Reaction Scene
+        //Redox Model--Chemistry Art
         else if (dropDownValue == 3)
         {
-            SceneManager.LoadScene("Redox Model");
+            SceneManager.LoadScene("Chemistry Art");
 
             //this is now useless because a new scene has just loaded
             //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
