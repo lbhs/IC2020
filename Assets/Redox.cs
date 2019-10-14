@@ -8,9 +8,11 @@ public class Redox : MonoBehaviour
     private forces mainObject;
     private float probability;
     private float tempfactor;
-    //private float temp;
     private Slider temperatureSlider;
-
+    public AudioSource Soundsource;
+    public AudioClip Playthis;
+    
+    
     [Header("Choose One (choosing none will make this a spectator ion)")]
     public bool isReducingAgent;
     public bool isOxidizingAgent;
@@ -26,6 +28,9 @@ public class Redox : MonoBehaviour
     {
         mainObject = GameObject.Find("GameObject").GetComponent<forces>();
         temperatureSlider = GameObject.Find("temperatureSlider").GetComponent<Slider>();
+        Soundsource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //Playthis = GameObject.Find("Sounds").GetComponent<AudioClip>();
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,7 +46,7 @@ public class Redox : MonoBehaviour
                 print(probability);
                 if (probability < EP + otherP.EP)
                 {
-                                                                 
+                    
                     //gets positions of both objects
                     Vector3 Rpos = gameObject.transform.position;
                     Vector3 Opos = otherP.transform.position;
@@ -58,6 +63,9 @@ public class Redox : MonoBehaviour
                     otherP.gameObject.name = "destroyed";
                     mainObject.gameObjects.Remove(otherP.gameObject);
                     Destroy(gameObject);
+
+                    Soundsource.Play();
+
                     //The need to rename the gameobject is so that it loses the [P] tag
                     //The tag will automatically re-add the particle to the physics list
                     //If an object is destroyed without being removed from the physics list,
