@@ -42,9 +42,8 @@ deploy:
     target_branch: pages-integ
     on:
       all_branches: true
-      tag: true
+      tags: true
       repo: lbhs/IC2020
-      condition: "$TRAVIS_COMMIT_MESSAGE =~ \deploy integ\"
   - provider: pages
     skip_cleanup: true
     github_token: "$GITHUB_TOKEN"
