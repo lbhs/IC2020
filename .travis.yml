@@ -42,7 +42,6 @@ deploy:
     target_branch: pages-integ
     on:
       all_branches: true
-      tags: true
       repo: lbhs/IC2020
   - provider: pages
     skip_cleanup: true
