@@ -9,8 +9,6 @@ Built in Unity 2018.3.14f1 for WebGL
 
 -different shapes (triangles)
 
--add/make flasky
-
 -forces arrow
 
 -save and load scenes from drop down
