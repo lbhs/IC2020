@@ -19,6 +19,7 @@ branches:
     - "/^integ\\..*$/"
     - "/^preprod\\..*$/"
     - "/^prod\\..*$/"
+    - Ben
 jobs:
   include:
     - stage: build
