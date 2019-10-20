@@ -44,7 +44,7 @@ deploy:
       all_branches: true
       tag: true
       repo: lbhs/IC2020
-      condition: "$TRAVIS_TAG =~ ^integ\\..*$"
+      condition: "$TRAVIS_COMMIT_MESSAGE =~ \deploy integ\"
   - provider: pages
     skip_cleanup: true
     github_token: "$GITHUB_TOKEN"
