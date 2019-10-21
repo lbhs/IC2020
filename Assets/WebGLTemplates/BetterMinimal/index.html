@@ -6,7 +6,7 @@
 	<title>%UNITY_WEB_NAME%</title>
 	<script src="%UNITY_WEBGL_LOADER_URL%"></script>
 	<script>
-		var gameInstance = UnityLoader.instantiate("gameContainer", "%UNITY_WEBGL_BUILD_URL%");
+		var gameInstance = UnityLoader.instantiate("gameContainer", "%UNITY_WEBGL_BUILD_URL%", {onProgress: UnityProgress});
 		var scaleToFit;
 		try{
 			scaleToFit = !!JSON.parse("%UNITY_CUSTOM_SCALE_TO_FIT%");
