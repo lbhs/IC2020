@@ -763,6 +763,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6920965722469523575, guid: a3f3eeb698c5b42f29d1c847081b4998,
+        type: 3}
+      propertyPath: hasFlag
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3f3eeb698c5b42f29d1c847081b4998, type: 3}
 --- !u!1001 &203150214
@@ -900,6 +905,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920965722469523575, guid: 5519bce164f41264898fae3eed0d887c,
+        type: 3}
+      propertyPath: hasFlag
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5519bce164f41264898fae3eed0d887c, type: 3}
@@ -1598,6 +1608,8 @@ MonoBehaviour:
   - {fileID: 8520551613667858557, guid: b4d9ba947cdb3894fbb66450481d9f9b, type: 3}
   - {fileID: 8520551613667858557, guid: a6098b3de202abf45832b953cbc0f9ed, type: 3}
   TextPrefab: {fileID: 1778059490039022324, guid: 3d0caadaba4a8ab498edef36768946f8,
+    type: 3}
+  FlagPrefab: {fileID: 1778059490039022324, guid: 4f36db14a957ac742ab746d681574833,
     type: 3}
 --- !u!1 &428324403
 GameObject:
@@ -7614,7 +7626,7 @@ PrefabInstance:
     - target: {fileID: 6638494397849021237, guid: 77321fe566e33744ea2b3c07fa7c026f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000015258789
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6638494397849021237, guid: 77321fe566e33744ea2b3c07fa7c026f,
         type: 3}
@@ -7671,14 +7683,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6638494399311827351, guid: 77321fe566e33744ea2b3c07fa7c026f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6638494399224700728, guid: 77321fe566e33744ea2b3c07fa7c026f,
         type: 3}
       propertyPath: startWithAllWildCards
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638494399311827351, guid: 77321fe566e33744ea2b3c07fa7c026f,
+        type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6638494397682654941, guid: 77321fe566e33744ea2b3c07fa7c026f,
