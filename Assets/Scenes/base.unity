@@ -5787,7 +5787,7 @@ PrefabInstance:
     - target: {fileID: 6638494399224700728, guid: 77321fe566e33744ea2b3c07fa7c026f,
         type: 3}
       propertyPath: useStartingList
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6638494398535878093, guid: 77321fe566e33744ea2b3c07fa7c026f,
         type: 3}
