@@ -6,4 +6,5 @@ public class LableManager : MonoBehaviour
 {
     public GameObject[] imagePrefabs;
     public GameObject TextPrefab;
+    public GameObject FlagPrefab;
 }

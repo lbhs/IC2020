@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Breakout.unity
     guid: 0913feee5ece08d4abdaf2ab017e8926
   - enabled: 1
-    path: Assets/Scenes/Chemistry Art.unity
-    guid: 3a5c84c3235b790479110a76f975ecc3
+    path: Assets/Scenes/Penny models.unity
+    guid: a2c6b81cc7fd44149a3485b7ab86d337
+  - enabled: 1
+    path: Assets/Scenes/Tin Man Model.unity
+    guid: bc0ba1149421c6241adee8ef8f03280b
   m_configObjects: {}

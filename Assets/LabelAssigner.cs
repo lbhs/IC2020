@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class LabelAssigner : MonoBehaviour
 {
+    public bool hasFlag = false; 
     public bool useTextLable;
     public string Lable;
     private int imgToUse;
@@ -27,6 +28,12 @@ public class LabelAssigner : MonoBehaviour
             tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
             tempLable.GetComponent<ImageFollower>().sphereToFollow = gameObject;
             tempLable.GetComponent<Text>().text = Lable;
+        }
+        if (hasFlag)
+        {
+            tempLable = MonoBehaviour.Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().FlagPrefab, Vector3.zero, Quaternion.identity);
+            tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
+            tempLable.GetComponent<ImageFollower>().sphereToFollow = gameObject;
         }
     }
 

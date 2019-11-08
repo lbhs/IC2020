@@ -57,7 +57,7 @@ public class ModelSlector : MonoBehaviour
         //Redox Model--Chemistry Art
         else if (dropDownValue == 3)
         {
-            SceneManager.LoadScene("Chemistry Art");
+            SceneManager.LoadScene("Penny models");
 
             //this is now useless because a new scene has just loaded
             //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
@@ -71,13 +71,13 @@ public class ModelSlector : MonoBehaviour
         else if (dropDownValue == 4)
         {
             //logic here
-
+            SceneManager.LoadScene("Tin Man Model");
             //do stuff here
             //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
             //for options. Make sure to spell them exactly the same
-            BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
+            /*BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
             dropDownMenu.GetComponent<Dropdown>().value = 0;
-            pannel.SetActive(false);
+            pannel.SetActive(false);*/
         }
 
     }

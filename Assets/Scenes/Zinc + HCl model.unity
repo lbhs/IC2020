@@ -5475,7 +5475,7 @@ PrefabInstance:
     - target: {fileID: 6638494397849021237, guid: 77321fe566e33744ea2b3c07fa7c026f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000015258789
+      value: 0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 6638494397849021237, guid: 77321fe566e33744ea2b3c07fa7c026f,
         type: 3}
@@ -5814,5 +5814,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.6698113
       objectReference: {fileID: 0}
+    - target: {fileID: 429913213851146235, guid: 77321fe566e33744ea2b3c07fa7c026f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d41eb564838d2004fb9293e9dc55f17b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77321fe566e33744ea2b3c07fa7c026f, type: 3}
