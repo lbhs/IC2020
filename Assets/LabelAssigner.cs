@@ -11,7 +11,7 @@ public class LabelAssigner : MonoBehaviour
     private int imgToUse;
     private GameObject tempLable;
 
-    void OnEnable()
+    void Start()
     {
         if (!useTextLable)
         {
