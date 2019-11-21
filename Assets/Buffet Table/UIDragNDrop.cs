@@ -52,7 +52,8 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 
     void Start()
     {
-        WildCardMenu.SetActive(false);
+        //undo the comment below to enable wild card
+        //WildCardMenu.SetActive(false);
         num = int.Parse(gameObject.name);
     }
 

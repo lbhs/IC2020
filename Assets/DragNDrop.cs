@@ -43,11 +43,11 @@ public class DragNDrop : MonoBehaviour
         // Convert it to world points
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
-    
+
     void OnMouseDrag()
     {
         transform.position = GetMouseAsWorldPoint() + mOffset;
-		gameObject.GetComponent<Rigidbody>().MovePosition(GetMouseAsWorldPoint() + mOffset);
+        gameObject.GetComponent<Rigidbody>().MovePosition(GetMouseAsWorldPoint() + mOffset);
     }
 
     void OnMouseUp()
@@ -56,7 +56,7 @@ public class DragNDrop : MonoBehaviour
         Vector3 mousePos = Input.mousePosition * -1.0f;
         mousePos.z = 0;
         mouseEndTime = Time.time;
-        float timePassed = (mouseEndTime -mouseStartTime);
+        float timePassed = (mouseEndTime - mouseStartTime);
         //Debug.Log(timePassed);
 
         //convert mouse to world position
@@ -66,11 +66,11 @@ public class DragNDrop : MonoBehaviour
         //Debug.Log("Min" + Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMin)).y);
         //Debug.Log(Camera.main.ViewportToWorldPoint(new Vector3(0, Camera.main.rect.yMax)).y);
         //makes sure the gameobject is inside the camera
-     
+
 
         //Debug.Log(-Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x);
 
-        //logic to determine flick vs drag && calculating force vector to be added
+        //logic to determin flick vs drag && caculating force vector to be added
         //Debug.Log(Vector3.Distance(mouseStartPos, mouseEndPos));
         if (Vector3.Distance(mouseStartPos, mouseEndPos) > 12 && timePassed < 0.3f && Time.timeScale != 0 && GameObject.Find("GameObject").GetComponent<main>().useFlick)
         {
@@ -108,7 +108,7 @@ public class DragNDrop : MonoBehaviour
                 //Debug.Log("left");
             }
 
-            //calculates and flicks the particle
+            //caculates and flicks the particle
             Vector3 throwDir = (mouseStartPos - mouseEndPos).normalized;
             Vector3 forceToAdd = (.5f * throwDir * (mouseStartPos - mouseEndPos).sqrMagnitude);
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(forceToAdd.x, forceToAdd.y, 0);
@@ -143,7 +143,7 @@ public class DragNDrop : MonoBehaviour
                 DestroyParticle();
                 //Debug.Log("left");
             }
-            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0); 
+            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         }
     }
 
@@ -176,14 +176,14 @@ public class DragNDrop : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
-        //defining objects/variables
+        //defining objects/varibles
         rightCanvas = GameObject.Find("Right-Click Canvas");
         rightMenu = rightCanvas.GetComponent<RightClickHelper>().rightMenu;
         rightMenu.SetActive(false);
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
     }
 
-    //updates every frame
+    //updates everyframe
     void Update()
     {
         //set up for finding the object that was right clicked
@@ -196,21 +196,21 @@ public class DragNDrop : MonoBehaviour
             if (Physics.Raycast(ray, out hit) && canBeRightClicked)
             {
 
-                //calculates where the menu must be
+                //caculates where the menu must be
                 rightCanvas.GetComponent<RightClickHelper>().CheckRightVisablity();
-        
+
                 //------------------------sets the position of the right-click menu------------------------
                 //rightMenu.transform.position = Input.mousePosition + menuOffest;
                 //makes sure that right click menu is in screen
-                
 
-                //makes menu visible
+
+                //makes menu visable
                 rightMenu.SetActive(true);
 
-                //update the variable so that RightClickHelper knows what sphere to edit
+                //update the varible so that RightClickHelper knows what sphere to edit
                 rightCanvas.GetComponent<RightClickHelper>().currentSphere = hit.rigidbody.gameObject;
 
-                //------------------------updates menu values on click------------------------
+                //------------------------updates menu vaules on click------------------------
 
                 //mass
                 rightCanvas.GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text = hit.rigidbody.mass.ToString();
@@ -223,17 +223,20 @@ public class DragNDrop : MonoBehaviour
                 {
                     rightCanvas.GetComponent<RightClickHelper>().Color1.GetComponent<Toggle>().isOn = true;
                     rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color1.GetComponent<Toggle>());
-                }else
+                }
+                else
                 if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.blue)
                 {
                     rightCanvas.GetComponent<RightClickHelper>().Color2.GetComponent<Toggle>().isOn = true;
                     rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color2.GetComponent<Toggle>());
-                }else
+                }
+                else
                 if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.green)
                 {
                     rightCanvas.GetComponent<RightClickHelper>().Color3.GetComponent<Toggle>().isOn = true;
                     rightCanvas.GetComponent<RightClickHelper>().toggleGroup.GetComponent<ToggleGroup>().NotifyToggleOn(rightCanvas.GetComponent<RightClickHelper>().Color3.GetComponent<Toggle>());
-                }else
+                }
+                else
                 if (hit.rigidbody.gameObject.GetComponent<Renderer>().material.color == Color.yellow)
                 {
                     rightCanvas.GetComponent<RightClickHelper>().Color4.GetComponent<Toggle>().isOn = true;
@@ -249,11 +252,11 @@ public class DragNDrop : MonoBehaviour
                 {
                     rightCanvas.GetComponent<RightClickHelper>().Size2.GetComponent<Toggle>().isOn = true;
                 }
-                
+
             }
         }
-        
-      
+
+
     }
     private bool CheckConstraints(Rigidbody rb)
     {
@@ -269,69 +272,62 @@ public class DragNDrop : MonoBehaviour
         return itWorks;
     }
 }
-                //else if (hit.rigidbody.gameObject.transform.localScale == new Vector3(2, 2, 2)
+//else if (hit.rigidbody.gameObject.transform.localScale == new Vector3(2, 2, 2)
 
-                    //rightCanvas.GetComponent<RightClickHelper>().Size2.GetComponent<Toggle>().isOn = true;
-                
-            //rightCanvas.GetComponent<RightClickHelper>().Elastic.GetComponent<Toggle>().isOn = hit.rigidbody.gameObject.GetComponent<elastic>().enabled;
+//rightCanvas.GetComponent<RightClickHelper>().Size2.GetComponent<Toggle>().isOn = true;
 
-        
-    //rightCanvas.GetComponent<RightClickHelper>().currentSphere = hit.rigidbody.gameObject;
-
-                //anchor   -this made the size bool act weird when setting the bool to is on- 
-                //bool test;
-                //test = CheckConstraints(hit.rigidbody.gameObject.GetComponent<Rigidbody>());
-                //rightCanvas.GetComponent<RightClickHelper>().anchorToggle.GetComponent<Toggle>().isOn = test;
-                    /*CheckConstraints(hit.rigidbody.gameObject.GetComponent<Rigidbody>())*/
-                //Debug.Log(test);
+//rightCanvas.GetComponent<RightClickHelper>().Elastic.GetComponent<Toggle>().isOn = hit.rigidbody.gameObject.GetComponent<elastic>().enabled;
 
 
-                //UpdateRightMenuStats();
-                //Debug.Log("yep");
+//rightCanvas.GetComponent<RightClickHelper>().currentSphere = hit.rigidbody.gameObject;
+
+//anchor   -this made the size bool act weird when setting the bool to is on- 
+//bool test;
+//test = CheckConstraints(hit.rigidbody.gameObject.GetComponent<Rigidbody>());
+//rightCanvas.GetComponent<RightClickHelper>().anchorToggle.GetComponent<Toggle>().isOn = test;
+/*CheckConstraints(hit.rigidbody.gameObject.GetComponent<Rigidbody>())*/
+//Debug.Log(test);
+
+
+//UpdateRightMenuStats();
+//Debug.Log("yep");
 
 
 
-                /*
-                if (Input.GetMouseButtonDown(0))
-                {
-                    //rightMenu.SetActive(false);
-                }
-
-                //to make sure that only one object is being effective
-                if(gameObject.GetComponent<SphereCollider>().bounds.Contains(rightCanvas.GetComponent<RightClickHelper>().triggerPoint.transform.position))
-                {
-                    rightCanvas.GetComponent<RightClickHelper>().currentSphere = gameObject;
-                   //Debug.Log("target acquired: " + rightCanvas.GetComponent<RightClickHelper>().currentSphere);
-                }*/
-
-
-                /*
-        //private float num;
-        private string tempText;
-        private float tempMass;
-        private void UpdateRightMenuStats()
-        {
-
-            //updating Mass
-            rightCanvas.GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text = tempText;
-            hit.rigidbody.mass = tempMass;
-            tempText = tempMass.ToString();
+/*
+if (Input.GetMouseButtonDown(0))
+{
+    //rightMenu.SetActive(false);
+}
+//to make sure that only one object is being effective
+if(gameObject.GetComponent<SphereCollider>().bounds.Contains(rightCanvas.GetComponent<RightClickHelper>().triggerPoint.transform.position))
+{
+    rightCanvas.GetComponent<RightClickHelper>().currentSphere = gameObject;
+   //Debug.Log("target aquired: " + rightCanvas.GetComponent<RightClickHelper>().currentSphere);
+}*/
 
 
-            tempText = tempMass.ToString();
-               //Debug.Log(tempText);
-
-                StringToFloat(rightCanvas.GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text, num );
-                num = 3;
-                //num = gameObject.GetComponent<Rigidbody>().mass;
-        }
-
-        public void StringToFloat(string inputString, float floatToRetrun)
-        {
-            if (inputString != null)
-            {
-                 floatToRetrun = float.Parse(inputString);
-            }
-        }
-                */
-     
+/*
+//private float num;
+private string tempText;
+private float tempMass;
+private void UpdateRightMenuStats()
+{
+//updating Mass
+rightCanvas.GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text = tempText;
+hit.rigidbody.mass = tempMass;
+tempText = tempMass.ToString();
+tempText = tempMass.ToString();
+//Debug.Log(tempText);
+StringToFloat(rightCanvas.GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text, num );
+num = 3;
+//num = gameObject.GetComponent<Rigidbody>().mass;
+}
+public void StringToFloat(string inputString, float floatToRetrun)
+{
+if (inputString != null)
+{
+ floatToRetrun = float.Parse(inputString);
+}
+}
+*/
