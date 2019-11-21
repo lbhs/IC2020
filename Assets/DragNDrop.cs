@@ -70,7 +70,7 @@ public class DragNDrop : MonoBehaviour
 
         //Debug.Log(-Camera.main.ViewportToWorldPoint(new Vector3(Camera.main.rect.xMin, 0)).x);
 
-        //logic to determin flick vs drag && caculating force vector to be added
+        //logic to determine flick vs drag && calculating force vector to be added
         //Debug.Log(Vector3.Distance(mouseStartPos, mouseEndPos));
         if (Vector3.Distance(mouseStartPos, mouseEndPos) > 12 && timePassed < 0.3f && Time.timeScale != 0 && GameObject.Find("GameObject").GetComponent<main>().useFlick)
         {
@@ -108,7 +108,7 @@ public class DragNDrop : MonoBehaviour
                 //Debug.Log("left");
             }
 
-            //caculates and flicks the particle
+            //calculates and flicks the particle
             Vector3 throwDir = (mouseStartPos - mouseEndPos).normalized;
             Vector3 forceToAdd = (.5f * throwDir * (mouseStartPos - mouseEndPos).sqrMagnitude);
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(forceToAdd.x, forceToAdd.y, 0);
@@ -176,14 +176,14 @@ public class DragNDrop : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
-        //defining objects/varibles
+        //defining objects/variables
         rightCanvas = GameObject.Find("Right-Click Canvas");
         rightMenu = rightCanvas.GetComponent<RightClickHelper>().rightMenu;
         rightMenu.SetActive(false);
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
     }
 
-    //updates everyframe
+    //updates every frame
     void Update()
     {
         //set up for finding the object that was right clicked
@@ -196,7 +196,7 @@ public class DragNDrop : MonoBehaviour
             if (Physics.Raycast(ray, out hit) && canBeRightClicked)
             {
 
-                //caculates where the menu must be
+                //calculates where the menu must be
                 rightCanvas.GetComponent<RightClickHelper>().CheckRightVisablity();
         
                 //------------------------sets the position of the right-click menu------------------------
@@ -204,13 +204,13 @@ public class DragNDrop : MonoBehaviour
                 //makes sure that right click menu is in screen
                 
 
-                //makes menu visable
+                //makes menu visible
                 rightMenu.SetActive(true);
 
-                //update the varible so that RightClickHelper knows what sphere to edit
+                //update the variable so that RightClickHelper knows what sphere to edit
                 rightCanvas.GetComponent<RightClickHelper>().currentSphere = hit.rigidbody.gameObject;
 
-                //------------------------updates menu vaules on click------------------------
+                //------------------------updates menu values on click------------------------
 
                 //mass
                 rightCanvas.GetComponent<RightClickHelper>().Mass.GetComponent<InputField>().text = hit.rigidbody.mass.ToString();
@@ -301,7 +301,7 @@ public class DragNDrop : MonoBehaviour
                 if(gameObject.GetComponent<SphereCollider>().bounds.Contains(rightCanvas.GetComponent<RightClickHelper>().triggerPoint.transform.position))
                 {
                     rightCanvas.GetComponent<RightClickHelper>().currentSphere = gameObject;
-                   //Debug.Log("target aquired: " + rightCanvas.GetComponent<RightClickHelper>().currentSphere);
+                   //Debug.Log("target acquired: " + rightCanvas.GetComponent<RightClickHelper>().currentSphere);
                 }*/
 
 

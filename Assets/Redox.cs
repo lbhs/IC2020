@@ -43,7 +43,7 @@ public class Redox : MonoBehaviour
                 //temp = temperatureSlider.value;
                 tempfactor = 5.1f/temperatureSlider.value; 
                 probability = Random.Range(0.0f,tempfactor);
-                print(probability);
+                //print(probability);
                 if (probability < EP + otherP.EP)
                 {
                     
@@ -51,9 +51,21 @@ public class Redox : MonoBehaviour
                     Vector3 Rpos = gameObject.transform.position;
                     Vector3 Opos = otherP.transform.position;
 
+                    GameObject NewObject1;
+                    GameObject NewObject2;
                     //spawn the new objects with the old coordinates but flipped
-                    Instantiate(otherP.ReactionPrefab, Opos, Quaternion.identity);
-                    Instantiate(ReactionPrefab, Rpos, Quaternion.identity);
+                    NewObject1 = Instantiate(otherP.ReactionPrefab, Opos, Quaternion.identity);
+                    NewObject2 = Instantiate(ReactionPrefab, Rpos, Quaternion.identity);
+
+                    //Flag management
+                    if (otherP.GetComponent<LabelAssigner>().hasFlag == true)
+                    {
+                        NewObject2.GetComponent<LabelAssigner>().hasFlag = true;
+                    }
+                    else if (gameObject.GetComponent<LabelAssigner>().hasFlag == true)
+                    {
+                        NewObject1.GetComponent<LabelAssigner>().hasFlag = true;
+                    }
 
                     //Destroy the old objects
                     gameObject.name = "destroyed";
@@ -64,13 +76,14 @@ public class Redox : MonoBehaviour
                     mainObject.gameObjects.Remove(otherP.gameObject);
                     Destroy(gameObject);
 
+                    //Plays a sound
                     Soundsource.Play();
 
                     //The need to rename the gameobject is so that it loses the [P] tag
                     //The tag will automatically re-add the particle to the physics list
                     //If an object is destroyed without being removed from the physics list,
                     //all physics will stop until it is resolved
-                    
+
                 }
             }
         }

@@ -112,7 +112,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 72
+  m_Constraints: 56
   m_CollisionDetection: 0
 --- !u!114 &161411859657223564
 MonoBehaviour:
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a86380fa4264d76825bcea6c874dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasFlag: 0
   useTextLable: 1
   Lable: Mg+2
 --- !u!114 &6323791342248127287
@@ -181,6 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667f1b866ff51c440a77b8750e6ed065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Soundsource: {fileID: 0}
+  Playthis: {fileID: 0}
   isReducingAgent: 0
   isOxidizingAgent: 1
   EP: -2.37

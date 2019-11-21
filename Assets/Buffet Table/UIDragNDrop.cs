@@ -34,7 +34,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnEndDrag(PointerEventData eventData)
     {
         // sets usingMe to false when dropped.
-        
+
         transform.localPosition = Vector3.zero; // Resets the image's position to the buffet table.
         UseingMe = false;
 
@@ -65,6 +65,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
             WildCardMenu.SetActive(true);
             RightClickMenu.SetActive(false);
             WildCardMenu.GetComponent<WildCardController>().currentTile = gameObject;
+            WildCardMenu.GetComponent<WildCardController>().ReverseUpdateWildMenu();
             //Debug.Log(gameObject.name);
             //WildCardMenu.GetComponent<WildCardController>().updateWildMenu();
         }

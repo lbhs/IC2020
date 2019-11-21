@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8355711362408608263}
   - component: {fileID: 8274506864405917698}
   m_Layer: 0
-  m_Name: '[P] Siulfate ion'
+  m_Name: '[P] Sulfate ion'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 72
   m_CollisionDetection: 0
 --- !u!114 &6579153652095444058
 MonoBehaviour:
@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a86380fa4264d76825bcea6c874dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasFlag: 0
   useTextLable: 1
   Lable: SO4 -
 --- !u!114 &8355711362408608263
