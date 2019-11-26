@@ -5,10 +5,10 @@ using UnityEngine.EventSystems;
 
 public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 {
-    [HideInInspector] public bool isWildCard; //varible to know if this tile should be a wild card
+    [HideInInspector] public bool isWildCard; //variable to know if this tile should be a wild card
     [HideInInspector] public bool useAddShpere = false;
     [HideInInspector] public bool isInteractable = true;
-    //all the vaible determining what gets spawned
+    //all the variables determining what gets spawned
     [HideInInspector] public string particleName;
     [HideInInspector] public float charge;
     [HideInInspector] public Color color;
@@ -28,7 +28,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
             transform.position = Input.mousePosition; // Makes the image follow the mouse.
             UseingMe = true;
         }
-        WildCardMenu.SetActive(false);
+        //WildCardMenu.SetActive(false);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -52,7 +52,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 
     void Start()
     {
-        //undo the comment below to enable wild card
+        //undo the comment below to enable wild card. also line 31 in OnDrag function
         //WildCardMenu.SetActive(false);
         num = int.Parse(gameObject.name);
     }

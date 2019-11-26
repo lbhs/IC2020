@@ -43,10 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17dc45e5dc09c944c92e915cdddaeb62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Reactions:
-  - reactants:
-    - {fileID: 3049033415806262402, guid: 357dddf7efb19944995bba62cdce0f56, type: 3}
-    - {fileID: 3845422906327184440, guid: 89637be3146122044bd38e687c05f91c, type: 3}
-    products:
-    - {fileID: 838215635987691934, guid: 495c4a81cb8fb3740b9f0a6fd6d9b202, type: 3}
-    - {fileID: 8521043326856526923, guid: 677a7f569fc043a4dbd201ee2d411240, type: 3}
+  Reactions: []

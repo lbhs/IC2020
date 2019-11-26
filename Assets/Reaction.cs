@@ -21,7 +21,7 @@ public class Reaction : MonoBehaviour
         {
             //add the object to the list
             TriggerList.Add(other);
-            Debug.Log(other);
+            //Debug.Log(other);
         }
     }
 
@@ -44,14 +44,13 @@ public class Reaction : MonoBehaviour
             //Debug.Log("Start----------------------------------------");
             int Number = 0;
             List<GameObject> Pos = new List<GameObject>();
+            Pos.Add(gameObject);
             foreach (var O in TriggerList)
             {
-                
-
                 foreach  (var RO in R.reactants)
                 {
                     //Debug.Log(O.gameObject.transform.root.name + "     "  + RO.gameObject.name);
-                    if(O.gameObject.transform.root.name == RO.gameObject.name)
+                    if(O.gameObject.transform.root.name == RO.gameObject.name && !Pos.Contains(O.gameObject))
                     {
                         Number++;
                         Pos.Add(O.gameObject);
@@ -59,7 +58,7 @@ public class Reaction : MonoBehaviour
                         break;
                     }
                 }
-
+                Debug.Log(Number + "           " + R.reactants.Length + "            " + gameObject);
                 //code for products
                 if(Number == R.reactants.Length)
                 {
@@ -76,7 +75,7 @@ public class Reaction : MonoBehaviour
 
                     foreach (var P in Pos)
                     {
-                        Destroy(P);
+                        Destroy(P.transform.root.gameObject);
                     }
                     //Debug.Log("Reaction!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 }
