@@ -30,7 +30,7 @@ public class ModelSlector : MonoBehaviour
     {
         //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
         //for options ("Wild Card" is also an option). Make sure to spell them exactly the same
-        BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
+        //BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
         pannel.SetActive(false);
     }
     

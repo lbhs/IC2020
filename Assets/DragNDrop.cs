@@ -177,9 +177,9 @@ public class DragNDrop : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
         //defining objects/varibles
-        rightCanvas = GameObject.Find("Right-Click Canvas");
-        rightMenu = rightCanvas.GetComponent<RightClickHelper>().rightMenu;
-        rightMenu.SetActive(false);
+        //rightCanvas = GameObject.Find("Right-Click Canvas");
+        //rightMenu = rightCanvas.GetComponent<RightClickHelper>().rightMenu;
+        //rightMenu.SetActive(false);
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
     }
 
@@ -189,6 +189,7 @@ public class DragNDrop : MonoBehaviour
         //set up for finding the object that was right clicked
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+        /*
         //like OnMouseDown, but for right-click
         if (Input.GetMouseButtonDown(1))
         {
@@ -252,7 +253,7 @@ public class DragNDrop : MonoBehaviour
                 
             }
         }
-        
+        */
       
     }
     private bool CheckConstraints(Rigidbody rb)
