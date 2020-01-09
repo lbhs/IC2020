@@ -10,8 +10,10 @@ public class main : MonoBehaviour
     public float k;
     public List<GameObject> particles = new List<GameObject>();
     public int numWater;
+    public bool useFlick;
 
-    private void Start()
+    //Awake is called before start()
+    private void Awake()
     {
 	    // Initializes forces
 		gameObject.AddComponent<forces>().initialize(G, k);

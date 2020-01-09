@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using IC2020;
 
 public class ModelSlector : MonoBehaviour
@@ -10,19 +11,26 @@ public class ModelSlector : MonoBehaviour
     public GameObject dropDownMenu;
     public GameObject cubePrefab;
     private int dropDownValue;
+    public string RedoxScene;
     [Header("Ionic Lattice Model Options")]
     public int numberOfEachMonoculesPerColor;
     private MoleculeSpawner pSpawner = new MoleculeSpawner();
-	//private List<Vector3> coordinates = new List<Vector3>();
-    
+    private GameObject BuffetTable;
+
+    //private List<Vector3> coordinates = new List<Vector3>();
+
     void Update()
     {
+        BuffetTable = GameObject.Find("Panel");
         dropDownValue = dropDownMenu.GetComponent<Dropdown>().value;
         ChooseModel();
     }
     
     public void OpenEmptyScene()
     {
+        //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
+        //for options ("Wild Card" is also an option). Make sure to spell them exactly the same
+        BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
         pannel.SetActive(false);
     }
     
@@ -34,70 +42,44 @@ public class ModelSlector : MonoBehaviour
             // nothing because it is the place holder text 'Choose Model'
         }
 
-        //Ionic Lattice Model
+        //ELECTRON TRANSFER Model--Battle Royal
         else if (dropDownValue == 1)
         {
-            //randomly adds several of 2 different kinds of particles
-			List<Vector3> coords = generateRandomCoords(numberOfEachMonoculesPerColor*2);
-			int count = 0;
-            for(int x = 0; x < numberOfEachMonoculesPerColor; x++)
-            {
-				Particle Chloride = new Particle("Chloride", -2f, ICColor.Chlorine, coords[count], 2.0f, scale: 2.0f);
-				count++;
-				Particle Sodium = new Particle("Sodium Ion", 2f, ICColor.Sodium, coords[count], 2.0f, scale: 2.0f);
-				count++;
-				
-				Chloride.Spawn();
-				Sodium.Spawn();
-            }
-            
-            dropDownMenu.GetComponent<Dropdown>().value = 0;
-            pannel.SetActive(false);
-            Debug.Log("[DEBUG]: Spawned NaCl Ionic Lattice.");
+            SceneManager.LoadScene("Battle Royal (activity series)");
         }
 
-        //Covalent Bonding Model
+        //Redox Model--Breakout
         else if (dropDownValue == 2)
         {
-            Particle Elec1 = new Particle("Electron 1", -2f, ICColor.Electron, new Vector3(2, 3, 0));
-            Particle Elec2 = new Particle("Electron 2", -2f, ICColor.Electron, new Vector3(0.5f, 0, 0));
-            Particle Hyd1 = new Particle("Hydrogen 1", 2f, ICColor.Hydrogen, new Vector3(4, 1, 0), scale: 2f);
-            Particle Hyd2 = new Particle("Hydrogen 2", 2f, ICColor.Hydrogen, new Vector3(0.2f, 2, 0), scale: 2f);
-
-            Elec1.Spawn();
-            Elec2.Spawn();
-            Hyd1.Spawn();
-            Hyd2.Spawn();
-            Instantiate(cubePrefab, new Vector3(5, 5, 0), Quaternion.identity);
-            
-            dropDownMenu.GetComponent<Dropdown>().value = 0;
-            pannel.SetActive(false);
-            Debug.Log("[DEBUG]: Spawned H2 Covalent Bonding Model.");
+            SceneManager.LoadScene("Breakout");
         }
         
-        //Na+ in Water
+        //Redox Model--Chemistry Art
         else if (dropDownValue == 3)
         {
-            Particle Sodium = new Particle("Sodium", 1f, ICColor.Sodium, new Vector3(0, 0, 0), mass:2.0f, scale: 2.0f);
-            
-            Sodium.Spawn();
-            pSpawner.AddWater(0, 4);
-            pSpawner.AddWater(5, 0);
-            pSpawner.AddWater(0, -5);
-            pSpawner.AddWater(-5, 2);
-            Instantiate(cubePrefab, new Vector3(5, 5, 0), Quaternion.identity);
-            
-            dropDownMenu.GetComponent<Dropdown>().value = 0;
-            pannel.SetActive(false);
+            SceneManager.LoadScene("Penny models");
+
+            //this is now useless because a new scene has just loaded
+            //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
+            //for options. Make sure to spell them exactly the same
+            //BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
+            //dropDownMenu.GetComponent<Dropdown>().value = 0;
+            //pannel.SetActive(false);
         }
         
         //...
         else if (dropDownValue == 4)
         {
+            //logic here
+            SceneManager.LoadScene("Tin Man Model");
             //do stuff here
+            //sets the Buffet table options, see Buffet Table > Panel > UIDropToWorld > PossibleParticles 
+            //for options. Make sure to spell them exactly the same
+            /*BuffetTable.GetComponent<UIDropToWorld>().ChangeBuffetTable("Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card", "Wild Card");
             dropDownMenu.GetComponent<Dropdown>().value = 0;
-            pannel.SetActive(false);
+            pannel.SetActive(false);*/
         }
+
     }
 	
 	public List<Vector3> generateRandomCoords(int n)
