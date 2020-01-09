@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 3364551085878243966}
   m_Layer: 0
   m_Name: '[P] H+ ion'
-  m_TagString: Untagged
+  m_TagString: H+
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.65
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3932801236425007388
 Rigidbody:
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275dd7e633a1dc34b839f4d7b533912b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charge: 1
+  charge: 4
 --- !u!114 &6920965722469523575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a86380fa4264d76825bcea6c874dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasFlag: 0
   useTextLable: 1
   Lable: H+
 --- !u!114 &6323791342248127287
@@ -181,6 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667f1b866ff51c440a77b8750e6ed065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Soundsource: {fileID: 0}
+  Playthis: {fileID: 0}
   isReducingAgent: 0
   isOxidizingAgent: 1
   EP: 0

@@ -81,7 +81,7 @@ public class forces : MonoBehaviour
     }
   
     //Calculates electrostatic and gravitational forces on all objects in gameobjects list every frame
-    /*void FixedUpdate()
+    void FixedUpdate()
     {
         //Ensures that forces do not get caculated while paused
         if (Time.timeScale != 0 && recording)
@@ -113,5 +113,5 @@ public class forces : MonoBehaviour
             }
         }
     }
-   */ 
+    
 }

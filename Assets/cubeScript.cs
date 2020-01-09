@@ -35,11 +35,16 @@ public class cubeScript : MonoBehaviour
 	void FixedUpdate()
 	{
 		temp = temperatureSlider.value;
-		if (cube.velocity.sqrMagnitude < 0.002f)
+		if (cube.velocity.y < 0.002f)
 		{
-			cube.velocity = new Vector3(1,1,0);
+			cube.AddForce(0,2,0);
 		}
-
+		
+		if (cube.velocity.x < 0.002f)
+		{
+			cube.AddForce(2,0,0);
+		}
+		
 		if (Time.timeScale != 0 && GameObject.Find("GameObject").GetComponent<forces>().recording && cube.velocity.sqrMagnitude < (20 * temp))
 		{
 			cube.velocity *= 1.3f;

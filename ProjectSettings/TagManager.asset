@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Water
   - Particle
+  - H+
   layers:
   - Default
   - TransparentFX
