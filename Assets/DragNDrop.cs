@@ -11,7 +11,7 @@ public class DragNDrop : MonoBehaviour
     private Vector3 menuOffest;
     private Ray ray;
     private RaycastHit hit;
-    private GameObject rightCanvas;
+    //private GameObject rightCanvas;
     private Vector3 mouseStartPos;
     private Vector3 mouseEndPos;
     private float mouseStartTime;
@@ -25,7 +25,7 @@ public class DragNDrop : MonoBehaviour
         // Store offset = gameobject world pos - mouse world pos
         // offset allows you to grab the object from the side of the circle, not just the center
         mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
-        rightCanvas.GetComponent<RightClickHelper>().HideRightMenu();
+        //rightCanvas.GetComponent<RightClickHelper>().HideRightMenu();
         //starting position for flicking sphere to increase velocity
         Vector3 mousePos = Input.mousePosition * -1;
         mousePos.z = 0;

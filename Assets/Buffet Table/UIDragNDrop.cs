@@ -12,7 +12,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     //are all apart of the new method to control the buffet table in a better and more dynamic way.
     //These features were disabled because they were buggy and incomplete and because we had bigger fish to fry.
     //For now, refer to the video on the team Google drive to see how to use the buffet table.
-    [HideInInspector] public bool isWildCard; //variable to know if this tile should be a wild card
+    /*[HideInInspector] public bool isWildCard; //variable to know if this tile should be a wild card
     [HideInInspector] public bool useAddShpere = false;
     [HideInInspector] public bool isInteractable = true;
     //all the variables determining what gets spawned
@@ -31,7 +31,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         num = int.Parse(gameObject.name);
         //WildCardMenu.SetActive(false);
-    }
+    }*/
 
     // usingMe is set to true whenever the UI element containing the UIDragNDrop is being dragged.
     [HideInInspector] public bool UseingMe;
