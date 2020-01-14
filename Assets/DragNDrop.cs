@@ -11,7 +11,7 @@ public class DragNDrop : MonoBehaviour
     private Vector3 menuOffest;
     private Ray ray;
     private RaycastHit hit;
-    private GameObject rightCanvas;
+    //private GameObject rightCanvas;
     private Vector3 mouseStartPos;
     private Vector3 mouseEndPos;
     private float mouseStartTime;
@@ -25,7 +25,7 @@ public class DragNDrop : MonoBehaviour
         // Store offset = gameobject world pos - mouse world pos
         // offset allows you to grab the object from the side of the circle, not just the center
         mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
-        rightCanvas.GetComponent<RightClickHelper>().HideRightMenu();
+        //rightCanvas.GetComponent<RightClickHelper>().HideRightMenu();
         //starting position for flicking sphere to increase velocity
         Vector3 mousePos = Input.mousePosition * -1;
         mousePos.z = 0;
@@ -177,9 +177,9 @@ public class DragNDrop : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
         //defining objects/varibles
-        rightCanvas = GameObject.Find("Right-Click Canvas");
-        rightMenu = rightCanvas.GetComponent<RightClickHelper>().rightMenu;
-        rightMenu.SetActive(false);
+        //rightCanvas = GameObject.Find("Right-Click Canvas");
+        //rightMenu = rightCanvas.GetComponent<RightClickHelper>().rightMenu;
+        //rightMenu.SetActive(false);
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
     }
 
@@ -189,6 +189,7 @@ public class DragNDrop : MonoBehaviour
         //set up for finding the object that was right clicked
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+        /*
         //like OnMouseDown, but for right-click
         if (Input.GetMouseButtonDown(1))
         {
@@ -252,7 +253,7 @@ public class DragNDrop : MonoBehaviour
                 
             }
         }
-        
+        */
       
     }
     private bool CheckConstraints(Rigidbody rb)

@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a86380fa4264d76825bcea6c874dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasFlag: 0
   useTextLable: 1
   Lable: Na+
 --- !u!114 &4711528595709006756

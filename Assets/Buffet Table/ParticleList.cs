@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ParticleList : MonoBehaviour
-{
+{ /*
     public GameObject particleButton;
     public GameObject previousButton;
     public Sprite plus; 
@@ -47,5 +47,5 @@ public class ParticleList : MonoBehaviour
                 button.GetComponent<PrefabButtonSetter>().thePrefab = P;
             }
         }
-    }
+    }*/
 }

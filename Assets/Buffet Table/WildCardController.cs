@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class WildCardController : MonoBehaviour
 {
+    /*
     public GameObject customView;
     public GameObject prefabView;
     public GameObject currentTile;
@@ -109,5 +110,5 @@ public class WildCardController : MonoBehaviour
     {
         customView.SetActive(true);
         prefabView.SetActive(false);
-    }
+    }*/
 }

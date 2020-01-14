@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PrefabButtonSetter : MonoBehaviour
-{
+{/*
     private Button B;
     public GameObject thePrefab;
     [HideInInspector] public WildCardController WildCard;
@@ -38,5 +38,5 @@ public class PrefabButtonSetter : MonoBehaviour
         {
             WildCard.currentTile.GetComponent<RectTransform>().sizeDelta = new Vector2(40, 40);
         }
-    }
+    }*/
 }
