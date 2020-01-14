@@ -79,6 +79,11 @@ public class ModelSlector : MonoBehaviour
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);*/
         }
+        else if (dropDownValue == 5)
+        {
+            //logic here
+            SceneManager.LoadScene("Covalent Testing");
+        }
 
     }
 	

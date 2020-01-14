@@ -65,7 +65,7 @@ namespace IC2020
         private Color color; // the color of the created GameObject
         private float scale; // the scale of the created GameObject
         private float bounciness; // the bounciness factor of the created GameObject
-        private int imgToUse; // the image overlaid on the GameObject (+ or -).
+        //private int imgToUse; // the image overlaid on the GameObject (+ or -).
         private float friction; //dynamic friction setting for the GameObject
 
         // Constructor
@@ -94,8 +94,8 @@ namespace IC2020
             this.grav = grav;
             this.friction = friction;
             
-            if (charge < 0) imgToUse = 1;
-            else imgToUse = 0;
+            //if (charge < 0) imgToUse = 1;
+            //else imgToUse = 0;
         }
 
         // Particle.Spawn() creates a particle GameObject with all of the predefined attributes above.
@@ -141,6 +141,7 @@ namespace IC2020
                 p.GetComponent<Collider>().material.dynamicFriction = friction;
                 p.AddComponent<DragNDrop>();
                 p.AddComponent<TimeBody>();
+				p.AddComponent<Covalent>();
 
                 // if the position is overriden in Particle.Spawn() and overridden == true
                 if (overridden) p.transform.position = _pos;
@@ -148,11 +149,12 @@ namespace IC2020
                 p.transform.localScale = new Vector3(scale, scale, scale);
 
                 // overlays the label on top of the GameObject
-                GameObject tempLable;
+                /*
+				GameObject tempLable;
                 tempLable = MonoBehaviour.Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[imgToUse], Vector3.zero, Quaternion.identity);
                 tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
                 tempLable.GetComponent<ImageFollower>().sphereToFollow = p;
-
+				*/
                 // p.tag = "Particle"; // raising errors?
                 
                 //Debug.Log("[DEBUG]: Particle " + p.name + " Successfully created.");
@@ -160,7 +162,7 @@ namespace IC2020
             }
             catch (Exception e)
             {
-               //Debug.Log("[DEBUG]: Exception Raised: " + e);
+               Debug.Log("[DEBUG]: Exception Raised: " + e);
                 return null;
             }
         }

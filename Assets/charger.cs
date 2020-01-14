@@ -9,4 +9,10 @@ public class charger : MonoBehaviour
 	-To use, add this script as a component to any game object and make sure that forces.cs is running
 	*/
     public float charge;
+	
+	public void updateCharge(float newcharge)
+	{
+		charge = newcharge;
+		GetComponent<LabelAssigner>().updateCharge(newcharge);
+	}
 }

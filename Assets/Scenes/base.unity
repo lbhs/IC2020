@@ -1029,6 +1029,7 @@ MonoBehaviour:
   - {fileID: 8520551613667858557, guid: a6098b3de202abf45832b953cbc0f9ed, type: 3}
   TextPrefab: {fileID: 1778059490039022324, guid: 3d0caadaba4a8ab498edef36768946f8,
     type: 3}
+  FlagPrefab: {fileID: 0}
 --- !u!1 &428324403
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,6 +3292,8 @@ MonoBehaviour:
     - m_Text: Penny Models
       m_Image: {fileID: 0}
     - m_Text: Tin Man Model
+      m_Image: {fileID: 0}
+    - m_Text: Covalent Testing
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5730,7 +5733,7 @@ PrefabInstance:
     - target: {fileID: 6638494397849021237, guid: 77321fe566e33744ea2b3c07fa7c026f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.00001629774
+      value: 0.0000010389504
       objectReference: {fileID: 0}
     - target: {fileID: 6638494398535878090, guid: 77321fe566e33744ea2b3c07fa7c026f,
         type: 3}

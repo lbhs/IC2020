@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class LabelAssigner : MonoBehaviour
 {
     public bool hasFlag = false; 
-    public bool useTextLable;
-    public string Lable;
     private int imgToUse;
-    private GameObject tempLable;
+    public GameObject tempLable;
+	public string Lable;
 
-    void OnEnable()
+    public void Add(bool useTextLable, string thelabel)
     {
+		float charge = GetComponent<charger>().charge;
+		Lable = thelabel;
         if (!useTextLable)
         {
             if (gameObject.GetComponent<charger>().charge < 0) imgToUse = 1;
@@ -20,14 +21,29 @@ public class LabelAssigner : MonoBehaviour
             tempLable = MonoBehaviour.Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[imgToUse], Vector3.zero, Quaternion.identity);
             tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
             tempLable.GetComponent<ImageFollower>().sphereToFollow = gameObject;
-            //.Log(imgToUse);
+            Debug.Log(imgToUse);
         }
         else
         {
             tempLable = MonoBehaviour.Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().TextPrefab, Vector3.zero, Quaternion.identity);
             tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
             tempLable.GetComponent<ImageFollower>().sphereToFollow = gameObject;
-            tempLable.GetComponent<Text>().text = Lable;
+			if(charge > 0)
+			{
+				tempLable.GetComponent<Text>().text = Lable + " +";
+				/*if(charge != 1)
+				{
+					tempLable.GetComponent<Text>().text = + charge.ToString();
+				*/
+            }
+			else if(charge < 0)
+			{
+				tempLable.GetComponent<Text>().text = Lable + " " + charge.ToString();
+			}
+			else
+			{
+				tempLable.GetComponent<Text>().text = Lable;
+			}
         }
         if (hasFlag)
         {
@@ -36,5 +52,21 @@ public class LabelAssigner : MonoBehaviour
             tempLable.GetComponent<ImageFollower>().sphereToFollow = gameObject;
         }
     }
+	
+	public void updateCharge(float charge)
+	{
+		if(charge > 0)
+		{
+			tempLable.GetComponent<Text>().text = Lable + " +" + charge.ToString();
+		}
+		else if(charge < 0)
+		{
+			tempLable.GetComponent<Text>().text = Lable + " " + charge.ToString();
+		}
+		else
+		{
+			tempLable.GetComponent<Text>().text = Lable;
+		}
+	}
 
 }
