@@ -70,6 +70,7 @@ public class TimeBody : MonoBehaviour
 		{
 			transform.position = points[frame].position;
 			transform.rotation = points[frame].rotation;
+			grlrkthrglkr
 			if(points[frame+1] == null)
 			{
 				Arbies.isKinematic = false;
