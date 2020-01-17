@@ -6,7 +6,6 @@ public class SpaceTime
 	public Quaternion rotation;
 	public Vector3 velocity;
 	
-	
 	public SpaceTime(Vector3 vel, Vector3 pos, Quaternion rot)
 	{
 		position = pos;

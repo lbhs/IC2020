@@ -9,11 +9,11 @@ public class LabelAssigner : MonoBehaviour
     private int imgToUse;
     public GameObject tempLable;
 	public string Lable;
+	public bool useTextLable = true;
 
-    public void Add(bool useTextLable, string thelabel)
+    void Start()
     {
 		float charge = GetComponent<charger>().charge;
-		Lable = thelabel;
         if (!useTextLable)
         {
             if (gameObject.GetComponent<charger>().charge < 0) imgToUse = 1;

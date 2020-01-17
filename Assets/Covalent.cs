@@ -26,11 +26,10 @@ public class Covalent : MonoBehaviour
 			{
 				collided = true;
 			*/
-			if(gameObject.GetComponent<Renderer>().material.color == ICColor.Oxygen) //temp check
+			if(collision.gameObject.GetComponent<Renderer>().material.color == ICColor.Hydrogen) //for acid base reactions only
 			{
-				Destroy(otherP);
-				charger charge1 = GetComponent<charger>();
-				charger charge2 = collision.gameObject.GetComponent<charger>();
+				Destroy(otherP); //will need to make it giving away rather than bonding instead of just destroying reactability
+				charger charge = GetComponent<charger>();
 						
 				ConfigurableJoint cjoint;
 				cjoint = collision.gameObject.AddComponent<ConfigurableJoint>();
@@ -45,21 +44,20 @@ public class Covalent : MonoBehaviour
 				cjoint.angularXMotion = ConfigurableJointMotion.Limited;
 				cjoint.angularYMotion = ConfigurableJointMotion.Limited;
 				cjoint.angularZMotion = ConfigurableJointMotion.Locked;
-
 				cjoint.autoConfigureConnectedAnchor = false;
-				if(charge1.charge == -2)
-				{
+				//add rotations based on angle of collision with tangent probably (rotate, connect, then rotate back)
+				if(gameObject.GetComponent<Renderer>().material.color == ICColor.Oxygen && charge.charge == -1){
 					collision.gameObject.transform.position = gameObject.transform.position + new Vector3(0.5f, -0.6f, 0);
-					cjoint.connectedAnchor = new Vector3(0.5f, -0.6f, 0);
+					cjoint.connectedAnchor = new Vector3(0f, 0f, 0);
 				}
-				if(charge1.charge == -1)
+				else
 				{
-					collision.gameObject.transform.position = gameObject.transform.position + new Vector3(0f, .750f, 0);
-					cjoint.connectedAnchor = new Vector3(0f, .750f, 0);
+					collision.gameObject.transform.position = gameObject.transform.position + new Vector3(0f, 0.750f, 0);
+					cjoint.connectedAnchor = new Vector3(0f, 0f, 0);
 				}
 				
-				charge1.updateCharge(charge1.charge + charge2.charge);
-				charge2.updateCharge(0f);
+				charge.updateCharge(charge.charge + 1);
+				collision.gameObject.GetComponent<charger>().updateCharge(0);
 				
 				var limit = new SoftJointLimit();
 				limit.limit = 0.1f;
