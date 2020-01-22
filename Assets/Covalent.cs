@@ -17,18 +17,9 @@ public class Covalent : MonoBehaviour
 		Covalent otherP = collision.gameObject.GetComponent<Covalent>();
         if(otherP != null)
 		{
-			/* good code probably useful for general covalent
-			if(otherP.collided)
-			{
-				otherP.collided = false;
-			}
-			else
-			{
-				collided = true;
-			*/
 			if(collision.gameObject.GetComponent<Renderer>().material.color == ICColor.Hydrogen) //for acid base reactions only
 			{
-				Destroy(otherP); //will need to make it giving away rather than bonding instead of just destroying reactability
+				Destroy(otherP);
 				charger charge = GetComponent<charger>();
 						
 				ConfigurableJoint cjoint;
@@ -49,6 +40,7 @@ public class Covalent : MonoBehaviour
 				if(gameObject.GetComponent<Renderer>().material.color == ICColor.Oxygen && charge.charge == -1){
 					collision.gameObject.transform.position = gameObject.transform.position + new Vector3(0.5f, -0.6f, 0);
 					cjoint.connectedAnchor = new Vector3(0f, 0f, 0);
+					Destroy(GetComponent<Covalent>());
 				}
 				else
 				{
@@ -69,6 +61,13 @@ public class Covalent : MonoBehaviour
 				cjoint.angularZLimit = limit;
 				cjoint.lowAngularXLimit = limit;
 				cjoint.highAngularXLimit = limit;
+			}
+			//for general activity series reactions
+			else if(false/*activity series one greater than another*/)
+			{
+				float tempcharge = GetComponent<charger>().charge;
+				GetComponent<charger>().updateCharge(0);
+				collision.gameObject.GetComponent<charger>().updateCharge(tempcharge);
 			}
 		}
 	}
