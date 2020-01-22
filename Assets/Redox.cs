@@ -55,14 +55,13 @@ public class Redox : MonoBehaviour
                     Instantiate(otherP.ReactionPrefab, Opos, Quaternion.identity);
                     Instantiate(ReactionPrefab, Rpos, Quaternion.identity);
 
-                    //Destroy the old objects
+                    //"destroy" the old objects
                     otherP.transform.position = new Vector3(-15, 0, -15);
-					otherP.GetComponent<Rigidbody>().detectCollisions = false;
 					otherP.GetComponent<Rigidbody>().isKinematic = true;
 					transform.position = new Vector3(-15, 0, -15);
-					GetComponent<Rigidbody>().detectCollisions = false;
 					GetComponent<Rigidbody>().isKinematic = true;
-
+					mainObject.gameObjects.Remove(gameObject);
+					
                     Soundsource.Play();
 
                     //The need to rename the gameobject is so that it loses the [P] tag
@@ -73,12 +72,14 @@ public class Redox : MonoBehaviour
                 }
             }
         }
-    }
+	}
+	// Update is called once per frame
+	void FixedUpdate()
+	{
+		if(GetComponent<TimeBody>().frame == -1)
+		{
+			GetComponent<Rigidbody>().isKinematic = false;
+			mainObject.gameObjects.Add(gameObject);
+		}
+	}
 }
-    /*
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    */
