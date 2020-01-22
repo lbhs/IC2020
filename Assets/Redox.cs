@@ -57,7 +57,11 @@ public class Redox : MonoBehaviour
 
                     //Destroy the old objects
                     otherP.transform.position = new Vector3(-15, 0, -15);
+					otherP.GetComponent<Rigidbody>().detectCollisions = false;
+					otherP.GetComponent<Rigidbody>().isKinematic = true;
 					transform.position = new Vector3(-15, 0, -15);
+					GetComponent<Rigidbody>().detectCollisions = false;
+					GetComponent<Rigidbody>().isKinematic = true;
 
                     Soundsource.Play();
 

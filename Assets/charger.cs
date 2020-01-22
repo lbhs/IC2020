@@ -13,6 +13,6 @@ public class charger : MonoBehaviour
 	public void updateCharge(float newcharge)
 	{
 		charge = newcharge;
-		GetComponent<LabelAssigner>().updateCharge(newcharge);
+		//GetComponent<LabelAssigner>().updateCharge(newcharge);
 	}
 }
