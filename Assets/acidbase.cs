@@ -2,9 +2,11 @@
 using UnityEngine;
 using IC2020;
 
-public class Covalent : MonoBehaviour
+public class acidbase : MonoBehaviour
 {
 	private forces mainObject;
+	public bool bound = false;
+	
 	//public bool collided;
     // Start is called before the first frame update
     void Start()
@@ -14,12 +16,12 @@ public class Covalent : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-		Covalent otherP = collision.gameObject.GetComponent<Covalent>();
+		acidbase otherP = collision.gameObject.GetComponent<acidbase>();
         if(otherP != null)
 		{
 			if(collision.gameObject.GetComponent<Renderer>().material.color == ICColor.Hydrogen) //for acid base reactions only
 			{
-				Destroy(otherP);
+				Destroy(otherP); //DOESNT DESTROY PARTICLE!!!! just destroys the acidbase component
 				charger charge = GetComponent<charger>();
 						
 				ConfigurableJoint cjoint;
@@ -40,7 +42,8 @@ public class Covalent : MonoBehaviour
 				if(gameObject.GetComponent<Renderer>().material.color == ICColor.Oxygen && charge.charge == -1){
 					collision.gameObject.transform.position = gameObject.transform.position + new Vector3(0.5f, -0.6f, 0);
 					cjoint.connectedAnchor = new Vector3(0f, 0f, 0);
-					Destroy(GetComponent<Covalent>());
+					Destroy(GetComponent<acidbase>());
+					bound = true;
 				}
 				else
 				{
@@ -61,13 +64,6 @@ public class Covalent : MonoBehaviour
 				cjoint.angularZLimit = limit;
 				cjoint.lowAngularXLimit = limit;
 				cjoint.highAngularXLimit = limit;
-			}
-			//for general activity series reactions
-			else if(false/*activity series one greater than another*/)
-			{
-				float tempcharge = GetComponent<charger>().charge;
-				GetComponent<charger>().updateCharge(0);
-				collision.gameObject.GetComponent<charger>().updateCharge(tempcharge);
 			}
 		}
 	}

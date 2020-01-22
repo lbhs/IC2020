@@ -141,7 +141,6 @@ namespace IC2020
                 p.GetComponent<Collider>().material.dynamicFriction = friction;
                 p.AddComponent<DragNDrop>();
                 p.AddComponent<TimeBody>();
-				p.AddComponent<Covalent>();
 
                 // if the position is overriden in Particle.Spawn() and overridden == true
                 if (overridden) p.transform.position = _pos;

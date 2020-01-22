@@ -25,12 +25,15 @@ public class main : MonoBehaviour
 			GameObject _oxygen = oxide.Spawn(new Vector3(0, 0, 0));
 			GameObject _hydrogen1 = hydrogen1.Spawn(new Vector3(4, 4, 0));
 			GameObject _hydrogen2 = hydrogen2.Spawn(new Vector3(-3, 2, 0));
+			_oxygen.AddComponent<acidbase>();
+			_hydrogen1.AddComponent<acidbase>();
+			_hydrogen2.AddComponent<acidbase>();
 			_oxygen.AddComponent<LabelAssigner>().Lable = "O";
 			_hydrogen1.AddComponent<LabelAssigner>().Lable = "H";
 			_hydrogen2.AddComponent<LabelAssigner>().Lable = "H";
 			
-			MoleculeSpawner m = new MoleculeSpawner();
-			m.AddWater(-6, -6);
+			//MoleculeSpawner m = new MoleculeSpawner();
+			//m.AddWater(-6, -6);
 		}
 	}
 }
