@@ -68,7 +68,7 @@ public class TimeBody : MonoBehaviour
 			{
 				try
 				{
-					//GetComponent<LabelAssigner>().updateCharge(charges[frame]);
+					GetComponent<LabelAssigner>().updateCharge(charges[frame]);
 				} catch {}
 			}
 		}
@@ -94,7 +94,7 @@ public class TimeBody : MonoBehaviour
 			{
 				try
 				{
-					//GetComponent<LabelAssigner>().updateCharge(charges[frame]);
+					GetComponent<LabelAssigner>().updateCharge(charges[frame]);
 				} catch {}
 			}
 			if(points[frame+1] == null)

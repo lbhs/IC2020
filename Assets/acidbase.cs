@@ -24,6 +24,7 @@ public class acidbase : MonoBehaviour
 				Destroy(otherP); //DOESNT DESTROY PARTICLE!!!! just destroys the acidbase component
 				charger charge = GetComponent<charger>();
 						
+				//bind hydrogen to atom
 				ConfigurableJoint cjoint;
 				cjoint = collision.gameObject.AddComponent<ConfigurableJoint>();
 				cjoint.xMotion = ConfigurableJointMotion.Limited;
@@ -38,7 +39,7 @@ public class acidbase : MonoBehaviour
 				cjoint.angularYMotion = ConfigurableJointMotion.Limited;
 				cjoint.angularZMotion = ConfigurableJointMotion.Locked;
 				cjoint.autoConfigureConnectedAnchor = false;
-				//add rotations based on angle of collision with tangent probably (rotate, connect, then rotate back)
+				//need to add rotations based on angle of collision with tangent probably (rotate, connect, then rotate back)
 				if(gameObject.GetComponent<Renderer>().material.color == ICColor.Oxygen && charge.charge == -1){
 					collision.gameObject.transform.position = gameObject.transform.position + new Vector3(0.5f, -0.6f, 0);
 					cjoint.connectedAnchor = new Vector3(0f, 0f, 0);
@@ -54,6 +55,7 @@ public class acidbase : MonoBehaviour
 				charge.updateCharge(charge.charge + 1);
 				collision.gameObject.GetComponent<charger>().updateCharge(0);
 				
+				//finish binding hydrogen to atom
 				var limit = new SoftJointLimit();
 				limit.limit = 0.1f;
 				//limit.SoftJointLimitSpring = 40.0f;
