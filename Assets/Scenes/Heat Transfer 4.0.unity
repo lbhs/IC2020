@@ -2411,7 +2411,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Left Total:'
+  m_Text: 'Left Energy:'
 --- !u!222 &742558090
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3961,7 +3961,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Right Total:'
+  m_Text: 'Right Energy:'
 --- !u!222 &1255900037
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5467,7 +5467,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Absolute Total:'
+  m_Text: 'Total Energy:'
 --- !u!222 &1736178910
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6454,7 +6454,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Middle Total:'
+  m_Text: 'Middle Energy:'
 --- !u!222 &2006930001
 CanvasRenderer:
   m_ObjectHideFlags: 0

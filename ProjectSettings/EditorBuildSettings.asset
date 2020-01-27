@@ -29,7 +29,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Gas Pressure 2.5--water condensing (for real).unity
     guid: b773b8fafad55d5459cf8bac5a982820
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Syringe 3.2 Classroom use.unity
     guid: eaa9a2afa35a24a4c95e1679a5393657
+  - enabled: 1
+    path: Assets/Scenes/Heat Transfer 4.0.unity
+    guid: 4e7f5f939d9ecbb46b6ab311d10710f8
   m_configObjects: {}

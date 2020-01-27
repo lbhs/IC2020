@@ -39,9 +39,9 @@ public class EnergyTotals : MonoBehaviour
 			}
 		}
 		
-		GameObject.Find("leftText").GetComponent<Text>().text = "Left Total: " + leftTotal.ToString();
-		GameObject.Find("rightText").GetComponent<Text>().text = "Right Total: " + rightTotal.ToString();
-		GameObject.Find("middleText").GetComponent<Text>().text = "Middle Total: " + middleTotal.ToString();
-		GameObject.Find("totalText").GetComponent<Text>().text = "Absolute Total: " + totalTotal.ToString();
+		GameObject.Find("leftText").GetComponent<Text>().text = "Left Energy: " + leftTotal.ToString();
+		GameObject.Find("rightText").GetComponent<Text>().text = "Right Energy: " + rightTotal.ToString();
+		GameObject.Find("middleText").GetComponent<Text>().text = "Middle Energy: " + middleTotal.ToString();
+		GameObject.Find("totalText").GetComponent<Text>().text = "Total Energy: " + totalTotal.ToString();
     }
 }
