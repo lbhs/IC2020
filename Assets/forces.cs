@@ -75,7 +75,7 @@ public class forces : MonoBehaviour
             if (!gameObjects.Contains(o) && objIdentifier == "[P]")
             {
                 gameObjects.Add(o);
-                Debug.Log("[DEBUG]: Object " + o.name + " successfully added to list gameObjects.");
+                //Debug.Log("[DEBUG]: Object " + o.name + " successfully added to list gameObjects.");
             }
         }
     }
@@ -83,6 +83,7 @@ public class forces : MonoBehaviour
     //Calculates electrostatic and gravitational forces on all objects in gameobjects list every frame
     void FixedUpdate()
     {
+        /*THIS DISABLES FORCE CALCULATIONS!
         //Ensures that forces do not get caculated while paused
         if (Time.timeScale != 0 && recording)
         {
@@ -105,6 +106,8 @@ public class forces : MonoBehaviour
                         float Fg = (m1 * m2 * G) / Mathf.Pow(r, 2);
                         float Fe = (k * q1 * q2) / Mathf.Pow(r, 2);
 
+                        print(Fe);
+
                         //applies force vector
                         //must use time.fixeddeltatime here to keep constant framerate with different timescales
                         a.GetComponent<Rigidbody>().AddForce(dir * (Fg - Fe) * Time.fixedDeltaTime);
@@ -112,5 +115,7 @@ public class forces : MonoBehaviour
                 }
             }
         }
+        */
     }
+    
 }

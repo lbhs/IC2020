@@ -41,9 +41,10 @@ namespace IC2020
         public static Color Zinc, Bromine = new Color32(165, 42, 42, 255);
         public static Color Sodium = new Color32(170, 92, 246, 255);
         public static Color Iron = new Color32(255, 165, 0, 255);
-        public static Color Magnesium = new Color32(42, 128, 42, 255);
+        public static Color Magnesium = new Color32(22, 142, 241, 255);
         public static Color Calcium = new Color32(128, 128, 128, 255);
         public static Color Potassium = new Color32(255, 20, 147, 255);
+        public static Color Carbonate = new Color32(115,115,115,255);
     }
 
     public class Particle
@@ -65,9 +66,10 @@ namespace IC2020
         private float scale; // the scale of the created GameObject
         private float bounciness; // the bounciness factor of the created GameObject
         private int imgToUse; // the image overlaid on the GameObject (+ or -).
+        private float friction; //dynamic friction setting for the GameObject
 
         // Constructor
-        public Particle(string name, float charge, Color color, Vector3 pos = new Vector3(), float mass = 1f, float scale = 1f, float bounciness = 0.6f, bool grav = false)
+        public Particle(string name, float charge, Color color, Vector3 pos = new Vector3(), float mass = 1f, float scale = 1f, float bounciness = 0.6f, bool grav = false, float friction = 0)
         {
             /*
             - constructor Particle() assigns arguments passed into this function
@@ -90,6 +92,7 @@ namespace IC2020
             this.scale = scale;
             this.bounciness = bounciness;
             this.grav = grav;
+            this.friction = friction;
             
             if (charge < 0) imgToUse = 1;
             else imgToUse = 0;
@@ -135,6 +138,7 @@ namespace IC2020
                 p.GetComponent<Collider>().material.dynamicFriction = 0;
                 p.GetComponent<Collider>().material.staticFriction = 0;
                 p.GetComponent<Collider>().material.bounciness = bounciness;
+                p.GetComponent<Collider>().material.dynamicFriction = friction;
                 p.AddComponent<DragNDrop>();
                 p.AddComponent<TimeBody>();
 
@@ -151,12 +155,12 @@ namespace IC2020
 
                 // p.tag = "Particle"; // raising errors?
                 
-                Debug.Log("[DEBUG]: Particle " + p.name + " Successfully created.");
+                //Debug.Log("[DEBUG]: Particle " + p.name + " Successfully created.");
                 return p;
             }
             catch (Exception e)
             {
-                Debug.Log("[DEBUG]: Exception Raised: " + e);
+               //Debug.Log("[DEBUG]: Exception Raised: " + e);
                 return null;
             }
         }

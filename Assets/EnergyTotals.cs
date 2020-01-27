@@ -1,0 +1,47 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class EnergyTotals : MonoBehaviour
+{
+    static int leftTotal;
+	static int middleTotal;
+	static int rightTotal;
+	static int totalTotal;
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+		leftTotal = 0;
+		middleTotal = 0;
+		rightTotal = 0;
+		totalTotal = 0;
+		
+		foreach(Collider obj in Physics.OverlapSphere(new Vector3(2,0,0), 15))
+		{
+			if(obj.gameObject.GetComponent<IndividMolVelocity>() != null)
+			{
+				if(obj.gameObject.transform.position.x < 2f)
+				{
+					leftTotal += obj.gameObject.GetComponent<IndividMolVelocity>().temp;
+				}
+				else if(obj.gameObject.transform.position.x > 2f)
+				{
+					rightTotal += obj.gameObject.GetComponent<IndividMolVelocity>().temp;
+				}
+				totalTotal += obj.gameObject.GetComponent<IndividMolVelocity>().temp;
+			}
+			else if(obj.gameObject.GetComponent<HeatTransfer2>() != null)
+			{
+				middleTotal += obj.gameObject.GetComponent<HeatTransfer2>().BoxTemp;
+				totalTotal += obj.gameObject.GetComponent<HeatTransfer2>().BoxTemp;
+			}
+		}
+		
+		GameObject.Find("leftText").GetComponent<Text>().text = "Left Total: " + leftTotal.ToString();
+		GameObject.Find("rightText").GetComponent<Text>().text = "Right Total: " + rightTotal.ToString();
+		GameObject.Find("middleText").GetComponent<Text>().text = "Middle Total: " + middleTotal.ToString();
+		GameObject.Find("totalText").GetComponent<Text>().text = "Absolute Total: " + totalTotal.ToString();
+    }
+}
