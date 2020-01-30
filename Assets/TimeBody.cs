@@ -80,7 +80,6 @@ public class TimeBody : MonoBehaviour
 		if(charge)
 		{
 			charges[frame] = GetComponent<charger>().charge;
-			Debug.Log(charges[frame]);
 		}
 	}
 	
