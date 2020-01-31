@@ -17,6 +17,8 @@ public class Route : MonoBehaviour
 			Gizmos.DrawSphere(bezierPosition(t), 0.25f);
 		}
 		
+		Gizmos.DrawSphere(bezierPosition(0.5f), 0.5f);
+		
 		for(int i = 0; i < controlPoints.Length; i += 2)
 		{
 			Gizmos.DrawLine(new Vector2(controlPoints[i].position.x, controlPoints[i].position.y), new Vector2(controlPoints[i+1].position.x, controlPoints[i+1].position.y));
@@ -24,14 +26,34 @@ public class Route : MonoBehaviour
 		
 	}
 	
+	void Start()
+	{
+		Debug.Log(bezierSlope(0.5f));
+	}
+	
+	public Vector3 nearestPoint(Vector3 pos)
+	{
+		Vector2 nearestPoint = bezierPosition(0f);
+		Vector2 currentPoint;
+		float nearestDistance = Vector2.Distance(bezierPosition(0f), pos);
+		float currentDistance;
+		for(float t = 0f; t <= 1f; t += 0.001f) //increment increases accuracy
+		{
+			currentPoint = bezierPosition(t);
+			currentDistance = Vector2.Distance(currentPoint, pos);
+			
+			if(currentDistance < nearestDistance)
+			{
+				nearestDistance = currentDistance;
+				nearestPoint = currentPoint;
+			}
+		}
+		
+		return new Vector3(nearestPoint.x, nearestPoint.y, 0);
+	}
+	
 	public Vector3 bezierPosition(float t)
 	{
-		/*
-		Vector2 p0 = route.GetChild(0).position;
-		Vector2 p1 = route.GetChild(1).position;
-		Vector2 p2 = route.GetChild(2).position;
-		Vector2 p3 = route.GetChild(3).position;
-		*/
 		Vector2 summation = new Vector2(0,0);
 		int n = controlPoints.Length - 1;
 		for(int i = 0; i <= n; i++)
@@ -43,6 +65,24 @@ public class Route : MonoBehaviour
 			summation += binomCoefficient * mainPower * secondPower * point;
 		}
 		return new Vector3(summation.x, summation.y, 0);
+	}
+	
+	public Vector2 bezierSlope(float t)
+	{
+		Vector2 summation = new Vector2(0,0);
+		int n = controlPoints.Length - 1;
+		for(int i = 0; i < n; i++)
+		{
+			float binomCoefficient = (factorial(n-1)/(factorial(i)*factorial(n - (i+1))));
+			float mainPower = Mathf.Pow(1 - t, n - (i+1));
+			float secondPower = Mathf.Pow(t, i);
+			Vector2 point1 = controlPoints[i].position;
+			Vector2 point2 = controlPoints[i+1].position;
+			
+			summation += binomCoefficient * mainPower * secondPower * n * (point2 - point1);
+		}
+		return new Vector2(summation.x, summation.y);
+		//return (summation.y/summation.x); //float version
 	}
 	
 	public static int factorial(int number)
