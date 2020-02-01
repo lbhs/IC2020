@@ -84,7 +84,7 @@ public class forces : MonoBehaviour
     void FixedUpdate()
     {
         //Ensures that forces do not get caculated while paused
-        if (Time.timeScale != 0 && recording)
+        if (Time.timeScale > 0 && recording)
         {
             //Nested for loops + if statement to calculate force that each object exerts on every other object
             foreach (GameObject a in gameObjects)

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Route : MonoBehaviour
 {
 	[SerializeField]
-	private Transform[] controlPoints;
+	public Transform[] controlPoints;
 
 	private Vector2 gizmosPosition;
 	
@@ -17,42 +17,35 @@ public class Route : MonoBehaviour
 			Gizmos.DrawSphere(bezierPosition(t), 0.25f);
 		}
 		
-		Gizmos.DrawSphere(bezierPosition(0.5f), 0.5f);
-		
+		//Gizmos.DrawSphere(bezierPosition(0.5f), 0.5f);
+		/*
 		for(int i = 0; i < controlPoints.Length; i += 2)
 		{
 			Gizmos.DrawLine(new Vector2(controlPoints[i].position.x, controlPoints[i].position.y), new Vector2(controlPoints[i+1].position.x, controlPoints[i+1].position.y));
 		}
+		*/
 		
 	}
 	
-	void Start()
+	public float nearestPointT(Vector2 pos)
 	{
-		Debug.Log(bezierSlope(0.5f));
-	}
-	
-	public Vector3 nearestPoint(Vector3 pos)
-	{
-		Vector2 nearestPoint = bezierPosition(0f);
-		Vector2 currentPoint;
+		float nearestT = 0f;
 		float nearestDistance = Vector2.Distance(bezierPosition(0f), pos);
 		float currentDistance;
+		
 		for(float t = 0f; t <= 1f; t += 0.001f) //increment increases accuracy
 		{
-			currentPoint = bezierPosition(t);
-			currentDistance = Vector2.Distance(currentPoint, pos);
-			
+			currentDistance = Vector2.Distance(bezierPosition(t), pos);
 			if(currentDistance < nearestDistance)
 			{
 				nearestDistance = currentDistance;
-				nearestPoint = currentPoint;
+				nearestT = t;
 			}
 		}
-		
-		return new Vector3(nearestPoint.x, nearestPoint.y, 0);
+		return nearestT;
 	}
 	
-	public Vector3 bezierPosition(float t)
+	public Vector2 bezierPosition(float t)
 	{
 		Vector2 summation = new Vector2(0,0);
 		int n = controlPoints.Length - 1;
@@ -64,7 +57,7 @@ public class Route : MonoBehaviour
 			Vector2 point = controlPoints[i].position;
 			summation += binomCoefficient * mainPower * secondPower * point;
 		}
-		return new Vector3(summation.x, summation.y, 0);
+		return summation;
 	}
 	
 	public Vector2 bezierSlope(float t)
@@ -81,7 +74,7 @@ public class Route : MonoBehaviour
 			
 			summation += binomCoefficient * mainPower * secondPower * n * (point2 - point1);
 		}
-		return new Vector2(summation.x, summation.y);
+		return summation;
 		//return (summation.y/summation.x); //float version
 	}
 	
