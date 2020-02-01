@@ -6,30 +6,24 @@ public class BezierFollow : MonoBehaviour
 {
 	[SerializeField]
 	private GameObject route;
-	
-	Route rt;
-	Rigidbody rb;
-	
-	void OnStart()
-	{
-		rt = route.GetComponent<Route>();
-		rb = GetComponent<Rigidbody>();
-	}
 
-    void FixedUpdate()
+    void Start()
     {
         transform.position = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position));
+		//print(route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position))); 
     }
-	/*
+	
 	void FixedUpdate()
 	{
 		//add if statement for when near bezier?
-		float t = rt.nearestPointT(transform.position);
-		Vector2 tangent = rt.bezierSlope(t);
+		
+		float t = route.GetComponent<Route>().nearestPointT(transform.position);
+		Vector2 tangent = route.GetComponent<Route>().bezierSlope(t);
 		Vector2 normal = Quaternion.AngleAxis(90, Vector3.forward) * tangent;
-		float magnitude = 
+		//print(normal.x + " " + normal.y);
+		float magnitude = GetComponent<Rigidbody>().mass * Physics.gravity.y * (normal.x / normal.magnitude); //N = mgcosΘ
+		//print(Mathf.Acos((normal.x / normal.magnitude)) * 57.2958f);
 		Vector3 force = normal.normalized * magnitude;
-		rb.AddForce(force);
+		GetComponent<Rigidbody>().AddForce(force);
 	}
-	*/
 }
