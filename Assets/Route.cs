@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using IC2020;
 
 public class Route : MonoBehaviour
 {
@@ -26,6 +27,17 @@ public class Route : MonoBehaviour
 		*/
 		
 	}
+	/* spawn a bunch of spheres along the curve
+	void Start()
+	{
+		for (float t = 0; t <= 1; t += 0.005f)
+		{
+			GameObject curve = new Particle(pos: bezierPosition(t), mass: 0f, bounciness:0f).Spawn();
+			curve.GetComponent<Rigidbody>().isKinematic = true;
+			curve.GetComponent<MeshRenderer>().enabled = true;
+		}
+	}
+	*/
 	
 	public float nearestPointT(Vector2 pos)
 	{
@@ -43,6 +55,11 @@ public class Route : MonoBehaviour
 			}
 		}
 		return nearestT;
+	}
+	
+	public float distanceFromCurve(Vector2 pos)
+	{
+		return Vector2.Distance(pos, bezierPosition(nearestPointT(pos)));
 	}
 	
 	public Vector2 bezierPosition(float t)

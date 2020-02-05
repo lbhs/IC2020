@@ -69,7 +69,7 @@ namespace IC2020
         private float friction; //dynamic friction setting for the GameObject
 
         // Constructor
-        public Particle(string name, float charge, Color color, Vector3 pos = new Vector3(), float mass = 1f, float scale = 1f, float bounciness = 0.6f, bool grav = false, float friction = 0)
+        public Particle(string name = "summonedParticle", float charge = 0f, Color color = new Color(), Vector3 pos = new Vector3(), float mass = 1f, float scale = 1f, float bounciness = 0.6f, bool grav = false, float friction = 0)
         {
             /*
             - constructor Particle() assigns arguments passed into this function
