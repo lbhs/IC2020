@@ -15,6 +15,15 @@ public class BezierFollow : MonoBehaviour
 		//print(route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position))); 
     }
 	
+	void FixedUpdate()
+	{
+		//GetComponent<Rigidbody>().AddForce(new Vector3(0, 20, 0));
+		//print("adding force");
+		//GetComponent<Rigidbody>().velocity += new Vector3(0,-9.81f,0) * Time.deltaTime;
+		GetComponent<Rigidbody>().velocity = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity)) - new Vector2(transform.position.x, transform.position.y);
+		transform.position = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position));
+	}
+	
 	/* normal force bad
 	void FixedUpdate()
 	{
@@ -29,8 +38,8 @@ public class BezierFollow : MonoBehaviour
 		Vector3 force = normal.normalized * magnitude;
 		GetComponent<Rigidbody>().AddForce(force);
 	}
-	*/
 	
+	//normal force and elastic collision also bad
 	void FixedUpdate()
 	{
 			float t = route.GetComponent<Route>().nearestPointT(transform.position);
@@ -47,4 +56,5 @@ public class BezierFollow : MonoBehaviour
 		
 		lastFrameVelocity = GetComponent<Rigidbody>().velocity;
 	}
+	*/
 }
