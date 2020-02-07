@@ -9,7 +9,7 @@ public class BezierFollow : MonoBehaviour
 	
 	public float speed;
 	private Vector3 lastFrameVelocity;
-	private float t = 0f;
+	public float t = 0f;
 	public bool strictMovement = true;
 
     void Start()
@@ -37,6 +37,11 @@ public class BezierFollow : MonoBehaviour
 		strictMovement = false;
 		while(t < 1f)
 		{
+			while(GetComponent<TimeBody>().isRewinding)
+			{
+				yield return null;
+			}
+			
 			t += Time.deltaTime * speed;
 			transform.position = route.GetComponent<Route>().bezierPosition(t);
 			
@@ -45,13 +50,11 @@ public class BezierFollow : MonoBehaviour
 		
 		transform.position = new Vector3(-15, 0, -15);
 		GetComponent<Rigidbody>().isKinematic = true;
-		
-		strictMovement = true;
 	}
 	
 	void FixedUpdate()
 	{		
-		if(strictMovement && !GetComponent<TimeBody>().isRewinding)
+		if(strictMovement)
 		{
 			StartCoroutine(GoByTheRoute());
 		}
@@ -59,41 +62,6 @@ public class BezierFollow : MonoBehaviour
 		if(GetComponent<TimeBody>().frame == -1)
 		{
 			GetComponent<Rigidbody>().isKinematic = false;
-			//mainObject.gameObjects.Add(gameObject);
 		}
 	}
-	
-	/* normal force bad
-	void FixedUpdate()
-	{
-		//add if statement for when near bezier?
-		
-		float t = route.GetComponent<Route>().nearestPointT(transform.position);
-		Vector2 tangent = route.GetComponent<Route>().bezierSlope(t);
-		Vector2 normal = Quaternion.AngleAxis(90, Vector3.forward) * tangent;
-		//print(normal.x + " " + normal.y);
-		float magnitude = GetComponent<Rigidbody>().mass * Physics.gravity.y * (normal.x / normal.magnitude); //N = mgcosΘ
-		//print(Mathf.Acos((normal.x / normal.magnitude)) * 57.2958f);
-		Vector3 force = normal.normalized * magnitude;
-		GetComponent<Rigidbody>().AddForce(force);
-	}
-	
-	//normal force and elastic collision also bad
-	void FixedUpdate()
-	{
-			float t = route.GetComponent<Route>().nearestPointT(transform.position);
-			Vector2 tangent = route.GetComponent<Route>().bezierSlope(t);
-			Vector2 normal = Quaternion.AngleAxis(90, Vector3.forward) * tangent;
-			var speed = lastFrameVelocity.magnitude;
-			var direction = Vector3.Reflect(lastFrameVelocity.normalized, normal);
-			//transform.position += new Vector3(0, 5f, 0);
-			GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
-			
-			float magnitude = GetComponent<Rigidbody>().mass * Physics.gravity.y * (normal.x / normal.magnitude); //N = mgcosΘ
-			Vector3 force = normal.normalized * magnitude;
-			GetComponent<Rigidbody>().AddForce(force);
-		
-		lastFrameVelocity = GetComponent<Rigidbody>().velocity;
-	}
-	*/
 }

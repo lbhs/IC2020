@@ -11,7 +11,9 @@ public class TimeBody : MonoBehaviour
 	private List<SpaceTime> points = Enumerable.Repeat<SpaceTime>(null, 1).ToList();
 	public Rigidbody Arbies;
 	private bool charge = true;
+	private bool t = true;
 	private List<float> charges = new List<float>();
+	private List<float> tvalues = new List<float>();
 		
 	void Start()
 	{
@@ -20,6 +22,10 @@ public class TimeBody : MonoBehaviour
 		if(GetComponent<charger>() == null)
 		{
 			charge = false;
+		}
+		if(GetComponent<BezierFollow>() == null)
+		{
+			t = false;
 		}
 	}
 
@@ -39,6 +45,7 @@ public class TimeBody : MonoBehaviour
 		{
 			points.Add(Enumerable.Repeat<SpaceTime>(null, 1).ToList()[0]);
 			charges.Add(0f);
+			tvalues.Add(0f);
 			frame++;
 			Record();
 		}
@@ -71,6 +78,10 @@ public class TimeBody : MonoBehaviour
 					GetComponent<LabelAssigner>().updateCharge(charges[frame]);
 				} catch {}
 			}
+			if(t)
+			{
+				GetComponent<BezierFollow>().t = tvalues[frame];
+			}
 		}
 	}
 	
@@ -80,6 +91,10 @@ public class TimeBody : MonoBehaviour
 		if(charge)
 		{
 			charges[frame] = GetComponent<charger>().charge;
+		}
+		if(t)
+		{
+			tvalues[frame] = GetComponent<BezierFollow>().t;
 		}
 	}
 	
@@ -95,6 +110,10 @@ public class TimeBody : MonoBehaviour
 				{
 					GetComponent<LabelAssigner>().updateCharge(charges[frame]);
 				} catch {}
+			}
+			if(t)
+			{
+				GetComponent<BezierFollow>().t = tvalues[frame];
 			}
 			if(points[frame+1] == null)
 			{
