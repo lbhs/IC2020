@@ -45,7 +45,7 @@ public class Route : MonoBehaviour
 		float nearestDistance = Vector2.Distance(bezierPosition(0f), pos);
 		float currentDistance;
 		
-		for(float t = 0f; t <= 1f; t += 0.0001f) //increment increases accuracy
+		for(float t = 0f; t <= 1f; t += 0.0001f) //increment increases accuracy - need to make less resource intensive - use derivative?
 		{
 			currentDistance = Vector2.Distance(bezierPosition(t), pos);
 			if(currentDistance < nearestDistance)
