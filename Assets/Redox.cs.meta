@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 667f1b866ff51c440a77b8750e6ed065
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - MusicToPlay: {fileID: 8300000, guid: 03355108fa640e342a32821135f647f3, type: 3}
+  - Soundsource: {instanceID: 0}
+  - ReactionPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

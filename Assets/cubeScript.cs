@@ -15,26 +15,44 @@ public class cubeScript : MonoBehaviour
 	void OnEnable()
 	{
 		cube = gameObject.GetComponent<Rigidbody>();
-		temperatureSlider = GameObject.Find("temperatureSlider").GetComponent<Slider>();
-		
-		float vx = UnityEngine.Random.Range(-5, 6);
-		float vy = Mathf.Sqrt(50 - (vx * vx));
+		//no temperatureSlider in Exothermic rxn sim
+		//temperatureSlider = GameObject.Find("temperatureSlider").GetComponent<Slider>();
+		temp = 5;  //this is the initial temp of H+ ions in the simulation
+
+		float vx = UnityEngine.Random.Range(-5, 5);
+		if ((-1 < vx) && (vx < 1))
+			{ vx = 2;}
+
+		float vy = UnityEngine.Random.Range(-5, 5);
+		if ((-1 < vy) && (vy < 1))
+			{ vy = 2;}
+
 		velocity = new Vector3(vx, vy, 0);
-		cube.velocity = velocity;
-		temp = temperatureSlider.value;
+		cube.velocity = velocity.normalized*temp;
+		//temp = temperatureSlider.value;
+		print("cubetemp" + temp);
 		
 		GameObject.Find("GameObject").GetComponent<forces>().nonObjects.Add(gameObject);
-	}
-
+	}		
 	// Update is called once per frame
 	void FixedUpdate()
 	{
-		temp = temperatureSlider.value;
-		
-		if (Time.timeScale != 0 && GameObject.Find("GameObject").GetComponent<forces>().recording && cube.velocity.magnitude < (7 * temp))
+		//temp = temperatureSlider.value;
+		if ((cube.velocity.x < 3.0f)&&(cube.velocity.x > 0))
 		{
-			cube.velocity *= 1.4f;
-			print("new velocity = " + velocity.magnitude);
+			//print("particle x velocity low" + cube.velocity.x);
+			cube.AddForce(400,0,0);
+		}
+        if ((cube.velocity.x > -3.0f)&&(cube.velocity.x < 0))
+		{
+			//print("particle x velocity low" + cube.velocity.x);
+			cube.AddForce(-400,0,0);
+		}
+
+		if (Time.timeScale != 0 && GameObject.Find("GameObject").GetComponent<forces>().recording && cube.velocity.sqrMagnitude < (30 * temp))
+		{
+			cube.velocity *= 1.3f;
+			//print("new velocity = " + velocity.magnitude);
 		}
 	}
 }

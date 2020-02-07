@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/base.unity
     guid: 4b250195835e0e54ab11fe92f65beeb5
+  - enabled: 1
+    path: Assets/Scenes/Heat Model 1.unity
+    guid: 284631caf8325a544aaa4e1db3ee20cc
+  - enabled: 1
+    path: Assets/Scenes/Heat Model 2.unity
+    guid: ce42114edf3470c499548de1b8aee0ec
+  - enabled: 1
+    path: Assets/Scenes/Heat Model 3.unity
+    guid: 2f7c77e6984e021409e62116eb84be82
+  - enabled: 1
+    path: Assets/Scenes/Heat Model 4.unity
+    guid: b3669587b410e744c989385bfa7abe6f
   m_configObjects: {}

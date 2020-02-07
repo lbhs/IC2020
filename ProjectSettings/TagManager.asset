@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Water
+  - Particle
+  - HeatDonor
+  - Heat Receiver
+  - e-receiver
+  - e-donor
   layers:
   - Default
   - TransparentFX
