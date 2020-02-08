@@ -202,4 +202,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OxProd: {fileID: 3845422906327184440, guid: 7f2f97955b47f4341bd923a55e6d5418, type: 3}
+  electron: {fileID: 8521043326856526923, guid: 99afe52428a8f75499964b363fab1478,
+    type: 3}
   lowestParticle: {fileID: 0}

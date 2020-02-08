@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnodeScript : MonoBehaviour
 {
     public GameObject OxProd;
+	public GameObject electron;
     public GameObject lowestParticle;
     
     // Start is called before the first frame update
@@ -36,15 +37,15 @@ public class AnodeScript : MonoBehaviour
                 //find a zinc atom in the anode block
                 lowestY = particle.transform.position.y;
                 lowestParticle = particle;
-                print("lowestParticle tag"+lowestParticle.tag);
-                print("lowestY" + lowestY);
+                //print("lowestParticle tag"+lowestParticle.tag);
+                //print("lowestY" + lowestY);
 
             }
 
         }
-        print("oxidize One Zinc");
+        //print("oxidize One Zinc");
         CathodeScript.Rxn = false;
-        print(CathodeScript.Rxn);
+        //print(CathodeScript.Rxn);
 
         GameObject OxidationProduct;
             
@@ -52,7 +53,9 @@ public class AnodeScript : MonoBehaviour
         OxidationProduct = Instantiate(OxProd, lowestParticle.transform.position, Quaternion.identity);
         lowestParticle.transform.position = new Vector3(-15,20,-15);
         lowestParticle.GetComponent<Rigidbody>().isKinematic=true;
-        print("moved it");
+        //print("moved it");
+		
+		Instantiate(electron, GameObject.Find("ElectronPath").GetComponent<Route>().bezierPosition(0f), Quaternion.identity).GetComponent<BezierFollow>().route = GameObject.Find("ElectronPath");
 
         
         //replace this zinc atom with a mobile Zn+ ion

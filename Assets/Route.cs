@@ -14,30 +14,22 @@ public class Route : MonoBehaviour
 	{
 		for (float t = 0; t <= 1; t += 0.025f)
 		{
-			gizmosPosition = Mathf.Pow(1 - t, 3) * controlPoints[0].position + 3 * Mathf.Pow(1 - t, 2) * t * controlPoints[1].position + 3 * (1 - t) * Mathf.Pow(t, 2) * controlPoints[2].position + Mathf.Pow(t, 3) * controlPoints[3].position;
 			Gizmos.DrawSphere(bezierPosition(t), 0.25f);
 		}
-		
-		//Gizmos.DrawSphere(bezierPosition(0.5f), 0.5f);
-		/*
-		for(int i = 0; i < controlPoints.Length; i += 2)
-		{
-			Gizmos.DrawLine(new Vector2(controlPoints[i].position.x, controlPoints[i].position.y), new Vector2(controlPoints[i+1].position.x, controlPoints[i+1].position.y));
-		}
-		*/
-		
 	}
-	/* spawn a bunch of spheres along the curve
-	void Start()
+	
+	private void Start()
 	{
-		for (float t = 0; t <= 1; t += 0.005f)
+		//draw visual representation of the bezier curve in runtime
+		Vector3 previousPos = bezierPosition(0f);
+		for (float t = 0.025f; t <= 1; t += 0.025f)
 		{
-			GameObject curve = new Particle(pos: bezierPosition(t), mass: 0f, bounciness:0f).Spawn();
-			curve.GetComponent<Rigidbody>().isKinematic = true;
-			curve.GetComponent<MeshRenderer>().enabled = true;
+			Vector3 currentPos = bezierPosition(t);
+			DrawLine(previousPos, currentPos, Color.black);
+			previousPos = currentPos;
 		}
+		DrawLine(previousPos, bezierPosition(1f), Color.black);
 	}
-	*/
 	
 	public float nearestPointT(Vector2 pos)
 	{
@@ -104,6 +96,20 @@ public class Route : MonoBehaviour
 		}
 		return val;
 	}
+	
+	void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 10000f)
+    {
+        GameObject myLine = new GameObject();
+        myLine.transform.position = start;
+        myLine.AddComponent<LineRenderer>();
+        LineRenderer lr = myLine.GetComponent<LineRenderer>();
+        lr.material = new Material(Shader.Find("Standard"));
+        lr.SetColors(color, color);
+        lr.SetWidth(0.1f, 0.1f);
+        lr.SetPosition(0, start);
+        lr.SetPosition(1, end);
+        GameObject.Destroy(myLine, duration);
+    }
 }
 
 

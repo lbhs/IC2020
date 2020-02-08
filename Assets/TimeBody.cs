@@ -10,11 +10,23 @@ public class TimeBody : MonoBehaviour
 	private GameObject gameobject;
 	private List<SpaceTime> points = Enumerable.Repeat<SpaceTime>(null, 1).ToList();
 	public Rigidbody Arbies;
+	private bool charge = true;
+	private bool t = true;
+	private List<float> charges = new List<float>();
+	private List<float> tvalues = new List<float>();
 		
 	void Start()
 	{
 		gameobject = GameObject.Find("GameObject");
 		Arbies = GetComponent<Rigidbody>();
+		if(GetComponent<charger>() == null)
+		{
+			charge = false;
+		}
+		if(GetComponent<BezierFollow>() == null)
+		{
+			t = false;
+		}
 	}
 
 	void FixedUpdate()
@@ -32,6 +44,8 @@ public class TimeBody : MonoBehaviour
 		else
 		{
 			points.Add(Enumerable.Repeat<SpaceTime>(null, 1).ToList()[0]);
+			charges.Add(0f);
+			tvalues.Add(0f);
 			frame++;
 			Record();
 		}
@@ -49,6 +63,7 @@ public class TimeBody : MonoBehaviour
 			else
 			{
 				transform.position = new Vector3(-15, 0, -15);
+				
 			}
 		}
 		else
@@ -56,12 +71,31 @@ public class TimeBody : MonoBehaviour
 			SpaceTime point = points[frame];
 			transform.position = point.position;
 			transform.rotation = point.rotation;
+			if(charge)
+			{
+				try
+				{
+					//GetComponent<LabelAssigner>().updateCharge(charges[frame]);
+				} catch {}
+			}
+			if(t)
+			{
+				GetComponent<BezierFollow>().t = tvalues[frame];
+			}
 		}
 	}
 	
 	void Record()
 	{
 		points[frame] = new SpaceTime(Arbies.velocity, transform.position, transform.rotation);
+		if(charge)
+		{
+			charges[frame] = GetComponent<charger>().charge;
+		}
+		if(t)
+		{
+			tvalues[frame] = GetComponent<BezierFollow>().t;
+		}
 	}
 	
 	void Playback()
@@ -70,6 +104,17 @@ public class TimeBody : MonoBehaviour
 		{
 			transform.position = points[frame].position;
 			transform.rotation = points[frame].rotation;
+			if(charge)
+			{
+				try
+				{
+					//GetComponent<LabelAssigner>().updateCharge(charges[frame]);
+				} catch {}
+			}
+			if(t)
+			{
+				GetComponent<BezierFollow>().t = tvalues[frame];
+			}
 			if(points[frame+1] == null)
 			{
 				Arbies.isKinematic = false;
