@@ -1,0 +1,13 @@
+{
+"companyName": "DefaultCompany",
+"productName": "IC2020",
+"dataUrl": "GasModelWaterCondense.data.unityweb",
+"wasmCodeUrl": "GasModelWaterCondense.wasm.code.unityweb",
+"wasmFrameworkUrl": "GasModelWaterCondense.wasm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"}
+}

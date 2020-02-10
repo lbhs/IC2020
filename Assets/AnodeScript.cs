@@ -7,6 +7,7 @@ public class AnodeScript : MonoBehaviour
     public GameObject OxProd;
 	public GameObject electron;
     public GameObject lowestParticle;
+    public static bool NoMoreZinc = false;
     
     // Start is called before the first frame update
     void Start()
@@ -36,13 +37,14 @@ public class AnodeScript : MonoBehaviour
             {
                 //find a zinc atom in the anode block
                 lowestY = particle.transform.position.y;
-                lowestParticle = particle;
+                lowestParticle = particle;        
                 //print("lowestParticle tag"+lowestParticle.tag);
                 //print("lowestY" + lowestY);
 
             }
 
         }
+        
         //print("oxidize One Zinc");
         CathodeScript.Rxn = false;
         //print(CathodeScript.Rxn);

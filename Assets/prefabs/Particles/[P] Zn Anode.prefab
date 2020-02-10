@@ -18,8 +18,9 @@ GameObject:
   - component: {fileID: 6323791342248127287}
   - component: {fileID: 1130148215593200895}
   - component: {fileID: 1143292009757863254}
+  - component: {fileID: 8277810811558432060}
   m_Layer: 0
-  m_Name: '[P] Zn Metal'
+  m_Name: '[P] Zn Anode'
   m_TagString: e-donor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a86380fa4264d76825bcea6c874dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasFlag: 1
+  hasFlag: 0
   useTextLable: 1
   Lable: Zn
 --- !u!114 &6323791342248127287
@@ -188,3 +189,19 @@ MonoBehaviour:
   EP: 0.76
   ReactionPrefab: {fileID: 3845422906327184440, guid: 7f2f97955b47f4341bd923a55e6d5418,
     type: 3}
+--- !u!114 &8277810811558432060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845422906327184440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9287184bfd09fe4f9aa56d147733050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OxProd: {fileID: 3845422906327184440, guid: 7f2f97955b47f4341bd923a55e6d5418, type: 3}
+  electron: {fileID: 8521043326856526923, guid: 99afe52428a8f75499964b363fab1478,
+    type: 3}
+  lowestParticle: {fileID: 0}

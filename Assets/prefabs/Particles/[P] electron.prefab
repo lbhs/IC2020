@@ -15,9 +15,7 @@ GameObject:
   - component: {fileID: 8521043326856526922}
   - component: {fileID: 2238417365898664343}
   - component: {fileID: 4414012223502966765}
-  - component: {fileID: 3346956287848811599}
   - component: {fileID: 1834944701730061088}
-  - component: {fileID: 7768206583206641562}
   - component: {fileID: 5054515845165133022}
   m_Layer: 0
   m_Name: '[P] electron'
@@ -141,20 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasFlag: 0
   useTextLable: 1
-  Lable: '-'
---- !u!114 &3346956287848811599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8521043326856526923}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6911d929f6f50bd4bb62dedc0260837a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canBeRightClicked: 1
+  Lable: e-
 --- !u!114 &1834944701730061088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,20 +155,6 @@ MonoBehaviour:
   isRewinding: 0
   frame: -1
   Arbies: {fileID: 0}
---- !u!114 &7768206583206641562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8521043326856526923}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c1ffd3219793f4aae7894f846f29bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0, z: 0}
-  temp: 0
 --- !u!114 &5054515845165133022
 MonoBehaviour:
   m_ObjectHideFlags: 0

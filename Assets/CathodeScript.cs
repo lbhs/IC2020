@@ -6,11 +6,12 @@ public class CathodeScript : MonoBehaviour
 {
     public static bool Rxn = false;  //Rxn = true when e-receiver contacts cathode
     public GameObject ReactionPrefab;
+    private AudioSource CathodeSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        CathodeSound = GameObject.Find("SoundforCathode").GetComponent<AudioSource>();
     }
 
 
@@ -30,6 +31,10 @@ public class CathodeScript : MonoBehaviour
             ReductionProduct = Instantiate(ReactionPrefab, Rpos, Quaternion.identity);
             collider.gameObject.transform.position = new Vector3(-15,20,-15);
             collider.gameObject.GetComponent<Rigidbody>().isKinematic=true;
+
+            //play a sound!
+            CathodeSound.Play();
+
 
         }
 

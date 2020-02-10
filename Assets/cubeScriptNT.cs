@@ -25,7 +25,7 @@ public class cubeScriptNT : MonoBehaviour
 			{ vy = 2;}
 
 		velocity = new Vector3(vx, vy, 0);
-		cube.velocity = velocity.normalized*4;
+		cube.velocity = velocity.normalized*3;
 		
 		
 		GameObject.Find("GameObject").GetComponent<forces>().nonObjects.Add(gameObject);
@@ -58,9 +58,9 @@ public class cubeScriptNT : MonoBehaviour
 			//print("particle y velocity low" + cube.velocity.x);
 			cube.AddForce(0,-200,0);
 		}
-		if (Time.timeScale != 0 && GameObject.Find("GameObject").GetComponent<forces>().recording && cube.velocity.sqrMagnitude < 100)
+		if (Time.timeScale != 0 && GameObject.Find("GameObject").GetComponent<forces>().recording && cube.velocity.sqrMagnitude < 50)
 		{
-			cube.velocity *= 1.2f;
+			cube.velocity *= 1.1f;
 			//print("new velocity = " + velocity.magnitude);
 		}
 	}
