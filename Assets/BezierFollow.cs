@@ -36,13 +36,16 @@ public class BezierFollow : MonoBehaviour
 	
 	void updatePosition()
 	{
-		//GetComponent<Rigidbody>().AddForce(new Vector3(0, 20, 0));
-		//print("adding force");
-		//GetComponent<Rigidbody>().velocity += new Vector3(0,-9.81f,0) * Time.deltaTime;
-		GetComponent<Rigidbody>().velocity = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity)) - new Vector2(transform.position.x, transform.position.y);
-		Vector3 nextPos = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position));
-		//Debug.DrawLine(transform.position, nextPos, Color.black, false);
+		//artificial gravity - should exactly mimic rigidbody gravity but here just in case if we want to make sure gravity is calculated BEFORE the position adjustments
+		GetComponent<Rigidbody>().velocity += new Vector3(0,-9.81f,0) * Time.deltaTime;
+		
+		Vector3 prevPos = transform.position;
+		Vector3 nextPos = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity));
+		GetComponent<Rigidbody>().velocity = nextPos - prevPos;
 		transform.position = nextPos;
+		
+		print(GetComponent<Rigidbody>().velocity.magnitude);
+		//Debug.DrawLine(prevPos, nextPos, Color.black, false);
 	}
 	
 	private IEnumerator GoByTheRoute()
