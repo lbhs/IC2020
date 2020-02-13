@@ -13,9 +13,10 @@ public class BezierFollow : MonoBehaviour
 
     void Start()
     {
-        transform.position = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position));
+        //transform.position = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position));
 		
-		//print(route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position))); 
+		print(route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position, 0.00001f)).x);
+		print(route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().newtonsMethod(transform.position + GetComponent<Rigidbody>().velocity, route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity, 0.0001f))).x);
     }
 	
 	void FixedUpdate()
@@ -36,10 +37,11 @@ public class BezierFollow : MonoBehaviour
 	void updatePosition()
 	{
 		//artificial gravity - should exactly mimic rigidbody gravity but here just in case if we want to make sure gravity is calculated BEFORE the position adjustments
-		GetComponent<Rigidbody>().velocity += new Vector3(0,-9.81f,0) * Time.deltaTime * 0.01f;
+		GetComponent<Rigidbody>().velocity += new Vector3(0,-9.81f,0) * Time.deltaTime * 0.05f;
 		
 		Vector3 prevPos = transform.position;
-		Vector3 nextPos = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity));
+		//Vector3 nextPos = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().newtonsMethod(transform.position + GetComponent<Rigidbody>().velocity, route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity, 0.01f)));
+		Vector3 nextPos = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity, 0.0001f));
 		GetComponent<Rigidbody>().velocity = nextPos - prevPos;
 		transform.position = nextPos;
 	}

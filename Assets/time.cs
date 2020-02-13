@@ -21,13 +21,13 @@ public class time : MonoBehaviour
 			else
 			{
 				GameObject.Find("GameObject").GetComponent<forces>().startRewind();
-				Time.timeScale = Math.Abs(scale/4);
+				Time.timeScale = Math.Abs(scale);
 				GetComponent<UnityEngine.UI.Slider>().value = scale;
 			}
 		}
 		else
 		{
-			Time.timeScale = scale/4;
+			Time.timeScale = scale;
 			GetComponent<UnityEngine.UI.Slider>().value = scale;
 			GameObject.Find("GameObject").GetComponent<forces>().stopRewind();
 		}

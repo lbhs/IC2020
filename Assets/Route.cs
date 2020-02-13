@@ -39,13 +39,14 @@ public class Route : MonoBehaviour
 	}
 	*/
 	
-	public float nearestPointT(Vector2 pos)
+	//slow and inaccurate but it works
+	public float nearestPointT(Vector2 pos, float accuracy)
 	{
 		float nearestT = 0f;
 		float nearestDistance = Vector2.Distance(bezierPosition(0f), pos);
 		float currentDistance;
 		
-		for(float t = 0f; t <= 1f; t += 0.00001f) //increment increases accuracy - need to make less resource intensive - use derivative?
+		for(float t = 0f; t <= 1f; t += accuracy) //increment increases accuracy - need to make less resource intensive - use derivative?
 		{
 			currentDistance = Vector2.Distance(bezierPosition(t), pos);
 			if(currentDistance < nearestDistance)
@@ -57,14 +58,41 @@ public class Route : MonoBehaviour
 		return nearestT;
 	}
 	
-	public float distanceFromCurve(Vector2 pos)
+	public float newtonsMethod(Vector2 point, float t)
 	{
-		return Vector2.Distance(pos, bezierPosition(nearestPointT(pos)));
+		float currentT = optimizationY(point, t);
+		float nextT	= t - (currentT / optimizationDY(point, t));
+		if(0.001f > Mathf.Abs(t - nextT))
+		{
+			return nextT;
+		}
+		else
+		{
+			return newtonsMethod(point, nextT);
+		}
+	}
+	/*
+	public Vector2 nearestCurvePoint(Vector2 point)
+	{
+		
+	}
+	*/
+	public float optimizationY(Vector2 point, float t)
+	{
+		Vector2 pos = bezierPosition(t);
+		return Mathf.Pow((pos.x - point.x), 2) + Mathf.Pow((pos.y - point.y), 2);
+	}
+	
+	public float optimizationDY(Vector2 point, float t)
+	{
+		Vector2 pos = bezierPosition(t);
+		Vector2 slope = bezierSlope(t);
+		return (2 * pos.x * slope.x) + (2 * pos.y * slope.y);
 	}
 	
 	public Vector2 bezierPosition(float t)
 	{
-		Vector2 summation = new Vector2(0,0);
+		Vector2 summation = Vector2.zero;
 		int n = controlPoints.Length - 1;
 		for(int i = 0; i <= n; i++)
 		{
@@ -79,7 +107,7 @@ public class Route : MonoBehaviour
 	
 	public Vector2 bezierSlope(float t)
 	{
-		Vector2 summation = new Vector2(0,0);
+		Vector2 summation = Vector2.zero;
 		int n = controlPoints.Length - 1;
 		for(int i = 0; i < n; i++)
 		{
@@ -88,7 +116,6 @@ public class Route : MonoBehaviour
 			float secondPower = Mathf.Pow(t, i);
 			Vector2 point1 = controlPoints[i].position;
 			Vector2 point2 = controlPoints[i+1].position;
-			
 			summation += binomCoefficient * mainPower * secondPower * n * (point2 - point1);
 		}
 		return summation;
