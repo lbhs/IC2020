@@ -400,6 +400,18 @@ MonoBehaviour:
   speed: 1
   t: 0
   strictMovement: 0
+--- !u!114 &324330345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324330334}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d53ba3d75208545a1d4f8c3af7a937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &335951041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,6 +1021,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932801236425007388, guid: 5519bce164f41264898fae3eed0d887c,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6506772712502698763, guid: 5519bce164f41264898fae3eed0d887c,
         type: 3}
@@ -4421,6 +4438,11 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 3932801236425007388, guid: 5519bce164f41264898fae3eed0d887c,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6506772712502698763, guid: 5519bce164f41264898fae3eed0d887c,
         type: 3}
       propertyPath: m_Material
@@ -4744,7 +4766,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071740285}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 677c57f63a7cd2547a5238c88036500e, type: 3}
   m_Name: 
