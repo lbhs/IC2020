@@ -8,7 +8,6 @@ public class BezierFollow : MonoBehaviour
 	private GameObject route;
 	
 	public float speed;
-	private Vector3 lastFrameVelocity;
 	public float t = 0f;
 	public bool strictMovement = true;
 
@@ -20,7 +19,7 @@ public class BezierFollow : MonoBehaviour
     }
 	
 	void FixedUpdate()
-	{		
+	{
 		if(strictMovement)
 		{
 			StartCoroutine(GoByTheRoute());
@@ -37,15 +36,12 @@ public class BezierFollow : MonoBehaviour
 	void updatePosition()
 	{
 		//artificial gravity - should exactly mimic rigidbody gravity but here just in case if we want to make sure gravity is calculated BEFORE the position adjustments
-		GetComponent<Rigidbody>().velocity += new Vector3(0,-9.81f,0) * Time.deltaTime;
+		GetComponent<Rigidbody>().velocity += new Vector3(0,-9.81f,0) * Time.deltaTime * 0.01f;
 		
 		Vector3 prevPos = transform.position;
 		Vector3 nextPos = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity));
 		GetComponent<Rigidbody>().velocity = nextPos - prevPos;
 		transform.position = nextPos;
-		
-		print(GetComponent<Rigidbody>().velocity.magnitude);
-		//Debug.DrawLine(prevPos, nextPos, Color.black, false);
 	}
 	
 	private IEnumerator GoByTheRoute()
