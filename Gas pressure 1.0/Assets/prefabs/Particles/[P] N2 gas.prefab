@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 1130148215593200895}
   - component: {fileID: 924622038707736723}
   - component: {fileID: 3389385312834727676}
+  - component: {fileID: 7740471236889469003}
+  - component: {fileID: 8438445988910229472}
   m_Layer: 0
   m_Name: '[P] N2 gas'
   m_TagString: Untagged
@@ -128,6 +130,7 @@ MonoBehaviour:
   hasFlag: 0
   useTextLable: 1
   Lable: N2 gas
+  tempLable: {fileID: 0}
 --- !u!114 &6323791342248127287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,3 +186,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charge: 0
+--- !u!114 &7740471236889469003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845422906327184440}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ff409f846464f35ab15ae028cbc142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8438445988910229472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845422906327184440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47efbf2a8fcff4539a121b217fa35812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -35,16 +35,30 @@ public class O2GasScript : MonoBehaviour
 	void FixedUpdate()
 	{
 		temp = temperatureSlider.value;
-		if ((cube.velocity.y < 1.0f)&&(cube.velocity.y > -1.0f))
+		if ((cube.velocity.y < 6.0f)&&(cube.velocity.y > -6.0f))
 		{
 			//print("particle y velocity low" + cube.velocity.y);
-			cube.AddForce(0,200,0);
+			if (cube.velocity.y < 0)
+			{
+				cube.AddForce(0, -600, 0);
+			}
+			else
+			{
+				cube.AddForce(0, 600, 0);
+			}
 		}
 		
-		if ((cube.velocity.x < 1.0f)&&(cube.velocity.x > -1.0f))
+		if ((cube.velocity.x < 3.0f)&&(cube.velocity.x > -3.0f))
 		{
 			//print("particle x velocity low" + cube.velocity.x);
-			cube.AddForce(200,0,0);
+			if (cube.velocity.x <= 0)
+			{
+				cube.AddForce(-600, 0, 0);
+			}
+			else
+			{
+				cube.AddForce(600, 0, 0);
+			}
 		}
 
 		if (Time.timeScale != 0 && GameObject.Find("GameObject").GetComponent<forces>().recording && cube.velocity.sqrMagnitude < (20 * temp))

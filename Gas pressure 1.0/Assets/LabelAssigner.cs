@@ -9,7 +9,7 @@ public class LabelAssigner : MonoBehaviour
     public bool useTextLable;
     public string Lable;
     private int imgToUse;
-    private GameObject tempLable;
+    public GameObject tempLable;
 
     void Start()
     {
@@ -36,5 +36,4 @@ public class LabelAssigner : MonoBehaviour
             tempLable.GetComponent<ImageFollower>().sphereToFollow = gameObject;
         }
     }
-
 }

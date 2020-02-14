@@ -32,30 +32,36 @@ public class SyringePlunger : MonoBehaviour
         Plunger.AddForce(sliderForce);
         //print(sliderForce);
         //print(Plunger.velocity.x);
-
-        if (Plunger.position.x >= 14-(14/Atm))
+        if (GameObject.Find("holeText").GetComponent<editText>().toggle)
         {
-            Clamp = true;
-        }
-        
-        if (Clamp == true)
+            Clamp = false;
+            print("success");
+        } else
         {
-            PlungerClamp = Mathf.Clamp(Plunger.position.x,(14f-14f/Atm - 0.5f),14f-14f/Atm + 0.5f);
-            print(Clamp);
-            
-            print (PlungerClamp);
-            print (sliderForce);
-            Plunger.position = new Vector3 (PlungerClamp,0,0);
-            if (Plunger.position.x < 14-14f/Atm)
+            if (Plunger.position.x >= 14 - (14 / Atm))
             {
-                sliderForce = new Vector3(500f*Atm,0,0);
+                Clamp = true;
+            }
+
+            if (Clamp == true)
+            {
+                //PlungerClamp = Mathf.Clamp(Plunger.position.x,(14f-14f/Atm - 0.5f),14f-14f/Atm + 0.5f);
+                PlungerClamp = Mathf.Clamp(Plunger.position.x, (14f - 14f / Atm), (14f - 14f / Atm));
+                print(Clamp);
+
+                print(PlungerClamp);
                 print(sliderForce);
-            }
-            else
-            {
-                sliderForce = new Vector3(200f*Atm,0,0);
+                Plunger.position = new Vector3(PlungerClamp, 0, 0);
+                if (Plunger.position.x < 14 - 14f / Atm)
+                {
+                    sliderForce = new Vector3(500f * Atm, 0, 0);
+                    print(sliderForce);
+                }
+                else
+                {
+                    sliderForce = new Vector3(200f * Atm, 0, 0);
+                }
             }
         }
-
     }
 }
