@@ -31,7 +31,7 @@ public class SyringePlungerwSlider : MonoBehaviour
     {
         foreach (Collider obj in Physics.OverlapSphere(new Vector3(2, 0, 0), 300))
         {
-            if ((obj.gameObject.GetComponent<O2GasScript>() != null || obj.gameObject.GetComponent<GasMoleculeMotion>() != null) && obj.gameObject.transform.position.x > 14f && Time.frameCount % 10 == 0 && obj.GetComponent<Rigidbody>().velocity.magnitude < 20f)
+            if ((obj.gameObject.GetComponent<O2GasScript>() != null || obj.gameObject.GetComponent<GasMoleculeMotion>() != null) && obj.gameObject.transform.position.x > 14f && Time.frameCount % 13 == 0 && obj.GetComponent<Rigidbody>().velocity.magnitude < 20f)
             {
                 obj.gameObject.transform.position = new Vector3(20, 0, 0);
                 obj.GetComponent<Rigidbody>().velocity = new Vector3(-50f, Random.Range(-0.2f, 0.2f), 0);
