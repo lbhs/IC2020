@@ -40,8 +40,8 @@ public class BezierFollow : MonoBehaviour
 		GetComponent<Rigidbody>().velocity += new Vector3(0,-9.81f,0) * Time.deltaTime * 0.05f;
 		
 		Vector3 prevPos = transform.position;
-		//Vector3 nextPos = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().newtonsMethod(transform.position + GetComponent<Rigidbody>().velocity, route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity, 0.01f)));
-		Vector3 nextPos = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity, 0.0001f));
+		Vector3 nextPos = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().newtonsMethod(transform.position + GetComponent<Rigidbody>().velocity, route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity, 0.0001f)));
+		//Vector3 nextPos = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity, 0.0001f));
 		GetComponent<Rigidbody>().velocity = nextPos - prevPos;
 		transform.position = nextPos;
 	}

@@ -60,8 +60,8 @@ public class Route : MonoBehaviour
 	
 	public float newtonsMethod(Vector2 point, float t)
 	{
-		float currentT = optimizationY(point, t);
-		float nextT	= t - (currentT / optimizationDY(point, t));
+		float currentT = funcD(point, bezierPosition(t));
+		float nextT	= t - (currentT / funcDY(point, t));
 		if(0.001f > Mathf.Abs(t - nextT))
 		{
 			return nextT;
@@ -77,17 +77,47 @@ public class Route : MonoBehaviour
 		
 	}
 	*/
-	public float optimizationY(Vector2 point, float t)
+	public float funcD(Vector2 point, Vector2 pos)
 	{
-		Vector2 pos = bezierPosition(t);
 		return Mathf.Pow((pos.x - point.x), 2) + Mathf.Pow((pos.y - point.y), 2);
 	}
 	
-	public float optimizationDY(Vector2 point, float t)
+	public float funcDY(Vector2 point, float t)
 	{
 		Vector2 pos = bezierPosition(t);
 		Vector2 slope = bezierSlope(t);
 		return (2 * pos.x * slope.x) + (2 * pos.y * slope.y);
+	}
+	
+	public Vector2 minFuncP(Vector2 point, Vector2 s1, Vector2 s2, Vector2 s3)
+	{
+		Vector2 y23 = (Mathf.Pow(s2, 2) - Mathf.Pow(s3, 2)) * funcD(point, s1);
+		Vector2 y31 = (Mathf.Pow(s3, 2) - Mathf.Pow(s1, 2)) * funcD(point, s2);
+		Vector2 y12 = (Mathf.Pow(s1, 2) - Mathf.Pow(s2, 2)) * funcD(point, s3);
+		Vector2 s23 = (s2 - s3) * funcD(point, s1);
+		Vector2 s31 = (s3 - s1) * funcD(point, s2);
+		Vector2 s12 = (s1 - s2) * funcD(point, s3);
+		
+		return 0.5f * ((y23 + y31 + y12)/(s23 + s31 + s12));
+	}
+	
+	public Vector2[] quadraticMethod(Vector2 point, Vector2 s1 = bezierPosition(0f), Vector2 s2 = bezierPosition(0.5f), Vector2 s3 = bezierPosition(1f))
+	{
+		Vector2 star = minFuncP(point, s1, s2, s3);
+		Vector2[] newValues = {s1, s2, s3, star};
+		float maxDistance = funcP(star, s1, s2, s3);
+		for(int i = 0, i < 3; i++)
+		{
+			
+		}
+	}
+	
+	public float funcP(Vector2 point, Vector2 s1, Vector2 s2, Vector2 s3)
+	{
+		Vector2 first = ((point - s2)*(point - s3)*funcD(point, s1))/((s1 - s2)*(s1 - s3));
+		Vector2 second = ((point - s1)*(point - s3)*funcD(point, s2))/((s2 - s1)*(s2 - s3));
+		Vector2 third = ((point - s1)*(point - s2)*funcD(point, s3))/((s3 - s1)*(s3 - s2));
+		return first + second + third;
 	}
 	
 	public Vector2 bezierPosition(float t)
