@@ -94,9 +94,14 @@ public class ModelSlector : MonoBehaviour
         //...
         else if (dropDownValue == 4)
         {
-            //do stuff here
+            List<Vector3> coords = generateRandomCoords(4);
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
+            for (int x = 0; x < 4; x++)
+            {
+                Particle Hyd1 = new Particle("Hydrogen " + x, 2f, ICColor.Hydrogen, coords[x], scale: 2f);
+                Hyd1.Spawn();
+            }
         }
     }
 	
