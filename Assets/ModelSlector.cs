@@ -100,25 +100,7 @@ public class ModelSlector : MonoBehaviour
             for (int x = 0; x < 4; x++)
             {
                 Particle Hyd1 = new Particle("Hydrogen " + x, 2f, ICColor.Hydrogen, coords[x], scale: 2f);
-                Hyd1.Spawn();
-                /*
-                GameObject BuffetTable = GameObject.Find("Buffet Table");
-                Purpose: disable temperature (will be fixed at 15 million Kelvin)
-                for (int i = 0; i < BuffetTable.transform.childCount - 1; i++)
-                {
-                    if (BuffetTable.transform.GetChild(i).transform.name == "Panel")
-                    {
-                        GameObject Panel = BuffetTable.transform.GetChild(i).gameObject;
-                        for (int j = 0; j < Panel.transform.childCount - 1; j++)
-                        {
-                            if (Panel.transform.GetChild(j).transform.name == "temperatureSlider")
-                            {
-                                Panel.transform.GetChild(j).gameObject.GetComponent<Slider>().enabled = false;
-                            }
-                        }
-                    }
-                }
-                */
+                Hyd1.Spawn().AddComponent<NuclearPhysics>();
                 float G = GameObject.Find("GameObject").GetComponent<main>().G;
                 float k = GameObject.Find("GameObject").GetComponent<main>().k;
                 G = 100000;

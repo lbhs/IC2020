@@ -44,6 +44,7 @@ namespace IC2020
         public static Color Magnesium = new Color32(42, 128, 42, 255);
         public static Color Calcium = new Color32(128, 128, 128, 255);
         public static Color Potassium = new Color32(255, 20, 147, 255);
+        public static Color Neutron = new Color32(0, 124, 196, 255);
     }
 
     public class Particle
