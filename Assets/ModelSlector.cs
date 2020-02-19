@@ -97,14 +97,12 @@ public class ModelSlector : MonoBehaviour
             List<Vector3> coords = generateRandomCoords(4);
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
+            float k = GameObject.Find("GameObject").GetComponent<main>().k;
             for (int x = 0; x < 4; x++)
             {
                 Particle Hyd1 = new Particle("Hydrogen " + x, 2f, ICColor.Hydrogen, coords[x], scale: 2f);
                 Hyd1.Spawn().AddComponent<NuclearPhysics>();
-                float G = GameObject.Find("GameObject").GetComponent<main>().G;
-                float k = GameObject.Find("GameObject").GetComponent<main>().k;
-                G = 100000;
-                GameObject.Find("GameObject").GetComponent<forces>().initialize(G, k);
+                GameObject.Find("GameObject").GetComponent<forces>().initialize(100000, k);
             }
         }
     }

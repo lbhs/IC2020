@@ -30,12 +30,29 @@ public class NuclearPhysics : MonoBehaviour
         // Proton-Proton collision
         if (collision.gameObject.name.Split(' ')[1] == "Hydrogen" && name.Split(' ')[1] == "Hydrogen")
         {
-            Debug.Log("Collision!");
-            /* Improved Method: making collision.gameObject a neutron
-            Particle Neutron = new Particle("Neutron " + NeutronCount, 0f, ICColor.Neutron, collision.gameObject.transform.position);
-            Neutron.Spawn();    // will be joined to the existing proton (to form isotope of H, 2H)
-            NeutronCount++;
+            gameObject.name = "[P] 2Hydrogen";    // Identify particles as belonging to an isotope
+            collision.gameObject.name = "[P] 2Hydrogen";
+            collision.gameObject.GetComponent<charger>().charge = 0f;
+            collision.gameObject.GetComponent<Renderer>().material.color = ICColor.Neutron;
+
+            /* Attempt: change image displayed on new neutron to reflect its neutral charge
+            GameObject tempLable;
+            tempLable = MonoBehaviour.Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[2], Vector3.zero, Quaternion.identity);
+            tempLable.transform.SetParent(GameObject.Find("Lable Canvas").transform);
+            tempLable.GetComponent<ImageFollower>().sphereToFollow = collision.gameObject;
+            collision.gameObject.GetComponent<Renderer>().material.color = ICColor.Neutron;
             */
+
+            // Join proton and neutron
+            FixedJoint joint = gameObject.AddComponent<FixedJoint>();
+            joint.connectedBody = collision.gameObject.GetComponent<Rigidbody>();
+
+            // Release a beta particle and neutrino
+            Particle beta = new Particle("[P] Beta", 1.0f, ICColor.Electron);
+            GameObject betaObject = beta.Spawn();
+
+            Particle neutrino = new Particle("[P] Neutrino", 0.1f, ICColor.Electron);
+            GameObject neutrinoObject = neutrino.Spawn();
         }
     }
 }
