@@ -12,7 +12,6 @@ public class acidbase : MonoBehaviour
     void Start()
     {
         mainObject = GameObject.Find("GameObject").GetComponent<forces>();
-		Debug.Log("this farrrr");
     }
 
     private void OnCollisionEnter(Collision collision)

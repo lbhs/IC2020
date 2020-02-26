@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using IC2020;
+using System.Linq;
 
 public class Route : MonoBehaviour
 {
@@ -57,43 +58,47 @@ public class Route : MonoBehaviour
 		}
 		return nearestT;
 	}
-	
-	public float newtonsMethod(Vector2 point, float t)
-	{
-		float currentT = funcD(point, bezierPosition(t));
-		float nextT	= t - (currentT / funcDY(point, t));
-		if(0.001f > Mathf.Abs(t - nextT))
-		{
-			return nextT;
-		}
-		else
-		{
-			return newtonsMethod(point, nextT);
-		}
-	}
 	/*
+	public Vector2 newtonsMethod(Vector2 point, Vector2 currentPos, int iterations)
+	{
+		Debug.Log("newton");
+		float nextT	= currentPos - (funcD(point, currentPos) / funcDY(point, guestimate));
+		if(iterations == 1)
+		{
+			return bezierPosition(nextT);
+		}
+		return newtonsMethod(point, bezierPosition(nextT), iterations - 1);
+	}*/
+	
 	public Vector2 nearestCurvePoint(Vector2 point)
 	{
-		
+		List<Vector2> initial = new List<Vector2>(){bezierPosition(0f), bezierPosition(0.5f), bezierPosition(1f)};
+		List<Vector2> fix = quadraticMethod(point, initial);
+		//return newtonsMethod(point, minFuncP(point, fix[0], fix[1], fix[2]), 4);
+		return Vector2.zero;
 	}
-	*/
+	
 	public float funcD(Vector2 point, Vector2 pos)
 	{
 		return Mathf.Pow((pos.x - point.x), 2) + Mathf.Pow((pos.y - point.y), 2);
 	}
 	
-	public float funcDY(Vector2 point, float t)
+	public Vector2 funcDY(Vector2 point, Vector2 pos)
 	{
-		Vector2 pos = bezierPosition(t);
-		Vector2 slope = bezierSlope(t);
-		return (2 * pos.x * slope.x) + (2 * pos.y * slope.y);
+		return Vector2.zero;
+	}
+	
+	public Vector2 funcDDY(Vector2 point, Vector2 pos)
+	{
+		return Vector2.zero;
 	}
 	
 	public Vector2 minFuncP(Vector2 point, Vector2 s1, Vector2 s2, Vector2 s3)
 	{
-		Vector2 y23 = (Mathf.Pow(s2, 2) - Mathf.Pow(s3, 2)) * funcD(point, s1);
-		Vector2 y31 = (Mathf.Pow(s3, 2) - Mathf.Pow(s1, 2)) * funcD(point, s2);
-		Vector2 y12 = (Mathf.Pow(s1, 2) - Mathf.Pow(s2, 2)) * funcD(point, s3);
+		Debug.Log("quad");
+		Vector2 y23 = ((s2 * s2) - (s3 * s3)) * funcD(point, s1);
+		Vector2 y31 = ((s3 * s3) - (s1 * s1)) * funcD(point, s2);
+		Vector2 y12 = ((s1 * s1) - (s2 * s2)) * funcD(point, s3);
 		Vector2 s23 = (s2 - s3) * funcD(point, s1);
 		Vector2 s31 = (s3 - s1) * funcD(point, s2);
 		Vector2 s12 = (s1 - s2) * funcD(point, s3);
@@ -101,15 +106,13 @@ public class Route : MonoBehaviour
 		return 0.5f * ((y23 + y31 + y12)/(s23 + s31 + s12));
 	}
 	
-	public Vector2[] quadraticMethod(Vector2 point, Vector2 s1 = bezierPosition(0f), Vector2 s2 = bezierPosition(0.5f), Vector2 s3 = bezierPosition(1f))
+	public List<Vector2> quadraticMethod(Vector2 point, List<Vector2> slist)
 	{
-		Vector2 star = minFuncP(point, s1, s2, s3);
-		Vector2[] newValues = {s1, s2, s3, star};
-		float maxDistance = funcP(star, s1, s2, s3);
-		for(int i = 0, i < 3; i++)
-		{
-			
-		}
+		Vector2 star = minFuncP(point, slist[0], slist[1], slist[2]);
+		slist.Add(star);
+		List<float> PValues = new List<float>(){funcP(slist[0], slist[0], slist[1], slist[2]), funcP(slist[1], slist[0], slist[1], slist[2]), funcP(slist[2], slist[0], slist[1], slist[2]), funcP(star, slist[0], slist[1], slist[2])};
+		slist.RemoveAt(PValues.IndexOf(PValues.Max()));
+		return slist;
 	}
 	
 	public float funcP(Vector2 point, Vector2 s1, Vector2 s2, Vector2 s3)
@@ -117,7 +120,7 @@ public class Route : MonoBehaviour
 		Vector2 first = ((point - s2)*(point - s3)*funcD(point, s1))/((s1 - s2)*(s1 - s3));
 		Vector2 second = ((point - s1)*(point - s3)*funcD(point, s2))/((s2 - s1)*(s2 - s3));
 		Vector2 third = ((point - s1)*(point - s2)*funcD(point, s3))/((s3 - s1)*(s3 - s2));
-		return first + second + third;
+		return funcD(point, (first + second + third));
 	}
 	
 	public Vector2 bezierPosition(float t)
