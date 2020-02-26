@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 2524492163008360572}
   - component: {fileID: 7573253616545613151}
   - component: {fileID: 8032343780735355344}
+  - component: {fileID: 6247928309604708351}
+  - component: {fileID: 1840098587043029048}
   m_Layer: 0
   m_Name: '[P] H2'
   m_TagString: Water
@@ -179,6 +181,34 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13c47fb2d1f1f794f9b2572d081ac504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  temp: 0
+--- !u!114 &6247928309604708351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215635987691934}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93382c6cb7167414492f9ea07431ed95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 838215635987691929}
+  targetVelocity: {x: 4, y: 0, z: 0}
+--- !u!114 &1840098587043029048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215635987691934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8d8663947724d76af6d425764e770a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
