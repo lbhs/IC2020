@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using IC2020;
+using System;
 
 public class ModelSlector : MonoBehaviour
 {
@@ -93,17 +94,22 @@ public class ModelSlector : MonoBehaviour
         
         //...
         else if (dropDownValue == 4)
-        {
-            List<Vector3> coords = generateRandomCoords(4);
+        { 
+            List<Vector3> StartPosition = new List<Vector3>();
+            StartPosition.Add(new Vector3(0f, Screen.height / 2));
+            StartPosition.Add(new Vector3(Screen.width / 2, Screen.height));
+            StartPosition.Add(new Vector3(Screen.width, Screen.height / 2));
+
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
-            float k = GameObject.Find("GameObject").GetComponent<main>().k;
-            for (int x = 0; x < 4; x++)
+
+            for (int x = 0; x < 3; x++)
             {
-                Particle Hyd1 = new Particle("Hydrogen " + x, 2f, ICColor.Hydrogen, coords[x], scale: 2f);
-                Hyd1.Spawn().AddComponent<NuclearPhysics>();
-                GameObject.Find("GameObject").GetComponent<forces>().initialize(100000, k);
+                Particle Proton = new Particle("Hydrogen " + x, 2f, ICColor.Hydrogen, scale: 2f);
+                GameObject ProtonGO = Proton.Spawn();
+                ProtonGO.transform.position = Camera.main.ScreenToWorldPoint(StartPosition[x % 3]);
             }
+            GameObject.Find("GameObject").AddComponent<NuclearSimulation>();
         }
     }
 	
