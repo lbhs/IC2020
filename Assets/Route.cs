@@ -15,7 +15,6 @@ public class Route : MonoBehaviour
 	{
 		for (float t = 0; t <= 1; t += 0.025f)
 		{
-			gizmosPosition = Mathf.Pow(1 - t, 3) * controlPoints[0].position + 3 * Mathf.Pow(1 - t, 2) * t * controlPoints[1].position + 3 * (1 - t) * Mathf.Pow(t, 2) * controlPoints[2].position + Mathf.Pow(t, 3) * controlPoints[3].position;
 			Gizmos.DrawSphere(bezierPosition(t), 0.25f);
 		}
 		
@@ -26,19 +25,7 @@ public class Route : MonoBehaviour
 			Gizmos.DrawLine(new Vector2(controlPoints[i].position.x, controlPoints[i].position.y), new Vector2(controlPoints[i+1].position.x, controlPoints[i+1].position.y));
 		}
 		*/
-		
 	}
-	/* spawn a bunch of spheres along the curve
-	void Start()
-	{
-		for (float t = 0; t <= 1; t += 0.005f)
-		{
-			GameObject curve = new Particle(pos: bezierPosition(t), mass: 0f, bounciness:0f).Spawn();
-			curve.GetComponent<Rigidbody>().isKinematic = true;
-			curve.GetComponent<MeshRenderer>().enabled = true;
-		}
-	}
-	*/
 	
 	//slow and inaccurate but it works
 	public float nearestPointT(Vector2 pos, float accuracy)
@@ -58,69 +45,93 @@ public class Route : MonoBehaviour
 		}
 		return nearestT;
 	}
-	/*
-	public Vector2 newtonsMethod(Vector2 point, Vector2 currentPos, int iterations)
+	
+	public float newtonsMethod(Vector2 point, float currentPos, int iterations)
 	{
-		Debug.Log("newton");
-		float nextT	= currentPos - (funcD(point, currentPos) / funcDY(point, guestimate));
+		float nextPos = currentPos - (funcDY(currentPos, point) / funcDDY(currentPos, point));
+		print(nextPos);
 		if(iterations == 1)
 		{
-			return bezierPosition(nextT);
+			return nextPos;
 		}
-		return newtonsMethod(point, bezierPosition(nextT), iterations - 1);
-	}*/
+		return newtonsMethod(point, nextPos, iterations - 1);
+	}
 	
 	public Vector2 nearestCurvePoint(Vector2 point)
 	{
 		List<Vector2> initial = new List<Vector2>(){bezierPosition(0f), bezierPosition(0.5f), bezierPosition(1f)};
-		List<Vector2> fix = quadraticMethod(point, initial);
-		//return newtonsMethod(point, minFuncP(point, fix[0], fix[1], fix[2]), 4);
-		return Vector2.zero;
+		Vector2 quadraticEstimate = minFuncP(point, quadraticMethod(point, initial, 1));
+		//float newtonsEstimate = newtonsMethod(point, nearestPointT(quadraticEstimate, 0.00001f), 4);
+		return quadraticEstimate;
 	}
 	
 	public float funcD(Vector2 point, Vector2 pos)
 	{
-		return Mathf.Pow((pos.x - point.x), 2) + Mathf.Pow((pos.y - point.y), 2);
+		return ((pos.x - point.x) * (pos.x - point.x)) + ((pos.y - point.y) * (pos.y - point.y));
 	}
 	
-	public Vector2 funcDY(Vector2 point, Vector2 pos)
+	public float funcDY(float t, Vector2 pos)
 	{
-		return Vector2.zero;
+		Vector2 slope = bezierSlope(t);
+		Vector2 point = bezierPosition(t);
+		return 2 * ((pos.x - point.x) * slope.x) + ((pos.y - point.y) * slope.y);
 	}
 	
-	public Vector2 funcDDY(Vector2 point, Vector2 pos)
+	public float funcDDY(float t, Vector2 pos)
 	{
-		return Vector2.zero;
+		Vector2 point = bezierPosition(t);
+		Vector2 slope = bezierSlope(t);
+		Vector2 acceleration = bezierAcceleration(t);
+		return 2 * ((slope.x * slope.x)+(acceleration.x * (pos.x - point.x))+(slope.y * slope.y)+(acceleration.y * (pos.y - point.y)));
 	}
 	
-	public Vector2 minFuncP(Vector2 point, Vector2 s1, Vector2 s2, Vector2 s3)
+	public float findTforPos(Vector2 point)
 	{
-		Debug.Log("quad");
-		Vector2 y23 = ((s2 * s2) - (s3 * s3)) * funcD(point, s1);
-		Vector2 y31 = ((s3 * s3) - (s1 * s1)) * funcD(point, s2);
-		Vector2 y12 = ((s1 * s1) - (s2 * s2)) * funcD(point, s3);
-		Vector2 s23 = (s2 - s3) * funcD(point, s1);
-		Vector2 s31 = (s3 - s1) * funcD(point, s2);
-		Vector2 s12 = (s1 - s2) * funcD(point, s3);
+		return 0;
+	}
+	
+	public Vector2 minFuncP(Vector2 point, List<Vector2> slist)
+	{
+		Vector2 y23 = ((slist[1] * slist[1]) - (slist[2] * slist[2])) * funcD(point, slist[0]);
+		Vector2 y31 = ((slist[2] * slist[2]) - (slist[0] * slist[0])) * funcD(point, slist[1]);
+		Vector2 y12 = ((slist[0] * slist[0]) - (slist[1] * slist[1])) * funcD(point, slist[2]);
+		Vector2 s23 = (slist[1] - slist[2]) * funcD(point, slist[0]);
+		Vector2 s31 = (slist[2] - slist[0]) * funcD(point, slist[1]);
+		Vector2 s12 = (slist[0] - slist[1]) * funcD(point, slist[2]);
 		
 		return 0.5f * ((y23 + y31 + y12)/(s23 + s31 + s12));
 	}
 	
-	public List<Vector2> quadraticMethod(Vector2 point, List<Vector2> slist)
+	public List<Vector2> quadraticMethod(Vector2 point, List<Vector2> slist, int iterations)
 	{
-		Vector2 star = minFuncP(point, slist[0], slist[1], slist[2]);
+		Vector2 star = minFuncP(point, slist);
 		slist.Add(star);
-		List<float> PValues = new List<float>(){funcP(slist[0], slist[0], slist[1], slist[2]), funcP(slist[1], slist[0], slist[1], slist[2]), funcP(slist[2], slist[0], slist[1], slist[2]), funcP(star, slist[0], slist[1], slist[2])};
+		//maybe rewrite to not create new list each time
+		List<float> PValues = new List<float>(){funcP(slist[0], slist), funcP(slist[1], slist), funcP(slist[2], slist), funcP(star, slist)};
+		foreach(float item in PValues)
+		{
+			print(item);
+		}
+		print(PValues.IndexOf(PValues.Max()));
 		slist.RemoveAt(PValues.IndexOf(PValues.Max()));
-		return slist;
+		if(iterations == 1)
+		{
+			return slist;
+		}
+		return quadraticMethod(point, slist, iterations - 1);
 	}
 	
-	public float funcP(Vector2 point, Vector2 s1, Vector2 s2, Vector2 s3)
+	public float funcP(Vector2 point, List<Vector2> slist)
 	{
-		Vector2 first = ((point - s2)*(point - s3)*funcD(point, s1))/((s1 - s2)*(s1 - s3));
-		Vector2 second = ((point - s1)*(point - s3)*funcD(point, s2))/((s2 - s1)*(s2 - s3));
-		Vector2 third = ((point - s1)*(point - s2)*funcD(point, s3))/((s3 - s1)*(s3 - s2));
+		Vector2 first = ((point - slist[1])*(point - slist[2])*funcD(point, slist[0]))/((slist[0] - slist[1])*(slist[0] - slist[2]));
+		Vector2 second = ((point - slist[0])*(point - slist[2])*funcD(point, slist[1]))/((slist[1] - slist[0])*(slist[1] - slist[2]));
+		Vector2 third = ((point - slist[0])*(point - slist[1])*funcD(point, slist[2]))/((slist[2] - slist[0])*(slist[2] - slist[1]));
 		return funcD(point, (first + second + third));
+	}
+	
+	public float funcB(int n, int i, float u)
+	{
+		return (factorial(n)/(factorial(i)*factorial(n - i))) * Mathf.Pow(1 - u, n - i) * Mathf.Pow(u, i);
 	}
 	
 	public Vector2 bezierPosition(float t)
@@ -129,11 +140,7 @@ public class Route : MonoBehaviour
 		int n = controlPoints.Length - 1;
 		for(int i = 0; i <= n; i++)
 		{
-			float binomCoefficient = (factorial(n)/(factorial(i)*factorial(n - i)));
-			float mainPower = Mathf.Pow(1 - t, n - i);
-			float secondPower = Mathf.Pow(t, i);
-			Vector2 point = controlPoints[i].position;
-			summation += binomCoefficient * mainPower * secondPower * point;
+			summation += funcB(n, i, t) * (Vector2)controlPoints[i].position;
 		}
 		return summation;
 	}
@@ -142,17 +149,22 @@ public class Route : MonoBehaviour
 	{
 		Vector2 summation = Vector2.zero;
 		int n = controlPoints.Length - 1;
-		for(int i = 0; i < n; i++)
+		for(int i = 0; i <= (n - 1); i++)
 		{
-			float binomCoefficient = (factorial(n-1)/(factorial(i)*factorial(n - (i+1))));
-			float mainPower = Mathf.Pow(1 - t, n - (i+1));
-			float secondPower = Mathf.Pow(t, i);
-			Vector2 point1 = controlPoints[i].position;
-			Vector2 point2 = controlPoints[i+1].position;
-			summation += binomCoefficient * mainPower * secondPower * n * (point2 - point1);
+			summation += funcB(n-1, i, t) * n * (Vector2)(controlPoints[i+1].position - controlPoints[i].position);
 		}
 		return summation;
-		//return (summation.y/summation.x); //float version
+	}	
+	
+	public Vector2 bezierAcceleration(float t)
+	{
+		Vector2 summation = Vector2.zero;
+		int n = controlPoints.Length - 1;
+		for(int i = 0; i <= (n - 2); i++)
+		{
+			summation += funcB(n-2, i, t) * n * (n-1) * (Vector2)(controlPoints[i+2].position - (2 * controlPoints[i+1].position) - controlPoints[i].position);
+		}
+		return summation;
 	}
 	
 	public static int factorial(int number)
