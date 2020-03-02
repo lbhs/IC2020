@@ -95,21 +95,11 @@ public class ModelSlector : MonoBehaviour
         //...
         else if (dropDownValue == 4)
         { 
-            List<Vector3> StartPosition = new List<Vector3>();
-            StartPosition.Add(new Vector3(0f, Screen.height / 2));
-            StartPosition.Add(new Vector3(Screen.width / 2, Screen.height));
-            StartPosition.Add(new Vector3(Screen.width, Screen.height / 2));
-
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
-
-            for (int x = 0; x < 3; x++)
-            {
-                Particle Proton = new Particle("Hydrogen " + x, 2f, ICColor.Hydrogen, scale: 2f);
-                GameObject ProtonGO = Proton.Spawn();
-                ProtonGO.transform.position = Camera.main.ScreenToWorldPoint(StartPosition[x % 3]);
-            }
             GameObject.Find("GameObject").AddComponent<NuclearSimulation>();
+            float k = GameObject.Find("GameObject").GetComponent<main>().k;
+            GameObject.Find("GameObject").GetComponent<forces>().initialize(1, k);
         }
     }
 	
