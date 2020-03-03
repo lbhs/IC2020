@@ -12,6 +12,7 @@ public class PhotonFire : MonoBehaviour
 	public GameObject uvphoton;
 	private photonParts photonParts;
 	int color = 1;
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class PhotonFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		
         if(Input.GetKeyDown("down"))
 		{
 			if(color <= 2)

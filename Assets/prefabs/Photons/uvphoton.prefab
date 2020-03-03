@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photon: {fileID: 0}
   bluephoton: {fileID: 0}
+  uvphoton: {fileID: 0}
 --- !u!114 &9154820624137478240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photon: {fileID: 0}
   bluephoton: {fileID: 0}
-  velocity: {x: 0, y: 10, z: 0}
+  uvphoton: {fileID: 0}
+  velocity: {x: 0, y: 1, z: 0}
 --- !u!54 &3746219138555030926
 Rigidbody:
   m_ObjectHideFlags: 0

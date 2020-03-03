@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3442029410668710322}
   - component: {fileID: 7148832378531529820}
   - component: {fileID: 7667753494321102134}
+  - component: {fileID: 3968384369495585683}
   m_Layer: 0
   m_Name: bluephoton
   m_TagString: Untagged
@@ -109,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photon: {fileID: 0}
   bluephoton: {fileID: 0}
+  uvphoton: {fileID: 0}
 --- !u!114 &3442029410668710322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photon: {fileID: 0}
   bluephoton: {fileID: 0}
+  uvphoton: {fileID: 0}
   velocity: {x: 0, y: 10, z: 0}
 --- !u!54 &7148832378531529820
 Rigidbody:
@@ -155,3 +158,15 @@ MonoBehaviour:
   isRewinding: 0
   frame: -1
   Arbies: {fileID: 0}
+--- !u!114 &3968384369495585683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5394701496450306204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 821fdf885e03a9b4e81e161151b90db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

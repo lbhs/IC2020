@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 2524492163008360572}
   - component: {fileID: 7573253616545613151}
   - component: {fileID: 8032343780735355344}
+  - component: {fileID: 2555481654153134441}
+  - component: {fileID: 5130021785247257328}
   m_Layer: 0
   m_Name: '[P] Cl2'
   m_TagString: Water
@@ -97,7 +99,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.5, y: 0, z: 0}
 --- !u!54 &838215635987691929
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -183,6 +185,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   temp: 0
+--- !u!114 &2555481654153134441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215635987691934}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121f180bf8b240744a9812ea789e76e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5130021785247257328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215635987691934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0bcad658c2f1c249a8e16c14482b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!153 &2330948102465483859
 ConfigurableJoint:
   m_ObjectHideFlags: 0
