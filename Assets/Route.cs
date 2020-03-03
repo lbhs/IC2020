@@ -61,8 +61,9 @@ public class Route : MonoBehaviour
 	{
 		List<float> initial = new List<float>(){0f, 0.5f, 1f};
 		float quadraticEstimate = minFuncP(point, quadraticMethod(point, initial, 3));
-		//float newtonsEstimate = newtonsMethod(point, nearestPointT(quadraticEstimate, 0.00001f), 4);
-		return bezierPosition(quadraticEstimate);
+		print(bezierPosition(quadraticEstimate).x);
+		float newtonsEstimate = newtonsMethod(point, quadraticEstimate, 4);
+		return bezierPosition(newtonsEstimate);
 	}
 	
 	public float funcD(float t, Vector2 pos)
