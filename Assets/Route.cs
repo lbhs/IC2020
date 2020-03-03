@@ -46,9 +46,9 @@ public class Route : MonoBehaviour
 		return nearestT;
 	}
 	
-	public float newtonsMethod(Vector2 point, float currentPos, int iterations)
+	public Vector2 newtonsMethod(Vector2 point, Vector2 currentPos, int iterations)
 	{
-		float nextPos = currentPos - (funcDY(currentPos, point) / funcDDY(currentPos, point));
+		Vector2 nextPos = currentPos - (funcDY(currentPos, point) / funcDDY(currentPos, point));
 		print(nextPos);
 		if(iterations == 1)
 		{
@@ -70,16 +70,15 @@ public class Route : MonoBehaviour
 		return ((pos.x - point.x) * (pos.x - point.x)) + ((pos.y - point.y) * (pos.y - point.y));
 	}
 	
-	public float funcDY(float t, Vector2 pos)
+	public float funcDY(Vector2 point,  Vector2 pos)
 	{
-		Vector2 slope = bezierSlope(t);
-		Vector2 point = bezierPosition(t);
+		Vector2 slope = bezierSlope(findTforPos(point));
 		return 2 * ((pos.x - point.x) * slope.x) + ((pos.y - point.y) * slope.y);
 	}
 	
-	public float funcDDY(float t, Vector2 pos)
+	public float funcDDY(Vector2 point, Vector2 pos)
 	{
-		Vector2 point = bezierPosition(t);
+		float t = findTforPos(point);
 		Vector2 slope = bezierSlope(t);
 		Vector2 acceleration = bezierAcceleration(t);
 		return 2 * ((slope.x * slope.x)+(acceleration.x * (pos.x - point.x))+(slope.y * slope.y)+(acceleration.y * (pos.y - point.y)));
@@ -87,7 +86,20 @@ public class Route : MonoBehaviour
 	
 	public float findTforPos(Vector2 point)
 	{
-		return 0;
+		float nearestT = 0f;
+		float nearestDistance = Vector2.Distance(bezierPosition(0f), pos);
+		float currentDistance;
+		
+		for(float t = 0f; t <= 1f; t += 0.00001f) //increment increases accuracy - need to make less resource intensive - use derivative?
+		{
+			currentDistance = Vector2.Distance(bezierPosition(t), pos);
+			if(currentDistance < nearestDistance)
+			{
+				nearestDistance = currentDistance;
+				nearestT = t;
+			}
+		}
+		return nearestT;
 	}
 	
 	public Vector2 minFuncP(Vector2 point, List<Vector2> slist)
