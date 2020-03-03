@@ -46,6 +46,7 @@ namespace IC2020
         public static Color Calcium = new Color32(128, 128, 128, 255);
         public static Color Potassium = new Color32(255, 20, 147, 255);
         public static Color Deuterium = new Color32(255, 182, 193, 255);
+        public static Color HeliumIsotope = new Color32(238, 221, 130, 255);
         public static Color Neutrino = new Color32(255, 0, 0, 255);
     }
 

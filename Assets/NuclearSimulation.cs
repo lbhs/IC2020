@@ -57,6 +57,9 @@ public class NuclearSimulation : MonoBehaviour
                             a.AddComponent<FixedJoint>().connectedBody = b.GetComponent<Rigidbody>();
                             a.GetComponent<MoleculeType>().ParticleType = "Deuterium";
                             b.GetComponent<MoleculeType>().ParticleType = "Deuterium";
+                            RemoveLableFollower(b);
+                            AddLabel(b, 3);
+                            ChangeColor(0);
                         }
 
                         // Scenario 2: A particle in deuterium and a free proton have collided
@@ -64,6 +67,7 @@ public class NuclearSimulation : MonoBehaviour
                         {
                             a.GetComponent<MoleculeType>().ParticleType = "3Helium";
                             b.GetComponent<MoleculeType>().ParticleType = "3Helium";
+                            a.AddComponent<FixedJoint>().connectedBody = b.GetComponent<Rigidbody>();
 
                             // The particle doesn't have the FixedJoint component itself 
                             // This is necessary to identify the other particle that comprises deuterium
@@ -81,6 +85,7 @@ public class NuclearSimulation : MonoBehaviour
                             {
                                 a.GetComponent<FixedJoint>().connectedBody.gameObject.GetComponent<MoleculeType>().ParticleType = "3Helium";
                             }
+                            ChangeColor(1);
                         }
                     }
                 }
@@ -88,10 +93,56 @@ public class NuclearSimulation : MonoBehaviour
         }
         
     }
+
+    private void RemoveLableFollower(GameObject ObjToRemoveLabel)
+    {
+        Transform ChildrenList = GameObject.Find("Lable Canvas").transform;
+        for (int x = 0; x < ChildrenList.childCount; x++)
+        {
+            Transform child = ChildrenList.GetChild(x);
+            if (child.gameObject.GetComponent<ImageFollower>().sphereToFollow == ObjToRemoveLabel)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
+
+    private void AddLabel(GameObject ObjToAddLabel, int LabelIdx)
+    {
+        if (LabelIdx < (GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs.Length))
+        {
+            GameObject Lable = MonoBehaviour.Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[LabelIdx], Vector3.zero, Quaternion.identity);
+            Lable.transform.parent = GameObject.Find("Lable Canvas").transform;
+            Lable.AddComponent<ImageFollower>().sphereToFollow = ObjToAddLabel;
+        }
+    }
+
+    private void ChangeColor(int MoleculeColorIdx)
+    {
+        for (int x = 0; x < CurrentObjects.Count; x++)
+        {
+            GameObject GO = CurrentObjects[x];
+            if (GO.GetComponent<MoleculeType>().ParticleType == "Deuterium" && MoleculeColorIdx == 0)
+            {
+                GO.GetComponent<Renderer>().material.color = ICColor.Deuterium;
+            }
+
+            else if (GO.GetComponent<MoleculeType>().ParticleType == "3Helium" && MoleculeColorIdx == 1)
+            {
+                GO.GetComponent<Renderer>().material.color = ICColor.HeliumIsotope;
+            }
+        }
+
+    }
 }
 
 /* Where to go from here (March 1st)
  * When the '3Helium' isotope is formed, it needs to disappear from the screen
  *      It will reappear after the second one has formed
- * Obviously, the neutrons are still identified as protons (change particle color and symbol)
+ * Obviously, the neutrons are still identified as protons (change particle color and symbol) [Done, March 2nd]
+ 
+ * Bugs!
+ * Currently, when initializing two particles in the simulation, when they collide, they remain stationary.
+ * Many foreach loops are still in use. Since CurrentObjects is being modified, this will not work. 
+ * Add method documentation.
 */
