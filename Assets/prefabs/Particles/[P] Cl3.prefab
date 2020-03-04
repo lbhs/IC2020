@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5607779657292701568}
   - component: {fileID: 7984259662077793074}
   - component: {fileID: 9000847974003069497}
+  - component: {fileID: 8639279294494395910}
   m_Layer: 0
   m_Name: '[P] Cl3'
   m_TagString: Target
@@ -178,13 +179,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838215635987691934}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84b5b459ea3dba241b03f5f37aafb973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetVelocity: {x: 16, y: 0, z: 0}
+--- !u!114 &8639279294494395910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838215635987691934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a183aed2664179a18cdd2f374cc5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!138 &744842295714971443
 FixedJoint:
   m_ObjectHideFlags: 0
@@ -296,15 +311,15 @@ PrefabInstance:
       propertyPath: charge
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7768206583206641562, guid: d43a85b37cb094ef79193033a59348b5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4414012223502966765, guid: d43a85b37cb094ef79193033a59348b5,
         type: 3}
       propertyPath: Lable
       value: Cl
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768206583206641562, guid: d43a85b37cb094ef79193033a59348b5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7768206583206641562, guid: d43a85b37cb094ef79193033a59348b5, type: 3}
