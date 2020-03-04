@@ -11,7 +11,9 @@ public class photonParts : MonoBehaviour
 	public Vector3 velocity;
 	private Vector3 ColPosition;
 	public GameObject DissociationProduct;
+	public GameObject DissociationProduct2;
 	public GameObject TargetMol;
+	public GameObject TargetMol2;
 	
     // Start is called before the first frame update
     void Start()
@@ -71,6 +73,18 @@ public class photonParts : MonoBehaviour
 			Instantiate(DissociationProduct,ColPosition,Quaternion.identity);
 			Instantiate(DissociationProduct,new Vector3(ColPosition.x+1,ColPosition.y,0),Quaternion.identity);
 			Instantiate(TargetMol,new Vector3(-8.0f, 5.2f,0),Quaternion.identity);
+			
+		}
+		if(gameObject.tag == "UV" && collider.gameObject.tag == "HMol")
+		{
+			print("hit the target");
+			ColPosition = collider.gameObject.transform.position;
+
+			Destroy(gameObject);
+			Destroy(collider.gameObject);
+			Instantiate(DissociationProduct2,ColPosition,Quaternion.identity);
+			Instantiate(DissociationProduct2,new Vector3(ColPosition.x+1,ColPosition.y,0),Quaternion.identity);
+			Instantiate(TargetMol2,new Vector3(-8.0f, 5.2f,0),Quaternion.identity);
 			
 		}
 		//Destroy(gameObject);

@@ -16,6 +16,8 @@ TagManager:
   - red
   - UV
   - Glass
+  - ChlorineMol
+  - HMol
   layers:
   - Default
   - TransparentFX

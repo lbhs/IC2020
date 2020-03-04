@@ -128,7 +128,11 @@ MonoBehaviour:
   velocity: {x: 0, y: 35, z: 0}
   DissociationProduct: {fileID: 8521043326856526923, guid: 5967d55d1a20ecd4b85a8563127d2d4e,
     type: 3}
+  DissociationProduct2: {fileID: 3845422906327184440, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
+    type: 3}
   TargetMol: {fileID: 838215635987691934, guid: 6a4c0eb66a0a05d49aceff6ef3f591f2,
+    type: 3}
+  TargetMol2: {fileID: 838215635987691934, guid: e2dde00d3c4574ff9a654199dfdeb575,
     type: 3}
 --- !u!114 &4224845341368620260
 MonoBehaviour:

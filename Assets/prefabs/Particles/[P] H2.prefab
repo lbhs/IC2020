@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 838215635987691925}
   - component: {fileID: 838215635987691930}
   - component: {fileID: 838215635987691931}
-  - component: {fileID: 838215635987691928}
   - component: {fileID: 838215635987691929}
   - component: {fileID: 539749759784109462}
   - component: {fileID: 1347937287224810596}
@@ -22,7 +21,7 @@ GameObject:
   - component: {fileID: 6085550217190979980}
   m_Layer: 0
   m_Name: '[P] H2'
-  m_TagString: Water
+  m_TagString: HMol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,19 +86,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &838215635987691928
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 838215635987691934}
-  m_Material: {fileID: 13400000, guid: 89a05793cec81784f9cbb5a3cbd5493b, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &838215635987691929
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -211,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7216f11069cec544184349fdbe1fb398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HIon: {fileID: 0}
 --- !u!153 &8148650756711915762
 ConfigurableJoint:
   m_ObjectHideFlags: 0
