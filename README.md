@@ -21,22 +21,8 @@ Built in Unity 2018.3.14f1 for WebGL
 
 -implement acids/bases with realistic functionality
 
-<<<<<<< Updated upstream
--update rewind to recalculate on scene edit
-
-# Known bugs
-
--particles disappearing when timescale slider quickly changed from 0x (only occurs in webgl builds)
-
--water molecule randomly spawns when adjusting temperature slider
-
--rewind forgets a frame every time it's used
-
--duplicating particles with same frame electron transfers
-=======
 # Known bugs
 
 -particles disappearing when timescale slider initially changed from 0x (only occurs in webgl builds)
 
 -water molecule randomly spawns when adjusting temperature slider
->>>>>>> Stashed changes

@@ -5,11 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-<<<<<<< Updated upstream
-  - enabled: 1
-    path: Assets/Scenes/base.unity
-    guid: 4b250195835e0e54ab11fe92f65beeb5
-=======
   - enabled: 0
     path: Assets/Scenes/base.unity
     guid: 4b250195835e0e54ab11fe92f65beeb5
@@ -31,5 +26,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Exothermic Reaction 3.1--nFE+RedoxWT+light.unity
     guid: d2f7c0f543714de449bf24b2a3f07dee
->>>>>>> Stashed changes
   m_configObjects: {}

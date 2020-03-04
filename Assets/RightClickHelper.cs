@@ -46,7 +46,7 @@ public class RightClickHelper : MonoBehaviour
         {
             //un freeze it
             currentSphere.GetComponent<Rigidbody>().constraints = UnAnchorConstraints;
-            Debug.Log("froze");
+           //Debug.Log("froze");
         }
         //if the sphere is not frozen
         else
@@ -55,7 +55,7 @@ public class RightClickHelper : MonoBehaviour
             currentSphere.GetComponent<Rigidbody>().constraints = AnchorConstraints;
             //and then stop it so it is for sure in place. sometimes an object will keep going even if it is frozen if it alredy has a force applided
             currentSphere.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-            Debug.Log("unfreze");
+           //Debug.Log("unfreze");
         }
     }
 
