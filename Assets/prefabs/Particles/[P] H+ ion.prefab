@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1130148215593200895}
   - component: {fileID: 581426275291727779}
   - component: {fileID: 6261868396626961792}
+  - component: {fileID: 1719795255027473626}
   m_Layer: 0
   m_Name: '[P] H+ ion'
   m_TagString: Untagged
@@ -177,7 +178,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3845422906327184440}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4034a7b28ea941e42bd1d61057ca3a3e, type: 3}
   m_Name: 
@@ -202,3 +203,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
+--- !u!114 &1719795255027473626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845422906327184440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7216f11069cec544184349fdbe1fb398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HIon: {fileID: 0}
