@@ -10,6 +10,9 @@ public class BezierFollow : MonoBehaviour
 	public float speed;
 	public float t = 0f;
 	public bool strictMovement = true;
+	public Vector3 fakeVelocity;
+	private double x;
+	private double y;
 
     void Start()
     {
@@ -34,16 +37,16 @@ public class BezierFollow : MonoBehaviour
 	
 	void updatePosition()
 	{
-		/*
-		//artificial gravity - should exactly mimic rigidbody gravity but here just in case if we want to make sure gravity is calculated BEFORE the position adjustments
-		GetComponent<Rigidbody>().velocity += new Vector3(0,-9.81f,0) * Time.deltaTime * 0.05f;
 		
-		Vector3 prevPos = transform.position;
-		//Vector3 nextPos = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().newtonsMethod(transform.position + GetComponent<Rigidbody>().velocity, route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity, 0.0001f)));
-		//Vector3 nextPos = route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position + GetComponent<Rigidbody>().velocity, 0.0001f));
-		GetComponent<Rigidbody>().velocity = nextPos - prevPos;
+		//artificial gravity - should exactly mimic rigidbody gravity but here just in case if we want to make sure gravity is calculated BEFORE the position adjustments
+		GetComponent<Rigidbody>().velocity += new Vector3(0,-9.81f,0) * Time.deltaTime;
+		
+		fakeVelocity += GetComponent<Rigidbody>().velocity;
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
+		
+		Vector3 nextPos = route.GetComponent<Route>().nearestCurvePoint(transform.position + fakeVelocity);
+		fakeVelocity = (nextPos - transform.position);
 		transform.position = nextPos;
-		*/
 	}
 	
 	private IEnumerator GoByTheRoute()
