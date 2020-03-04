@@ -5,6 +5,20 @@ TagManager:
   serializedVersion: 2
   tags:
   - Water
+<<<<<<< Updated upstream
+=======
+  - Particle
+  - HeatDonor
+  - Heat Receiver
+  - e-receiver
+  - e-donor
+  - wall
+  - Target
+  - blue
+  - red
+  - UV
+  - Glass
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -14,9 +28,15 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< Updated upstream
   - 
   - 
   - 
+=======
+  - RedPhoton
+  - BluePhoton
+  - GlassWindow
+>>>>>>> Stashed changes
   - 
   - 
   - 

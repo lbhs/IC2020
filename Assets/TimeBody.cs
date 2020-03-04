@@ -13,6 +13,7 @@ public class TimeBody : MonoBehaviour
 		
 	void Start()
 	{
+		
 		gameobject = GameObject.Find("GameObject");
 		Arbies = GetComponent<Rigidbody>();
 	}

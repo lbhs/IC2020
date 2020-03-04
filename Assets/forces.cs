@@ -57,6 +57,7 @@ public class forces : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 0;
         pauseCanvas = GameObject.Find("Control Canvas");
         scene = SceneManager.GetActiveScene();
     }

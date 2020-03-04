@@ -147,9 +147,9 @@ public class DragNDrop : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody>().MovePosition(gameObject.transform.position);
         //defining objects/varibles
-        rightCanvas = GameObject.Find("Right-Click Canvas");
-        rightMenu = rightCanvas.GetComponent<RightClickHelper>().rightMenu;
-        rightMenu.SetActive(false);
+        //rightCanvas = GameObject.Find("Right-Click Canvas");
+        //rightMenu = rightCanvas.GetComponent<RightClickHelper>().rightMenu;
+        //rightMenu.SetActive(false);
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
     }
 
