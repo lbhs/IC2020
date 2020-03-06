@@ -19,10 +19,10 @@ GameObject:
   - component: {fileID: 9006006276647278095}
   - component: {fileID: 8882630307007774035}
   - component: {fileID: 2716362232856797040}
-  - component: {fileID: 7244362718022870570}
+  - component: {fileID: 8214261649867893835}
   m_Layer: 0
   m_Name: '[SI] H'
-  m_TagString: Untagged
+  m_TagString: H Atom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ SphereCollider:
   m_GameObject: {fileID: 5046700012404117192}
   m_Material: {fileID: 13400000, guid: 89a05793cec81784f9cbb5a3cbd5493b, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
---- !u!114 &7244362718022870570
+--- !u!114 &8214261649867893835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,4 +215,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7216f11069cec544184349fdbe1fb398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HCl: {fileID: 0}
+  HCl: {fileID: 4610430598550535678, guid: c287d1f078ca2cb41bf9a69e81848531, type: 3}

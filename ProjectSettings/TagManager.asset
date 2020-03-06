@@ -18,6 +18,8 @@ TagManager:
   - Glass
   - ChlorineMol
   - HMol
+  - Cl atom
+  - H Atom
   layers:
   - Default
   - TransparentFX

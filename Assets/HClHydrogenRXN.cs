@@ -26,7 +26,7 @@ public class HClHydrogenRXN : MonoBehaviour
 		{
 			ColPosition = collider.gameObject.transform.position;
 
-			Destroy(HAtom);
+			Destroy(gameObject);
 			Destroy(collider.gameObject);
 			//Instantiate(HCl, ColPosition, Quaternion.identity);
 			Instantiate(HCl, new Vector3(ColPosition.x + 1, ColPosition.y, 0), Quaternion.identity);

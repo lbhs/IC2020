@@ -113,7 +113,6 @@ GameObject:
   - component: {fileID: 1017000572301085240}
   - component: {fileID: 611390824827602615}
   - component: {fileID: 8507214097644726684}
-  - component: {fileID: 3706657131818972907}
   m_Layer: 0
   m_Name: '[SI] H2'
   m_TagString: HMol
@@ -280,19 +279,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 0
   m_Center: {x: 0.5, y: 0, z: 0}
---- !u!114 &3706657131818972907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7828793294531180281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7216f11069cec544184349fdbe1fb398, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HCl: {fileID: 0}
 --- !u!1001 &6827579942417585702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -304,6 +290,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '[SI] HMol2'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845422906327184440, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 361479009803524112, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
         type: 3}
@@ -375,18 +366,24 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3932801236425007388, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 56
-      objectReference: {fileID: 0}
     - target: {fileID: 6920965722469523575, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
         type: 3}
       propertyPath: Lable
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1719795255027473626, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932801236425007388, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 56
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6506772712502698763, guid: 69bc1dfda764d2a44b2d20c3017bfe8e, type: 3}
+    - {fileID: 1719795255027473626, guid: 69bc1dfda764d2a44b2d20c3017bfe8e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69bc1dfda764d2a44b2d20c3017bfe8e, type: 3}
 --- !u!1 &7754565286638510622 stripped
 GameObject:
