@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 5822118072870648469}
   - component: {fileID: 2483013139108281903}
   m_Layer: 0
-  m_Name: HCl
+  m_Name: '[SI] HCl'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 5046700012404117192, guid: 02917e9683e55bb448a99b8800dd3bcf,
         type: 3}
       propertyPath: m_Name
-      value: H Atom (1)
+      value: '[SI] H'
       objectReference: {fileID: 0}
     - target: {fileID: 8525575850666484448, guid: 02917e9683e55bb448a99b8800dd3bcf,
         type: 3}

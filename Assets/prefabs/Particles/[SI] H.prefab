@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 2716362232856797040}
   - component: {fileID: 7244362718022870570}
   m_Layer: 0
-  m_Name: H Atom
+  m_Name: '[SI] H'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
