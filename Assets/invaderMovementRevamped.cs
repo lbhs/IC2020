@@ -32,7 +32,7 @@ public class invaderMovementRevamped : MonoBehaviour
             }
             else
             {
-                target.velocity = new Vector3(2, 0, 0);
+                target.velocity = new Vector3(15, 0, 0);
             }
         }
         else
@@ -43,7 +43,7 @@ public class invaderMovementRevamped : MonoBehaviour
             }
             else
             {
-                target.velocity = new Vector3(-2, 0, 0);
+                target.velocity = new Vector3(-15, 0, 0);
             }
         }
     }
@@ -52,7 +52,7 @@ public class invaderMovementRevamped : MonoBehaviour
     {
         if (Mathf.Abs(targetPosition.y - target.position.y) < 1)
         {
-            target.velocity = new Vector3(0, -1, 0);
+            target.velocity = new Vector3(0, -10, 0);
         }
         else
         {
