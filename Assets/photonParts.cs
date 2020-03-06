@@ -51,7 +51,7 @@ public class photonParts : MonoBehaviour
 			Destroy(gameObject);			
 		}
 		
-		if(gameObject.tag == "blue" && collider.gameObject.tag == "ChlorineMol")
+		if((gameObject.tag == "blue" || gameObject.tag == "UV") && collider.gameObject.tag == "ChlorineMol")
 		{
 			print("hit the target");
 			ColPosition = collider.gameObject.transform.position;
@@ -63,18 +63,7 @@ public class photonParts : MonoBehaviour
 			Instantiate(TargetMol,new Vector3(-8.0f, 5.2f,0),Quaternion.identity);
 			
 		}
-		if(gameObject.tag == "UV" && collider.gameObject.tag == "ChlorineMol")
-		{
-			print("hit the target");
-			ColPosition = collider.gameObject.transform.position;
-
-			Destroy(gameObject);
-			Destroy(collider.gameObject);
-			Instantiate(DissociationProduct,ColPosition,Quaternion.identity);
-			Instantiate(DissociationProduct,new Vector3(ColPosition.x+1,ColPosition.y,0),Quaternion.identity);
-			Instantiate(TargetMol,new Vector3(-8.0f, 5.2f,0),Quaternion.identity);
-			
-		}
+		
 		if(gameObject.tag == "UV" && collider.gameObject.tag == "HMol")
 		{
 			print("hit the target");
