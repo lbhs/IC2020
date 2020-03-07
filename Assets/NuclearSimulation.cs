@@ -7,8 +7,9 @@ using System;
 public class NuclearSimulation : MonoBehaviour
 {
     private List<Vector3> StartPosition = new List<Vector3>();
-    private List<GameObject> CurrentObjects = new List<GameObject>();
-    private List<GameObject> CurrentlyInactive = new List<GameObject>();
+    public List<GameObject> CurrentObjects = new List<GameObject>();
+    public List<GameObject> CurrentlyInactive = new List<GameObject>();
+    bool SecondRound = false;
 
     // Start is called before the first frame update
     void Start()
@@ -73,8 +74,9 @@ public class NuclearSimulation : MonoBehaviour
                             // This is necessary to identify the other particle that comprises deuterium
                             if (!(a.HasComponent<FixedJoint>()))
                             {
-                                foreach (GameObject GO in CurrentObjects)
+                                for (int idx = 0; idx < CurrentObjects.Count; idx++)
                                 {
+                                    GameObject GO = CurrentObjects[idx];
                                     if (GO != a && GO != b)
                                     {
                                         GO.GetComponent<MoleculeType>().ParticleType = "3Helium";
@@ -86,6 +88,7 @@ public class NuclearSimulation : MonoBehaviour
                                 a.GetComponent<FixedJoint>().connectedBody.gameObject.GetComponent<MoleculeType>().ParticleType = "3Helium";
                             }
                             ChangeColor(1);
+                            StartCoroutine("ResetNew3Helium");
                         }
                     }
                 }
@@ -96,6 +99,8 @@ public class NuclearSimulation : MonoBehaviour
 
     private void RemoveLableFollower(GameObject ObjToRemoveLabel)
     {
+        // This codebase implements labels (e.g. +) as GameObjects following particles
+        // This method removes the label follower that follows ObjToRemoveLabel
         Transform ChildrenList = GameObject.Find("Lable Canvas").transform;
         for (int x = 0; x < ChildrenList.childCount; x++)
         {
@@ -108,11 +113,11 @@ public class NuclearSimulation : MonoBehaviour
     }
 
     private void AddLabel(GameObject ObjToAddLabel, int LabelIdx)
-    {
+    { 
         if (LabelIdx < (GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs.Length))
         {
             GameObject Lable = MonoBehaviour.Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[LabelIdx], Vector3.zero, Quaternion.identity);
-            Lable.transform.parent = GameObject.Find("Lable Canvas").transform;
+            Lable.transform.SetParent(GameObject.Find("Lable Canvas").transform, false);
             Lable.AddComponent<ImageFollower>().sphereToFollow = ObjToAddLabel;
         }
     }
@@ -134,15 +139,49 @@ public class NuclearSimulation : MonoBehaviour
         }
 
     }
+
+    IEnumerator ResetNew3Helium()
+    {
+        // When Deuterium collides with a proton, and the He-3 isotope is formed, the process must restart
+        // Restarts after a 2s delay
+        yield return new WaitForSeconds(2f);
+        if (!SecondRound)
+        {
+            SecondRound = true;
+            for (int idx = 0; idx < 3; idx++)
+            {
+                CurrentObjects[idx].SetActive(false);
+                RemoveLableFollower(CurrentObjects[idx]);
+                CurrentlyInactive.Add(CurrentObjects[idx]);
+            }
+
+            CurrentObjects.Clear();
+            for (int idx = 0; idx < 3; idx++)
+            {
+                Particle Proton = new Particle("Hydrogen " + (idx + 3), 2f, ICColor.Hydrogen, mass: 100000f, scale: 2f);
+                GameObject ProtonGO = Proton.Spawn();
+                ProtonGO.transform.position = StartPosition[idx % 3];
+                ProtonGO.AddComponent<MoleculeType>();
+                CurrentObjects.Add(ProtonGO);
+            }
+        }
+    }
 }
 
 /* Where to go from here (March 1st)
  * When the '3Helium' isotope is formed, it needs to disappear from the screen
  *      It will reappear after the second one has formed
  * Obviously, the neutrons are still identified as protons (change particle color and symbol) [Done, March 2nd]
+ * We need particles (beta, neutrino, gamma radiation)
  
  * Bugs!
  * Currently, when initializing two particles in the simulation, when they collide, they remain stationary.
- * Many foreach loops are still in use. Since CurrentObjects is being modified, this will not work. 
- * Add method documentation.
+ * Many foreach loops are still in use. Since CurrentObjects is being modified, this will not work. [Done, March 6th]
+ * Add method documentation. [Done, March 6th]
+*/
+
+/*
+ * ResetGame [renamed ResetNew3Helium]:
+ * Move 3Helium to the side instead of making it invisible
+ * Can we introduce a blocking delay so people can see three new protons materialize [Done, March 6th]
 */
