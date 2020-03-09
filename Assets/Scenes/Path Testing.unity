@@ -400,6 +400,7 @@ MonoBehaviour:
   speed: 1
   t: 0
   strictMovement: 0
+  fakeVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &324330345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4371,12 +4372,12 @@ PrefabInstance:
     - target: {fileID: 361479009803524112, guid: 5519bce164f41264898fae3eed0d887c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.33
+      value: 8.63
       objectReference: {fileID: 0}
     - target: {fileID: 361479009803524112, guid: 5519bce164f41264898fae3eed0d887c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.42
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 361479009803524112, guid: 5519bce164f41264898fae3eed0d887c,
         type: 3}
@@ -4775,6 +4776,7 @@ MonoBehaviour:
   speed: 1
   t: 0
   strictMovement: 0
+  fakeVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &2087881140
 GameObject:
   m_ObjectHideFlags: 0

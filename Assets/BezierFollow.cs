@@ -10,14 +10,14 @@ public class BezierFollow : MonoBehaviour
 	public float speed;
 	public float t = 0f;
 	public bool strictMovement = true;
-	public Vector3 fakeVelocity;
-	private double x;
-	private double y;
+	private List<double> realPosition;
+	private List<double> realVelocity;
 
     void Start()
     {
-		print(route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position, 0.00001f)).x);
-		print(route.GetComponent<Route>().nearestCurvePoint(transform.position).x);
+		realPosition = route.GetComponent<Route>().toList(transform.position);
+		print(route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position, 0.00000001f))[0]);
+		print(route.GetComponent<Route>().nearestCurvePoint(realPosition)[0]);
 	}
 	
 	void FixedUpdate()
@@ -39,14 +39,14 @@ public class BezierFollow : MonoBehaviour
 	{
 		
 		//artificial gravity - should exactly mimic rigidbody gravity but here just in case if we want to make sure gravity is calculated BEFORE the position adjustments
-		GetComponent<Rigidbody>().velocity += new Vector3(0,-9.81f,0) * Time.deltaTime;
+		//GetComponent<Rigidbody>().velocity += new Vector3(0,-9.81f,0) * Time.deltaTime;
 		
-		fakeVelocity += GetComponent<Rigidbody>().velocity;
-		GetComponent<Rigidbody>().velocity = Vector3.zero;
+		List<double> nextPos = route.GetComponent<Route>().nearestCurvePoint(route.GetComponent<Route>().combine(realPosition, realVelocity));
+		realVelocity = route.GetComponent<Route>().decombine(nextPos, realPosition);
+		realPosition = nextPos;
 		
-		Vector3 nextPos = route.GetComponent<Route>().nearestCurvePoint(transform.position + fakeVelocity);
-		fakeVelocity = (nextPos - transform.position);
-		transform.position = nextPos;
+		transform.position = route.GetComponent<Route>().toVector(realPosition);
+		GetComponent<Rigidbody>().velocity = route.GetComponent<Route>().toVector(realVelocity);
 	}
 	
 	private IEnumerator GoByTheRoute()
@@ -60,7 +60,7 @@ public class BezierFollow : MonoBehaviour
 			}
 			
 			t += Time.deltaTime * speed;
-			transform.position = route.GetComponent<Route>().bezierPosition(t);
+			transform.position = route.GetComponent<Route>().toVector(route.GetComponent<Route>().bezierPosition(t));
 			
 			yield return new WaitForEndOfFrame();
 		}
