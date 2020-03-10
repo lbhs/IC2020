@@ -15,6 +15,7 @@ public class photonParts : MonoBehaviour
 	public GameObject TargetMol;
 	public GameObject TargetMol2;
 	
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -73,10 +74,13 @@ public class photonParts : MonoBehaviour
 			Destroy(collider.gameObject);
 			Instantiate(DissociationProduct2,ColPosition,Quaternion.identity);
 			Instantiate(DissociationProduct2,new Vector3(ColPosition.x+1,ColPosition.y,0),Quaternion.identity);
-			Instantiate(TargetMol2,new Vector3(-8.0f, 5.2f,0),Quaternion.identity);
+			Instantiate(TargetMol2,new Vector3(-8.0f, 4f,0),Quaternion.identity);
 			
 		}
 		//Destroy(gameObject);
-		
+		//if(collider.gameObject.tag == "H Atom" || collider.gameObject.tag == "Cl atom")
+		//{
+		//	Physics.IgnoreCollision(, collider);
+		//}
 	}
 }

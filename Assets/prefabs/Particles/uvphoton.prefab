@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9154820624137478240}
   - component: {fileID: 4224845341368620260}
   - component: {fileID: 8532745950373624182}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: uvphoton
   m_TagString: UV
   m_Icon: {fileID: 0}

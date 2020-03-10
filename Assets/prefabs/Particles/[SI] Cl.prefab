@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6273430434842842527}
   - component: {fileID: 6920480972371223280}
   - component: {fileID: 1347493307150919242}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: '[SI] Cl'
   m_TagString: Cl atom
   m_Icon: {fileID: 0}

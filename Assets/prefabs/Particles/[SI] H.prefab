@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 8882630307007774035}
   - component: {fileID: 2716362232856797040}
   - component: {fileID: 8214261649867893835}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: '[SI] H'
   m_TagString: H Atom
   m_Icon: {fileID: 0}

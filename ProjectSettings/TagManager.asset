@@ -32,6 +32,9 @@ TagManager:
   - RedPhoton
   - BluePhoton
   - GlassWindow
+  - UVPhoton
+  - RXNMols
+  - HMol
   - 
   - 
   - 
@@ -49,10 +52,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Background
   m_SortingLayers:
   - name: Default
     uniqueID: 0
