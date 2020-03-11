@@ -16,7 +16,7 @@ public class NuclearSimulation : MonoBehaviour
     {
         // Going back to the first design: fixing the starting positions of the protons
         StartPosition.Add(new Vector3(-7f, 7f));
-        StartPosition.Add(new Vector3(-7f, -7f));
+        StartPosition.Add(new Vector3(0f, -7f));
         StartPosition.Add(new Vector3(7f, 7f));
 
         // Also the first solution: giving each proton an incredible mass
@@ -58,9 +58,18 @@ public class NuclearSimulation : MonoBehaviour
                             a.AddComponent<FixedJoint>().connectedBody = b.GetComponent<Rigidbody>();
                             a.GetComponent<MoleculeType>().ParticleType = "Deuterium";
                             b.GetComponent<MoleculeType>().ParticleType = "Deuterium";
+                            b.GetComponent<charger>().charge = 0f;
                             RemoveLableFollower(b);
                             AddLabel(b, 3);
                             ChangeColor(0);
+
+                            Particle Neutrino = new Particle("Neutrino", 0f, ICColor.Neutrino, mass: 0f);
+                            GameObject NeutrinoGO = Neutrino.Spawn();
+                            RemoveLableFollower(NeutrinoGO);
+                            AddLabel(NeutrinoGO, 3);
+                            Particle Beta = new Particle("Beta", 2f, ICColor.Electron, mass: 0f);
+                            GameObject BetaGO = Beta.Spawn();
+                            StartCoroutine(DeleteBetaNeutrino(BetaGO, NeutrinoGO));
                         }
 
                         // Scenario 2: A particle in deuterium and a free proton have collided
@@ -70,26 +79,31 @@ public class NuclearSimulation : MonoBehaviour
                             b.GetComponent<MoleculeType>().ParticleType = "3Helium";
                             a.AddComponent<FixedJoint>().connectedBody = b.GetComponent<Rigidbody>();
 
-                            // The particle doesn't have the FixedJoint component itself 
-                            // This is necessary to identify the other particle that comprises deuterium
-                            if (!(a.HasComponent<FixedJoint>()))
+                            for (int idx = 0; idx < CurrentObjects.Count; idx++)
                             {
-                                for (int idx = 0; idx < CurrentObjects.Count; idx++)
+                                GameObject GO = CurrentObjects[idx];
+                                if (GO != a && GO != b)
                                 {
-                                    GameObject GO = CurrentObjects[idx];
-                                    if (GO != a && GO != b)
-                                    {
-                                        GO.GetComponent<MoleculeType>().ParticleType = "3Helium";
-                                    }
+                                    GO.GetComponent<MoleculeType>().ParticleType = "3Helium";
                                 }
                             }
-                            else
-                            {
-                                a.GetComponent<FixedJoint>().connectedBody.gameObject.GetComponent<MoleculeType>().ParticleType = "3Helium";
-                            }
+            
                             ChangeColor(1);
+                            Particle Gamma = new Particle("Gamma", 0f, ICColor.Neutrino, mass: 0f);
+                            GameObject GammaGO = Gamma.Spawn();
+                            RemoveLableFollower(GammaGO);
+                            AddLabel(GammaGO, 4, true, new Vector3(3f, 3f));
+                            StartCoroutine(DeleteGamma(GammaGO));
                             StartCoroutine("ResetNew3Helium");
                         }
+
+                        /* What should be my approach to solve the problem when two 3Heliums collide? 
+                         * Should I make a 4Helium prefab and instantiate two Hydrogens?
+                        else if (a.GetComponent<MoleculeType>().ParticleType == "3Helium" && b.GetComponent<MoleculeType>().ParticleType == "3Helium")
+                        {
+                           
+                        }
+                        */
                     }
                 }
             }
@@ -112,11 +126,15 @@ public class NuclearSimulation : MonoBehaviour
         }
     }
 
-    private void AddLabel(GameObject ObjToAddLabel, int LabelIdx)
+    private void AddLabel(GameObject ObjToAddLabel, int LabelIdx, bool UsingScale = false, Vector3 scale = new Vector3())
     { 
         if (LabelIdx < (GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs.Length))
         {
             GameObject Lable = MonoBehaviour.Instantiate(GameObject.Find("Lable Canvas").GetComponent<LableManager>().imagePrefabs[LabelIdx], Vector3.zero, Quaternion.identity);
+            if (UsingScale)
+            {
+                Lable.transform.localScale = scale;
+            }
             Lable.transform.SetParent(GameObject.Find("Lable Canvas").transform, false);
             Lable.AddComponent<ImageFollower>().sphereToFollow = ObjToAddLabel;
         }
@@ -124,6 +142,8 @@ public class NuclearSimulation : MonoBehaviour
 
     private void ChangeColor(int MoleculeColorIdx)
     {
+        // When certain molecules are formed, atoms must be colored in certain ways
+        // Colors assigned based on ParticleType variable of MoleculeType component
         for (int x = 0; x < CurrentObjects.Count; x++)
         {
             GameObject GO = CurrentObjects[x];
@@ -156,6 +176,7 @@ public class NuclearSimulation : MonoBehaviour
             }
 
             CurrentObjects.Clear();
+
             for (int idx = 0; idx < 3; idx++)
             {
                 Particle Proton = new Particle("Hydrogen " + (idx + 3), 2f, ICColor.Hydrogen, mass: 100000f, scale: 2f);
@@ -165,23 +186,54 @@ public class NuclearSimulation : MonoBehaviour
                 CurrentObjects.Add(ProtonGO);
             }
         }
+        // Second round
+        else
+        {
+            // simpler alternative to temporarily stop motion to position new particles
+            float OldTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
+
+            for (int idx = 0; idx < 3; idx++)
+            {
+                CurrentObjects[idx].transform.position = StartPosition[1] + idx * new Vector3(1f, 0f);
+                CurrentlyInactive[idx].transform.position = StartPosition[2] + idx * new Vector3(1f, 0f);
+                CurrentlyInactive[idx].SetActive(true);
+                RemoveLableFollower(CurrentlyInactive[idx]);
+                /* Problem 2: Why is Unity mentioning that the sphereToFollow variable of the ImageFollower component hasn't been assigned?
+                if (idx == 0)
+                {
+                    AddLabel(CurrentlyInactive[idx], 3);
+                }
+                else
+                {
+                    AddLabel(CurrentlyInactive[idx], 0);
+                }
+
+                CurrentObjects.Add(CurrentlyInactive[idx]);
+                */
+            }
+            CurrentlyInactive.Clear();
+            yield return new WaitForSeconds(2f);
+            Time.timeScale = OldTimeScale;
+        }
+    }
+
+    IEnumerator DeleteBetaNeutrino(GameObject Beta, GameObject Neutrino)
+    {
+        // Deleting GameObjects after a time interval is difficult -- associated labels must be removed
+        yield return new WaitForSeconds(2f);
+        RemoveLableFollower(Beta);
+        Beta.SetActive(false);
+        RemoveLableFollower(Neutrino);
+        Neutrino.SetActive(false);
+    }
+
+    IEnumerator DeleteGamma(GameObject Gamma)
+    {
+        // Deleting GameObjects after a time interval is difficult -- associated labels must be removed
+        yield return new WaitForSeconds(2f);
+        RemoveLableFollower(Gamma);
+        Gamma.SetActive(false);
     }
 }
 
-/* Where to go from here (March 1st)
- * When the '3Helium' isotope is formed, it needs to disappear from the screen
- *      It will reappear after the second one has formed
- * Obviously, the neutrons are still identified as protons (change particle color and symbol) [Done, March 2nd]
- * We need particles (beta, neutrino, gamma radiation)
- 
- * Bugs!
- * Currently, when initializing two particles in the simulation, when they collide, they remain stationary.
- * Many foreach loops are still in use. Since CurrentObjects is being modified, this will not work. [Done, March 6th]
- * Add method documentation. [Done, March 6th]
-*/
-
-/*
- * ResetGame [renamed ResetNew3Helium]:
- * Move 3Helium to the side instead of making it invisible
- * Can we introduce a blocking delay so people can see three new protons materialize [Done, March 6th]
-*/
