@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7478683424538086906}
   - component: {fileID: 5822118072870648469}
   - component: {fileID: 2483013139108281903}
+  - component: {fileID: 3823307466015848415}
   m_Layer: 0
   m_Name: '[SI] HCl'
   m_TagString: Untagged
@@ -184,6 +185,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   temp: 0
+--- !u!114 &3823307466015848415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610430598550535678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2b31dda271aa040aade9d47ac0ce19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!138 &8490137483881042685
 FixedJoint:
   m_ObjectHideFlags: 0
@@ -198,6 +211,18 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &2218646397477808517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4658085685635722282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2b31dda271aa040aade9d47ac0ce19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &481219596274672354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -280,6 +305,11 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8214261649867893835, guid: 02917e9683e55bb448a99b8800dd3bcf,
+        type: 3}
+      propertyPath: HCl
+      value: 
+      objectReference: {fileID: 4610430598550535678}
     - target: {fileID: 7244362718022870570, guid: 02917e9683e55bb448a99b8800dd3bcf,
         type: 3}
       propertyPath: m_Enabled

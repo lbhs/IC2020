@@ -216,3 +216,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HCl: {fileID: 4610430598550535678, guid: c287d1f078ca2cb41bf9a69e81848531, type: 3}
+  Chlorine: {fileID: 1098218046657226139, guid: 8b4de00ce468691499d1613c2a749132,
+    type: 3}
+  ClTwo: {fileID: 8444572533511891286, guid: c790de6575e5992418451d6d140b85eb, type: 3}
