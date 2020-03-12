@@ -10,6 +10,7 @@ public class Route : MonoBehaviour
 	public Transform[] controlPoints;
 
 	private Vector2 gizmosPosition;
+	public float Length;
 	
 	private void OnDrawGizmos()
 	{
@@ -25,6 +26,17 @@ public class Route : MonoBehaviour
 			Gizmos.DrawLine(new Vector2(controlPoints[i].position.x, controlPoints[i].position.y), new Vector2(controlPoints[i+1].position.x, controlPoints[i+1].position.y));
 		}
 		*/
+	}
+	
+	public void Start()
+	{
+		float tempLength = 0f;
+		float accuracy = 0.000001f;
+		for(float t = 0; t <= 1f - accuracy; t += accuracy)
+		{
+			tempLength += Vector3.Distance(bezierPosition(t), bezierPosition(t + accuracy));
+		}
+		Length = tempLength;
 	}
 	
 	//slow and inaccurate but it works
@@ -57,13 +69,13 @@ public class Route : MonoBehaviour
 		return newtonsMethod(point, nextPos, iterations - 1);
 	}
 	
-	public Vector2 nearestCurvePoint(Vector2 point)
+	public Vector3 nearestCurvePoint(Vector2 point)
 	{
 		List<float> initial = new List<float>(){0f, 0.5f, 1f};
 		float quadraticEstimate = minFuncP(point, quadraticMethod(point, initial, 5));
 		//print(bezierPosition(quadraticEstimate).x);
 		float newtonsEstimate = newtonsMethod(point, quadraticEstimate, 5);
-		return bezierPosition(quadraticEstimate);
+		return bezierPosition(newtonsEstimate);
 	}
 	
 	public float funcD(float t, Vector2 pos)

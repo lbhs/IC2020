@@ -21,7 +21,7 @@ public class moveOnClick : MonoBehaviour
             m_Rigidbody = GetComponent<Rigidbody>();
             m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         }
-		#pragma warning disable 0649
+		#pragma warning disable
         void Update()
         {
             if (Input.GetKeyDown("space"))

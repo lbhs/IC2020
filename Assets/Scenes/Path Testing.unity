@@ -400,7 +400,6 @@ MonoBehaviour:
   speed: 1
   t: 0
   strictMovement: 0
-  fakeVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &324330345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -956,12 +955,12 @@ PrefabInstance:
     - target: {fileID: 361479009803524112, guid: 5519bce164f41264898fae3eed0d887c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.89
+      value: -3.77
       objectReference: {fileID: 0}
     - target: {fileID: 361479009803524112, guid: 5519bce164f41264898fae3eed0d887c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8809202
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 361479009803524112, guid: 5519bce164f41264898fae3eed0d887c,
         type: 3}
@@ -2398,6 +2397,7 @@ MonoBehaviour:
   - {fileID: 1005113340}
   - {fileID: 2087881141}
   - {fileID: 756794094}
+  Length: 0
 --- !u!4 &932204680
 Transform:
   m_ObjectHideFlags: 0
@@ -4372,12 +4372,12 @@ PrefabInstance:
     - target: {fileID: 361479009803524112, guid: 5519bce164f41264898fae3eed0d887c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.63
+      value: 9.34
       objectReference: {fileID: 0}
     - target: {fileID: 361479009803524112, guid: 5519bce164f41264898fae3eed0d887c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 361479009803524112, guid: 5519bce164f41264898fae3eed0d887c,
         type: 3}
@@ -4776,7 +4776,6 @@ MonoBehaviour:
   speed: 1
   t: 0
   strictMovement: 0
-  fakeVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &2087881140
 GameObject:
   m_ObjectHideFlags: 0

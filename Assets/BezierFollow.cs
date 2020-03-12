@@ -10,14 +10,13 @@ public class BezierFollow : MonoBehaviour
 	public float speed;
 	public float t = 0f;
 	public bool strictMovement = true;
-	public Vector3 fakeVelocity;
 	private double x;
 	private double y;
 
     void Start()
     {
-		print(route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position, 0.000001f)).x);
-		print(route.GetComponent<Route>().nearestCurvePoint(transform.position).x);
+		//print(route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position, 0.000001f)).x);
+		//print(route.GetComponent<Route>().nearestCurvePoint(transform.position).x);
 	}
 	
 	void FixedUpdate()
@@ -36,9 +35,9 @@ public class BezierFollow : MonoBehaviour
 	}
 	
 	void updatePosition()
-	{		
-		Vector3 nextPos = route.GetComponent<Route>().nearestCurvePoint(transform.position + GetComponent<Rigidbody>().velocity);
-		GetComponent<Rigidbody>().velocity = (nextPos - transform.position);
+	{	
+		Vector3 nextPos = route.GetComponent<Route>().nearestCurvePoint(transform.position + (GetComponent<Rigidbody>().velocity*Time.fixedDeltaTime));
+		GetComponent<Rigidbody>().velocity = (nextPos - transform.position)/Time.fixedDeltaTime;
 		transform.position = nextPos;
 	}
 	
@@ -52,7 +51,7 @@ public class BezierFollow : MonoBehaviour
 				yield return null;
 			}
 			
-			t += Time.deltaTime * speed;
+			t += Time.fixedDeltaTime * speed;
 			transform.position = route.GetComponent<Route>().bezierPosition(t);
 			
 			yield return new WaitForEndOfFrame();
