@@ -15,6 +15,7 @@ public class BezierFollow : MonoBehaviour
 
     void Start()
     {
+		transform.position = route.GetComponent<Route>().nearestCurvePoint(transform.position);
 		//print(route.GetComponent<Route>().bezierPosition(route.GetComponent<Route>().nearestPointT(transform.position, 0.000001f)).x);
 		//print(route.GetComponent<Route>().nearestCurvePoint(transform.position).x);
 	}
