@@ -47,6 +47,12 @@ public class NuclearSimulation : MonoBehaviour
                 if (a != b)
                 {
                     // improvised collision detection
+                    // use Unity collision detection
+                    // Use tags (assign in inspector)
+                    // find a way to release a fixed joint
+                    // use prefab for Helium-3 collision
+                    // use parent-child relationship to create a multi-particle prefab
+                    // add a FixedJoint component to ensure that it behaves correctly
                     float ObjRadius = a.GetComponent<SphereCollider>().radius * a.transform.localScale.x;    // sphere must have identical scale in each direction
                     if (Math.Abs(Vector3.Distance(a.transform.position, b.transform.position) - 2 * ObjRadius) <= .25f)
                     {
@@ -59,13 +65,13 @@ public class NuclearSimulation : MonoBehaviour
                             a.GetComponent<MoleculeType>().ParticleType = "Deuterium";
                             b.GetComponent<MoleculeType>().ParticleType = "Deuterium";
                             b.GetComponent<charger>().charge = 0f;
-                            RemoveLableFollower(b);
+                            DestroyLableFollower(b);
                             AddLabel(b, 3);
                             ChangeColor(0);
 
                             Particle Neutrino = new Particle("Neutrino", 0f, ICColor.Neutrino, mass: 0f);
                             GameObject NeutrinoGO = Neutrino.Spawn();
-                            RemoveLableFollower(NeutrinoGO);
+                            DestroyLableFollower(NeutrinoGO);
                             AddLabel(NeutrinoGO, 3);
                             Particle Beta = new Particle("Beta", 2f, ICColor.Electron, mass: 0f);
                             GameObject BetaGO = Beta.Spawn();
@@ -91,19 +97,16 @@ public class NuclearSimulation : MonoBehaviour
                             ChangeColor(1);
                             Particle Gamma = new Particle("Gamma", 0f, ICColor.Neutrino, mass: 0f);
                             GameObject GammaGO = Gamma.Spawn();
-                            RemoveLableFollower(GammaGO);
+                            DestroyLableFollower(GammaGO);
                             AddLabel(GammaGO, 4, true, new Vector3(3f, 3f));
                             StartCoroutine(DeleteGamma(GammaGO));
                             StartCoroutine("ResetNew3Helium");
                         }
-
-                        /* What should be my approach to solve the problem when two 3Heliums collide? 
-                         * Should I make a 4Helium prefab and instantiate two Hydrogens?
+                 
                         else if (a.GetComponent<MoleculeType>().ParticleType == "3Helium" && b.GetComponent<MoleculeType>().ParticleType == "3Helium")
                         {
-                           
+                
                         }
-                        */
                     }
                 }
             }
@@ -111,7 +114,7 @@ public class NuclearSimulation : MonoBehaviour
         
     }
 
-    private void RemoveLableFollower(GameObject ObjToRemoveLabel)
+    private void DestroyLableFollower(GameObject ObjToRemoveLabel)
     {
         // This codebase implements labels (e.g. +) as GameObjects following particles
         // This method removes the label follower that follows ObjToRemoveLabel
@@ -122,6 +125,21 @@ public class NuclearSimulation : MonoBehaviour
             if (child.gameObject.GetComponent<ImageFollower>().sphereToFollow == ObjToRemoveLabel)
             {
                 Destroy(child.gameObject);
+            }
+        }
+    }
+
+    private void EnableLableFollower(GameObject ObjToRemoveLabel)
+    {
+        // This codebase implements labels (e.g. +) as GameObjects following particles
+        // This method removes the label follower that follows ObjToRemoveLabel
+        Transform ChildrenList = GameObject.Find("Lable Canvas").transform;
+        for (int x = 0; x < ChildrenList.childCount; x++)
+        {
+            Transform child = ChildrenList.GetChild(x);
+            if (child.gameObject.GetComponent<ImageFollower>().sphereToFollow == ObjToRemoveLabel)
+            {
+                child.gameObject.SetActive(true);
             }
         }
     }
@@ -171,7 +189,7 @@ public class NuclearSimulation : MonoBehaviour
             for (int idx = 0; idx < 3; idx++)
             {
                 CurrentObjects[idx].SetActive(false);
-                RemoveLableFollower(CurrentObjects[idx]);
+                DestroyLableFollower(CurrentObjects[idx]);
                 CurrentlyInactive.Add(CurrentObjects[idx]);
             }
 
@@ -198,19 +216,8 @@ public class NuclearSimulation : MonoBehaviour
                 CurrentObjects[idx].transform.position = StartPosition[1] + idx * new Vector3(1f, 0f);
                 CurrentlyInactive[idx].transform.position = StartPosition[2] + idx * new Vector3(1f, 0f);
                 CurrentlyInactive[idx].SetActive(true);
-                RemoveLableFollower(CurrentlyInactive[idx]);
-                /* Problem 2: Why is Unity mentioning that the sphereToFollow variable of the ImageFollower component hasn't been assigned?
-                if (idx == 0)
-                {
-                    AddLabel(CurrentlyInactive[idx], 3);
-                }
-                else
-                {
-                    AddLabel(CurrentlyInactive[idx], 0);
-                }
-
+                EnableLableFollower(CurrentlyInactive[idx]);
                 CurrentObjects.Add(CurrentlyInactive[idx]);
-                */
             }
             CurrentlyInactive.Clear();
             yield return new WaitForSeconds(2f);
@@ -222,9 +229,9 @@ public class NuclearSimulation : MonoBehaviour
     {
         // Deleting GameObjects after a time interval is difficult -- associated labels must be removed
         yield return new WaitForSeconds(2f);
-        RemoveLableFollower(Beta);
+        DestroyLableFollower(Beta);
         Beta.SetActive(false);
-        RemoveLableFollower(Neutrino);
+        DestroyLableFollower(Neutrino);
         Neutrino.SetActive(false);
     }
 
@@ -232,8 +239,7 @@ public class NuclearSimulation : MonoBehaviour
     {
         // Deleting GameObjects after a time interval is difficult -- associated labels must be removed
         yield return new WaitForSeconds(2f);
-        RemoveLableFollower(Gamma);
+        DestroyLableFollower(Gamma);
         Gamma.SetActive(false);
     }
 }
-

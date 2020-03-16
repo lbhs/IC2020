@@ -48,6 +48,7 @@ namespace IC2020
         public static Color Deuterium = new Color32(255, 182, 193, 255);
         public static Color HeliumIsotope = new Color32(238, 221, 130, 255);
         public static Color Neutrino = new Color32(255, 0, 0, 255);
+        public static Color HeliumIsotope4 = new Color32(255, 165, 0, 255);
     }
 
     public class Particle
