@@ -120,9 +120,9 @@ TextureImporter:
       name: Lewis shapes final_0
       rect:
         serializedVersion: 2
-        x: 620
+        x: 619
         y: 2477
-        width: 502
+        width: 503
         height: 336
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -131,7 +131,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e63ca33c9f28ccc459694e4d586c8332
+      spriteID: 2adada25ff740e44c83c8a472d25798b
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 115a8d2c4ae71de4b98dfdb780587eb0
+      spriteID: 6d9b1b4b58299d5409c1bde020419366
       vertices: []
       indices: 
       edges: []
@@ -171,7 +171,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fab3541556df3154fae9374b95d75c19
+      spriteID: 462585b7d1355a540bef41c2ad7b1803
       vertices: []
       indices: 
       edges: []
@@ -181,9 +181,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1000
-        y: 1559
+        y: 1558
         width: 668
-        height: 667
+        height: 668
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,7 +191,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0985b36dac2dc8549b2029ea7dbcbd86
+      spriteID: 0552634d95c421542bb4b63d7f1b0aa0
       vertices: []
       indices: 
       edges: []
@@ -211,7 +211,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecf86aa5422c09441a618d1ed887dfc2
+      spriteID: 3034915281a39e94989ee36720bcabdb
       vertices: []
       indices: 
       edges: []
@@ -231,7 +231,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40c147023bda06d41addcc0f6ec27928
+      spriteID: 6ffd32ef610329049a11513e8d376b6c
       vertices: []
       indices: 
       edges: []
@@ -251,7 +251,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 421825e191250b6468f77babfc949288
+      spriteID: 49657f67a53006a4eb30af41d02029e4
       vertices: []
       indices: 
       edges: []
@@ -271,7 +271,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 298579f31488a884ba1451d54a241b12
+      spriteID: 1c9a04f3628077e45b543859aa9cc125
       vertices: []
       indices: 
       edges: []
@@ -280,7 +280,7 @@ TextureImporter:
       name: Lewis shapes final_8
       rect:
         serializedVersion: 2
-        x: 151
+        x: 147
         y: 99
         width: 621
         height: 573
@@ -291,7 +291,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d77ce365bf54c944b81c11bc0353493
+      spriteID: 7120ce98218331c4f8955a86a05d3575
       vertices: []
       indices: 
       edges: []
@@ -311,7 +311,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79b8a70795163d64db06d6c9759c7b42
+      spriteID: abc53581afbac064498bd302ea782691
       vertices: []
       indices: 
       edges: []
@@ -321,9 +321,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1740
-        y: 100
+        y: 99
         width: 667
-        height: 620
+        height: 621
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,7 +331,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f16c855b27517ec48a7b113b02cbfe73
+      spriteID: 2b7ee1a3b27482a49bdb573feb6a5143
       vertices: []
       indices: 
       edges: []
