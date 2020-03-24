@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 
 public class DungeonMasterScript : NetworkBehaviour
 {
+    
     // Start is called before the first frame update
     void Start()
     {

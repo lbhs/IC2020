@@ -7,12 +7,29 @@ public class ObjectDragNDrop : MonoBehaviour
 {
     private Vector3 mOffset;
     private float mZCoord;
+    private GameObject TurnScreen;
+
+    void Update()
+    {
+        TurnScreen = GameObject.Find("It's Not Your Turn Screen");
+    }
 
     void OnMouseDown()
     {
-        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-        // Store offset = gameobject world pos - mouse world pos
-        mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
+        if (TurnScreen == null)
+        {
+            mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+            // Store offset = gameobject world pos - mouse world pos
+            mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
+        }
+    }
+
+    void OnMouseDrag()
+    {
+        if (TurnScreen == null)
+        {
+            transform.position = GetMouseAsWorldPoint() + mOffset;
+        }
     }
 
     private Vector3 GetMouseAsWorldPoint()
@@ -23,10 +40,5 @@ public class ObjectDragNDrop : MonoBehaviour
         mousePoint.z = mZCoord;
         // Convert it to world points
         return Camera.main.ScreenToWorldPoint(mousePoint);
-    }
-
-    void OnMouseDrag()
-    {
-        transform.position = GetMouseAsWorldPoint() + mOffset;
     }
 }
