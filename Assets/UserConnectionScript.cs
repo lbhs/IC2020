@@ -32,6 +32,10 @@ public class UserConnectionScript : NetworkBehaviour
         {
             CmdSpawnABox();
         }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            CmdUpdateUsername("Joe");
+        }
     }
 
     //executes on server
@@ -40,5 +44,19 @@ public class UserConnectionScript : NetworkBehaviour
     {
         GameObject Box = Instantiate(TestBoxPrefab);
         NetworkServer.SpawnWithClientAuthority(Box, connectionToClient);
+    }
+
+    [Command]
+    void CmdUpdateUsername(string n)
+    {
+        Username = n;
+        RpcUpdateUsername(n);
+    }
+
+    //executes on everyone's computer
+    [ClientRpc]
+    void RpcUpdateUsername(string n)
+    {
+        Username = n;
     }
 }
