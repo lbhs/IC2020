@@ -9,15 +9,17 @@ public class UserConnectionScript : NetworkBehaviour
 {
     public string Username = "no name yet";
     public GameObject TestBoxPrefab;
+    private DungeonMasterScript DM;
 
     // Start is called before the first frame update
     void Start()
     {
+        DM = GameObject.Find("DungeonMaster").GetComponent<DungeonMasterScript>();
         if (isLocalPlayer == false)
         {
             return;
         }
-
+        DM.Players.Add(gameObject); //adds it's self to player list
     }
 
     // Update is called once per frame
