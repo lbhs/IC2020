@@ -7,13 +7,17 @@ using System;
 public class NuclearSimulation : MonoBehaviour
 {
     private List<Vector3> StartPosition = new List<Vector3>();
+    // An object in the scene is stored in CurrentObjects
     public List<GameObject> CurrentObjects = new List<GameObject>();
     public List<GameObject> CurrentlyInactive = new List<GameObject>();
-    bool SecondRound = false;
+    bool SecondRound = false;    // the second round of producing Helium-3
+    bool FinalCollisionRound = false;    // colliding two Helium-3 molecules in the final stage
+    bool CollisionNotRegistered = true;   
 
     // Start is called before the first frame update
     void Start()
     {
+        // TODO: Update Buffet Table (3/24)
         // Going back to the first design: fixing the starting positions of the protons
         StartPosition.Add(new Vector3(-7f, 7f));
         StartPosition.Add(new Vector3(0f, -7f));
@@ -24,8 +28,8 @@ public class NuclearSimulation : MonoBehaviour
         {
             Particle Proton = new Particle("Hydrogen " + x, 2f, ICColor.Hydrogen, mass: 100000f, scale: 2f);
             GameObject ProtonGO = Proton.Spawn();
+            ProtonGO.tag = "Hydrogen";
             ProtonGO.transform.position = StartPosition[x % 3];
-            ProtonGO.AddComponent<MoleculeType>();
             CurrentObjects.Add(ProtonGO);
         }
     }
@@ -46,26 +50,21 @@ public class NuclearSimulation : MonoBehaviour
                 GameObject b = CurrentObjects[BIdx];
                 if (a != b)
                 {
-                    // improvised collision detection
-                    // use Unity collision detection
-                    // Use tags (assign in inspector)
-                    // find a way to release a fixed joint
-                    // use prefab for Helium-3 collision
-                    // use parent-child relationship to create a multi-particle prefab
-                    // add a FixedJoint component to ensure that it behaves correctly
+                    // there is no way to detect a collision without adding a component to each GO
                     float ObjRadius = a.GetComponent<SphereCollider>().radius * a.transform.localScale.x;    // sphere must have identical scale in each direction
                     if (Math.Abs(Vector3.Distance(a.transform.position, b.transform.position) - 2 * ObjRadius) <= .25f)
                     {
                         // Scenario 1: Two protons, not part of any molecule, have collided
-                        if (a.name.Split(' ')[1] == "Hydrogen" && b.name.Split(' ')[1] == "Hydrogen" &&
-                            a.GetComponent<MoleculeType>().ParticleType == null && b.GetComponent<MoleculeType>().ParticleType == null)
+                        if (a.tag == "Hydrogen" && b.tag == "Hydrogen")
                         {
                             // Join the protons to form deuterium
                             a.AddComponent<FixedJoint>().connectedBody = b.GetComponent<Rigidbody>();
-                            a.GetComponent<MoleculeType>().ParticleType = "Deuterium";
-                            b.GetComponent<MoleculeType>().ParticleType = "Deuterium";
+                            a.tag = "Deuterium";
+                            b.tag = "Deuterium";
+                            b.name = "[P] Neutron " + b.name.Split(' ')[2];    
                             b.GetComponent<charger>().charge = 0f;
                             DestroyLableFollower(b);
+                            // '0' designates neutral charge
                             AddLabel(b, 3);
                             ChangeColor(0);
 
@@ -73,39 +72,83 @@ public class NuclearSimulation : MonoBehaviour
                             GameObject NeutrinoGO = Neutrino.Spawn();
                             DestroyLableFollower(NeutrinoGO);
                             AddLabel(NeutrinoGO, 3);
+
                             Particle Beta = new Particle("Beta", 2f, ICColor.Electron, mass: 0f);
                             GameObject BetaGO = Beta.Spawn();
+
+                            // the beta and neutrino cannot be deleted immediately after their creation
+                            // the coroutine I created deletes them after 2s
                             StartCoroutine(DeleteBetaNeutrino(BetaGO, NeutrinoGO));
                         }
 
                         // Scenario 2: A particle in deuterium and a free proton have collided
-                        else if (a.GetComponent<MoleculeType>().ParticleType == "Deuterium" && b.GetComponent<MoleculeType>().ParticleType == null)
+                        else if (a.tag == "Deuterium" && b.tag == "Hydrogen")
                         {
-                            a.GetComponent<MoleculeType>().ParticleType = "3Helium";
-                            b.GetComponent<MoleculeType>().ParticleType = "3Helium";
+                            a.tag = "3Helium";
+                            b.tag = "3Helium";
+
                             a.AddComponent<FixedJoint>().connectedBody = b.GetComponent<Rigidbody>();
 
+                            // all three particles are part of Helium-3
                             for (int idx = 0; idx < CurrentObjects.Count; idx++)
                             {
                                 GameObject GO = CurrentObjects[idx];
                                 if (GO != a && GO != b)
                                 {
-                                    GO.GetComponent<MoleculeType>().ParticleType = "3Helium";
+                                    GO.tag = "3Helium";
                                 }
                             }
             
                             ChangeColor(1);
+
                             Particle Gamma = new Particle("Gamma", 0f, ICColor.Neutrino, mass: 0f);
                             GameObject GammaGO = Gamma.Spawn();
                             DestroyLableFollower(GammaGO);
                             AddLabel(GammaGO, 4, true, new Vector3(3f, 3f));
+
                             StartCoroutine(DeleteGamma(GammaGO));
                             StartCoroutine("ResetNew3Helium");
                         }
-                 
-                        else if (a.GetComponent<MoleculeType>().ParticleType == "3Helium" && b.GetComponent<MoleculeType>().ParticleType == "3Helium")
+                        
+                        // Final case: two Helium-3 isotopes have collided
+                        else if (a.tag == "3Helium" && b.tag == "3Helium" && FinalCollisionRound && CollisionNotRegistered)
                         {
-                
+                            CollisionNotRegistered = false;
+
+                            for (int idx = 0; idx < CurrentObjects.Count; idx++)
+                            {
+                                DestroyLableFollower(CurrentObjects[idx]);
+                                CurrentObjects[idx].SetActive(false);
+                            }
+
+                            GameObject PrevObject = null;
+
+                            for (int idx = 0; idx < 4; idx++)
+                            {
+                                Particle Hydrogen = new Particle("Hydrogen " + (idx + 6), 2f, ICColor.HeliumIsotope4, scale: 2f);
+                                GameObject HydrogenGO = Hydrogen.Spawn();
+
+                                // 2 protons, 2 neutrons in Helium-4
+                                if (idx > 1)
+                                {
+                                    DestroyLableFollower(HydrogenGO);
+                                    AddLabel(HydrogenGO, 3);
+                                    HydrogenGO.name = "[P] Neutron " + HydrogenGO.name.Split(' ')[2];
+                                }
+
+                                if (!(PrevObject == null))
+                                {
+                                    HydrogenGO.AddComponent<FixedJoint>().connectedBody = PrevObject.GetComponent<Rigidbody>();
+                                }
+
+                                PrevObject = HydrogenGO;
+                            }
+
+                            Particle StdHydrogen = new Particle("Hydrogen 11", 2f, ICColor.Hydrogen, scale: 2f);
+                            StdHydrogen.Spawn();
+
+                            Particle StdHydrogen2 = new Particle("Hydrogen 12", 2f, ICColor.Hydrogen, scale: 2f);
+                            StdHydrogen2.Spawn();
                         }
                     }
                 }
@@ -124,22 +167,7 @@ public class NuclearSimulation : MonoBehaviour
             Transform child = ChildrenList.GetChild(x);
             if (child.gameObject.GetComponent<ImageFollower>().sphereToFollow == ObjToRemoveLabel)
             {
-                Destroy(child.gameObject);
-            }
-        }
-    }
-
-    private void EnableLableFollower(GameObject ObjToRemoveLabel)
-    {
-        // This codebase implements labels (e.g. +) as GameObjects following particles
-        // This method removes the label follower that follows ObjToRemoveLabel
-        Transform ChildrenList = GameObject.Find("Lable Canvas").transform;
-        for (int x = 0; x < ChildrenList.childCount; x++)
-        {
-            Transform child = ChildrenList.GetChild(x);
-            if (child.gameObject.GetComponent<ImageFollower>().sphereToFollow == ObjToRemoveLabel)
-            {
-                child.gameObject.SetActive(true);
+                GameObject.Destroy(child.gameObject);
             }
         }
     }
@@ -154,7 +182,7 @@ public class NuclearSimulation : MonoBehaviour
                 Lable.transform.localScale = scale;
             }
             Lable.transform.SetParent(GameObject.Find("Lable Canvas").transform, false);
-            Lable.AddComponent<ImageFollower>().sphereToFollow = ObjToAddLabel;
+            Lable.GetComponent<ImageFollower>().sphereToFollow = ObjToAddLabel;
         }
     }
 
@@ -165,12 +193,12 @@ public class NuclearSimulation : MonoBehaviour
         for (int x = 0; x < CurrentObjects.Count; x++)
         {
             GameObject GO = CurrentObjects[x];
-            if (GO.GetComponent<MoleculeType>().ParticleType == "Deuterium" && MoleculeColorIdx == 0)
+            if (GO.tag == "Deuterium" && MoleculeColorIdx == 0)
             {
                 GO.GetComponent<Renderer>().material.color = ICColor.Deuterium;
             }
 
-            else if (GO.GetComponent<MoleculeType>().ParticleType == "3Helium" && MoleculeColorIdx == 1)
+            else if (GO.tag == "3Helium" && MoleculeColorIdx == 1)
             {
                 GO.GetComponent<Renderer>().material.color = ICColor.HeliumIsotope;
             }
@@ -184,7 +212,7 @@ public class NuclearSimulation : MonoBehaviour
         // Restarts after a 2s delay
         yield return new WaitForSeconds(2f);
         if (!SecondRound)
-        {
+        { 
             SecondRound = true;
             for (int idx = 0; idx < 3; idx++)
             {
@@ -200,7 +228,7 @@ public class NuclearSimulation : MonoBehaviour
                 Particle Proton = new Particle("Hydrogen " + (idx + 3), 2f, ICColor.Hydrogen, mass: 100000f, scale: 2f);
                 GameObject ProtonGO = Proton.Spawn();
                 ProtonGO.transform.position = StartPosition[idx % 3];
-                ProtonGO.AddComponent<MoleculeType>();
+                ProtonGO.tag = "Hydrogen";
                 CurrentObjects.Add(ProtonGO);
             }
         }
@@ -213,13 +241,25 @@ public class NuclearSimulation : MonoBehaviour
 
             for (int idx = 0; idx < 3; idx++)
             {
-                CurrentObjects[idx].transform.position = StartPosition[1] + idx * new Vector3(1f, 0f);
-                CurrentlyInactive[idx].transform.position = StartPosition[2] + idx * new Vector3(1f, 0f);
+                // change position and status
+                CurrentObjects[idx].transform.position = StartPosition[1] + idx * new Vector3(1f, 1f);
+                CurrentlyInactive[idx].transform.position = StartPosition[2] - idx * new Vector3(1f, 1f);
                 CurrentlyInactive[idx].SetActive(true);
-                EnableLableFollower(CurrentlyInactive[idx]);
+
+                if (CurrentlyInactive[idx].name.Split(' ')[1] == "Hydrogen")
+                {
+                    AddLabel(CurrentlyInactive[idx], 0);
+                }
+                else
+                {
+                    AddLabel(CurrentlyInactive[idx], 3);
+                }
                 CurrentObjects.Add(CurrentlyInactive[idx]);
             }
+
             CurrentlyInactive.Clear();
+            FinalCollisionRound = true;
+
             yield return new WaitForSeconds(2f);
             Time.timeScale = OldTimeScale;
         }
@@ -237,7 +277,6 @@ public class NuclearSimulation : MonoBehaviour
 
     IEnumerator DeleteGamma(GameObject Gamma)
     {
-        // Deleting GameObjects after a time interval is difficult -- associated labels must be removed
         yield return new WaitForSeconds(2f);
         DestroyLableFollower(Gamma);
         Gamma.SetActive(false);

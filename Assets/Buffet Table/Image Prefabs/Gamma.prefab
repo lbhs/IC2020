@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6132841249056728844}
   - component: {fileID: 8172981974303022031}
   - component: {fileID: 6055098838179665480}
+  - component: {fileID: 1638071961686837473}
   m_Layer: 0
   m_Name: Gamma
   m_TagString: Untagged
@@ -123,3 +124,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1638071961686837473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8006402977536635982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d3e7c246620578488479fc2e161e0c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sphereToFollow: {fileID: 0}
