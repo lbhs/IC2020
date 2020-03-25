@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using IC2020;
 using System;
+using UnityEngine.UI;
+using UnityEditor;
 
 public class NuclearSimulation : MonoBehaviour
 {
@@ -17,7 +19,47 @@ public class NuclearSimulation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // TODO: Update Buffet Table (3/24)
+        List<String> Names = new List<String>()
+        {
+            "Hydrogen",
+            "Deuterium",
+            "Helium-3",
+            "Helium-4",
+            "Beta Particle",
+            "Neutrino"
+        };
+
+        List<Color> ParticleColors = new List<Color>()
+        {
+            ICColor.Hydrogen,
+            ICColor.Deuterium,
+            ICColor.HeliumIsotope,
+            ICColor.HeliumIsotope4,
+            ICColor.Electron,
+            ICColor.Neutrino
+        };
+
+        GameObject BTPanel = GameObject.Find("Buffet Table").transform.GetChild(0).gameObject;
+
+        for (int idx = 0; idx < BTPanel.transform.childCount; idx++)
+        {
+            GameObject BTElement = BTPanel.transform.GetChild(idx).gameObject;
+            
+            if (BTElement.name == "Tile" + (idx - 1))
+            {
+                GameObject Indicator = BTElement.transform.GetChild(0).gameObject;
+                GameObject Name = BTElement.transform.GetChild(1).gameObject;
+
+                Name.GetComponent<Text>().text = Names[idx - 1];
+
+                Indicator.GetComponent<Image>().sprite = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/Knob.psd");
+                Indicator.GetComponent<Image>().color = ParticleColors[idx - 1];
+                Indicator.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
+
+                GameObject.Destroy(Indicator.GetComponent<UIDragNDrop>());
+            }
+        }
+
         // Going back to the first design: fixing the starting positions of the protons
         StartPosition.Add(new Vector3(-7f, 7f));
         StartPosition.Add(new Vector3(0f, -7f));
