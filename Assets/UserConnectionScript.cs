@@ -36,7 +36,7 @@ public class UserConnectionScript : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            CmdSpawnABox();
+            GameObject.Find("DungeonMaster").GetComponent<DungeonMasterScript>().RollTheDice();
         }
         if (Input.GetKeyDown(KeyCode.N))
         {

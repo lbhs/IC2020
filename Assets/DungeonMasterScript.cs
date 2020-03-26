@@ -137,9 +137,9 @@ public class DungeonMasterScript : NetworkBehaviour
             num = 1;
         else
             return;
-
+        Debug.Log(num);
         GameObject GO = Instantiate(Prefab, position, Quaternion.identity);
-        NetworkServer.SpawnWithClientAuthority(GO, NetworkServer.connections[num]);
+        NetworkServer.SpawnWithClientAuthority(GO, Players[num].GetComponent<NetworkIdentity>().clientAuthorityOwner);
     }
    
 }
