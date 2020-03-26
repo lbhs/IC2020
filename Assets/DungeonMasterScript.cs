@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-
+ 
 #pragma warning disable CS0618
 
-public class DungeonMasterScript : NetworkBehaviour
+public enum GameState {Start, Player1Turn, Player2Turn,End}
+
+public class DungeonMasterScript : NetworkBehaviour 
 {
     public List<GameObject> Players = new List<GameObject>();
     //TO-DO if player disconnects, remove them fro the list
-    [HideInInspector]
-    public int PlayerTurn = 0; // to see who's turn it is (Players[0])
+    public GameState state;
 
-    public GameObject TurnScreen;
+    public bool allPlayerHere = false;
 
     [Header("Objects to spawn")]
     public GameObject HPrefab;
@@ -22,15 +23,21 @@ public class DungeonMasterScript : NetworkBehaviour
     public GameObject CLPrefab;
     public GameObject NPrefab;
 
+    private NetworkConnection Player1;
+    private NetworkConnection Player2;
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-
+        Debug.Log(NetworkServer.connections);
+        if (!allPlayerHere)
+        {
+            return;
+        }
     }
 
     //--------Functions---------
@@ -40,33 +47,46 @@ public class DungeonMasterScript : NetworkBehaviour
 
         if(roll == 1)
         {
-            CmdSpawnAOxygen(new Vector3(0, 0, 0), 0);
+            CmdSpawnPrefab(OPrefab, new Vector3(0, 0, 0), 0);
         } 
     }
     
     public void EndTurn()
     {
-        if(PlayerTurn == 0)
+        if(0 == 0)
         {
-            PlayerTurn = 1;
+           /// PlayerTurn = 1;
+            TargetToggleItsNotYourTurnScreen(Player1,true);
         }
         else
         {
-            PlayerTurn = 0;
+           // PlayerTurn = 0;
         }
         //To-do switch the Its not your turn screen
     }
-    //---------Commands---------
 
+    [TargetRpc]
+    void TargetToggleItsNotYourTurnScreen(NetworkConnection Target, bool turnOn)
+    {
+        if (turnOn == true)
+        {
+            //TurnScreen.SetActive(true);
+            Debug.Log("test2");
+        }
+        else
+        {
+            //TurnScreen.SetActive(true);
+            Debug.Log("test");
+        }
+    }
 
     //Spawning Functions
     [Command]
-    void CmdSpawnAOxygen(Vector3 position, int varient) //spawns a oxygen for whoever's turn it is
+    void CmdSpawnPrefab(GameObject Prefab,Vector3 position, int varient) //spawns a oxygen for whoever's turn it is
     {
-        GameObject GO = Instantiate(OPrefab, position, Quaternion.identity);
-        NetworkServer.SpawnWithClientAuthority(GO, Players[PlayerTurn].GetComponent<NetworkIdentity>().connectionToClient);
+        GameObject GO = Instantiate(Prefab, position, Quaternion.identity);
+        //NetworkServer.SpawnWithClientAuthority(GO, Players[PlayerTurn].GetComponent<NetworkIdentity>().connectionToClient);
     }
+   
 }
 
-//Notes
-//NetworkServer.connections.Count

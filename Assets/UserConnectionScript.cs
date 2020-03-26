@@ -14,12 +14,12 @@ public class UserConnectionScript : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DM = GameObject.Find("DungeonMaster").GetComponent<DungeonMasterScript>();
+       // DM = GameObject.Find("DungeonMaster").GetComponent<DungeonMasterScript>();
         if (isLocalPlayer == false)
         {
             return;
         }
-        DM.Players.Add(gameObject); //adds it's self to player list
+        
     }
 
     // Update is called once per frame
@@ -29,6 +29,7 @@ public class UserConnectionScript : NetworkBehaviour
         {
             return;
         }
+        CmdAddToList();
 
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -49,6 +50,16 @@ public class UserConnectionScript : NetworkBehaviour
     }
 
     [Command]
+    void CmdAddToList()
+    {
+        if (!DM.Players.Contains(gameObject))
+        {
+            DM.Players.Add(gameObject); //adds it's self to player list
+        }
+        RpcAddToList();
+    }
+
+    [Command]
     void CmdUpdateUsername(string n)
     {
         Username = n;
@@ -60,5 +71,15 @@ public class UserConnectionScript : NetworkBehaviour
     void RpcUpdateUsername(string n)
     {
         Username = n;
+        
+    }
+
+    [ClientRpc]
+    void RpcAddToList()
+    {
+        if (!DM.Players.Contains(gameObject))
+        {
+            DM.Players.Add(gameObject); //adds it's self to player list
+        }
     }
 }
