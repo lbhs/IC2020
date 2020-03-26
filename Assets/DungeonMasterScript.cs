@@ -9,7 +9,7 @@ public enum GameState {Start, Player1Turn, Player2Turn,End}
 
 public class DungeonMasterScript : NetworkBehaviour 
 {
-
+    List<GameObject> Players = new List<GameObject>();
     //TO-DO handle disconnects 
 
     public GameState state;
@@ -32,13 +32,22 @@ public class DungeonMasterScript : NetworkBehaviour
 
     void Update()
     {
-        if(isServer == false)
+        if (isServer == false)
         {
             return;
         }
+
+        foreach (var p in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (!Players.Contains(p))
+            {
+                Players.Add(p);
+            }
+        }
+
         if (state == GameState.Start)
         {
-            if (NetworkServer.connections.Count < 2)
+            if (Players.Count < 2)
             {
                 return;
             }
@@ -49,17 +58,16 @@ public class DungeonMasterScript : NetworkBehaviour
         }
         else if(state == GameState.Player1Turn)
         {
-            TargetToggleItsNotYourTurnScreen(NetworkServer.connections[1], true);
+            TargetToggleItsNotYourTurnScreen(Players[1].GetComponent<NetworkIdentity>().clientAuthorityOwner, true);
         }
     }
 
     [ClientRpc]
     void RpcWaitingScreen()
     {
-        if (GameObject.Find("Waiting for Players") != null)
+        if (GameObject.Find("Waiting for Players") != false)
         {
             GameObject.Find("Waiting for Players").SetActive(false);
-            
         }
         RpcSwitchState(GameState.Player1Turn);
     }
@@ -83,7 +91,22 @@ public class DungeonMasterScript : NetworkBehaviour
     
     public void EndTurn()
     {
-       
+        Debug.Log("recived");
+     
+       Debug.Log("ended turn");
+       if(state == GameState.Player1Turn)
+        {
+            TargetToggleItsNotYourTurnScreen(Players[0].GetComponent<NetworkIdentity>().clientAuthorityOwner, true);
+            TargetToggleItsNotYourTurnScreen(Players[1].GetComponent<NetworkIdentity>().clientAuthorityOwner, false);
+            state = GameState.Player2Turn;
+        }
+        else if(state == GameState.Player2Turn)
+        {
+            TargetToggleItsNotYourTurnScreen(Players[0].GetComponent<NetworkIdentity>().clientAuthorityOwner, false);
+            TargetToggleItsNotYourTurnScreen(Players[1].GetComponent<NetworkIdentity>().clientAuthorityOwner, true);
+            state = GameState.Player1Turn;
+            
+        }
     }
 
     [TargetRpc]
@@ -92,14 +115,14 @@ public class DungeonMasterScript : NetworkBehaviour
         if (turnOn == true)
         {
             //TurnScreen.SetActive(true);
-            Debug.Log("test2");
+            //Debug.Log("test2");
             //Target.clientOwnedObjects[0].
             TurnScreen.SetActive(true);
         }
         else
         {
-            //TurnScreen.SetActive(true);
-            Debug.Log("test");
+            TurnScreen.SetActive(false);
+            //Debug.Log("test");
         }
     }
 

@@ -8,6 +8,8 @@ public class AtomController : MonoBehaviour
     private Vector3 mOffset;
     private float mZCoord;
     private GameObject TurnScreen;
+    private GameObject WaitScreen;
+
 
     public List<GameObject> variants = new List<GameObject>();
     private int variantCounter;
@@ -15,12 +17,19 @@ public class AtomController : MonoBehaviour
 
     void Update()
     {
-        TurnScreen = GameObject.Find("It's Not Your Turn Screen");
+        if (GameObject.Find("It's Not Your Turn Screen") != null)
+        {
+            TurnScreen = GameObject.Find("It's Not Your Turn Screen");
+        }
+        if (GameObject.Find("Waiting for Players") != null)
+        {
+            WaitScreen = GameObject.Find("Waiting for Players");
+        }
     }
 
     void OnMouseDown()
     {
-        if (TurnScreen == null)
+        if (TurnScreen == null && WaitScreen == null)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -48,7 +57,7 @@ public class AtomController : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (TurnScreen == null)
+        if (TurnScreen == null && WaitScreen == null)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
