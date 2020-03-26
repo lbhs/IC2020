@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6273430434842842527}
   - component: {fileID: 6920480972371223280}
   - component: {fileID: 1347493307150919242}
+  - component: {fileID: 7642286118809802130}
   m_Layer: 12
   m_Name: '[SI] Cl'
   m_TagString: Cl atom
@@ -183,3 +184,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   temp: 0
+--- !u!114 &7642286118809802130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098218046657226139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017b309410690574fa642b1dad5d3f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HCl: {fileID: 4610430598550535678, guid: c287d1f078ca2cb41bf9a69e81848531, type: 3}
+  Hydrogen: {fileID: 5046700012404117192, guid: 02917e9683e55bb448a99b8800dd3bcf,
+    type: 3}
+  HTwo: {fileID: 7828793294531180281, guid: 3f0409fc9ecd8184a988cb5706ba60d5, type: 3}
