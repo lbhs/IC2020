@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4781069126273052305}
-  - component: {fileID: 4781069126273052304}
+  - component: {fileID: 676550860845519329}
   - component: {fileID: 4781069126273052311}
   m_Layer: 0
   m_Name: DelayStartWaitingRoomController
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4781069126273052304
+--- !u!114 &676550860845519329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4781069126273052310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2b359fd8fb80e4e9af84888bec8497, type: 3}
+  m_Script: {fileID: 11500000, guid: 646d7b339dc564b4c9bed29c15829599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitingRoomSceneIndex: 0
+  mutiplayerRoomSceneIndex: 2
+  menuSceneIndex: 0
 --- !u!114 &4781069126273052311
 MonoBehaviour:
   m_ObjectHideFlags: 0

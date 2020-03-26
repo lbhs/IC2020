@@ -4,12 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class StartRoomController : MonoBehaviourPunCallbacks
 {
     [SerializeField]
-    private int waitingRoomSceneIndex; //build scene index for multilayer scene
+    private int WaitRoomSceneIndex; //build scene index for multilayer scene
 
     public override void OnEnable()
     {
@@ -23,6 +22,6 @@ public class StartRoomController : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        SceneManager.LoadScene(waitingRoomSceneIndex);
+        SceneManager.LoadScene(WaitRoomSceneIndex);
     }
 }

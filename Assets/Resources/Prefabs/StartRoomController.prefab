@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd2b359fd8fb80e4e9af84888bec8497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mutiplayerSceneIndex: 1
+  WaitRoomSceneIndex: 1
