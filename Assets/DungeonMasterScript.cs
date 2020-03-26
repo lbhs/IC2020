@@ -9,11 +9,13 @@ public enum GameState {Start, Player1Turn, Player2Turn,End}
 
 public class DungeonMasterScript : NetworkBehaviour 
 {
-    public List<GameObject> Players = new List<GameObject>();
-    //TO-DO if player disconnects, remove them fro the list
+
+    //TO-DO handle disconnects 
+
     public GameState state;
 
-    public bool allPlayerHere = false;
+    public GameObject TurnScreen;
+    public GameObject WaitingForPlayersScreen;
 
     [Header("Objects to spawn")]
     public GameObject HPrefab;
@@ -23,9 +25,6 @@ public class DungeonMasterScript : NetworkBehaviour
     public GameObject CLPrefab;
     public GameObject NPrefab;
 
-    private NetworkConnection Player1;
-    private NetworkConnection Player2;
-
     void Start()
     {
 
@@ -33,11 +32,42 @@ public class DungeonMasterScript : NetworkBehaviour
 
     void Update()
     {
-        Debug.Log(NetworkServer.connections);
-        if (!allPlayerHere)
+        if(isServer == false)
         {
             return;
         }
+        if (state == GameState.Start)
+        {
+            if (NetworkServer.connections.Count < 2)
+            {
+                return;
+            }
+            else
+            {
+                RpcWaitingScreen();
+            }
+        }
+        else if(state == GameState.Player1Turn)
+        {
+            TargetToggleItsNotYourTurnScreen(NetworkServer.connections[1], true);
+        }
+    }
+
+    [ClientRpc]
+    void RpcWaitingScreen()
+    {
+        if (GameObject.Find("Waiting for Players") != null)
+        {
+            GameObject.Find("Waiting for Players").SetActive(false);
+            
+        }
+        RpcSwitchState(GameState.Player1Turn);
+    }
+
+    [ClientRpc]
+    void RpcSwitchState(GameState s)
+    {
+        state = s;
     }
 
     //--------Functions---------
@@ -53,16 +83,7 @@ public class DungeonMasterScript : NetworkBehaviour
     
     public void EndTurn()
     {
-        if(0 == 0)
-        {
-           /// PlayerTurn = 1;
-            TargetToggleItsNotYourTurnScreen(Player1,true);
-        }
-        else
-        {
-           // PlayerTurn = 0;
-        }
-        //To-do switch the Its not your turn screen
+       
     }
 
     [TargetRpc]
@@ -72,6 +93,8 @@ public class DungeonMasterScript : NetworkBehaviour
         {
             //TurnScreen.SetActive(true);
             Debug.Log("test2");
+            //Target.clientOwnedObjects[0].
+            TurnScreen.SetActive(true);
         }
         else
         {
@@ -84,8 +107,16 @@ public class DungeonMasterScript : NetworkBehaviour
     [Command]
     void CmdSpawnPrefab(GameObject Prefab,Vector3 position, int varient) //spawns a oxygen for whoever's turn it is
     {
+        int num;
+        if (state == GameState.Player1Turn)
+            num = 0;
+        else if (state == GameState.Player2Turn)
+            num = 1;
+        else
+            return;
+
         GameObject GO = Instantiate(Prefab, position, Quaternion.identity);
-        //NetworkServer.SpawnWithClientAuthority(GO, Players[PlayerTurn].GetComponent<NetworkIdentity>().connectionToClient);
+        NetworkServer.SpawnWithClientAuthority(GO, NetworkServer.connections[num]);
     }
    
 }

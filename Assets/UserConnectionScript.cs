@@ -8,6 +8,7 @@ using UnityEngine.Networking;
 public class UserConnectionScript : NetworkBehaviour
 {
     public string Username = "no name yet";
+    public GameObject TurnScreen;
     public GameObject TestBoxPrefab;
     private DungeonMasterScript DM;
 
@@ -29,7 +30,6 @@ public class UserConnectionScript : NetworkBehaviour
         {
             return;
         }
-        CmdAddToList();
 
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -49,16 +49,7 @@ public class UserConnectionScript : NetworkBehaviour
         NetworkServer.SpawnWithClientAuthority(Box, connectionToClient);
     }
 
-    [Command]
-    void CmdAddToList()
-    {
-        if (!DM.Players.Contains(gameObject))
-        {
-            DM.Players.Add(gameObject); //adds it's self to player list
-        }
-        RpcAddToList();
-    }
-
+   
     [Command]
     void CmdUpdateUsername(string n)
     {
@@ -72,14 +63,5 @@ public class UserConnectionScript : NetworkBehaviour
     {
         Username = n;
         
-    }
-
-    [ClientRpc]
-    void RpcAddToList()
-    {
-        if (!DM.Players.Contains(gameObject))
-        {
-            DM.Players.Add(gameObject); //adds it's self to player list
-        }
     }
 }
