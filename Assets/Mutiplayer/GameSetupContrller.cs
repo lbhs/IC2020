@@ -10,7 +10,13 @@ public class GameSetupContrller : MonoBehaviour
 {
     public GameState state;
     private PhotonView PV;
-    
+    public GameObject TurnScreen;
+    public GameObject OPrefab;
+    public GameObject NPrefab;
+    public GameObject HPrefab;
+    public GameObject NAPrefab;
+    public GameObject CPrefab;
+    public GameObject CLPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -38,21 +44,28 @@ public class GameSetupContrller : MonoBehaviour
         }
     }
 
-    void RollDice()
+    public void RollDice()
     {
-        //PhotonNetwork.
+        PhotonNetwork.Instantiate(this.OPrefab.name, Vector3.zero, Quaternion.identity);
+    }
+
+    public void EndTurnButton()
+    {
+
     }
 
     [PunRPC]
     public void EndTurn()
     {
         Debug.Log("1");
+        TurnScreen.SetActive(true);
     }
 
     [PunRPC]
     public void StartTurn()
     {
         Debug.Log("2");
+        TurnScreen.SetActive(false);
     }
     
     [PunRPC]

@@ -143,6 +143,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  TurnScreen: {fileID: 1516595738}
+  OPrefab: {fileID: 7773339037556040248, guid: 34881af4c8e71e84887a3fc2bf5d01a5, type: 3}
+  NPrefab: {fileID: 3399983842357950390, guid: 9209c25a1852ad346b8ec9d87be3b28e, type: 3}
+  HPrefab: {fileID: 7077623132571117954, guid: 5ca542becc0fd1b4ea92dd5ec8645cac, type: 3}
+  NAPrefab: {fileID: 1526452363019101657, guid: 0ddf2721c4407354c948a9c520ce87f2,
+    type: 3}
+  CPrefab: {fileID: 6437286363936538749, guid: 0710aac301602334aae379a378663179, type: 3}
+  CLPrefab: {fileID: 2346957907729442409, guid: d6977544a26c6354a9e748f320dfb6d3,
+    type: 3}
 --- !u!4 &278617377
 Transform:
   m_ObjectHideFlags: 0
@@ -331,6 +340,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1516595738}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 278617376}
+        m_MethodName: EndTurnButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -787,6 +807,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1225890033}
         m_MethodName: set_interactable
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 278617376}
+        m_MethodName: RollDice
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

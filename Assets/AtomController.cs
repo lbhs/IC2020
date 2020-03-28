@@ -1,35 +1,37 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class AtomController : MonoBehaviour
+public class AtomController : MonoBehaviourPunCallbacks
 {
     private Vector3 mOffset;
     private float mZCoord;
     private GameObject TurnScreen;
-    private GameObject WaitScreen;
-
+    private PhotonView PV;
 
     public List<GameObject> variants = new List<GameObject>();
     private int variantCounter;
 
+    void Start()
+    {
+        PV = GetComponent<PhotonView>();
+    }
 
     void Update()
     {
-        if (GameObject.Find("It's Not Your Turn Screen") != null)
+        if (GameObject.Find("TurnScreen") != null)
         {
-            TurnScreen = GameObject.Find("It's Not Your Turn Screen");
-        }
-        if (GameObject.Find("Waiting for Players") != null)
-        {
-            WaitScreen = GameObject.Find("Waiting for Players");
+            TurnScreen = GameObject.Find("TurnScreen");
         }
     }
 
     void OnMouseDown()
     {
-        if (TurnScreen == null && WaitScreen == null)
+        if (PV.IsMine == false)
+            return;
+        if (TurnScreen == null)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -37,13 +39,7 @@ public class AtomController : MonoBehaviour
             }
             else if (Input.GetKey(KeyCode.LeftControl))
             {
-                variants[variantCounter].SetActive(false);
-                variantCounter++;
-                if(variantCounter >= variants.Count)
-                {
-                    variantCounter = 0;
-                }
-                variants[variantCounter].SetActive(true);
+                PV.RPC("RotateGO", RpcTarget.All);
             }
             else
             {
@@ -55,9 +51,23 @@ public class AtomController : MonoBehaviour
 
     }
 
+    [PunRPC]
+    public void RotateGO()
+    {
+        variants[variantCounter].SetActive(false);
+        variantCounter++;
+        if (variantCounter >= variants.Count)
+        {
+            variantCounter = 0;
+        }
+        variants[variantCounter].SetActive(true);
+    }
+
     void OnMouseDrag()
     {
-        if (TurnScreen == null && WaitScreen == null)
+        if (PV.IsMine == false)
+            return;
+        if (TurnScreen == null)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
