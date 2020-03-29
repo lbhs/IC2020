@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using IC2020;
+using UnityEngine.SceneManagement;
 
 public class ModelSlector : MonoBehaviour
 {
@@ -94,7 +95,7 @@ public class ModelSlector : MonoBehaviour
         //...
         else if (dropDownValue == 4)
         {
-            //do stuff here
+			
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
         }
