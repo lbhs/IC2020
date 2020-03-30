@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DiceCheckZoneScript : MonoBehaviour {
+	
+	[SerializeField]
+	public GameObject die1;
+	public GameObject die2;
 
 	Vector3 diceVelocity;
 	Vector3 diceVelocity2;
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		diceVelocity = DiceScript1.diceVelocity;
-		diceVelocity2 = DiceScript2.diceVelocity;
+		diceVelocity = die1.GetComponent<DiceScript>().diceVelocity;
+		diceVelocity2 = die2.GetComponent<DiceScript>().diceVelocity;
 	}
 
 	void OnTriggerStay(Collider col)
