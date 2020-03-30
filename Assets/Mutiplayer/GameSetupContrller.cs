@@ -19,7 +19,10 @@ public class GameSetupContrller : MonoBehaviour
     public GameObject NAPrefab;
     public GameObject CPrefab;
     public GameObject CLPrefab;
+    [HideInInspector]
     public Animator CamAnim;
+    public GameObject JouleHolder;
+    public GameObject JoulePrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +53,8 @@ public class GameSetupContrller : MonoBehaviour
     public void RollDice()
     {
         NetowrkSpawn(OPrefab);
+        SpawnJoule();
+        SpawnJoule();
     }
 
     public void NetowrkSpawn(GameObject Prefab)
@@ -67,9 +72,11 @@ public class GameSetupContrller : MonoBehaviour
         }
     }
 
-    public void SpawnJoules()
+    public void SpawnJoule()
     {
-
+        GameObject GO;
+        GO = Instantiate(JoulePrefab, JouleHolder.transform);
+        GO.transform.localPosition = new Vector3(Random.Range(-35, 35), Random.Range(-35, 35), 0);
     }
 
     public void EndTurnButton()
