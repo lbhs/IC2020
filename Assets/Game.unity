@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   TurnScreen: {fileID: 1516595738}
+  DiceButton: {fileID: 1225890033}
   OPrefab: {fileID: 7773339037556040248, guid: 34881af4c8e71e84887a3fc2bf5d01a5, type: 3}
   NPrefab: {fileID: 3399983842357950390, guid: 9209c25a1852ad346b8ec9d87be3b28e, type: 3}
   HPrefab: {fileID: 7077623132571117954, guid: 5ca542becc0fd1b4ea92dd5ec8645cac, type: 3}
@@ -152,6 +153,7 @@ MonoBehaviour:
   CPrefab: {fileID: 6437286363936538749, guid: 0710aac301602334aae379a378663179, type: 3}
   CLPrefab: {fileID: 2346957907729442409, guid: d6977544a26c6354a9e748f320dfb6d3,
     type: 3}
+  CamAnim: {fileID: 0}
 --- !u!4 &278617377
 Transform:
   m_ObjectHideFlags: 0
@@ -589,6 +591,7 @@ GameObject:
   - component: {fileID: 1175710675}
   - component: {fileID: 1175710674}
   - component: {fileID: 1175710673}
+  - component: {fileID: 1175710676}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -654,12 +657,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175710672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1175710676
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175710672}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0ca6dfa9171c9dc43b4d25541ca0e63d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1197413277
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,7 +807,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.951, g: 0.951, b: 0.951, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1

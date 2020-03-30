@@ -8,8 +8,8 @@ public class AtomController : MonoBehaviourPunCallbacks
 {
     private Vector3 mOffset;
     private float mZCoord;
-    private GameObject TurnScreen;
     private PhotonView PV;
+    private GameSetupContrller GSC;
 
     public List<GameObject> variants = new List<GameObject>();
     private int variantCounter;
@@ -17,21 +17,14 @@ public class AtomController : MonoBehaviourPunCallbacks
     void Start()
     {
         PV = GetComponent<PhotonView>();
-    }
-
-    void Update()
-    {
-        if (GameObject.Find("TurnScreen") != null)
-        {
-            TurnScreen = GameObject.Find("TurnScreen");
-        }
+        GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>();
     }
 
     void OnMouseDown()
     {
         if (PV.IsMine == false)
             return;
-        if (TurnScreen == null)
+        if (GameObject.Find("TurnScreen") == null)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -51,23 +44,11 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     }
 
-    [PunRPC]
-    public void RotateGO()
-    {
-        variants[variantCounter].SetActive(false);
-        variantCounter++;
-        if (variantCounter >= variants.Count)
-        {
-            variantCounter = 0;
-        }
-        variants[variantCounter].SetActive(true);
-    }
-
     void OnMouseDrag()
     {
         if (PV.IsMine == false)
             return;
-        if (TurnScreen == null)
+        if (GameObject.Find("TurnScreen") == null)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -82,6 +63,18 @@ public class AtomController : MonoBehaviourPunCallbacks
                 transform.position = GetMouseAsWorldPoint() + mOffset;
             }
         }
+    }
+
+    [PunRPC]
+    public void RotateGO()
+    {
+        variants[variantCounter].SetActive(false);
+        variantCounter++;
+        if (variantCounter >= variants.Count)
+        {
+            variantCounter = 0;
+        }
+        variants[variantCounter].SetActive(true);
     }
 
     private Vector3 GetMouseAsWorldPoint()

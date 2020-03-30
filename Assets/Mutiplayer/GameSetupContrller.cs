@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum GameState { Start, Player1Turn, Player2Turn, End} 
 
@@ -11,19 +12,21 @@ public class GameSetupContrller : MonoBehaviour
     public GameState state;
     private PhotonView PV;
     public GameObject TurnScreen;
+    public Button DiceButton;
     public GameObject OPrefab;
     public GameObject NPrefab;
     public GameObject HPrefab;
     public GameObject NAPrefab;
     public GameObject CPrefab;
     public GameObject CLPrefab;
-
+    public Animator CamAnim;
     // Start is called before the first frame update
     void Start()
     {
         CreatePlayer();
         state = GameState.Start;
         PV = GetComponent<PhotonView>();
+        CamAnim = Camera.main.GetComponent<Animator>();
     }
 
     private void CreatePlayer()
@@ -46,12 +49,51 @@ public class GameSetupContrller : MonoBehaviour
 
     public void RollDice()
     {
-        PhotonNetwork.Instantiate(this.OPrefab.name, Vector3.zero, Quaternion.identity);
+        NetowrkSpawn(OPrefab);
+    }
+
+    public void NetowrkSpawn(GameObject Prefab)
+    {
+        GameObject GO;
+        if (state == GameState.Player1Turn)
+        {
+            GO = PhotonNetwork.Instantiate(Prefab.name, new Vector3(0,5,0), Quaternion.identity);
+            GO.GetComponent<PhotonView>().RequestOwnership();
+        }
+        else if (state == GameState.Player2Turn)
+        {
+            GO = PhotonNetwork.Instantiate(Prefab.name, new Vector3(0, -5, 0), Quaternion.identity);
+            GO.GetComponent<PhotonView>().RequestOwnership();
+        }
+    }
+
+    public void SpawnJoules()
+    {
+
     }
 
     public void EndTurnButton()
     {
+        if(state == GameState.Player1Turn)
+        {
+            PV.RPC("ChangeState", RpcTarget.All, GameState.Player2Turn);
+            PV.RPC("StartTurn", PhotonNetwork.PlayerList[1]);
+            PV.RPC("EndTurn", PhotonNetwork.PlayerList[0]);
+            PV.RPC("AnimateCam", RpcTarget.All, false);
+        }
+        else if(state == GameState.Player2Turn)
+        {
+            PV.RPC("ChangeState", RpcTarget.All, GameState.Player1Turn);
+            PV.RPC("StartTurn", PhotonNetwork.PlayerList[0]);
+            PV.RPC("EndTurn", PhotonNetwork.PlayerList[1]);
+            PV.RPC("AnimateCam", RpcTarget.All, true);
+        }
+    }
 
+    [PunRPC]
+    public void AnimateCam(bool b)
+    {
+        CamAnim.SetBool("Player1Turn", b);
     }
 
     [PunRPC]
@@ -59,6 +101,7 @@ public class GameSetupContrller : MonoBehaviour
     {
         Debug.Log("1");
         TurnScreen.SetActive(true);
+        DiceButton.interactable = false;
     }
 
     [PunRPC]
@@ -66,6 +109,7 @@ public class GameSetupContrller : MonoBehaviour
     {
         Debug.Log("2");
         TurnScreen.SetActive(false);
+        DiceButton.interactable = true;
     }
     
     [PunRPC]

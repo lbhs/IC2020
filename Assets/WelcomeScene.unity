@@ -1156,6 +1156,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartLobbyController
       objectReference: {fileID: 0}
+    - target: {fileID: 594941705013870477, guid: 364f4ff494228124b939d3d927fd1e9e,
+        type: 3}
+      propertyPath: StartButton
+      value: 
+      objectReference: {fileID: 422521662}
+    - target: {fileID: 594941705013870477, guid: 364f4ff494228124b939d3d927fd1e9e,
+        type: 3}
+      propertyPath: CancelButton
+      value: 
+      objectReference: {fileID: 905631088}
     - target: {fileID: 594941705013870194, guid: 364f4ff494228124b939d3d927fd1e9e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1211,16 +1221,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 594941705013870477, guid: 364f4ff494228124b939d3d927fd1e9e,
-        type: 3}
-      propertyPath: StartButton
-      value: 
-      objectReference: {fileID: 422521662}
-    - target: {fileID: 594941705013870477, guid: 364f4ff494228124b939d3d927fd1e9e,
-        type: 3}
-      propertyPath: CancelButton
-      value: 
-      objectReference: {fileID: 905631088}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 364f4ff494228124b939d3d927fd1e9e, type: 3}
 --- !u!1001 &5545008801040602354
