@@ -19,6 +19,7 @@ public class GameSetupContrller : MonoBehaviour
     public GameObject NAPrefab;
     public GameObject CPrefab;
     public GameObject CLPrefab;
+    public Animator UIAnim;
     [HideInInspector]
     public Animator CamAnim;
     public GameObject JouleHolder;
@@ -50,11 +51,19 @@ public class GameSetupContrller : MonoBehaviour
         }
     }
 
-    public void RollDice()
+    public void RollDice(int Roll)
     {
         NetowrkSpawn(OPrefab);
         SpawnJoule();
         SpawnJoule();
+        if(Roll == 5)
+        {
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleOnly");
+        }
+        if(Roll == 6)
+        {
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleDown");
+        }
     }
 
     public void NetowrkSpawn(GameObject Prefab)
@@ -101,6 +110,12 @@ public class GameSetupContrller : MonoBehaviour
     public void AnimateCam(bool b)
     {
         CamAnim.SetBool("Player1Turn", b);
+    }
+
+    [PunRPC]
+    public void AnimateRollMenu(string s)
+    {
+        UIAnim.SetTrigger(s);
     }
 
     [PunRPC]

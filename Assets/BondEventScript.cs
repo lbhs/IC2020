@@ -6,6 +6,6 @@ public class BondEventScript : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        transform.parent.GetComponent<AtomController>().BondingFunction(collision);
+        transform.root.GetComponent<AtomController>().BondingFunction(collision);
     }
 }
