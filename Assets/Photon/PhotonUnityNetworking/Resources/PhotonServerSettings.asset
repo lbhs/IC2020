@@ -41,6 +41,7 @@ MonoBehaviour:
   - ChangeState
   - RotateGO
   - AnimateCam
+  - FreezeRB
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

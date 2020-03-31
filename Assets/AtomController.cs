@@ -13,6 +13,7 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     public List<GameObject> variants = new List<GameObject>();
     private int variantCounter;
+    public bool isBonded = false;
 
     void Start()
     {
@@ -28,11 +29,22 @@ public class AtomController : MonoBehaviourPunCallbacks
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -45);
+                float deg;
+                    if (isBonded == true)
+                    deg = 90f;
+                else
+                    deg = 45f;
+                GetComponent<Rigidbody2D>().rotation -= deg;
+                GetComponent<Rigidbody2D>().rotation = Mathf.Round (GetComponent<Rigidbody2D>().rotation);
+                //GetComponent<Rigidbody2D>().MoveRotation( transform.rotation.z + -45 );
+                //transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -45);
             }
             else if (Input.GetKey(KeyCode.LeftControl))
             {
-                PV.RPC("RotateGO", RpcTarget.All);
+                if (isBonded == false)
+                {
+                    PV.RPC("RotateGO", RpcTarget.All);
+                }
             }
             else
             {
@@ -42,6 +54,32 @@ public class AtomController : MonoBehaviourPunCallbacks
             }
         }
 
+    }
+
+    public void BondingFunction(Collider2D collision)
+    {
+        FixedJoint2D joint;
+        joint = gameObject.AddComponent<FixedJoint2D>();
+        joint.connectedBody = collision.transform.root.gameObject.GetComponent<Rigidbody2D>();
+        joint.enableCollision = false;
+    }
+
+    private void Update()
+    {
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        GetComponent<Rigidbody2D>().angularVelocity = 0f;
+        if (GetComponent<FixedJoint2D>() == null)
+        {
+            isBonded = false;
+        }
+        else
+        {
+            isBonded = true;
+        }
+
+        if (PV.IsMine == true)
+            return;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     void OnMouseDrag()
@@ -60,7 +98,8 @@ public class AtomController : MonoBehaviourPunCallbacks
             }
             else
             {
-                transform.position = GetMouseAsWorldPoint() + mOffset;
+                //transform.position = GetMouseAsWorldPoint() + mOffset;
+                GetComponent<Rigidbody2D>().MovePosition(GetMouseAsWorldPoint() + mOffset);
             }
         }
     }

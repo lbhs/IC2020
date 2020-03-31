@@ -106,7 +106,7 @@ public class GameSetupContrller : MonoBehaviour
     [PunRPC]
     public void EndTurn()
     {
-        Debug.Log("1");
+        //Debug.Log("1");
         TurnScreen.SetActive(true);
         DiceButton.interactable = false;
     }
@@ -114,7 +114,7 @@ public class GameSetupContrller : MonoBehaviour
     [PunRPC]
     public void StartTurn()
     {
-        Debug.Log("2");
+        //Debug.Log("2");
         TurnScreen.SetActive(false);
         DiceButton.interactable = true;
     }
