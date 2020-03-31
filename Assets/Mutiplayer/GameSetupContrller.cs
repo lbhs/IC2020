@@ -53,17 +53,57 @@ public class GameSetupContrller : MonoBehaviour
 
     public void RollDice(int Roll)
     {
-        NetowrkSpawn(OPrefab);
-        SpawnJoule();
-        SpawnJoule();
-        if(Roll == 5)
+        if (Roll == 1)
         {
-            PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleOnly");
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "H");
         }
-        if(Roll == 6)
+        else if (Roll == 2)
+        {
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "C");
+        }
+        else if (Roll == 3)
+        {
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "O");
+        }
+        else if (Roll == 4)
+        {
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "CL");
+        }
+        else if (Roll == 5)
+        {
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "NA");
+        }
+        else if (Roll == 6)
+        {
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "N");
+        }
+        else if (Roll == 7)
+        {
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "SingleDown");
+        }
+        else if (Roll == 8)
         {
             PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleDown");
         }
+        else if (Roll == 9)
+        {
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleOnly");
+        }
+        else if (Roll == 10)
+        {
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "H");
+        }
+        else if (Roll == 11)
+        {
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "C");
+        }
+        else if (Roll == 12)
+        {
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "O");
+        }
+        //NetowrkSpawn(OPrefab);
+        //SpawnJoule();
+        //SpawnJoule();
     }
 
     public void NetowrkSpawn(GameObject Prefab)
