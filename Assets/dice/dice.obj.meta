@@ -1,17 +1,16 @@
 fileFormatVersion: 2
-guid: 050f09a1732b52040985dbd6378610de
+guid: 7dc3534fb7368b64bb321ed62a13f5db
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: mergedBlocks
+    100002: pCube1
     400000: //RootNode
-    400002: mergedBlocks
-    2100000: _defaultMat
-    2100002: mergedBlocksMat
-    2300000: mergedBlocks
-    3300000: mergedBlocks
-    4300000: mergedBlocks
+    400002: pCube1
+    2100000: phong1SG
+    2300000: pCube1
+    3300000: pCube1
+    4300000: pCube1
   externalObjects: {}
   materials:
     importMaterials: 1
