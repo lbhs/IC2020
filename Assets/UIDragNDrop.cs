@@ -6,10 +6,14 @@ using UnityEngine.EventSystems;
 public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     public bool returnToZero = false; //default value is false
+    public GameObject PrefabToSpawn;
+
+     public bool UseingMe;
 
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = Input.mousePosition;
+        UseingMe = true;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -18,5 +22,6 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
         {
             transform.localPosition = Vector3.zero;
         }
+        UseingMe = false;
     }
 }

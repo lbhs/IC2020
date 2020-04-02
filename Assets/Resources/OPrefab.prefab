@@ -70,6 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &1634892884374800035
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +98,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634892884374800035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.22, y: -0.52, z: 0}
+  m_LocalPosition: {x: 1.32, y: -0.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7773339037301918748}
@@ -140,6 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 4561954497392799724}
 --- !u!1 &2488444797061721972
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &2508417734932757339
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2508417734932757339}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.64, y: -2.83, z: 0}
+  m_LocalPosition: {x: 0.64, y: -2.988, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7773339037301918748}
@@ -280,6 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 8216883508122239479}
 --- !u!1 &2548928445129362576
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +358,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &3941122242117909215
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +430,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &4561954497392799724
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +502,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 1634892884374800035}
 --- !u!1 &6292127021897450892
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,6 +574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &6791901778641548089
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +646,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &7773339037200838406
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +744,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &7773339037301918750
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +842,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &7773339037515396886
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &7773339037556040248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,3 +1149,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 2508417734932757339}

@@ -52,7 +52,7 @@ public class GameSetupContrller : MonoBehaviour
     }
 
     public void RollDice(int Roll)
-    {
+    {/*
         if (Roll == 1)
         {
             PV.RPC("AnimateRollMenu", RpcTarget.All, "H");
@@ -100,23 +100,23 @@ public class GameSetupContrller : MonoBehaviour
         else if (Roll == 12)
         {
             PV.RPC("AnimateRollMenu", RpcTarget.All, "O");
-        }
-        //NetowrkSpawn(OPrefab);
-        //SpawnJoule();
-        //SpawnJoule();
+        }*/
+        NetowrkSpawn(OPrefab, Vector3.zero);
+        SpawnJoule();
+        SpawnJoule();
     }
 
-    public void NetowrkSpawn(GameObject Prefab)
+    public void NetowrkSpawn(GameObject Prefab, Vector3 pos)
     {
         GameObject GO;
         if (state == GameState.Player1Turn)
         {
-            GO = PhotonNetwork.Instantiate(Prefab.name, new Vector3(0,5,0), Quaternion.identity);
+            GO = PhotonNetwork.Instantiate(Prefab.name, pos, Quaternion.identity);
             GO.GetComponent<PhotonView>().RequestOwnership();
         }
         else if (state == GameState.Player2Turn)
         {
-            GO = PhotonNetwork.Instantiate(Prefab.name, new Vector3(0, -5, 0), Quaternion.identity);
+            GO = PhotonNetwork.Instantiate(Prefab.name, pos, Quaternion.identity);
             GO.GetComponent<PhotonView>().RequestOwnership();
         }
     }

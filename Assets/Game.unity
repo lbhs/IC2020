@@ -163,6 +163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnToZero: 1
+  PrefabToSpawn: {fileID: 1526452363019101657, guid: 0ddf2721c4407354c948a9c520ce87f2,
+    type: 3}
+  UseingMe: 0
 --- !u!114 &59710877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnToZero: 1
+  PrefabToSpawn: {fileID: 0}
+  UseingMe: 0
 --- !u!1 &78460932
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +307,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnToZero: 1
+  PrefabToSpawn: {fileID: 6437286363936538749, guid: 0710aac301602334aae379a378663179,
+    type: 3}
+  UseingMe: 0
 --- !u!114 &78460935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +472,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnToZero: 1
+  PrefabToSpawn: {fileID: 0}
+  UseingMe: 0
 --- !u!1 &278617375
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,6 +978,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnToZero: 1
+  PrefabToSpawn: {fileID: 0}
+  UseingMe: 0
 --- !u!1 &842937515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,6 +1279,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnToZero: 1
+  PrefabToSpawn: {fileID: 7773339037556040248, guid: 34881af4c8e71e84887a3fc2bf5d01a5,
+    type: 3}
+  UseingMe: 0
 --- !u!114 &906854103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1509,6 +1524,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnToZero: 1
+  PrefabToSpawn: {fileID: 7077623132571117954, guid: 5ca542becc0fd1b4ea92dd5ec8645cac,
+    type: 3}
+  UseingMe: 0
 --- !u!114 &972481801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1597,6 +1615,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnToZero: 1
+  PrefabToSpawn: {fileID: 3399983842357950390, guid: 9209c25a1852ad346b8ec9d87be3b28e,
+    type: 3}
+  UseingMe: 0
 --- !u!114 &1025860901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1647,6 +1668,7 @@ GameObject:
   - component: {fileID: 1155783311}
   - component: {fileID: 1155783310}
   - component: {fileID: 1155783314}
+  - component: {fileID: 1155783315}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1758,6 +1780,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1155783315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155783309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32375fb2a3d783e419ed0e76409c5dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1175710672
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,7 +2338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1445313683
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2680,6 +2714,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnToZero: 1
+  PrefabToSpawn: {fileID: 2346957907729442409, guid: d6977544a26c6354a9e748f320dfb6d3,
+    type: 3}
+  UseingMe: 0
 --- !u!114 &1910714872
 MonoBehaviour:
   m_ObjectHideFlags: 0
