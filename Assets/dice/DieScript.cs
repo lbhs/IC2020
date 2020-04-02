@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiceScript : MonoBehaviour {
+public class DieScript : MonoBehaviour {
 
 	Rigidbody rb;
-	public Vector3 diceVelocity;
+	public Vector3 dieVelocity;
 	private Vector3 startPos;
 	private Quaternion startRot;
 	public static int rolling = 0;
@@ -19,11 +19,11 @@ public class DiceScript : MonoBehaviour {
 	
 	void Update()
 	{
-		diceVelocity = rb.velocity;
+		dieVelocity = rb.velocity;
 
-		if (Input.GetKeyDown(KeyCode.Space)) //add to if statement conditions for when player allowed to roll
+		if (Input.GetKeyDown(KeyCode.Space)) //add conditions for when player is allowed to roll
 		{
-			if(rolling == 0 || rolling == 1)
+			if(rolling == 0)
 			{
 				rolling++;
 				rb.velocity = Vector3.zero;

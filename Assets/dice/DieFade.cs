@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fade : MonoBehaviour
+public class DieFade : MonoBehaviour
 {	
 	private Color initialColor;
 	private Color finalColor;
@@ -47,8 +47,8 @@ public class fade : MonoBehaviour
 				lerping = false;
 			}
 		}
-		DiceScript.rolling = 0;
-		GetComponent<DiceScript>().Reset();
+		DieScript.rolling = 0;
+		GetComponent<DieScript>().Reset();
 		mesh.material.color = initialColor;
 		yield break;
 	}
