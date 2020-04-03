@@ -574,7 +574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   TurnScreen: {fileID: 1516595738}
-  DiceButton: {fileID: 0}
+  DiceButton: {fileID: 1012008791}
   OPrefab: {fileID: 7773339037556040248, guid: 34881af4c8e71e84887a3fc2bf5d01a5, type: 3}
   NPrefab: {fileID: 3399983842357950390, guid: 9209c25a1852ad346b8ec9d87be3b28e, type: 3}
   HPrefab: {fileID: 7077623132571117954, guid: 5ca542becc0fd1b4ea92dd5ec8645cac, type: 3}
@@ -3738,6 +3738,8 @@ GameObject:
   - component: {fileID: 1984947116}
   - component: {fileID: 1984947115}
   - component: {fileID: 1984947114}
+  - component: {fileID: 1984947120}
+  - component: {fileID: 1984947119}
   m_Layer: 0
   m_Name: die_object
   m_TagString: Untagged
@@ -3821,6 +3823,43 @@ Transform:
   m_Father: {fileID: 1257866557}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1984947119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984947113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+--- !u!114 &1984947120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984947113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 1984947119}
+  viewIdField: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2092402725
 GameObject:
   m_ObjectHideFlags: 0
