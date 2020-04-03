@@ -30,10 +30,14 @@ public class AtomController : MonoBehaviourPunCallbacks
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 float deg;
-                    if (isBonded == true)
+                //   if (isBonded == true)
+                //  deg = 90f;
+                //else
+                //   deg = 45f;
+                if (isBonded != true)
                     deg = 90f;
                 else
-                    deg = 45f;
+                    deg = 0f;
                 GetComponent<Rigidbody2D>().rotation -= deg;
                 GetComponent<Rigidbody2D>().rotation = Mathf.Round (GetComponent<Rigidbody2D>().rotation);
                 //GetComponent<Rigidbody2D>().MoveRotation( transform.rotation.z + -45 );

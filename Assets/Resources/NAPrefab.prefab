@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 6846378798156094324}
   - component: {fileID: 2801175909520973189}
   - component: {fileID: 1282712146102017852}
+  - component: {fileID: 7881945547910643737}
   m_Layer: 0
   m_Name: NAPrefab
   m_TagString: Untagged
@@ -194,6 +195,27 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!50 &7881945547910643737
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526452363019101657}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5768097885366300053
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &7076101109921753488
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,3 +358,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}

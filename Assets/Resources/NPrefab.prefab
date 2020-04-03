@@ -70,6 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &2487597549855875577
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,6 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &3339713831481746319
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &3399983841705474696
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +312,7 @@ GameObject:
   - component: {fileID: 3399983842357950395}
   - component: {fileID: 295269808667662657}
   - component: {fileID: 5704329614384057899}
+  - component: {fileID: 3694057489238513850}
   m_Layer: 0
   m_Name: NPrefab
   m_TagString: Untagged
@@ -408,6 +415,27 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!50 &3694057489238513850
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399983842357950390}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3399983842611337616
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &4167154664856926055
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +663,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &4478404572709743978
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &5860318643635061790
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +807,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &6318218356942585062
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &7724423781372583554
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,6 +951,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
 --- !u!1 &7882134322498194118
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,3 +1023,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
+  TwinColider: {fileID: 0}
