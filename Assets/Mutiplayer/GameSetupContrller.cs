@@ -55,27 +55,33 @@ public class GameSetupContrller : MonoBehaviour
     {
         if(Roll == 1)
         {
-            PV.RPC("AnimateRollMenu", RpcTarget.All, "H");
+            UIAnim.SetTrigger("H");
+            //PV.RPC("AnimateRollMenu", RpcTarget.All, "H");
         }
         else if (Roll == 2)
         {
-            PV.RPC("AnimateRollMenu", RpcTarget.All, "O");
+            UIAnim.SetTrigger("C");
+            //PV.RPC("AnimateRollMenu", RpcTarget.All, "O");
         }
         else if (Roll == 3)
         {
-            PV.RPC("AnimateRollMenu", RpcTarget.All, "C");
+            UIAnim.SetTrigger("O");
+            //PV.RPC("AnimateRollMenu", RpcTarget.All, "C");
         }
         else if (Roll == 4)
         {
-            PV.RPC("AnimateRollMenu", RpcTarget.All, "CL");
+            UIAnim.SetTrigger("CL");
+            // PV.RPC("AnimateRollMenu", RpcTarget.All, "CL");
         }
         else if (Roll == 5)
         {
-            PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleOnly");
+            UIAnim.SetTrigger("DoubleOnly");
+            // PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleOnly");
         }
         else if (Roll == 6)
         {
-            PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleDown");
+            UIAnim.SetTrigger("DoubleDown");
+            // PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleDown");
         }
         //NetowrkSpawn(OPrefab, Vector3.zero);
        // SpawnJoule();
@@ -139,11 +145,11 @@ public class GameSetupContrller : MonoBehaviour
         CamAnim.SetBool("Player1Turn", b);
     }
 
-    [PunRPC]
+   /* [PunRPC]
     public void AnimateRollMenu(string s)
     {
         UIAnim.SetTrigger(s);
-    }
+    }*/
 
     [PunRPC]
     public void EndTurn()

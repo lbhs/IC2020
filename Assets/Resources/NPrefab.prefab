@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
-  TwinColider: {fileID: 0}
+  TwinColider: {fileID: 4056805497595712113}
 --- !u!1 &2487597549855875577
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
-  TwinColider: {fileID: 0}
+  TwinColider: {fileID: 4167154664856926055}
 --- !u!1 &3339713831481746319
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
-  TwinColider: {fileID: 0}
+  TwinColider: {fileID: 5860318643635061790}
 --- !u!1 &3399983841705474696
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,10 +362,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.032158256, y: 0}
+  m_Offset: {x: -0.01187861, y: 0.33128643}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -376,7 +376,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.6602173, y: 6.21}
+  m_Size: {x: 2.7666495, y: 2.9517126}
   m_EdgeRadius: 0
 --- !u!114 &295269808667662657
 MonoBehaviour:
@@ -592,7 +592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
-  TwinColider: {fileID: 0}
+  TwinColider: {fileID: 1716055211442538368}
 --- !u!1 &4167154664856926055
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
-  TwinColider: {fileID: 0}
+  TwinColider: {fileID: 2487597549855875577}
 --- !u!1 &4478404572709743978
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
-  TwinColider: {fileID: 0}
+  TwinColider: {fileID: 7882134322498194118}
 --- !u!1 &5860318643635061790
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,7 +808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
-  TwinColider: {fileID: 0}
+  TwinColider: {fileID: 3339713831481746319}
 --- !u!1 &6318218356942585062
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,7 +880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
-  TwinColider: {fileID: 0}
+  TwinColider: {fileID: 7724423781372583554}
 --- !u!1 &7724423781372583554
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,7 +952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
-  TwinColider: {fileID: 0}
+  TwinColider: {fileID: 6318218356942585062}
 --- !u!1 &7882134322498194118
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,4 +1024,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
-  TwinColider: {fileID: 0}
+  TwinColider: {fileID: 4478404572709743978}
