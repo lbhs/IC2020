@@ -122,6 +122,17 @@ public class GameSetupContrller : MonoBehaviour
         }
     }
 
+    public void CalExit()
+    {
+        PV.RPC("ExitAnimCam", RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void ExitAnimCam()
+    {
+        UIAnim.SetTrigger("Exit");
+    }
+
     [PunRPC]
     public void AnimateCam(bool b)
     {
