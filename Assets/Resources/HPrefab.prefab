@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
-  TwinColider: {fileID: 0}
+  TwinColider: {fileID: 7797341336688932617}
 --- !u!1 &7077623132315944868
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,4 +376,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
-  TwinColider: {fileID: 0}
+  TwinColider: {fileID: 5000370847904822566}
