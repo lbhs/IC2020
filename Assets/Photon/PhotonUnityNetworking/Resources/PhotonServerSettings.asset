@@ -44,6 +44,7 @@ MonoBehaviour:
   - FreezeRB
   - AnimateRollMenu
   - ExitAnimCam
+  - AddToMList
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

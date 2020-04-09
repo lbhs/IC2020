@@ -590,6 +590,8 @@ MonoBehaviour:
   JouleHolder: {fileID: 2092402725}
   JoulePrefab: {fileID: 3048241847645091502, guid: b8c623a6e1568fb4eac2d39eb439d941,
     type: 3}
+  MList:
+    list: []
 --- !u!4 &278617377
 Transform:
   m_ObjectHideFlags: 0

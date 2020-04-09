@@ -66,6 +66,16 @@ public class AtomController : MonoBehaviourPunCallbacks
         joint = gameObject.AddComponent<FixedJoint2D>();
         joint.connectedBody = collision.transform.root.gameObject.GetComponent<Rigidbody2D>();
         joint.enableCollision = false;
+        PV.RPC("AddToMList", RpcTarget.All);
+
+    }
+
+    [PunRPC]
+    public void AddToMList()
+    {
+        GameSetupContrller GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>();
+        //Do-it-here
+        //https://forum.unity.com/threads/list-of-lists-in-inspector.512085/
     }
 
     private void Update()
@@ -129,4 +139,5 @@ public class AtomController : MonoBehaviourPunCallbacks
         // Convert it to world points
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
+
 }

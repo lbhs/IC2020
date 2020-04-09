@@ -24,6 +24,8 @@ public class GameSetupContrller : MonoBehaviour
     public Animator CamAnim;
     public GameObject JouleHolder;
     public GameObject JoulePrefab;
+    public MList MList = new MList();
+    public int MlistNum;
     // Start is called before the first frame update
     void Start()
     {
@@ -125,6 +127,10 @@ public class GameSetupContrller : MonoBehaviour
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[0]);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[1]);
             PV.RPC("AnimateCam", RpcTarget.All, true);
+        }
+        if (!UIAnim.GetCurrentAnimatorStateInfo(0).IsName("Empty"))
+        {
+            UIAnim.SetTrigger("Exit");
         }
     }
 
