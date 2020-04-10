@@ -24,7 +24,6 @@ public class GameSetupContrller : MonoBehaviour
     public Animator CamAnim;
     public GameObject JouleHolder;
     public GameObject JoulePrefab;
-    public int MlistNum;
     // Start is called before the first frame update
     void Start()
     {
