@@ -15,6 +15,7 @@ public class DieFade : MonoBehaviour
 		initialColor = mesh.material.color;
 		finalColor = mesh.material.color;
 		finalColor.a = 0;
+		//mesh.material.color = finalColor;
 	}
 	
 	public void startFade()
@@ -47,9 +48,14 @@ public class DieFade : MonoBehaviour
 				lerping = false;
 			}
 		}
-		DieScript.rolling = 0;
+		GetComponent<DieScript>().rolling = 0;
 		GetComponent<DieScript>().Reset();
-		mesh.material.color = initialColor;
+		//resetMaterial();
 		yield break;
+	}
+	
+	public void resetMaterial()
+	{
+		mesh.material.color = initialColor;
 	}
 }
