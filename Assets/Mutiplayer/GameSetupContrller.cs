@@ -126,22 +126,25 @@ public class GameSetupContrller : MonoBehaviour
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[1]);
             PV.RPC("AnimateCam", RpcTarget.All, true);
         }
-        if (!UIAnim.GetCurrentAnimatorStateInfo(0).IsName("Empty"))
-        {
-            UIAnim.SetTrigger("Exit");
-        }
+       // if (!UIAnim.GetCurrentAnimatorStateInfo(0).IsName("Empty"))
+      //  {
+       //     UIAnim.SetTrigger("Exit");
+      //  }
     }
 
     public void CalExit()
     {
-        PV.RPC("ExitAnimCam", RpcTarget.All);
+        UIAnim.SetTrigger("Exit");
+        //PV.RPC("ExitAnimCam", RpcTarget.All);
+        //Debug.Log("callExit");
     }
 
-    [PunRPC]
+    /*[PunRPC]
     public void ExitAnimCam()
     {
         UIAnim.SetTrigger("Exit");
-    }
+        Debug.Log("rpcexit");
+    }*/
 
     [PunRPC]
     public void AnimateCam(bool b)

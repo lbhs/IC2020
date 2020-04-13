@@ -298,7 +298,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnToZero: 1
-  PrefabToSpawn: {fileID: 0}
+  PrefabToSpawn: {fileID: 7077623132571117954, guid: 5ca542becc0fd1b4ea92dd5ec8645cac,
+    type: 3}
   UseingMe: 0
 --- !u!1 &78460932
 GameObject:
@@ -619,7 +620,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnToZero: 1
-  PrefabToSpawn: {fileID: 0}
+  PrefabToSpawn: {fileID: 7773339037556040248, guid: 34881af4c8e71e84887a3fc2bf5d01a5,
+    type: 3}
   UseingMe: 0
 --- !u!1 &278617375
 GameObject:
@@ -1646,7 +1648,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnToZero: 1
-  PrefabToSpawn: {fileID: 0}
+  PrefabToSpawn: {fileID: 2346957907729442409, guid: d6977544a26c6354a9e748f320dfb6d3,
+    type: 3}
   UseingMe: 0
 --- !u!1 &778460333
 GameObject:
