@@ -51,6 +51,9 @@ MonoBehaviour:
   variants:
   - {fileID: 2346957907984861263}
   isBonded: 0
+  MoleculeElementsIdx: 0
+  SingleBondingOpportunities: 0
+  EnergyMatrixPosition: 0
 --- !u!61 &251329924422379471
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -229,7 +232,7 @@ GameObject:
   - component: {fileID: 1211242758553540096}
   m_Layer: 0
   m_Name: ColliderPoint (1)
-  m_TagString: Untagged
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -301,7 +304,7 @@ GameObject:
   - component: {fileID: 5707381784851996163}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: Untagged
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

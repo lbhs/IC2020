@@ -5,14 +5,13 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum GameState { Start, Player1Turn, Player2Turn, End} 
+public enum GameState { Start, Player1Turn, Player2Turn, End }
 
 public class GameSetupContrller : MonoBehaviour
-{
+{ 
     public GameState state;
     private PhotonView PV;
     public GameObject TurnScreen;
-    public Button DiceButton;
     public GameObject OPrefab;
     public GameObject NPrefab;
     public GameObject HPrefab;
@@ -24,6 +23,13 @@ public class GameSetupContrller : MonoBehaviour
     public Animator CamAnim;
     public GameObject JouleHolder;
     public GameObject JoulePrefab;
+
+    private GameObject P1Display;
+    private GameObject P2Display;
+
+    private GameObject RollPanelOptions;
+    private List<List<GameObject>> MoleculeElements;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +37,14 @@ public class GameSetupContrller : MonoBehaviour
         state = GameState.Start;
         PV = GetComponent<PhotonView>();
         CamAnim = Camera.main.GetComponent<Animator>();
+        MoleculeElements = new List<List<GameObject>>();
+    }
+
+    private void Awake()
+    {
+        RollPanelOptions = GameObject.Find("UI").transform.GetChild(3).gameObject;
+        P1Display = GameObject.Find("UI").transform.GetChild(6).gameObject;
+        P2Display = GameObject.Find("UI").transform.GetChild(7).gameObject;
     }
 
     private void CreatePlayer()
@@ -47,13 +61,14 @@ public class GameSetupContrller : MonoBehaviour
         {
             PV.RPC("ChangeState", RpcTarget.All, GameState.Player1Turn);
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[0]);
+            P1Display.SetActive(true);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[1]);
         }
     }
 
     public void RollDice(int Roll)
     {
-        if(Roll == 1)
+        if (Roll == 1)
         {
             UIAnim.SetTrigger("H");
             //PV.RPC("AnimateRollMenu", RpcTarget.All, "H");
@@ -83,9 +98,6 @@ public class GameSetupContrller : MonoBehaviour
             UIAnim.SetTrigger("DoubleDown");
             // PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleDown");
         }
-        //NetowrkSpawn(OPrefab, Vector3.zero);
-       // SpawnJoule();
-       // SpawnJoule();
     }
 
     public void NetowrkSpawn(GameObject Prefab, Vector3 pos)
@@ -95,41 +107,182 @@ public class GameSetupContrller : MonoBehaviour
         {
             GO = PhotonNetwork.Instantiate(Prefab.name, pos, Quaternion.identity);
             GO.GetComponent<PhotonView>().RequestOwnership();
+            PV.RPC("AddToList", RpcTarget.All, GO.GetComponent<PhotonView>().ViewID);
         }
         else if (state == GameState.Player2Turn)
         {
             GO = PhotonNetwork.Instantiate(Prefab.name, pos, Quaternion.identity);
             GO.GetComponent<PhotonView>().RequestOwnership();
+            PV.RPC("AddToList", RpcTarget.All, GO.GetComponent<PhotonView>().ViewID);
         }
     }
 
     public void SpawnJoule()
     {
+        Debug.Log("Joule spawned!");
         GameObject GO;
         GO = Instantiate(JoulePrefab, JouleHolder.transform);
         GO.transform.localPosition = new Vector3(Random.Range(-35, 35), Random.Range(-35, 35), 0);
     }
 
     public void EndTurnButton()
-    {
+    { 
         if(state == GameState.Player1Turn)
         {
+            Debug.Log("Player 1 turn ending");
             PV.RPC("ChangeState", RpcTarget.All, GameState.Player2Turn);
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[1]);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[0]);
             PV.RPC("AnimateCam", RpcTarget.All, false);
+            P1Display.SetActive(false);
+            P2Display.SetActive(true);
         }
         else if(state == GameState.Player2Turn)
         {
+            Debug.Log("Player 2 turn ending");
             PV.RPC("ChangeState", RpcTarget.All, GameState.Player1Turn);
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[0]);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[1]);
             PV.RPC("AnimateCam", RpcTarget.All, true);
+            P2Display.SetActive(false);
+            P1Display.SetActive(true);
         }
-        if (!UIAnim.GetCurrentAnimatorStateInfo(0).IsName("Empty"))
+    }
+
+    [PunRPC]
+    public void AnimateCam(bool b)
+    {
+        CamAnim.SetBool("Player1Turn", b);
+    }
+
+    [PunRPC]
+    public void AnimateRollMenu(string s)
+    {
+        UIAnim.gameObject.transform.GetChild(3).gameObject.SetActive(true);
+        UIAnim.SetTrigger(s);
+    }
+
+    [PunRPC]
+    public void EndTurn()
+    {
+        //Debug.Log("1");
+        TurnScreen.SetActive(true);
+        // DieScript.rolling = 1;
+        GameObject.Find("UI").transform.GetChild(1).gameObject.GetComponent<Button>().interactable = false;
+        // Debug.Log("No longer rolling: " + DieScript.rolling);
+    }
+
+    [PunRPC]
+    public void StartTurn()
+    {
+        //Debug.Log("2");
+        TurnScreen.SetActive(false);
+        // DieScript.rolling = 0;
+        if (state == GameState.Player1Turn)
         {
-            UIAnim.SetTrigger("Exit");
+            P1Display.SetActive(true);
+            P2Display.SetActive(false);
+        } 
+        else
+        {
+            P2Display.SetActive(true);
+            P1Display.SetActive(false);
         }
+        GameObject.Find("UI").transform.GetChild(1).gameObject.GetComponent<Button>().interactable = true;
+        // Debug.Log("Rolling: " + DieScript.rolling);
+    }
+    
+    [PunRPC]
+    public void ChangeState(GameState s)
+    {
+        state = s;
+    }
+
+    public bool InSubList(GameObject GOToFind, int SublistIdx)
+    {
+        if (SublistIdx < MoleculeElements.Count)
+        {
+            foreach (GameObject Element in MoleculeElements[SublistIdx])
+            {
+                if (Element == GOToFind)
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    [PunRPC]
+    private void AddToList(int PVID)
+    {
+        GameObject GOToAdd = PhotonView.Find(PVID).gameObject;
+        List<GameObject> NewElement = new List<GameObject>();
+        NewElement.Add(GOToAdd);
+        MoleculeElements.Add(NewElement);
+        GOToAdd.GetComponent<AtomController>().MoleculeElementsIdx = MoleculeElements.IndexOf(NewElement);
+    }
+
+    [PunRPC]
+    public void MergeMoleculeLists(int ListToMergeIdx, int ListToMergeInto)
+    {
+        for (int idx = 0; idx < MoleculeElements[ListToMergeIdx].Count; idx++)
+        {
+            GameObject GO = MoleculeElements[ListToMergeIdx][idx];
+            GO.GetComponent<AtomController>().MoleculeElementsIdx = ListToMergeInto;
+            MoleculeElements[ListToMergeInto].Add(GO);
+            MoleculeElements[ListToMergeIdx][idx] = null;
+        }
+    }
+
+    public List<int> CompletedMolecules(GameObject caller)
+    {
+        bool MoleculeCompleted = true;
+        List<int> CompletedMoleculesIdxs = new List<int>();
+        foreach (List<GameObject> Molecule in MoleculeElements)
+        {
+            foreach (GameObject Element in Molecule)
+            {
+                if (Element != null)
+                {
+                    if (Element.GetComponent<PhotonView>().Owner == caller.GetComponent<PhotonView>().Owner)
+                    {
+
+                    }
+                    if (!(Element.GetComponent<AtomController>().SingleBondingOpportunities == 0))
+                    {
+                        MoleculeCompleted = false;
+                    }
+                }
+                else
+                {
+                    MoleculeCompleted = false;
+                }
+            }
+            if (MoleculeCompleted)
+            {
+                Debug.Log(MoleculeElements.IndexOf(Molecule) + " has been completed");
+                CompletedMoleculesIdxs.Add(MoleculeElements.IndexOf(Molecule));
+            }
+            MoleculeCompleted = true;
+        }
+        return CompletedMoleculesIdxs;
+    }
+
+    public int TotalBonusPoints(GameObject caller)
+    {
+        int score = 0;
+        List<int> CompletedMoleculesList = CompletedMolecules(caller);
+        foreach (int idx in CompletedMoleculesList)
+        {
+            if (MoleculeElements[idx].Count < 6)
+            {
+                score += (MoleculeElements[idx].Count - 1) * 10;
+            }
+            else
+            {
+                score += 60;
+            }
+        }
+        return score;
     }
 
     public void CalExit()
@@ -139,44 +292,10 @@ public class GameSetupContrller : MonoBehaviour
         //Debug.Log("callExit");
     }
 
-    /*[PunRPC]
-    public void ExitAnimCam()
-    {
-        UIAnim.SetTrigger("Exit");
-        Debug.Log("rpcexit");
-    }*/
+    //IEnumerator HideAnimation()
+    //{
+    //    yield return new WaitForSeconds(2f);
+    //    UIAnim.gameObject.transform.GetChild(3).gameObject.SetActive(false);
+    //}
 
-    [PunRPC]
-    public void AnimateCam(bool b)
-    {
-        CamAnim.SetBool("Player1Turn", b);
-    }
-
-   /* [PunRPC]
-    public void AnimateRollMenu(string s)
-    {
-        UIAnim.SetTrigger(s);
-    }*/
-
-    [PunRPC]
-    public void EndTurn()
-    {
-        //Debug.Log("1");
-        TurnScreen.SetActive(true);
-        DiceButton.interactable = false;
-    }
-
-    [PunRPC]
-    public void StartTurn()
-    {
-        //Debug.Log("2");
-        TurnScreen.SetActive(false);
-        DiceButton.interactable = true;
-    }
-    
-    [PunRPC]
-    public void ChangeState(GameState s)
-    {
-        state = s;
-    }
 }

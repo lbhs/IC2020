@@ -15,9 +15,21 @@ public class AtomController : MonoBehaviourPunCallbacks
     private int variantCounter;
     public bool isBonded = false;
 
-    void Start()
+    public int MoleculeElementsIdx;
+
+    public int SingleBondingOpportunities;
+
+    public int EnergyMatrixPosition;
+
+    private bool HasTriggered = false;
+
+    private void Start()
     {
         PV = GetComponent<PhotonView>();
+    }
+
+    void Awake()
+    {
         GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>();
     }
 
@@ -66,20 +78,11 @@ public class AtomController : MonoBehaviourPunCallbacks
         joint = gameObject.AddComponent<FixedJoint2D>();
         joint.connectedBody = collision.transform.root.gameObject.GetComponent<Rigidbody2D>();
         joint.enableCollision = false;
-        PV.RPC("AddToMList", RpcTarget.All);
-
-    }
-
-    [PunRPC]
-    public void AddToMList()
-    {
-        GameSetupContrller GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>();
-        //Do-it-here
-        //https://forum.unity.com/threads/list-of-lists-in-inspector.512085/
     }
 
     private void Update()
     {
+        HasTriggered = false;
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         GetComponent<Rigidbody2D>().angularVelocity = 0f;
         if (GetComponent<FixedJoint2D>() == null)
@@ -93,7 +96,7 @@ public class AtomController : MonoBehaviourPunCallbacks
 
         if (PV.IsMine == true)
             return;
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        // GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     void OnMouseDrag()
@@ -140,4 +143,12 @@ public class AtomController : MonoBehaviourPunCallbacks
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 
+    public void DecrementOnce()
+    {
+        if (!HasTriggered)
+        {
+            SingleBondingOpportunities--;
+            HasTriggered = true;
+        }
+    }
 }

@@ -45,6 +45,8 @@ MonoBehaviour:
   - AnimateRollMenu
   - ExitAnimCam
   - AddToMList
+  - AddToList
+  - MergeMoleculeLists
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 795546907027456228}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: Untagged
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 5068453576446277266}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: Untagged
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 2697299386080092311}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: Untagged
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 6232507030283807359}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: Untagged
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 1510025451851006934}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: Untagged
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 3711764896555184702}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: Untagged
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 2661131143834798768}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: Untagged
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 3889775619016991059}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: Untagged
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 426177082194424896}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: Untagged
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -950,6 +950,9 @@ MonoBehaviour:
   - {fileID: 7773339037200838406}
   - {fileID: 7773339037515396886}
   isBonded: 0
+  MoleculeElementsIdx: 0
+  SingleBondingOpportunities: 0
+  EnergyMatrixPosition: 0
 --- !u!61 &7773339037556040245
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1047,7 +1050,7 @@ GameObject:
   - component: {fileID: 2019462955586395919}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: Untagged
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
