@@ -24,5 +24,9 @@ public class turnCheck : MonoBehaviour
 			die2.GetComponent<OwnershipTransfer>().steal();
 			die2.GetComponent<DieScript>().RollDiceAnimation();
 		}
+		else
+		{
+			die1.GetComponent<DieScript>().RollDiceAnimation();
+		}
 	}
 }
