@@ -39,9 +39,9 @@ public class BondEventScript : MonoBehaviour
         {
             // Both colliders need to register a collision for bonding to occur
             isTriggered = true;
-            if (TwinColider.GetComponent<BondEventScript>().isTriggered == true)
+            if (TwinColider.GetComponent<LiteController>().isTriggered == true)
             {
-                transform.root.GetComponent<AtomController>().DecrementOnce();
+                transform.root.GetComponent<AtomController>().SingleBondingOpportunities--;
                 transform.root.GetComponent<AtomController>().BondingFunction(collision);
 
                 if (!GSC.InSubList(transform.root.gameObject, collision.gameObject.transform.root

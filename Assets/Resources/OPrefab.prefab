@@ -82,7 +82,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2787818042313934562}
   - component: {fileID: 4241227874420349921}
-  - component: {fileID: 5068453576446277266}
+  - component: {fileID: 8422112183796427914}
   m_Layer: 0
   m_Name: ColliderPoint
   m_TagString: BondArea
@@ -130,7 +130,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.088561535, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5068453576446277266
+--- !u!114 &8422112183796427914
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1634892884374800035}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
+  m_Script: {fileID: 11500000, guid: b2104e30e31d3c54f95aba45c1a320ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
@@ -966,7 +966,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.24347103, y: 0.20963144}
+  m_Offset: {x: -0.35913497, y: 0.42679405}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -977,7 +977,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.0989878, y: 2.9835072}
+  m_Size: {x: 2.86766, y: 2.8179312}
   m_EdgeRadius: 0
 --- !u!114 &6497594456979262919
 MonoBehaviour:
@@ -1047,7 +1047,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7198610694280912193}
   - component: {fileID: 8046493031997992252}
-  - component: {fileID: 2019462955586395919}
+  - component: {fileID: 1926839015381550407}
   m_Layer: 0
   m_Name: ColliderPoint
   m_TagString: BondArea
@@ -1095,7 +1095,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.088561535, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2019462955586395919
+--- !u!114 &1926839015381550407
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1104,7 +1104,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8216883508122239479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
+  m_Script: {fileID: 11500000, guid: b2104e30e31d3c54f95aba45c1a320ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0

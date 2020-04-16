@@ -21,8 +21,6 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     public int EnergyMatrixPosition;
 
-    private bool HasTriggered = false;
-
     private void Start()
     {
         PV = GetComponent<PhotonView>();
@@ -82,7 +80,6 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        HasTriggered = false;
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         GetComponent<Rigidbody2D>().angularVelocity = 0f;
         if (GetComponent<FixedJoint2D>() == null)
@@ -141,14 +138,5 @@ public class AtomController : MonoBehaviourPunCallbacks
         mousePoint.z = mZCoord;
         // Convert it to world points
         return Camera.main.ScreenToWorldPoint(mousePoint);
-    }
-
-    public void DecrementOnce()
-    {
-        if (!HasTriggered)
-        {
-            SingleBondingOpportunities--;
-            HasTriggered = true;
-        }
     }
 }

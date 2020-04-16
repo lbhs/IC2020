@@ -221,7 +221,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.496013, y: 0.03381872}
+  m_Offset: {x: -0.49370697, y: 0.03381872}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -232,7 +232,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0088305, y: 2.9316258}
+  m_Size: {x: 2.0134425, y: 2.9316258}
   m_EdgeRadius: 0
 --- !u!58 &2415258237579184888
 CircleCollider2D:
@@ -247,9 +247,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.92438734, y: 0}
+  m_Offset: {x: -0.8986888, y: 0}
   serializedVersion: 2
-  m_Radius: 1.4243873
+  m_Radius: 1.4500859
 --- !u!114 &902321594608551644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1591432597400956906}
   - component: {fileID: 4413220190492489904}
-  - component: {fileID: 3526951759031543547}
+  - component: {fileID: 6578677022396405202}
   m_Layer: 0
   m_Name: ColliderPoint (1)
   m_TagString: BondArea
@@ -366,7 +366,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.088561535, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3526951759031543547
+--- !u!114 &6578677022396405202
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7797341336688932617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
+  m_Script: {fileID: 11500000, guid: b2104e30e31d3c54f95aba45c1a320ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0

@@ -148,7 +148,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.91104233, y: 0.04498911}
+  m_Offset: {x: -0.9312589, y: 0.04498911}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -159,7 +159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8629873, y: 2.975092}
+  m_Size: {x: 2.822554, y: 2.975092}
   m_EdgeRadius: 0
 --- !u!114 &2801175909520973189
 MonoBehaviour:
@@ -301,7 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7431569074836247673}
   - component: {fileID: 8488336722387069126}
-  - component: {fileID: 7600273146961665570}
+  - component: {fileID: 2387284038006490871}
   m_Layer: 0
   m_Name: ColliderPoint (1)
   m_TagString: BondArea
@@ -349,7 +349,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.088561535, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7600273146961665570
+--- !u!114 &2387284038006490871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7076101109921753488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
+  m_Script: {fileID: 11500000, guid: b2104e30e31d3c54f95aba45c1a320ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
