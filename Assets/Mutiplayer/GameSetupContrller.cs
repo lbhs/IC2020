@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public enum GameState { Start, Player1Turn, Player2Turn, End} 
 
@@ -27,6 +28,7 @@ public class GameSetupContrller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(SendToLeaderboard("v",23));
         CreatePlayer();
         state = GameState.Start;
         PV = GetComponent<PhotonView>();
@@ -53,7 +55,8 @@ public class GameSetupContrller : MonoBehaviour
 
     public void RollDice(int Roll)
     {
-        if(Roll == 1)
+ 
+        if (Roll == 1)
         {
             UIAnim.ResetTrigger("Exit");
             UIAnim.SetTrigger("H");
@@ -92,6 +95,21 @@ public class GameSetupContrller : MonoBehaviour
         //NetowrkSpawn(OPrefab, Vector3.zero);
        // SpawnJoule();
        // SpawnJoule();
+    }
+
+    IEnumerator SendToLeaderboard(string name, int score)
+    {
+        UnityWebRequest uwr = UnityWebRequest.Get("http://dreamlo.com/lb/" + GetComponent<SecretCode>().code + "/add/" + name + "/" + score);
+        yield return uwr.SendWebRequest();
+
+        if (uwr.isNetworkError)
+        {
+            Debug.Log("Error While Sending: " + uwr.error);
+        }
+        else
+        {
+            Debug.Log("Received: " + uwr.downloadHandler.text);
+        }
     }
 
     public void NetowrkSpawn(GameObject Prefab, Vector3 pos)
