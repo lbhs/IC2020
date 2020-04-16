@@ -37,8 +37,27 @@ public class DieScript : MonoBehaviour {
 			transform.rotation = Random.rotation;
 			rb.AddForce(new Vector3(Random.Range(-100f, 100f), 1000, 0));
 			rb.AddTorque(dirX, dirY, dirZ);
+			StartCoroutine(countdown());
 		}
     }
+	
+	private IEnumerator countdown()
+	{
+        yield return new WaitForSeconds(5);
+		if(GetComponent<DieScript>().rolling == 1)
+		{
+			rb.velocity = Vector3.zero;
+			float dirX = Random.Range(-500, 500);
+			float dirY = Random.Range(-500, 500);
+			float dirZ = Random.Range(-500, 500);
+			transform.localPosition = startPos;
+			transform.rotation = Random.rotation;
+			rb.AddForce(new Vector3(Random.Range(-100f, 100f), 1000, 0));
+			rb.AddTorque(dirX, dirY, dirZ);
+			StartCoroutine(countdown());
+		}
+		yield break;
+	}
 
 	public void Reset()
 	{

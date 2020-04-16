@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class DieFade : MonoBehaviour
+public class DieFade : MonoBehaviourPun
 {	
 	private Color initialColor;
 	private Color finalColor;
@@ -18,6 +19,7 @@ public class DieFade : MonoBehaviour
 		//mesh.material.color = finalColor;
 	}
 	
+	[PunRPC]
 	public void startFade()
 	{
 		StartCoroutine(Lerp_MeshRenderer_Color(mesh, timeToFade, initialColor, finalColor));
