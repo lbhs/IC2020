@@ -4,6 +4,10 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
+Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset
+Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset.meta
+Assets/SecretCode.cs
+Assets/SecretCode.cs.meta
 
 # Visual Studio cache directory
 .vs/
