@@ -55,31 +55,37 @@ public class GameSetupContrller : MonoBehaviour
     {
         if(Roll == 1)
         {
+            UIAnim.ResetTrigger("Exit");
             UIAnim.SetTrigger("H");
             //PV.RPC("AnimateRollMenu", RpcTarget.All, "H");
         }
         else if (Roll == 2)
         {
+            UIAnim.ResetTrigger("Exit");
             UIAnim.SetTrigger("C");
             //PV.RPC("AnimateRollMenu", RpcTarget.All, "O");
         }
         else if (Roll == 3)
         {
+            UIAnim.ResetTrigger("Exit");
             UIAnim.SetTrigger("O");
             //PV.RPC("AnimateRollMenu", RpcTarget.All, "C");
         }
         else if (Roll == 4)
         {
+            UIAnim.ResetTrigger("Exit");
             UIAnim.SetTrigger("CL");
             // PV.RPC("AnimateRollMenu", RpcTarget.All, "CL");
         }
         else if (Roll == 5)
         {
+            UIAnim.ResetTrigger("Exit");
             UIAnim.SetTrigger("DoubleOnly");
             // PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleOnly");
         }
         else if (Roll == 6)
         {
+            UIAnim.ResetTrigger("Exit");
             UIAnim.SetTrigger("DoubleDown");
             // PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleDown");
         }
