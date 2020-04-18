@@ -35,6 +35,3 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-
-# Google Drive Backup
-/.tmp.drivedownload/*

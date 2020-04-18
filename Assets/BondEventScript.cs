@@ -12,14 +12,10 @@ public class BondEventScript : MonoBehaviour
     private PhotonView PV;
     private TextController TC;
     private BondEnergyValues BEV;
-    public bool Bonded;
-
-    // Lock rigidbody on the other user
 
     private void Start()
     {
         PV = transform.root.GetComponent<PhotonView>();
-        Bonded = false;
     }
 
     private void Awake()
@@ -39,13 +35,13 @@ public class BondEventScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.root.GetComponent<PhotonView>().Owner == transform.root.GetComponent<PhotonView>().Owner 
-            && ((gameObject.tag == "Peak" && collision.tag == "Valley") || (gameObject.tag == "Valley" && collision.tag == "Peak")))
+            && collision.tag == "BondArea")
         {
-            Bonded = true;
             // Both colliders need to register a collision for bonding to occur
-            // isTriggered = true;
+            isTriggered = true;
             if (TwinColider.GetComponent<LiteController>().isTriggered == true)
             {
+                transform.root.GetComponent<AtomController>().SingleBondingOpportunities--;
                 transform.root.GetComponent<AtomController>().BondingFunction(collision);
 
                 if (!GSC.InSubList(transform.root.gameObject, collision.gameObject.transform.root
@@ -57,7 +53,7 @@ public class BondEventScript : MonoBehaviour
                     GSC.gameObject.GetComponent<PhotonView>().RPC("MergeMoleculeLists", RpcTarget.All, MergeFrom, MergeInto);
                 }
 
-                // TC.BonusScore = GSC.TotalBonusPoints(transform.root.gameObject);
+                TC.BonusScore = GSC.TotalBonusPoints(transform.root.gameObject);
                 TC.BondScore += BEV.bondEnergyArray[transform.root.GetComponent<AtomController>().EnergyMatrixPosition,
                                                        collision.transform.root.GetComponent<AtomController>().EnergyMatrixPosition];
 

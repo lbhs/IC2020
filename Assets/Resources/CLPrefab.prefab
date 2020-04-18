@@ -52,9 +52,8 @@ MonoBehaviour:
   - {fileID: 2346957907984861263}
   isBonded: 0
   MoleculeElementsIdx: 0
-  SingleBondingOpportunities: 1
-  CurrentSingleBondingOpportunities: 0
-  EnergyMatrixPosition: 3
+  SingleBondingOpportunities: 0
+  EnergyMatrixPosition: 0
 --- !u!61 &251329924422379471
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -233,7 +232,7 @@ GameObject:
   - component: {fileID: 3040552765058775376}
   m_Layer: 0
   m_Name: ColliderPoint (1)
-  m_TagString: Valley
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -305,7 +304,7 @@ GameObject:
   - component: {fileID: 5707381784851996163}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: Peak
+  m_TagString: BondArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -364,4 +363,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTriggered: 0
   TwinColider: {fileID: 3105594732061095653}
-  Bonded: 0
