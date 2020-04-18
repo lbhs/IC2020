@@ -30,6 +30,8 @@ public class GameSetupContrller : MonoBehaviour
     private GameObject RollPanelOptions;
     private List<List<GameObject>> MoleculeElements;
 
+    private int InstantiatedCount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class GameSetupContrller : MonoBehaviour
         PV = GetComponent<PhotonView>();
         CamAnim = Camera.main.GetComponent<Animator>();
         MoleculeElements = new List<List<GameObject>>();
+        InstantiatedCount = 0;
     }
 
     private void Awake()
@@ -107,12 +110,16 @@ public class GameSetupContrller : MonoBehaviour
         {
             GO = PhotonNetwork.Instantiate(Prefab.name, pos, Quaternion.identity);
             GO.GetComponent<PhotonView>().RequestOwnership();
+            InstantiatedCount++;
+            GO.name = Prefab.name + " " + InstantiatedCount;
             PV.RPC("AddToList", RpcTarget.All, GO.GetComponent<PhotonView>().ViewID);
         }
         else if (state == GameState.Player2Turn)
         {
             GO = PhotonNetwork.Instantiate(Prefab.name, pos, Quaternion.identity);
             GO.GetComponent<PhotonView>().RequestOwnership();
+            InstantiatedCount++;
+            GO.name = Prefab.name + " " + InstantiatedCount;
             PV.RPC("AddToList", RpcTarget.All, GO.GetComponent<PhotonView>().ViewID);
         }
     }
@@ -245,11 +252,10 @@ public class GameSetupContrller : MonoBehaviour
                 {
                     if (Element.GetComponent<PhotonView>().Owner == caller.GetComponent<PhotonView>().Owner)
                     {
-
-                    }
-                    if (!(Element.GetComponent<AtomController>().SingleBondingOpportunities == 0))
-                    {
-                        MoleculeCompleted = false;
+                        if (!(Element.GetComponent<AtomController>().CurrentSingleBondingOpportunities == 0))
+                        {
+                            MoleculeCompleted = false;
+                        }
                     }
                 }
                 else

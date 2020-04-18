@@ -18,17 +18,30 @@ public class AtomController : MonoBehaviourPunCallbacks
     public int MoleculeElementsIdx;
 
     public int SingleBondingOpportunities;
+    public int CurrentSingleBondingOpportunities;
 
     public int EnergyMatrixPosition;
+
+    private TextController TC;
 
     private void Start()
     {
         PV = GetComponent<PhotonView>();
+        CurrentSingleBondingOpportunities = SingleBondingOpportunities;
     }
 
     void Awake()
     {
         GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>();
+
+        if (transform.root.GetComponent<PhotonView>().Owner == PhotonNetwork.PlayerList[0])
+        {
+            TC = GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>();
+        }
+        else
+        {
+            TC = GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>();
+        }
     }
 
     void OnMouseDown()
@@ -72,6 +85,7 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     public void BondingFunction(Collider2D collision)
     {
+        Debug.Log("Joint created from " + name);
         FixedJoint2D joint;
         joint = gameObject.AddComponent<FixedJoint2D>();
         joint.connectedBody = collision.transform.root.gameObject.GetComponent<Rigidbody2D>();
@@ -93,7 +107,22 @@ public class AtomController : MonoBehaviourPunCallbacks
 
         if (PV.IsMine == true)
             return;
-        // GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        GetComponent<Rigidbody2D>().angularVelocity = 0f;
+
+        int BondsMade = 0;
+        foreach (Transform child in transform.GetChild(variantCounter))
+        {
+            if (child.gameObject.GetComponent<BondEventScript>() != null)
+            {
+                if (child.gameObject.GetComponent<BondEventScript>().Bonded)
+                {
+                    BondsMade++;
+                }
+            }
+        }
+        CurrentSingleBondingOpportunities = SingleBondingOpportunities - BondsMade;
+        TC.BonusScore = GSC.TotalBonusPoints(transform.root.gameObject);
     }
 
     void OnMouseDrag()

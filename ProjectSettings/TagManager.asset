@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - BondArea
+  - Peak
+  - Valley
   layers:
   - Default
   - TransparentFX
