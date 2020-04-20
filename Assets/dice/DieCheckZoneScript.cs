@@ -80,12 +80,12 @@ public class DieCheckZoneScript : MonoBehaviour {
         }
         else if (Roll == 5)
         {
-            //UIAnim.SetTrigger("DoubleOnly");
+            UIAnim.SetTrigger("DoubleOnly");
             // PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleOnly");
         }
         else if (Roll == 6)
         {
-            //UIAnim.SetTrigger("DoubleDown");
+            UIAnim.SetTrigger("DoubleDown");
             // PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleDown");
         }
         //NetowrkSpawn(OPrefab, Vector3.zero);
