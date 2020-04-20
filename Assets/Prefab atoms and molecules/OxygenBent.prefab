@@ -154,6 +154,7 @@ MonoBehaviour:
   valleysRemaining: 2
   bondArrayID: 2
   MoleculeID: 0
+  SoundFX: {fileID: 0}
 --- !u!114 &959265861618892416
 MonoBehaviour:
   m_ObjectHideFlags: 0
