@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BondEventScript : MonoBehaviour
 {
-    public bool isTriggered = false;
     public GameObject TwinColider;
 
     private GameSetupContrller GSC;
@@ -13,9 +12,12 @@ public class BondEventScript : MonoBehaviour
     private TextController TC;
     private BondEnergyValues BEV;
 
+    public bool Bonded;
+
     private void Start()
     {
         PV = transform.root.GetComponent<PhotonView>();
+        Bonded = false;
     }
 
     private void Awake()
@@ -35,13 +37,13 @@ public class BondEventScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.root.GetComponent<PhotonView>().Owner == transform.root.GetComponent<PhotonView>().Owner 
-            && collision.tag == "BondArea")
+            && ((tag == "Peak" && collision.tag == "Valley") || (tag == "Valley" && collision.tag == "Peak")))
         {
-            // Both colliders need to register a collision for bonding to occur
-            isTriggered = true;
+            // Problematic: what happens if isTriggered hasn't registered yet?
             if (TwinColider.GetComponent<LiteController>().isTriggered == true)
             {
-                transform.root.GetComponent<AtomController>().SingleBondingOpportunities--;
+                collision.GetComponent<LiteController>().TwinColider.GetComponent<BondEventScript>().Bonded = true;
+                Bonded = true;
                 transform.root.GetComponent<AtomController>().BondingFunction(collision);
 
                 if (!GSC.InSubList(transform.root.gameObject, collision.gameObject.transform.root
@@ -52,17 +54,9 @@ public class BondEventScript : MonoBehaviour
 
                     GSC.gameObject.GetComponent<PhotonView>().RPC("MergeMoleculeLists", RpcTarget.All, MergeFrom, MergeInto);
                 }
-
-                TC.BonusScore = GSC.TotalBonusPoints(transform.root.gameObject);
                 TC.BondScore += BEV.bondEnergyArray[transform.root.GetComponent<AtomController>().EnergyMatrixPosition,
                                                        collision.transform.root.GetComponent<AtomController>().EnergyMatrixPosition];
-
             }
         }
     }   
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        isTriggered = false;
-    }
 }

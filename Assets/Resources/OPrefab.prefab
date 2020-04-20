@@ -70,8 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 2488444797061721972}
+  Bonded: 0
 --- !u!1 &1634892884374800035
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,10 +82,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2787818042313934562}
   - component: {fileID: 4241227874420349921}
-  - component: {fileID: 8422112183796427914}
+  - component: {fileID: 5843607122438461455}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: BondArea
+  m_TagString: Valley
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,7 +130,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.088561535, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8422112183796427914
+--- !u!114 &5843607122438461455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,11 +139,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1634892884374800035}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2104e30e31d3c54f95aba45c1a320ae, type: 3}
+  m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 4561954497392799724}
+  Bonded: 0
 --- !u!1 &2488444797061721972
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,8 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 582419527251496811}
+  Bonded: 0
 --- !u!1 &2508417734932757339
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,10 +226,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6978500965559884880}
   - component: {fileID: 6052608954657159361}
-  - component: {fileID: 6232507030283807359}
+  - component: {fileID: 1666566378333760993}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: BondArea
+  m_TagString: Peak
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -274,7 +274,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.088561535, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6232507030283807359
+--- !u!114 &1666566378333760993
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2508417734932757339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
+  m_Script: {fileID: 11500000, guid: b2104e30e31d3c54f95aba45c1a320ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
@@ -358,8 +358,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 6292127021897450892}
+  Bonded: 0
 --- !u!1 &3941122242117909215
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,8 +430,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 6791901778641548089}
+  Bonded: 0
 --- !u!1 &4561954497392799724
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,10 +442,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8253466509884691818}
   - component: {fileID: 7132940402949038380}
-  - component: {fileID: 2661131143834798768}
+  - component: {fileID: 7613001886656005865}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: BondArea
+  m_TagString: Peak
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -490,7 +490,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.088561535, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2661131143834798768
+--- !u!114 &7613001886656005865
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -499,7 +499,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4561954497392799724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
+  m_Script: {fileID: 11500000, guid: b2104e30e31d3c54f95aba45c1a320ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
@@ -574,8 +574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 2548928445129362576}
+  Bonded: 0
 --- !u!1 &6791901778641548089
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,8 +646,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 3941122242117909215}
+  Bonded: 0
 --- !u!1 &7773339037200838406
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,8 +951,9 @@ MonoBehaviour:
   - {fileID: 7773339037515396886}
   isBonded: 0
   MoleculeElementsIdx: 0
-  SingleBondingOpportunities: 0
-  EnergyMatrixPosition: 0
+  SingleBondingOpportunities: 2
+  EnergyMatrixPosition: 2
+  CurrentSingleBondingOpportunities: 0
 --- !u!61 &7773339037556040245
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1047,10 +1048,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7198610694280912193}
   - component: {fileID: 8046493031997992252}
-  - component: {fileID: 1926839015381550407}
+  - component: {fileID: 6812339663302846455}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: BondArea
+  m_TagString: Valley
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1095,7 +1096,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.088561535, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1926839015381550407
+--- !u!114 &6812339663302846455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1104,8 +1105,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8216883508122239479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2104e30e31d3c54f95aba45c1a320ae, type: 3}
+  m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 2508417734932757339}
+  Bonded: 0

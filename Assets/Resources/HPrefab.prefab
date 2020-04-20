@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4025635924460794256}
   - component: {fileID: 763840557436652608}
-  - component: {fileID: 8898346625821031442}
+  - component: {fileID: 8737147104261234314}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: BondArea
+  m_TagString: Peak
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.088561535, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8898346625821031442
+--- !u!114 &8737147104261234314
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5000370847904822566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
+  m_Script: {fileID: 11500000, guid: b2104e30e31d3c54f95aba45c1a320ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
@@ -206,8 +206,9 @@ MonoBehaviour:
   - {fileID: 7077623132315944868}
   isBonded: 0
   MoleculeElementsIdx: 0
-  SingleBondingOpportunities: 0
+  SingleBondingOpportunities: 1
   EnergyMatrixPosition: 0
+  CurrentSingleBondingOpportunities: 0
 --- !u!61 &3709750047962576664
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -318,10 +319,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1591432597400956906}
   - component: {fileID: 4413220190492489904}
-  - component: {fileID: 6578677022396405202}
+  - component: {fileID: 1138401299878204759}
   m_Layer: 0
   m_Name: ColliderPoint (1)
-  m_TagString: BondArea
+  m_TagString: Valley
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -366,7 +367,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.088561535, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6578677022396405202
+--- !u!114 &1138401299878204759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -375,8 +376,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7797341336688932617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2104e30e31d3c54f95aba45c1a320ae, type: 3}
+  m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 5000370847904822566}
+  Bonded: 0

@@ -52,8 +52,9 @@ MonoBehaviour:
   - {fileID: 2346957907984861263}
   isBonded: 0
   MoleculeElementsIdx: 0
-  SingleBondingOpportunities: 0
-  EnergyMatrixPosition: 0
+  SingleBondingOpportunities: 1
+  EnergyMatrixPosition: 3
+  CurrentSingleBondingOpportunities: 0
 --- !u!61 &251329924422379471
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -67,7 +68,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.60661924, y: 0.4550767}
+  m_Offset: {x: -0.31230342, y: 0.026981354}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -78,7 +79,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.230448, y: 2.1750636}
+  m_Size: {x: 2.8190796, y: 3.0312543}
   m_EdgeRadius: 0
 --- !u!114 &5877065910370048106
 MonoBehaviour:
@@ -229,10 +230,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8126611598746409198}
   - component: {fileID: 2589270344316866926}
-  - component: {fileID: 3040552765058775376}
+  - component: {fileID: 8839587827366406361}
   m_Layer: 0
   m_Name: ColliderPoint (1)
-  m_TagString: BondArea
+  m_TagString: Valley
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,7 +278,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.088561535, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3040552765058775376
+--- !u!114 &8839587827366406361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -286,11 +287,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3105594732061095653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2104e30e31d3c54f95aba45c1a320ae, type: 3}
+  m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 8152279988957728005}
+  Bonded: 0
 --- !u!1 &8152279988957728005
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,10 +302,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1413818760736458030}
   - component: {fileID: 8504837937549773611}
-  - component: {fileID: 5707381784851996163}
+  - component: {fileID: 3747557969431459550}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: BondArea
+  m_TagString: Peak
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -349,7 +350,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.088561535, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5707381784851996163
+--- !u!114 &3747557969431459550
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -358,7 +359,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8152279988957728005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
+  m_Script: {fileID: 11500000, guid: b2104e30e31d3c54f95aba45c1a320ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0

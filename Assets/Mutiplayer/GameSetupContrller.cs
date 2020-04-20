@@ -245,11 +245,10 @@ public class GameSetupContrller : MonoBehaviour
                 {
                     if (Element.GetComponent<PhotonView>().Owner == caller.GetComponent<PhotonView>().Owner)
                     {
-
-                    }
-                    if (!(Element.GetComponent<AtomController>().SingleBondingOpportunities == 0))
-                    {
-                        MoleculeCompleted = false;
+                        if (!(Element.GetComponent<AtomController>().CurrentSingleBondingOpportunities == 0))
+                        {
+                            MoleculeCompleted = false;
+                        }
                     }
                 }
                 else

@@ -21,14 +21,28 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     public int EnergyMatrixPosition;
 
+    public int CurrentSingleBondingOpportunities;
+
+    private TextController TC;
+
     private void Start()
     {
+        CurrentSingleBondingOpportunities = SingleBondingOpportunities;
         PV = GetComponent<PhotonView>();
     }
 
     void Awake()
     {
         GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>();
+
+        if (transform.root.GetComponent<PhotonView>().Owner == PhotonNetwork.PlayerList[0])
+        {
+            TC = GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>();
+        }
+        else
+        {
+            TC = GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>();
+        }
     }
 
     void OnMouseDown()
@@ -70,12 +84,31 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     }
 
+    public void EvaluatePoints()
+    {
+        int BondsMade = 0;
+        foreach (Transform child in transform.GetChild(variantCounter))
+        {
+            if (child.gameObject.GetComponent<BondEventScript>() != null)
+            {
+                if (child.gameObject.GetComponent<BondEventScript>().Bonded)
+                {
+                    BondsMade++;
+                }
+            }
+        }
+        CurrentSingleBondingOpportunities = SingleBondingOpportunities - BondsMade;
+        TC.BonusScore = GSC.TotalBonusPoints(transform.root.gameObject);
+    }
+
     public void BondingFunction(Collider2D collision)
     {
         FixedJoint2D joint;
         joint = gameObject.AddComponent<FixedJoint2D>();
         joint.connectedBody = collision.transform.root.gameObject.GetComponent<Rigidbody2D>();
         joint.enableCollision = false;
+        EvaluatePoints();
+        collision.transform.root.GetComponent<AtomController>().EvaluatePoints();
     }
 
     private void Update()
@@ -93,7 +126,8 @@ public class AtomController : MonoBehaviourPunCallbacks
 
         if (PV.IsMine == true)
             return;
-        // GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        GetComponent<Rigidbody2D>().angularVelocity = 0f;
     }
 
     void OnMouseDrag()

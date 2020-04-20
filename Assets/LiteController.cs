@@ -9,11 +9,10 @@ public class LiteController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isTriggered = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        isTriggered = false;
+        if ((tag == "Peak" && collision.tag == "Valley") || (tag == "Valley" && collision.tag == "Peak"))
+        {
+            isTriggered = true;
+            Debug.Log("Registered by LiteController");
+        }
     }
 }

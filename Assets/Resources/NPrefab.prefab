@@ -70,8 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 4056805497595712113}
+  Bonded: 0
 --- !u!1 &2487597549855875577
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,8 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 4167154664856926055}
+  Bonded: 0
 --- !u!1 &3339713831481746319
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 2101998756169871750}
   m_Layer: 0
   m_Name: ColliderPoint (1)
-  m_TagString: BondArea
+  m_TagString: Valley
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -355,6 +355,7 @@ MonoBehaviour:
   MoleculeElementsIdx: 0
   SingleBondingOpportunities: 0
   EnergyMatrixPosition: 0
+  CurrentSingleBondingOpportunities: 0
 --- !u!61 &3399983842357950395
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -594,8 +595,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 1716055211442538368}
+  Bonded: 0
 --- !u!1 &4167154664856926055
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,8 +667,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 2487597549855875577}
+  Bonded: 0
 --- !u!1 &4478404572709743978
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +682,7 @@ GameObject:
   - component: {fileID: 1072010241826836168}
   m_Layer: 0
   m_Name: ColliderPoint (5)
-  m_TagString: BondArea
+  m_TagString: Peak
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -753,7 +754,7 @@ GameObject:
   - component: {fileID: 2114188616824687361}
   m_Layer: 0
   m_Name: ColliderPoint
-  m_TagString: BondArea
+  m_TagString: Peak
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -810,8 +811,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 3339713831481746319}
+  Bonded: 0
 --- !u!1 &6318218356942585062
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,7 +826,7 @@ GameObject:
   - component: {fileID: 2852431358705087191}
   m_Layer: 0
   m_Name: ColliderPoint (2)
-  m_TagString: BondArea
+  m_TagString: Valley
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -882,8 +883,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 7724423781372583554}
+  Bonded: 0
 --- !u!1 &7724423781372583554
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +898,7 @@ GameObject:
   - component: {fileID: 1912647916782748513}
   m_Layer: 0
   m_Name: ColliderPoint (3)
-  m_TagString: BondArea
+  m_TagString: Peak
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -969,7 +970,7 @@ GameObject:
   - component: {fileID: 5265521548879970652}
   m_Layer: 0
   m_Name: ColliderPoint (4)
-  m_TagString: BondArea
+  m_TagString: Valley
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1026,5 +1027,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedb08aff0136b14c8a12de20e2d52db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
   TwinColider: {fileID: 4478404572709743978}
+  Bonded: 0
