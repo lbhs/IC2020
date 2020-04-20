@@ -3778,7 +3778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b55abec72a2af44a07651df6264fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIAnim: {fileID: 164241559}
+  UIAnim: {fileID: 0}
   die: {fileID: 1571556174}
   GameSetup: {fileID: 0}
 --- !u!65 &1730481322
