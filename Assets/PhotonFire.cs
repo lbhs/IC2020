@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class PhotonFire : MonoBehaviour
 
@@ -12,7 +12,8 @@ public class PhotonFire : MonoBehaviour
 	public GameObject uvphoton;
 	private photonParts photonParts;
 	public static int timer = 0;
-	int color = 1;
+	public int color = 1;
+	public Text colortxt;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,17 +26,29 @@ public class PhotonFire : MonoBehaviour
     void Update()
     {
 		timer--;
-        if(Input.GetKeyDown("down"))
+       if(Input.GetKeyDown("down"))
 		{
 			if(color <= 2)
 			{
-				color = color + 1;
+				color += 1;
 			}
 			else
 			{
 				color = 1;
 			}
 		}
+		if(color == 1)
+			{
+				colortxt.text = "Red Photons";
+			}
+			if(color == 2)
+			{
+				colortxt.text = "Blue Photons";
+			}
+			if(color == 3)
+			{
+				colortxt.text = "UV Photons";
+			}
 		if(Input.GetKeyDown("up") && timer <= 0)
 		{
 			timer = 30;

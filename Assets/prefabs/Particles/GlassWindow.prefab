@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3304963503365611736}
   - component: {fileID: 3304963503365611737}
   - component: {fileID: 3304963503365611733}
+  - component: {fileID: 1011181318004793480}
+  - component: {fileID: 6443524815156453357}
   m_Layer: 10
   m_Name: GlassWindow
   m_TagString: Glass
@@ -87,7 +89,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3304963503365611739}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -108,3 +110,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1011181318004793480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3304963503365611739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d49acfb97c6d0164b8eee52fb123986a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreboard: {fileID: 7739150116106630804, guid: d074fe9e931c5a74cbc7b2d3279433f2,
+    type: 3}
+--- !u!114 &6443524815156453357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3304963503365611739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b80b321139ecc9542848850664901850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  glass: {fileID: 0}
+  toggle: 0
+  timer: 0

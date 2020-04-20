@@ -132,6 +132,8 @@ MonoBehaviour:
   TargetMol: {fileID: 8444572533511891286, guid: c790de6575e5992418451d6d140b85eb,
     type: 3}
   TargetMol2: {fileID: 0}
+  scoreboard: {fileID: 7739150116106630804, guid: d074fe9e931c5a74cbc7b2d3279433f2,
+    type: 3}
 --- !u!54 &7148832378531529820
 Rigidbody:
   m_ObjectHideFlags: 0

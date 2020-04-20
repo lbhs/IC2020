@@ -14,6 +14,7 @@ public class photonParts : MonoBehaviour
 	public GameObject DissociationProduct2;
 	public GameObject TargetMol;
 	public GameObject TargetMol2;
+	public Scoreboard scoreboard;
 	
 	
     // Start is called before the first frame update
@@ -50,18 +51,19 @@ public class photonParts : MonoBehaviour
 		if(collider.gameObject.tag == "wall")
 		{
 			Destroy(gameObject);			
+			scoreboard.MultiDown();
 		}
 		
 		if((gameObject.tag == "blue" || gameObject.tag == "UV") && collider.gameObject.tag == "ChlorineMol")
 		{
 			print("hit the target");
 			ColPosition = collider.gameObject.transform.position;
-
+			scoreboard.MultiUp();
 			Destroy(gameObject);
 			Destroy(collider.gameObject);
 			Instantiate(DissociationProduct,ColPosition,Quaternion.identity);
 			Instantiate(DissociationProduct,new Vector3(ColPosition.x+1,ColPosition.y,0),Quaternion.identity);
-			Instantiate(TargetMol,new Vector3(-8.0f, 5.2f,0),Quaternion.identity);
+			Instantiate(TargetMol,new Vector3(Random.Range(-8f, 8f), Random.Range(1f, 5.3f),0),Quaternion.identity);
 			
 		}
 		
@@ -69,14 +71,19 @@ public class photonParts : MonoBehaviour
 		{
 			print("hit the target");
 			ColPosition = collider.gameObject.transform.position;
-
+			scoreboard.MultiUp();
 			Destroy(gameObject);
 			Destroy(collider.gameObject);
 			Instantiate(DissociationProduct2,ColPosition,Quaternion.identity);
 			Instantiate(DissociationProduct2,new Vector3(ColPosition.x+1,ColPosition.y,0),Quaternion.identity);
-			Instantiate(TargetMol2,new Vector3(-8.0f, 4f,0),Quaternion.identity);
+			Instantiate(TargetMol2,new Vector3(Random.Range(-8f, 8f), Random.Range(1f, 5.3f),0),Quaternion.identity);
 			
 		}
+		//if(gameObject.tag == "UV" && collider.gameObject.tag == "glass")
+		//{
+			//print("hit glass");
+			//Destroy(gameObject);
+		//}
 		//Destroy(gameObject);
 		//if(collider.gameObject.tag == "H Atom" || collider.gameObject.tag == "Cl atom")
 		//{

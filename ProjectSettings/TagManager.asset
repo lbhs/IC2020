@@ -20,6 +20,7 @@ TagManager:
   - HMol
   - Cl atom
   - H Atom
+  - HCl
   layers:
   - Default
   - TransparentFX
@@ -35,10 +36,10 @@ TagManager:
   - UVPhoton
   - RXNMols
   - HMol
-  - 
-  - 
-  - 
-  - 
+  - ClMol
+  - LoseBox
+  - HCl
+  - Cannon
   - 
   - 
   - 

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4610430598550535619}
   - component: {fileID: 4610430598550535618}
   - component: {fileID: 4610430598550535677}
-  - component: {fileID: 4610430598550535676}
   - component: {fileID: 4610430598550535679}
   - component: {fileID: 6245135120198031394}
   - component: {fileID: 8429297363556539992}
@@ -19,9 +18,10 @@ GameObject:
   - component: {fileID: 5822118072870648469}
   - component: {fileID: 2483013139108281903}
   - component: {fileID: 3823307466015848415}
-  m_Layer: 0
+  - component: {fileID: 2274297565440224231}
+  m_Layer: 16
   m_Name: '[SI] HCl'
-  m_TagString: Untagged
+  m_TagString: HCl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,19 +86,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &4610430598550535676
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4610430598550535678}
-  m_Material: {fileID: 13400000, guid: f71a7ef11b1c54161aeec278b597a151, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4610430598550535679
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -135,14 +122,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4610430598550535678}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0a86380fa4264d76825bcea6c874dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hasFlag: 0
   useTextLable: 1
-  Lable: Cl-
+  Lable: Cl
 --- !u!114 &7478683424538086906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +184,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2b31dda271aa040aade9d47ac0ce19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &2274297565440224231
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610430598550535678}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.6
+  m_Direction: 0
+  m_Center: {x: 0.3, y: 0, z: 0}
 --- !u!138 &8490137483881042685
 FixedJoint:
   m_ObjectHideFlags: 0
@@ -234,6 +235,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '[SI] H'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5046700012404117192, guid: 02917e9683e55bb448a99b8800dd3bcf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8525575850666484448, guid: 02917e9683e55bb448a99b8800dd3bcf,
         type: 3}

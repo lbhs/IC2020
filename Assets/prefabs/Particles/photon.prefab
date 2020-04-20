@@ -112,6 +112,12 @@ MonoBehaviour:
   bluephoton: {fileID: 0}
   uvphoton: {fileID: 0}
   velocity: {x: 0, y: 35, z: 0}
+  DissociationProduct: {fileID: 0}
+  DissociationProduct2: {fileID: 0}
+  TargetMol: {fileID: 0}
+  TargetMol2: {fileID: 0}
+  scoreboard: {fileID: 7739150116106630804, guid: d074fe9e931c5a74cbc7b2d3279433f2,
+    type: 3}
 --- !u!54 &1376757101942829631
 Rigidbody:
   m_ObjectHideFlags: 0

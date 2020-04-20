@@ -11,7 +11,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.007, y: 0.48099995, z: 0}
+  m_ConnectedAnchor: {x: 0.80700016, y: 0.48099995, z: 0}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1
@@ -114,6 +114,8 @@ GameObject:
   - component: {fileID: 611390824827602615}
   - component: {fileID: 8507214097644726684}
   - component: {fileID: 3292506631042376009}
+  - component: {fileID: 2761355641163176499}
+  - component: {fileID: 1784475158351760088}
   m_Layer: 13
   m_Name: '[SI] H2'
   m_TagString: HMol
@@ -161,7 +163,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d6b90155f32557a4195733f64bdfc237, type: 2}
+  - {fileID: 2100000, guid: 6171a6d3d2541754d9248db99ecb705b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -275,7 +277,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 7828793294531180281}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 0
@@ -294,6 +296,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &2761355641163176499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828793294531180281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769311c443500f24bb8f9aabef0ff2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+--- !u!114 &1784475158351760088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828793294531180281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a86380fa4264d76825bcea6c874dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasFlag: 0
+  useTextLable: 1
+  Lable: H
 --- !u!1001 &6827579942417585702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,6 +331,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7828793294531180274}
     m_Modifications:
+    - target: {fileID: 3845422906327184440, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
+        type: 3}
+      propertyPath: m_Name
+      value: '[SI] HMol2'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845422906327184440, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845422906327184440, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 361479009803524112, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -371,25 +416,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3845422906327184440, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
+    - target: {fileID: 6833468196448846092, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
         type: 3}
-      propertyPath: m_Name
-      value: '[SI] HMol2'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845422906327184440, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845422906327184440, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6171a6d3d2541754d9248db99ecb705b, type: 2}
     - target: {fileID: 6920965722469523575, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
         type: 3}
       propertyPath: Lable
-      value: 
+      value: H
       objectReference: {fileID: 0}
     - target: {fileID: 3932801236425007388, guid: 69bc1dfda764d2a44b2d20c3017bfe8e,
         type: 3}

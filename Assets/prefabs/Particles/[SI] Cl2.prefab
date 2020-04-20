@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!138 &8414662867030159355
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3931760196331800931}
+  m_ConnectedBody: {fileID: 8444572533511891281}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &8444572533511891286
 GameObject:
   m_ObjectHideFlags: 0
@@ -19,7 +33,8 @@ GameObject:
   - component: {fileID: 1179130049751073786}
   - component: {fileID: 178379128816861937}
   - component: {fileID: 681230923957509838}
-  m_Layer: 0
+  - component: {fileID: 729387484947374231}
+  m_Layer: 14
   m_Name: '[SI] Cl2'
   m_TagString: ChlorineMol
   m_Icon: {fileID: 0}
@@ -66,7 +81,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: be587c024a6f64557a6d1b8c43e1ac97, type: 2}
+  - {fileID: 2100000, guid: 484fa9bdbe9324a49b4b07847f9d4731, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -152,7 +167,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 8444572533511891286}
   m_Material: {fileID: 13400000, guid: f71a7ef11b1c54161aeec278b597a151, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 1.8
   m_Direction: 0
@@ -200,20 +215,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
---- !u!138 &8414662867030159355
-FixedJoint:
+--- !u!114 &729387484947374231
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3931760196331800931}
-  m_ConnectedBody: {fileID: 8444572533511891281}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
+  m_GameObject: {fileID: 8444572533511891286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769311c443500f24bb8f9aabef0ff2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
 --- !u!1001 &4670436031313376552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -230,6 +244,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Target
+      objectReference: {fileID: 0}
+    - target: {fileID: 8521043326856526923, guid: d43a85b37cb094ef79193033a59348b5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8521043326856526966, guid: d43a85b37cb094ef79193033a59348b5,
         type: 3}
@@ -301,6 +320,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8521043326856526920, guid: d43a85b37cb094ef79193033a59348b5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 484fa9bdbe9324a49b4b07847f9d4731, type: 2}
     - target: {fileID: 8521043326856526921, guid: d43a85b37cb094ef79193033a59348b5,
         type: 3}
       propertyPath: m_Enabled
