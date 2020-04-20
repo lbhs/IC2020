@@ -9,8 +9,6 @@ public class BondEventScript : MonoBehaviour
 
     private GameSetupContrller GSC;
     private PhotonView PV;
-    private TextController TC;
-    private BondEnergyValues BEV;
 
     public bool Bonded;
 
@@ -23,15 +21,6 @@ public class BondEventScript : MonoBehaviour
     private void Awake()
     {
         GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>();
-        if (transform.root.GetComponent<PhotonView>().Owner == PhotonNetwork.PlayerList[0])
-        {
-            TC = GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>();
-        }
-        else
-        {
-            TC = GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>();
-        }
-        BEV = GameObject.Find("BondEnergyMatrix").GetComponent<BondEnergyValues>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -54,8 +43,6 @@ public class BondEventScript : MonoBehaviour
 
                     GSC.gameObject.GetComponent<PhotonView>().RPC("MergeMoleculeLists", RpcTarget.All, MergeFrom, MergeInto);
                 }
-                TC.BondScore += BEV.bondEnergyArray[transform.root.GetComponent<AtomController>().EnergyMatrixPosition,
-                                                       collision.transform.root.GetComponent<AtomController>().EnergyMatrixPosition];
             }
         }
     }   

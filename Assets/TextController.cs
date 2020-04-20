@@ -26,7 +26,7 @@ public class TextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BondScoreText.text = "Joules of Heat Collected: " + BondScore; 
+        BondScoreText.text = "Heat Collected: " + BondScore; 
         BonusPointsText.text = "Molecule Bonus Points: " + BonusScore;
         TotalScoreText.text = "Total Points: " + (BondScore + BonusScore);
     }

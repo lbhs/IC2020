@@ -12,7 +12,6 @@ public class LiteController : MonoBehaviour
         if ((tag == "Peak" && collision.tag == "Valley") || (tag == "Valley" && collision.tag == "Peak"))
         {
             isTriggered = true;
-            Debug.Log("Registered by LiteController");
         }
     }
 }

@@ -25,6 +25,8 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     private TextController TC;
 
+    private BondEnergyValues BEV;
+
     private void Start()
     {
         CurrentSingleBondingOpportunities = SingleBondingOpportunities;
@@ -43,6 +45,8 @@ public class AtomController : MonoBehaviourPunCallbacks
         {
             TC = GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>();
         }
+
+        BEV = GameObject.Find("BondEnergyMatrix").GetComponent<BondEnergyValues>();
     }
 
     void OnMouseDown()
@@ -107,6 +111,9 @@ public class AtomController : MonoBehaviourPunCallbacks
         joint = gameObject.AddComponent<FixedJoint2D>();
         joint.connectedBody = collision.transform.root.gameObject.GetComponent<Rigidbody2D>();
         joint.enableCollision = false;
+        
+        TC.BondScore += BEV.bondEnergyArray[EnergyMatrixPosition,
+                                            collision.transform.root.GetComponent<AtomController>().EnergyMatrixPosition];
         EvaluatePoints();
         collision.transform.root.GetComponent<AtomController>().EvaluatePoints();
     }

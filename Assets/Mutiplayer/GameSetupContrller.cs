@@ -134,8 +134,6 @@ public class GameSetupContrller : MonoBehaviour
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[1]);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[0]);
             PV.RPC("AnimateCam", RpcTarget.All, false);
-            P1Display.SetActive(false);
-            P2Display.SetActive(true);
         }
         else if(state == GameState.Player2Turn)
         {
@@ -144,8 +142,6 @@ public class GameSetupContrller : MonoBehaviour
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[0]);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[1]);
             PV.RPC("AnimateCam", RpcTarget.All, true);
-            P2Display.SetActive(false);
-            P1Display.SetActive(true);
         }
     }
 
@@ -178,7 +174,21 @@ public class GameSetupContrller : MonoBehaviour
         //Debug.Log("2");
         TurnScreen.SetActive(false);
         // DieScript.rolling = 0;
-        if (state == GameState.Player1Turn)
+        PV.RPC("ChangeScreenDisplaying", RpcTarget.All, state);
+        GameObject.Find("UI").transform.GetChild(1).gameObject.GetComponent<Button>().interactable = true;
+        // Debug.Log("Rolling: " + DieScript.rolling);
+    }
+    
+    [PunRPC]
+    public void ChangeState(GameState s)
+    {
+        state = s;
+    }
+
+    [PunRPC]
+    private void ChangeScreenDisplaying(GameState s)
+    {
+        if (s == GameState.Player1Turn)
         {
             P1Display.SetActive(true);
             P2Display.SetActive(false);
@@ -188,14 +198,6 @@ public class GameSetupContrller : MonoBehaviour
             P2Display.SetActive(true);
             P1Display.SetActive(false);
         }
-        GameObject.Find("UI").transform.GetChild(1).gameObject.GetComponent<Button>().interactable = true;
-        // Debug.Log("Rolling: " + DieScript.rolling);
-    }
-    
-    [PunRPC]
-    public void ChangeState(GameState s)
-    {
-        state = s;
     }
 
     public bool InSubList(GameObject GOToFind, int SublistIdx)
