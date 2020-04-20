@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 6300760783492108543}
   - component: {fileID: 4061651494687081267}
   - component: {fileID: 3596496499914749758}
+  - component: {fileID: 794063428015663777}
   m_Layer: 0
   m_Name: OxLinearD
   m_TagString: Oxygen
@@ -425,6 +426,7 @@ MonoBehaviour:
   valleysRemaining: 2
   bondArrayID: 2
   MoleculeID: 0
+  SoundFX: {fileID: 0}
 --- !u!114 &4061651494687081267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,6 +465,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.027447, y: 2.9947562}
   m_EdgeRadius: 0
+--- !u!114 &794063428015663777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280458384227402504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7150facc9277ba4cbf3f3663b66b784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrefabToBecome: {fileID: 3165713786430717543, guid: fbc1b925276f3ba4e892563c51635b3a,
+    type: 3}
 --- !u!1 &9204335004933918262
 GameObject:
   m_ObjectHideFlags: 0

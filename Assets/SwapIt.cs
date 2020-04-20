@@ -7,13 +7,29 @@ public class SwapIt : MonoBehaviour
 	[SerializeField]
 	private Object PrefabToBecome; 
 	
+	private float LastClickTime;
+	private float TimeSinceLastClick;
+	public const double DoubleClickThreshold = 0.2;
+	
 	void OnMouseOver()
 	{
 		Debug.Log(GetComponent<FixedJoint2D>());
-		if(Input.GetMouseButtonDown(2) && GetComponent<BondMaker>().bonded == false)
+		if(Input.GetMouseButtonDown(0) && GetComponent<BondMaker>().bonded == false)
 		{
-			Instantiate(PrefabToBecome, transform.position, Quaternion.identity);
-			Destroy(gameObject);
+			TimeSinceLastClick = Time.time - LastClickTime;
+            if (TimeSinceLastClick <= DoubleClickThreshold)
+            {
+				Instantiate(PrefabToBecome, transform.position, Quaternion.identity);
+				Destroy(gameObject);
+			}
 		}
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            LastClickTime = Time.time;
+        }
     }
 }

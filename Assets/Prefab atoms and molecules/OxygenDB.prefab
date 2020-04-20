@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 464441029072706449}
   - component: {fileID: 5665381326587552875}
   - component: {fileID: 819311316482164813}
+  - component: {fileID: 4293021155035418551}
   m_Layer: 0
   m_Name: OxygenDB
   m_TagString: Oxygen
@@ -137,6 +138,7 @@ MonoBehaviour:
   valleysRemaining: 1
   bondArrayID: 2
   MoleculeID: 0
+  SoundFX: {fileID: 0}
 --- !u!114 &5665381326587552875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +177,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9378843, y: 2.990076}
   m_EdgeRadius: 0
+--- !u!114 &4293021155035418551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165713786430717543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7150facc9277ba4cbf3f3663b66b784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrefabToBecome: {fileID: 8280458384227402504, guid: c447ed7900541ad42b42e1dc2bf22388,
+    type: 3}
 --- !u!1 &5364500037088676356
 GameObject:
   m_ObjectHideFlags: 0

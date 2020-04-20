@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 3448943904270331744}
   - component: {fileID: 7215969141904262616}
   - component: {fileID: 2504367646903285636}
+  - component: {fileID: 991289980963616411}
   m_Layer: 0
   m_Name: CarbonD
   m_TagString: Carbon
@@ -202,6 +203,7 @@ MonoBehaviour:
   valleysRemaining: 4
   bondArrayID: 1
   MoleculeID: 0
+  SoundFX: {fileID: 0}
 --- !u!61 &2504367646903285636
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -228,6 +230,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9784908, y: 2.900618}
   m_EdgeRadius: 0
+--- !u!114 &991289980963616411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165713786430717543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7150facc9277ba4cbf3f3663b66b784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrefabToBecome: {fileID: 3165713786430717543, guid: 2741d929d340c954bb34b68071057983,
+    type: 3}
 --- !u!1 &3701683146779844129
 GameObject:
   m_ObjectHideFlags: 0
