@@ -14,7 +14,7 @@ public class DragIt : MonoBehaviour
 
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void OnMouseDown()
@@ -36,8 +36,8 @@ public class DragIt : MonoBehaviour
     void OnMouseDrag()
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //rb.GetComponent<Rigidbody2D>().MovePosition(mousePosition);
-        transform.position = new Vector2(mousePosition.x-deltaX, mousePosition.y-deltaY);
+        rb.MovePosition(new Vector2(mousePosition.x-deltaX, mousePosition.y-deltaY));
+        //transform.position = new Vector2(mousePosition.x-deltaX, mousePosition.y-deltaY);
 		
     }
 
@@ -48,6 +48,7 @@ public class DragIt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = 0f;
     }
 }

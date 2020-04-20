@@ -5,10 +5,9 @@ using UnityEngine;
 public class AtomInventory : MonoBehaviour
 {
     public static List<GameObject>[] MoleculeList;
-    public int[] bonusPts = new int[13];  //points for completing molecules of different sizes
+    public int[] bonusPts = new int[8];  //points for completing molecules of different sizes
     private int i;
-    //private List<GameObject> Molecule3;
-    //public static List<List<GameObject>> MoleculeList2;
+    
 
 
 
@@ -16,8 +15,8 @@ public class AtomInventory : MonoBehaviour
     void Start()
     {
                  
-        MoleculeList = new List<GameObject>[12];  //limits player to 12 total molecules (seems plenty)
-        //MoleculeList2 = new List<List<GameObject>>(); 
+        MoleculeList = new List<GameObject>[13];  //limits player to 12 total molecules bc index starts at 1 (seems plenty)
+         
     }
 
     // Update is called once per frame
@@ -30,7 +29,7 @@ public class AtomInventory : MonoBehaviour
             {
                 print("Molecule " +i);
                 
-                if(MoleculeList[i]!= null)  //attempts to access an empty (null) molecule list throws an error message
+                if(MoleculeList[i] != null)  //attempts to access an empty (null) molecule list throws an error message
                 {
                     foreach (GameObject atom in MoleculeList[i]) //GameObject.Find("MoleculeListKeeper").GetComponent<//AtomInventory>().MoleculeList[Index])
                     {
@@ -43,18 +42,7 @@ public class AtomInventory : MonoBehaviour
             
         }
 
-        /*
-        if(Input.GetKeyDown("a"))
-
-        foreach (List<GameObject> Molecule3 in MoleculeList2)
-        {
-            print("next molecule");
-            foreach (GameObject atom in Molecule3) //GameObject.Find("MoleculeListKeeper").GetComponent<//AtomInventory>().MoleculeList[Index])
-            {
-                print(atom.name);
-            }
-        }
-         */   
+       
 
     }
 }
