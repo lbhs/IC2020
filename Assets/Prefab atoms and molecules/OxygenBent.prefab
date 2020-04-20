@@ -149,11 +149,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad5ac7c22a246d48be08303176d5d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atomPriority: 2
   bonded: 0
   colliderCount: 0
   valleysRemaining: 2
   bondArrayID: 2
+  MoleculeID: 0
 --- !u!114 &959265861618892416
 MonoBehaviour:
   m_ObjectHideFlags: 0

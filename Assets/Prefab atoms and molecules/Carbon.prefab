@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 2818919579691457422}
   - component: {fileID: 3448943904270331744}
   - component: {fileID: 7215969141904262616}
+  - component: {fileID: 9148078769616809934}
   m_Layer: 0
   m_Name: Carbon
   m_TagString: Carbon
@@ -214,6 +215,20 @@ MonoBehaviour:
   valleysRemaining: 4
   bondArrayID: 1
   MoleculeID: 0
+--- !u!114 &9148078769616809934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165713786430717543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7150facc9277ba4cbf3f3663b66b784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrefabToBecome: {fileID: 3165713786430717543, guid: 58628cb536b82ca45ae45350916d694f,
+    type: 3}
 --- !u!1 &4124594428835375705
 GameObject:
   m_ObjectHideFlags: 0
