@@ -6,12 +6,21 @@ using UnityEngine.SceneManagement;
 public class resetScene : MonoBehaviour
 {
     public GameObject DisplayCanvas;
+    public GameObject ScoreDisplay;
     public Font ken;
 
     public void gameOver()
     {
         DontDestroyOnLoad(DisplayCanvas);
-        SceneManager.LoadScene("GameOver");
+		foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
+		{
+			if(!(o == ScoreDisplay || o == DisplayCanvas))
+			{
+				Destroy(o);
+			}
+        }
+        SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+		SceneManager.UnloadSceneAsync(0);
         DisplayCanvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().enabled = false;
         DisplayCanvas.transform.GetChild(1).gameObject.GetComponent<UnityEngine.UI.Text>().enabled = false;
         DisplayCanvas.transform.GetChild(2).gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, 50, 0);
@@ -21,8 +30,12 @@ public class resetScene : MonoBehaviour
 
     public void reset()
     {
-        Destroy(GameObject.Find("ScoreDisplay"));
-        SceneManager.LoadScene(0);
+		foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
+		{
+			Destroy(o);
+        }
+        SceneManager.LoadScene(0, LoadSceneMode.Additive);
+		SceneManager.UnloadSceneAsync(1);
     }
 }
 

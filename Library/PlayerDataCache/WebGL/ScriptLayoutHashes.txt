@@ -1,6 +1,6 @@
 WebGL
 PlayerPath?
-C:/Users/sgsog/Desktop/CrownJoules8/WebGL Build1
+C:/Users/Benny/Desktop/crown-joules-solitaire
 SceneListBegin?
 Assets/Scenes/Crown Joules 8.5--For Build.unity
 Assets/Scenes/GameOver.unity
@@ -137,7 +137,7 @@ bfe0d0debd0d2ea874fda56ba87fb001 Assembly-CSharp.dll:.AtomInventory
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.DragIt
 d1b547c631e218c89476a105c24fc821 Assembly-CSharp.dll:.BondEnergyValues
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.RotateThis
-5d154fdcaba5436b6106d6b93bfddaa3 Assembly-CSharp.dll:.resetScene
+d3a08e9aa176359a3e6cd04c76ce83a3 Assembly-CSharp.dll:.resetScene
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 1dcb82730d983b77cec736c6ef19f814 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
