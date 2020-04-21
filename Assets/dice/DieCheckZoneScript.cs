@@ -88,8 +88,6 @@ public class DieCheckZoneScript : MonoBehaviour {
             UIAnim.SetTrigger("DoubleDown");
             // PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleDown");
         }
-        //NetowrkSpawn(OPrefab, Vector3.zero);
-       // SpawnJoule();
-       // SpawnJoule();
+       
     }
 }

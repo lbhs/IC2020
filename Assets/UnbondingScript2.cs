@@ -24,6 +24,8 @@ public class UnbondingScript2 : MonoBehaviour
     private GameObject Diatomic;
     private Vector3 DiatomicPosition;
     private AudioSource SoundFX2;
+    private GameObject JouleToDestroy;
+    private GameObject[] JoulesInCorral;
 
 
     // Start is called before the first frame update
@@ -42,7 +44,7 @@ public class UnbondingScript2 : MonoBehaviour
         print(collider.transform.root.gameObject);
         if(collider.transform.root.gameObject.tag == "Diatomic")
         {
-            print("dissociate H2!");
+            print("dissociate diatomic!");
             Diatomic = collider.transform.root.gameObject;
             if(Diatomic.GetComponent<DiatomicScript>().BondDissociationEnergy > DisplayJoules.JouleTotal)
             {
@@ -51,10 +53,16 @@ public class UnbondingScript2 : MonoBehaviour
             }
             DisplayJoules.JouleTotal -= Diatomic.GetComponent<DiatomicScript>().BondDissociationEnergy;
             DiatomicPosition = Diatomic.transform.position;
-            Instantiate(Diatomic.GetComponent<DiatomicScript>().DissociationProduct, DiatomicPosition, Quaternion.identity);
+            Instantiate(Diatomic.GetComponent<DiatomicScript>().DissociationProduct, DiatomicPosition, Quaternion.identity);  //makes a single atom of H, Cl or O
             Instantiate(Diatomic.GetComponent<DiatomicScript>().DissociationProduct, new Vector3(DiatomicPosition.x + 2.5f, DiatomicPosition.y, 0f), Quaternion.Euler(0f, 0f, 180f));
-            Destroy(Diatomic);  //NEED TO INSTANTIATE A SECOND DISSOCIATION PRODUCT WITH ROTATION 180 DEGREES, THEN RETURN
+            Destroy(Diatomic);  //the line above spawns the second atom rotated 180  degrees from the first
             SoundFX2.Play();
+            JoulesInCorral = GameObject.FindGameObjectsWithTag("JouleInCorral");   //fill array with all the joules in the corral
+            for (i = 0; i < Diatomic.GetComponent<DiatomicScript>().BondDissociationEnergy; i++)     //for as many joules as it takes to break the bond
+            {
+                Destroy(JoulesInCorral[i]);
+            }
+
         }
 
         if (DotCount == 0)
@@ -93,9 +101,19 @@ public class UnbondingScript2 : MonoBehaviour
 
                 print("JouleCost =" + JouleCost);    
                 if(JouleCost > DisplayJoules.JouleTotal)
-                { print("can't break this bond!");
-                  return; }
+                {
+                    print("can't break this bond!");    //NEED TO PRINT THIS ON SCREEN SO PLAYERS CAN SEE!
+                    return;
+                }
+
                 DisplayJoules.JouleTotal -= JouleCost;
+
+                JoulesInCorral = GameObject.FindGameObjectsWithTag("JouleInCorral");   //fill array with all the joules in the corral
+                for (i = 0; i < JouleCost; i++)     //for as many joules as it takes to break the bond
+                {
+                    Destroy(JoulesInCorral[i]);
+                }
+                    
 
 
                 MolIDValue = Atom1.GetComponent<BondMaker>().MoleculeID;
@@ -115,6 +133,13 @@ public class UnbondingScript2 : MonoBehaviour
                     Atom2.GetComponent<BondMaker>().MoleculeID = 0;
                     AtomInventory.MoleculeList[MolIDValue].Remove(Atom2);
                     Atom2.GetComponent<BondMaker>().bonded = false;
+                    //NEED TO MAKE ATOM1 BONDED = FALSE IF IT IS AN OXYGEN OR CARBON THAT IS ALL ALONE
+                    if (AtomInventory.MoleculeList[MolIDValue].Count == 1)  //check to see if Atom1 is all alone, if so, MoleculeID = zero
+                    {
+                        Atom1.GetComponent<BondMaker>().bonded = false;
+                        Atom1.GetComponent<BondMaker>().MoleculeID = 0;
+                        AtomInventory.MoleculeList[MolIDValue].Clear();
+                    }
                 }
 
 
@@ -167,7 +192,7 @@ public class UnbondingScript2 : MonoBehaviour
 
                         }
                     }
-
+                    //SET BONDED TO FALSE IF BONDING PARTNER LIST HAS ONLY ONE ATOM IN IT!!!!!
                     foreach (Rigidbody2D atomRB in BondingPartnerList)   //this list is only carbons and oxygens--hydrogens added later
                     {
                             print("Atom2 BondingPartnerList contains " + atomRB);  //just a check to see if the list is complete
@@ -203,16 +228,29 @@ public class UnbondingScript2 : MonoBehaviour
 
                     NewMoleculeID = Index;                         //Index shows the empty slot to use for the new MoleculeID 
                     AtomInventory.MoleculeList[MolIDValue].Remove(Atom2);  //take Atom2 out of the original MoleculeID
-
+                    
 
                     foreach (Rigidbody2D BP in BondingPartnerList)  //BondingPartnerList is a list of all the atoms to move
                     {
+                        if(BondingPartnerList.Count == 1)   //only a single atom being dissociated
+                        {
+                            BP.GetComponent<BondMaker>().bonded = false;    //set to unbonded--allows rotation and SwapIt
+                            BP.GetComponent<BondMaker>().MoleculeID = 0;    //set molecule ID to zero
+                            break;
+                        }
                     TempAtomList.Add(BP.gameObject);     //translates RigidbodyList to GameObjectList
                     AtomInventory.MoleculeList[MolIDValue].Remove(BP.gameObject);   //removes BondingPartners of Atom2 from original MoleculeID
                     BP.gameObject.GetComponent<BondMaker>().MoleculeID = NewMoleculeID;  //redesignates atom with correct ID
-                    }  
-                                
+                    
+                    }
                     AtomInventory.MoleculeList[NewMoleculeID] = TempAtomList;  //stores the atoms that have been moved in a new MoleculeID slot
+
+                    if (AtomInventory.MoleculeList[MolIDValue].Count == 1)  //check to see if Atom1 is all alone, if so, MoleculeID = zero
+                    {
+                        Atom1.GetComponent<BondMaker>().bonded = false;
+                        Atom1.GetComponent<BondMaker>().MoleculeID = 0;
+                        AtomInventory.MoleculeList[MolIDValue].Clear();
+                    }
                 }
                                 
             }
@@ -222,8 +260,10 @@ public class UnbondingScript2 : MonoBehaviour
                 Atom2.transform.position = new Vector2(Atom2.transform.position.x + 0.4f*bondDirection.x, Atom2.transform.position.y + 0.4f*bondDirection.y);
                 Atom1.GetComponent<BondMaker>().valleysRemaining++;   //an empty bonding slot has appeared on Atom1
                 Atom2.GetComponent<BondMaker>().valleysRemaining++;    //an empty bonding slot has appeared on Atom2
-                SoundFX2.Play();
+                SoundFX2.Play();   //Plays Unbonding Sound
 
+            if (AtomInventory.MoleculeList[MolIDValue] != null)
+            {
                 foreach (GameObject MCToken in AtomInventory.MoleculeList[MolIDValue])
                 {
                     if (MCToken.tag == "MCToken")         //Unbonding removes the COMPLETED MOLECULE TOKEN from the MoleculeList 
@@ -234,7 +274,7 @@ public class UnbondingScript2 : MonoBehaviour
                         break;
                     }
                 }
-                                                                      
+            }                                                             
         }
         
 

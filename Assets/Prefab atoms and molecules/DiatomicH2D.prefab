@@ -144,6 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6aaeecdc3cb08d49b5d5022a0336ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DissociationProduct: {fileID: 1444421772686509034, guid: 66dfc5699e4c1a844b36e8339fe44d17,
+  DissociationProduct: {fileID: 1444421772686509034, guid: 6fefec1ae13d44c09875e219be31ce44,
     type: 3}
   BondDissociationEnergy: 2

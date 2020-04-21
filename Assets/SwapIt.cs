@@ -13,7 +13,6 @@ public class SwapIt : MonoBehaviour
 	
 	void OnMouseOver()
 	{
-		Debug.Log(GetComponent<FixedJoint2D>());
 		if(Input.GetMouseButtonDown(0) && GetComponent<BondMaker>().bonded == false)
 		{
 			TimeSinceLastClick = Time.time - LastClickTime;

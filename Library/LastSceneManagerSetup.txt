@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Scenes/Crown Joules 8.5--For Build.unity
+  isLoaded: 1
+  isActive: 1

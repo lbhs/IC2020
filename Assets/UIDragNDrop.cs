@@ -27,6 +27,12 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
         prefabWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         prefabWorldPosition.z = 0;
         Instantiate(PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
+        if(PrefabToSpawn.tag == "Diatomic")
+        {
+            DisplayJoules.BonusPointTotal += 10;  //if PREFAB TO SPAWN IS DIATOMIC, GIVE 10 BONUS POINTS (no need to add to MOLECULEID LIST?)
+        }
+        
+        
         GameObject.Find("UI").GetComponent<Animator>().SetTrigger("Exit");
     }
 }

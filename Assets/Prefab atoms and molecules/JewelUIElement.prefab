@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3408437760072233888}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 268, y: -266, z: 8.264544}
-  m_LocalScale: {x: 1.2578616, y: 1.2578616, z: 1.2578616}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1.2578616}
   m_Children:
   - {fileID: 6196738212024961040}
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5223252144828080470}
   - component: {fileID: 8390713464693234982}
   - component: {fileID: 3725449679323230884}
-  - component: {fileID: 5026925778103424018}
+  - component: {fileID: 537934447390496035}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PrefabToSpawn: {fileID: 8565454377649884571, guid: 55fcd445d739da04ab092527b8e60e70,
     type: 3}
---- !u!114 &5026925778103424018
+--- !u!114 &537934447390496035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9194171092803965573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 723096024f4fd3542897b1a79f1223d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 598bfed4e3ed11d48aee491030e20fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   returnToZero: 1

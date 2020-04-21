@@ -136,6 +136,8 @@ public class BondMaker: MonoBehaviour
                 collider.transform.root.gameObject.GetComponent<BondMaker>().valleysRemaining--;    //decrease bonding slots on BondingPartner
                 collider.transform.root.gameObject.GetComponent<BondMaker>().bonded = true;        //set BondingPartner to bonded state
                 SoundFX.Play();
+
+               
                 
                 //this section of code finds the Bond Energy value in the 2D bondArray --needs identity of the two atoms making the bond (order is irrelevant)
 
@@ -153,6 +155,10 @@ public class BondMaker: MonoBehaviour
                 print("BondEnergy =" +BondEnergy);  
                 DisplayJoules.JouleTotal += BondEnergy;        //this updates the total joule count from all bonds that the player has formed so far
 
+                for (i = 0; i < BondEnergy; i++)  //adds the right number of joules to the JouleCorral
+                {
+                    GameObject.Find("JouleHolder").GetComponent<JouleHolderScript>().JSpawn();
+                }
 
                 //this next section counts the number of unfilled bonding slots ("valleys")
                 for (i = 0; i < TempAtomList.Count; i++)   
