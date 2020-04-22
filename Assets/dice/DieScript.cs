@@ -26,6 +26,10 @@ public class DieScript : MonoBehaviour {
 
     public void RollDiceAnimation()
     {
+		if(rolling == 4)
+		{
+			rolling = 0;
+		}
         if (rolling == 0)
         {
             if (totalRolls < 13)
