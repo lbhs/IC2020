@@ -1,9 +1,8 @@
 WebGL
 PlayerPath?
-C:/Users/sgsog/Desktop/CrownJoules8/WebGL Build1
+C:/Users/sgsog/Desktop/CrownJoules8/WebGLBuild3
 SceneListBegin?
-Assets/Scenes/Crown Joules 8.5--For Build.unity
-Assets/Scenes/GameOver.unity
+Assets/Scenes/Crown Joules 8.6--Build with no atoms in original scene.unity
 SceneListEnd?
 984dcc0ba3707b7691fbdca8ff508d28 Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 d56749ad0877e84137587b551d007128 Assembly-CSharp.dll:.DisplayJoules

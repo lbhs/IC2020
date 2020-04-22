@@ -1,10 +1,9 @@
 Win64
 PlayerPath?
-C:/Users/sgsog/Desktop/CrownJoules7/WindowsBuild2/Crown Joules 3B.exe
+C:/Users/sgsog/Desktop/CrownJoules8/WindowsBuild4/Crown Joules 3B.exe
 SceneListBegin?
-Assets/Scenes/Crown Joules 7.1--deleted unneeded stuff, colored background.unity
+Assets/Scenes/Crown Joules 8.6--Build with no atoms in original scene.unity
 SceneListEnd?
-49de187f09e6094317308b5ee0ca0454 Assembly-CSharp.dll:.UIDragAndDrop2
 984dcc0ba3707b7691fbdca8ff508d28 Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 d56749ad0877e84137587b551d007128 Assembly-CSharp.dll:.DisplayJoules
 01aa15e337e3a9c62f15153dfac6d589 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
@@ -121,8 +120,10 @@ ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networki
 9b895dcabbc1faf095c000c32d471fd0 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 5887ef1bc706b22b773d253fd443ceef UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+2b5c3468f84b76a6c40a2162ab7052df Assembly-CSharp.dll:.MusicManager
 303ad70ce203ad874efe2965d0fbcff9 Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsEventTracker
 7fb9de8dcf73854b6b328eca1f7a6e6d Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsTracker
+49de187f09e6094317308b5ee0ca0454 Assembly-CSharp.dll:.DragJoule
 94017dcc9f00fe671ea7dc427b4da011 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 3ba577b728ef2d198b81072b2bb7a7d7 Assembly-CSharp.dll:.MoleculeCompletionPtArray
 7a44262097dbcab19edab5a516de9538 Assembly-CSharp.dll:.NewBehaviourScript
@@ -135,6 +136,7 @@ bfe0d0debd0d2ea874fda56ba87fb001 Assembly-CSharp.dll:.AtomInventory
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.DragIt
 d1b547c631e218c89476a105c24fc821 Assembly-CSharp.dll:.BondEnergyValues
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.RotateThis
+5d154fdcaba5436b6106d6b93bfddaa3 Assembly-CSharp.dll:.resetScene
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 1dcb82730d983b77cec736c6ef19f814 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -170,10 +172,12 @@ fb6a1ea36b4f6ef5948d283d93760765 UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 a4f0a4f62100f1a4fb5cbe0e00dde83f Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 5fc094978ce3e3591a7500ed380d854a Unity.Analytics.DataPrivacy.dll:UnityEngine.Analytics.DataPrivacyButton
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-a00b8fe33173547ac4bc0497e72e216f Assembly-CSharp.dll:.BondMaker
+bef8fa90a77b69928afbe175e1809e7f Assembly-CSharp.dll:.BondMaker
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 47d1bcb84586351e51ac183f9b889848 Assembly-CSharp.dll:.DiatomicScript
+15801bbff2958f6c2af9a75d6f93100f Assembly-CSharp.dll:.SwapIt
 c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 1af3652baf96a7d18cc0820a4af83711 Assembly-CSharp.dll:.DieCheckZoneScript
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
+d09e4a9d86f4b79bb6270979732890f6 Assembly-CSharp.dll:.JouleHolderScript

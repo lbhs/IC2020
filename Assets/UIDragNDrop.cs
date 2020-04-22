@@ -29,7 +29,8 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
         Instantiate(PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
         if(PrefabToSpawn.tag == "Diatomic")
         {
-            DisplayJoules.BonusPointTotal += 10;  //if PREFAB TO SPAWN IS DIATOMIC, GIVE 10 BONUS POINTS (no need to add to MOLECULEID LIST?)
+            DisplayJoules.BonusPointTotal += 10;  //if prefabToSpawn is diatomic, add 10 BonusPts (no need to add to MOLECULEID LIST?)
+
         }
         
         

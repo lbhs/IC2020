@@ -63,6 +63,7 @@
     <Compile Include="Assets\AtomInventory.cs" />
     <Compile Include="Assets\BondEnergyValues.cs" />
     <Compile Include="Assets\BondMaker.cs" />
+    <Compile Include="Assets\CannotBreakBond.cs" />
     <Compile Include="Assets\DiatomicScript.cs" />
     <Compile Include="Assets\dice\DieCheckZoneScript.cs" />
     <Compile Include="Assets\dice\DieFade.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\resetScene.cs" />
     <Compile Include="Assets\RotateThis.cs" />
     <Compile Include="Assets\SwapIt.cs" />
+    <Compile Include="Assets\TurnNumberDisplayScript.cs" />
     <Compile Include="Assets\UIDragNDrop.cs" />
     <Compile Include="Assets\UIDrop2World.cs" />
     <Compile Include="Assets\UIDropToWorld.cs" />
