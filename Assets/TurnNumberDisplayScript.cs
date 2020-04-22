@@ -7,15 +7,9 @@ public class TurnNumberDisplayScript : MonoBehaviour
 {
     public Text TurnNumber;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        TurnNumber.text = "Turn Number " + DieScript.totalRolls;
+        TurnNumber.text = "Final Turn!\nRoll again to end the game."; //the "\n" forces it to go to the next line
     }
 }
