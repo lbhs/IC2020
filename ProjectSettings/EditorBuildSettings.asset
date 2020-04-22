@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Crown Joules 8.6--Build with no atoms in original scene.unity
-    guid: 2f27cd6f848cf4440ab6f886971cddf6
+    path: Assets/Scenes/Crown Joules.unity
+    guid: d9668c907ab56164891024397400f184
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 3da2df55d327db24cb01eeec44e4b8a4
   m_configObjects: {}

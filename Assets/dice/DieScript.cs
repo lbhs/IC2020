@@ -28,7 +28,7 @@ public class DieScript : MonoBehaviour {
     {
         if (rolling == 0)
         {
-            if (totalRolls < 13)
+            if (totalRolls < 12)
             {
                 rolling++;
                 totalRolls++;

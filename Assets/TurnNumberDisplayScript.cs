@@ -12,7 +12,7 @@ public class TurnNumberDisplayScript : MonoBehaviour
     {
 		if(DieScript.totalRolls == 12)
 		{
-			TurnNumber.text = "Final Turn! Roll again to end the game.";
+			TurnNumber.text = "Final Turn!\nRoll again to end the game."; //the "\n" forces it to go to the next line
 		}
 		else
 		{

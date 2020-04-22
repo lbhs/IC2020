@@ -217,8 +217,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 391, y: 179}
-  m_SizeDelta: {x: 300, y: 45}
+  m_AnchoredPosition: {x: 353.4, y: 128.50003}
+  m_SizeDelta: {x: 225, y: 146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &28852946
 MonoBehaviour:
@@ -266,7 +266,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: turn number text
 --- !u!222 &28852948
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -954,7 +954,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: bonus point text
 --- !u!222 &330250944
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1006,15 +1006,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378411757}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.53}
+  m_LocalPosition: {x: 0, y: 0, z: -3.3600001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1571556181}
   - {fileID: 1730481320}
   - {fileID: 1989174600}
   - {fileID: 576275204}
-  m_Father: {fileID: 1446164427}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &386179165
 GameObject:
@@ -1274,7 +1274,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: score text
 --- !u!222 &673541776
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1637,7 +1637,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: not enough joules text
 --- !u!222 &879619176
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1655,7 +1655,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 879619173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4db03c58ea75cb247a67ac90642c7933, type: 3}
+  m_Script: {fileID: 11500000, guid: a5af7b80b6fef2f4c95936690a6baabb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NotEnoughJoulesTextbox: {fileID: 879619175}
@@ -2926,8 +2926,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 378411758}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3119,7 +3118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayCanvas: {fileID: 908358329}
-  ScoreDisplay: {fileID: 0}
+  ScoreDisplay: {fileID: 673541773}
   ken: {fileID: 12800000, guid: 8a93c14dca0283245a10b34fa8ecb79d, type: 3}
 --- !u!114 &1571556178
 MonoBehaviour:
@@ -4030,7 +4029,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: joules collected text
 --- !u!222 &2066847084
 CanvasRenderer:
   m_ObjectHideFlags: 0
