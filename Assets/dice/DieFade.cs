@@ -47,7 +47,7 @@ public class DieFade : MonoBehaviour
 				lerping = false;
 			}
 		}
-		DieScript.rolling = 3;
+		DieScript.rolling = 0;
 		GetComponent<DieScript>().Reset();
 		mesh.material.color = initialColor;
 		yield break;
