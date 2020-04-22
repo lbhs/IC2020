@@ -26,6 +26,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
         UseingMe = false;
         prefabWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         prefabWorldPosition.z = 0;
+		DieScript.rolling = 0;
         Instantiate(PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
         if(PrefabToSpawn.tag == "Diatomic")
         {

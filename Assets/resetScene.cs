@@ -19,7 +19,7 @@ public class resetScene : MonoBehaviour
 				Destroy(o);
 			}
         }
-        SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+        SceneManager.LoadScene("GameOver", LoadSceneMode.Additive); //needed to prevent new scene from loading on the same frame as unloading old scene which crashes webgl
 		SceneManager.UnloadSceneAsync(0);
         DisplayCanvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().enabled = false;
         DisplayCanvas.transform.GetChild(1).gameObject.GetComponent<UnityEngine.UI.Text>().enabled = false;
