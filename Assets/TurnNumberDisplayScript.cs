@@ -10,6 +10,13 @@ public class TurnNumberDisplayScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TurnNumber.text = "Final Turn!\nRoll again to end the game."; //the "\n" forces it to go to the next line
+		if(DieScript.totalRolls == 12)
+		{
+			TurnNumber.text = "Final Turn!\nRoll again to end the game."; //the "\n" forces it to go to the next line
+		}
+		else
+		{
+			TurnNumber.text = "Turn Number " + DieScript.totalRolls;
+		}
     }
 }
