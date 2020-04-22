@@ -16,7 +16,7 @@ public class TurnNumberDisplayScript : MonoBehaviour
 		}
 		else
 		{
-			TurnNumber.text = "Turn Number " + DieScript.totalRolls;
+			TurnNumber.text = "Turn Number = " + DieScript.totalRolls;
 		}
     }
 }

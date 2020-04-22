@@ -10,6 +10,7 @@ public class DieScript : MonoBehaviour {
 	private Quaternion startRot;
 	public static int rolling = 0;
     public static int totalRolls = 0;
+    public AudioSource DieRoll;
 
 	void Start()
 	{
@@ -17,7 +18,8 @@ public class DieScript : MonoBehaviour {
 		startPos = transform.position;
 		startRot = transform.rotation;
         totalRolls = 0;
-	}
+        DieRoll = GameObject.Find("DieRollSound").GetComponent<AudioSource>();
+    }
 	
 	void Update()
 	{
@@ -26,14 +28,16 @@ public class DieScript : MonoBehaviour {
 
     public void RollDiceAnimation()
     {
-		if(rolling == 4)
-		{
-			rolling = 0;
-		}
+        if (rolling == 4)
+        {
+            rolling = 0;
+        }
+
         if (rolling == 0)
         {
-            if (totalRolls < 13)
+            if (totalRolls < 12)
             {
+                DieRoll.Play();
                 rolling++;
                 totalRolls++;
                 rb.velocity = Vector3.zero;
