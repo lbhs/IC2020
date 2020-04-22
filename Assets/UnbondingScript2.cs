@@ -55,7 +55,7 @@ public class UnbondingScript2 : MonoBehaviour
             DiatomicPosition = Diatomic.transform.position;
             Instantiate(Diatomic.GetComponent<DiatomicScript>().DissociationProduct, DiatomicPosition, Quaternion.identity);  //makes a single atom of H, Cl or O
             Instantiate(Diatomic.GetComponent<DiatomicScript>().DissociationProduct, new Vector3(DiatomicPosition.x + 2.5f, DiatomicPosition.y, 0f), Quaternion.Euler(0f, 0f, 180f));
-            Destroy(Diatomic);  //the line above spawns the second atom rotated 180  degrees from the first
+            // Destroy(Diatomic);  //the line above spawns the second atom rotated 180  degrees from the first
             SoundFX2.Play();
             JoulesInCorral = GameObject.FindGameObjectsWithTag("JouleInCorral");   //fill array with all the joules in the corral
             for (i = 0; i < Diatomic.GetComponent<DiatomicScript>().BondDissociationEnergy; i++)     //for as many joules as it takes to break the bond
@@ -63,9 +63,10 @@ public class UnbondingScript2 : MonoBehaviour
                 Destroy(JoulesInCorral[i]);
             }
 
+            Destroy(Diatomic);
         }
 
-        if (DotCount == 0)
+        else if (DotCount == 0)
         {
             DotCount = 1;
             Atom1 = collider.transform.root.gameObject;
