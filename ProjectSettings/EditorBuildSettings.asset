@@ -6,8 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Crown Joules 8.7--Adding Bond Energy Table.unity
-    guid: 426e43b7bb4c7d84a884f7cb0cbf40ee
+    path: Assets/Scenes/Crown Joules 8.8--Text boxes improved, has walls, will soon
+      have atom inventory limits.unity
+    guid: 1549b365771a539439d961f61b6e9085
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 3da2df55d327db24cb01eeec44e4b8a4

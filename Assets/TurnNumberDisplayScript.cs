@@ -6,17 +6,20 @@ using UnityEngine.UI;
 public class TurnNumberDisplayScript : MonoBehaviour
 {
     public Text TurnNumber;
+	private int rolls = 0;
 
     // Update is called once per frame
     void Update()
     {
-		if(DieScript.totalRolls == 12)
+		if(rolls != DieScript.totalRolls)
 		{
-			TurnNumber.text = "Final Turn!\nRoll again to end the game."; //the "\n" forces it to go to the next line
-		}
-		else
-		{
+			rolls = DieScript.totalRolls;
+			if(DieScript.totalRolls == 12)
+			{
+				GameObject.Find("NotEnoughJoulesDisplay").GetComponent<CannotBreakBond>().finalTurn();
+			}
 			TurnNumber.text = "Turn Number = " + DieScript.totalRolls;
 		}
+		
     }
 }

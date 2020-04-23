@@ -22,6 +22,7 @@ public class UIDrop2World : MonoBehaviour, IDropHandler
         //the point where the particle should be spawned
         prefabWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         prefabWorldPosition.z = 0;
+		Debug.Log(gameObject);
         Instantiate(PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
                 
     }
