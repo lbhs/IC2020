@@ -9,7 +9,7 @@ public class DieScript : MonoBehaviour {
 	private Vector3 startPos;
 	private Quaternion startRot;
 	public static int rolling = 0;
-    public static int totalRolls = 0;
+    public static int totalRolls = 0; //reset to 0 when kenneth is done working on gameover screen
     public AudioSource DieRoll;
 
 	void Start()
@@ -17,10 +17,10 @@ public class DieScript : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 		startPos = transform.position;
 		startRot = transform.rotation;
-        totalRolls = 0;
+        totalRolls = 0; //reset to 0
         DieRoll = GameObject.Find("DieRollSound").GetComponent<AudioSource>();
     }
-	
+
 	void Update()
 	{
 		dieVelocity = rb.velocity;
@@ -79,5 +79,5 @@ public class DieScript : MonoBehaviour {
             StartCoroutine(countdown());
         }
         yield break;
-    }	
+    }
 }

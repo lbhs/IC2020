@@ -8,24 +8,22 @@ public class resetScene : MonoBehaviour
     public GameObject DisplayCanvas;
 	public GameObject ScoreDisplay;
     public Font ken;
+    public static int FinalScore;
 
     public void gameOver()
     {
         DontDestroyOnLoad(DisplayCanvas);
 		foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
-		{
-			if(!(o == ScoreDisplay || o == DisplayCanvas))
-			{
-				Destroy(o);
-			}
+		    {
+			         Destroy(o);
         }
+        FinalScore = DisplayJoules.ScoreTotal;
         SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
-		SceneManager.UnloadSceneAsync(0);
-        DisplayCanvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().enabled = false;
-        DisplayCanvas.transform.GetChild(1).gameObject.GetComponent<UnityEngine.UI.Text>().enabled = false;
-        DisplayCanvas.transform.GetChild(2).gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, 50, 0);
-        DisplayCanvas.transform.GetChild(2).gameObject.GetComponent<UnityEngine.UI.Text>().font = ken;
-        DisplayCanvas.transform.GetChild(3).gameObject.transform.position = new Vector3(0, -500, 0);
+
+        Debug.Log(FinalScore);
+		    SceneManager.UnloadSceneAsync(0);
+
+
     }
 
     public void reset()
@@ -38,4 +36,3 @@ public class resetScene : MonoBehaviour
 		SceneManager.UnloadSceneAsync(1);
     }
 }
-
