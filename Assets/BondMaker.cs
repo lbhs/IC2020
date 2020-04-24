@@ -26,6 +26,7 @@ public class BondMaker: MonoBehaviour
     private GameObject MCToken;
     public AudioSource SoundFX;     //Bond Formed Sound
     private AudioSource SoundFX3;   //Molecule Completion sound
+    public GameObject Badge;
 
           
 
@@ -179,6 +180,8 @@ public class BondMaker: MonoBehaviour
                     DisplayJoules.BonusPointTotal += BonusPts;          //update BonusPointTotal static variable
                     MCToken = GameObject.Find("MoleculeListKeeper").GetComponent<MoleculeCompletionPtArray>().MoleculeCompletionToken[i];
                     AtomInventory.MoleculeList[MoleculeID].Add(MCToken);  //adds a MoleculeCompletionToken to the MoleculeList Array
+                    GameObject MCVisibleToken = Instantiate(Badge);
+                    MCVisibleToken.GetComponent<ImageFollower>().objectToFollow = AtomInventory.MoleculeList[MoleculeID][0];
                     print(MCToken);
                 }
             }

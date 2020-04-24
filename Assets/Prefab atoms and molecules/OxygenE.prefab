@@ -159,6 +159,7 @@ MonoBehaviour:
   bondArrayID: 2
   MoleculeID: 0
   SoundFX: {fileID: 0}
+  Badge: {fileID: 8102388750531633721, guid: 3db93df9fc98f21428ca69afad213320, type: 3}
 --- !u!114 &959265861618892416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PrefabToBecome: {fileID: 8280458384227402504, guid: 7f2fb01b2285e4d198e0688e50d44f57,
     type: 3}
-  Prefab: {fileID: 3165713786430717543}
 --- !u!1 &5364500037088676356
 GameObject:
   m_ObjectHideFlags: 0
