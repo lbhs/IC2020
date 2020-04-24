@@ -26,6 +26,7 @@ public class UIDrop2World : MonoBehaviour, IDropHandler
         prefabWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         prefabWorldPosition.z = 0;
         Instantiate(PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
+        Debug.Log("Change2World");
 
         // the 9 lines below this comment determine whether an should be spawned object depending on whether it is spawned inside or outside of the world.
 

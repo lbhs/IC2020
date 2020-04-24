@@ -9,14 +9,14 @@ public class DieScript : MonoBehaviour {
 	private Vector3 startPos;
 	private Quaternion startRot;
 	public static int rolling = 0;
-    public static int totalrolls = 0;
+    public static int totalRolls = 0;
 
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
 		startPos = transform.position;
 		startRot = transform.rotation;
-        totalrolls = 0;
+        totalRolls = 0;
 	}
 	
 	void Update()
@@ -26,12 +26,16 @@ public class DieScript : MonoBehaviour {
 
     public void RollDiceAnimation()
     {
+		if(rolling == 4)
+		{
+			rolling = 0;
+		}
         if (rolling == 0)
         {
-            if (totalrolls < 13)
+            if (totalRolls < 13)
             {
                 rolling++;
-                totalrolls++;
+                totalRolls++;
                 rb.velocity = Vector3.zero;
                 float dirX = Random.Range(-500, 500);
                 float dirY = Random.Range(-500, 500);
@@ -44,6 +48,7 @@ public class DieScript : MonoBehaviour {
             }
             else
             {
+                //NEED TO CLEARLY MARK THE LAST TURN--PLAYER NEEDS TO GET AS MANY PTS AS POSSIBLE PRIOR TO "GAME OVER"
                 GetComponent<resetScene>().gameOver();
             }
         }

@@ -23,20 +23,16 @@ public class ColliderIdentifier : MonoBehaviour
             || (tag == "PeakDB" && collider.tag == "ValleyDB")
             || (tag == "ValleyDB" && collider.tag == "PeakDB")))
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up);
-            if (hit.collider == collider)
+            while (true)
             {
-                Debug.Log("Aligned with " + hit.collider.name);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward);
+                if (hit == collider)
+                {
+                    Debug.Log("Alignment between " + name + " and " + collider.name);
+                    // transform.root.GetComponent<BondMaker>().AlignmentCheck(collider);
+                    break;
+                }
             }
-            transform.root.GetComponent<BondMaker>().AlignmentCheck(collider);
-            CalculateSlopeBetweenCorrespondingElements(collider);
         }
-    }
-
-    private void CalculateSlopeBetweenCorrespondingElements(Collider2D corresponding)
-    {
-        float slope = (transform.position.y - corresponding.transform.position.y)
-                        / (transform.position.x - corresponding.transform.position.x);
-        Debug.Log(slope + " between " + tag + " and " + corresponding.tag);
     }
 }

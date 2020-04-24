@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class resetScene : MonoBehaviour
 {
     public GameObject DisplayCanvas;
-    public GameObject ScoreDisplay;
+	public GameObject ScoreDisplay;
     public Font ken;
 
     public void gameOver()
@@ -30,7 +30,7 @@ public class resetScene : MonoBehaviour
 
     public void reset()
     {
-		foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
+        foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
 		{
 			Destroy(o);
         }

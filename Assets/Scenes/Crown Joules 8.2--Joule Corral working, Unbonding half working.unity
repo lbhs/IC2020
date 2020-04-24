@@ -210,8 +210,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 25891206}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.13, y: 3.55, z: 0}
-  m_LocalScale: {x: 1, y: 20.784094, z: 1}
+  m_LocalPosition: {x: -15.13, y: 4.58, z: 0}
+  m_LocalScale: {x: 1, y: 17.630756, z: 1}
   m_Children: []
   m_Father: {fileID: 749717125}
   m_RootOrder: 2
@@ -507,8 +507,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 118790458}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.38, y: 3.42, z: -0.06640625}
-  m_LocalScale: {x: 1, y: 20.570002, z: 1}
+  m_LocalPosition: {x: 14.38, y: 5.01, z: -0.06640625}
+  m_LocalScale: {x: 1, y: 17.484503, z: 1}
   m_Children: []
   m_Father: {fileID: 749717125}
   m_RootOrder: 0
@@ -690,7 +690,7 @@ GameObject:
   m_Component:
   - component: {fileID: 136489361}
   - component: {fileID: 136489362}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Side4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1289,7 +1289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 386179166}
   - component: {fileID: 386179167}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Side3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1399,7 +1399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 537915830}
   - component: {fileID: 537915831}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Side2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2082,7 +2082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 911880445}
   - component: {fileID: 911880446}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Side6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2470,7 +2470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1011110514}
   - component: {fileID: 1011110515}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Side5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3621,7 +3621,7 @@ GameObject:
   - component: {fileID: 1571556175}
   - component: {fileID: 1571556178}
   - component: {fileID: 1571556176}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: die_object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3706,7 +3706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571556174}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: -9, z: -2.5}
+  m_LocalPosition: {x: 1, y: -9.82, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1904268370}
@@ -4362,7 +4362,7 @@ GameObject:
   - component: {fileID: 1904268370}
   - component: {fileID: 1904268372}
   - component: {fileID: 1904268371}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: die_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4495,6 +4495,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5461016981426766894, guid: 593c7fff8c94f4bd7a7b7fb70bb74a35,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 593c7fff8c94f4bd7a7b7fb70bb74a35, type: 3}
 --- !u!1 &1987333170
@@ -4507,7 +4512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1987333171}
   - component: {fileID: 1987333172}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Side1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4800,7 +4805,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018658914}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.43, y: -6.4405937, z: 0}
+  m_LocalPosition: {x: -0.43, y: -3.84, z: 0}
   m_LocalScale: {x: 30.358437, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 749717125}
