@@ -180,9 +180,11 @@ public class BondMaker: MonoBehaviour
                     DisplayJoules.BonusPointTotal += BonusPts;          //update BonusPointTotal static variable
                     MCToken = GameObject.Find("MoleculeListKeeper").GetComponent<MoleculeCompletionPtArray>().MoleculeCompletionToken[i];
                     AtomInventory.MoleculeList[MoleculeID].Add(MCToken);  //adds a MoleculeCompletionToken to the MoleculeList Array
-                    GameObject MCVisibleToken = Instantiate(Badge);
+
+                    /*GameObject MCVisibleToken = Instantiate(Badge);
                     MCVisibleToken.GetComponent<ImageFollower>().objectToFollow = AtomInventory.MoleculeList[MoleculeID][0];
-                    print(MCToken);
+                    print(MCToken);    FOR BEN TO FIGURE OUT!!!!   MCToken is currently an empty game object  Each token has an index equal to # of atoms in molecule
+                    */   
                 }
             }
         }
