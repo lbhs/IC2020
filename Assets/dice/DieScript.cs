@@ -28,12 +28,11 @@ public class DieScript : MonoBehaviour {
 
     public void RollDiceAnimation()
     {
-        if (rolling == 4)
+        if(rolling == 4)
         {
             rolling = 0;
         }
-
-        if (rolling == 0)
+        if(rolling == 0)
         {
             if (totalRolls < 12)
             {
@@ -58,9 +57,6 @@ public class DieScript : MonoBehaviour {
         }
     }
 
-
-
-
     public void Reset()
 	{
 		transform.position = startPos;
@@ -83,7 +79,5 @@ public class DieScript : MonoBehaviour {
             StartCoroutine(countdown());
         }
         yield break;
-    }
-
-
+    }	
 }

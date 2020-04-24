@@ -211,6 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PrefabToBecome: {fileID: 8280458384227402504, guid: 7f2fb01b2285e4d198e0688e50d44f57,
     type: 3}
+  Prefab: {fileID: 3165713786430717543}
 --- !u!1 &5364500037088676356
 GameObject:
   m_ObjectHideFlags: 0
