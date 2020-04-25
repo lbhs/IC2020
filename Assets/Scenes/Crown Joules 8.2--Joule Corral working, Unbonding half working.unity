@@ -927,6 +927,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OxLinearE
       objectReference: {fileID: 0}
+    - target: {fileID: 8280458384227402504, guid: 7f2fb01b2285e4d198e0688e50d44f57,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2942133505884527986, guid: 7f2fb01b2285e4d198e0688e50d44f57,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1033,6 +1038,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ChlorineE
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165713786430717543, guid: 3421cb4bef0f944d99c34d172b93389f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3699262191342240265, guid: 3421cb4bef0f944d99c34d172b93389f,
         type: 3}
@@ -2682,6 +2692,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CarbonEsp2
       objectReference: {fileID: 0}
+    - target: {fileID: 3165713786430717543, guid: 2741d929d340c954bb34b68071057983,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3699262191342240265, guid: 2741d929d340c954bb34b68071057983,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2929,6 +2944,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CarbonE (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165713786430717543, guid: 4acc94ba656cd4a6e8f51dac6d000156,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3699262191342240265, guid: 4acc94ba656cd4a6e8f51dac6d000156,
         type: 3}
@@ -3305,6 +3325,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HydE
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444421772686509034, guid: 6fefec1ae13d44c09875e219be31ce44,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6502360142546823747, guid: 6fefec1ae13d44c09875e219be31ce44,
         type: 3}
@@ -4439,6 +4464,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OxygenE
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165713786430717543, guid: 593c7fff8c94f4bd7a7b7fb70bb74a35,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3699262191342240265, guid: 593c7fff8c94f4bd7a7b7fb70bb74a35,
         type: 3}
