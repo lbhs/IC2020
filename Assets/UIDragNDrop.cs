@@ -19,21 +19,30 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (returnToZero == true)
-        {
-            transform.localPosition = Vector3.zero;
-        }
-        UseingMe = false;
-        prefabWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        prefabWorldPosition.z = 0;
-		DieScript.rolling++;
-        Instantiate(PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
-        if (PrefabToSpawn.tag == "Diatomic")
-        {
-            DisplayJoules.BonusPointTotal += 10;  //if prefabToSpawn is diatomic, add 10 BonusPts (no need to add to MOLECULEID LIST?)
-
-        }
+		if(AtomInventoryRemaining.removePiece(PrefabToSpawn, true) >= 1)
+		{
+			if (returnToZero == true)
+			{
+				transform.localPosition = Vector3.zero;
+			}
+			UseingMe = false;
+			prefabWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			prefabWorldPosition.z = 0;
+			DieScript.rolling++;
+			Instantiate(PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
+			
+			if(PrefabToSpawn.tag == "Diatomic")
+			{
+				DisplayJoules.BonusPointTotal += 10;  //if prefabToSpawn is diatomic, add 10 BonusPts (no need to add to MOLECULEID LIST?)
+			}
+			
+			GameObject.Find("UI").GetComponent<Animator>().SetTrigger("Exit");
+		}
+		else
+		{
+			GameObject.Find("NotEnoughJoulesDisplay").GetComponent<CannotBreakBond>().OutOfInventory2();
+			transform.localPosition = Vector3.zero;
+		}
         
-        GameObject.Find("UI").GetComponent<Animator>().SetTrigger("Exit");
     }
 }

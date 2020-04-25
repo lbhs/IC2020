@@ -217,6 +217,7 @@ MonoBehaviour:
   bondArrayID: 1
   MoleculeID: 0
   SoundFX: {fileID: 0}
+  Badge: {fileID: 8102388750531633721, guid: 3db93df9fc98f21428ca69afad213320, type: 3}
 --- !u!61 &2504367646903285636
 BoxCollider2D:
   m_ObjectHideFlags: 0

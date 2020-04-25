@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8082276555461959527}
   - component: {fileID: 8467678389485433758}
   - component: {fileID: 354148424913744562}
+  - component: {fileID: 3365225845529034908}
   m_Layer: 0
   m_Name: HydE
   m_TagString: Hydrogen
@@ -127,7 +128,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444421772686509034}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -154,6 +155,7 @@ MonoBehaviour:
   bondArrayID: 0
   MoleculeID: 0
   SoundFX: {fileID: 0}
+  Badge: {fileID: 8102388750531633721, guid: 3db93df9fc98f21428ca69afad213320, type: 3}
 --- !u!114 &354148424913744562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +168,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c345f079466195b41b2d52a63c90e95e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &3365225845529034908
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444421772686509034}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.84, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.03, y: 3.3600001}
+    newSize: {x: 5.03, y: 3.3600001}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.3, y: 3.26}
+  m_EdgeRadius: 0
 --- !u!1 &5457061116414237935
 GameObject:
   m_ObjectHideFlags: 0
