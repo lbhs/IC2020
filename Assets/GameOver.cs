@@ -29,6 +29,12 @@ public class GameOver : MonoBehaviour
     IEnumerator WaitStart()
     {
       yield return new WaitForSeconds(0.5f);
+      FinalScoreText.text = (" ");
+      yield return new WaitForSeconds(0.5f);
+      FinalScoreText.text = ("You Got ...");
+      yield return new WaitForSeconds(0.5f);
+      FinalScoreText.text = (" ");
+      yield return new WaitForSeconds(0.5f);
 
       StartCoroutine(CountUpToTarget());
     }
@@ -40,7 +46,7 @@ public class GameOver : MonoBehaviour
         {
             CurrentDisplayScore += 1;
             CurrentDisplayScore = Mathf.Clamp(CurrentDisplayScore, 0, FinalGameOverScore);
-            FinalScoreText.text = "You got " + CurrentDisplayScore + " points!";
+            FinalScoreText.text = CurrentDisplayScore + " points!";
             yield return null;
         }
     }
@@ -49,7 +55,7 @@ public class GameOver : MonoBehaviour
     {
       while(true) //infinite loop
       {
-        FinalScoreText.text = "You got " + FinalGameOverScore + " points!";
+        FinalScoreText.text = FinalGameOverScore + " points!";
         yield return new WaitForSeconds (0.5f);
         FinalScoreText.text = " ";
         yield return new WaitForSeconds (0.5f);
