@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DieCheckZoneScript : MonoBehaviour {
-	
+
 	[SerializeField]
 	public Animator UIAnim;
 	public GameObject die;
 	public static int dieNumber;
 	Vector3 dieVelocity;
-	
+
 	public GameObject hydrogen;
 	public GameObject hydrogendiatomic;
 	public GameObject oxygen;
@@ -19,7 +19,7 @@ public class DieCheckZoneScript : MonoBehaviour {
 	public GameObject carbon;
 
 	public List<GameObject>[] atoms;
-	
+
 	void Start()
 	{
 		atoms = new List<GameObject>[]
@@ -32,11 +32,11 @@ public class DieCheckZoneScript : MonoBehaviour {
 			new List<GameObject> {hydrogen, hydrogendiatomic, oxygen, oxygendiatomic, chlorine, chlorinediatomic, carbon}
 		};
 	}
-	
+
 	void FixedUpdate ()
 	{
 		dieVelocity = die.GetComponent<DieScript>().dieVelocity;
-		
+
 		if(DieScript.rolling == 1 && dieNumber != 0)
 		{
 			//send the outcome of the roll to the main program
@@ -75,11 +75,11 @@ public class DieCheckZoneScript : MonoBehaviour {
 			}
 		}
 	}
-	
+
 	public void RollDice(int Roll)
     {
 		bool able = false;
-		
+
 		foreach(GameObject atom in atoms[Roll - 1])
 		{
 			if(AtomInventoryRemaining.removePiece(atom, false) >= 1)
@@ -87,7 +87,7 @@ public class DieCheckZoneScript : MonoBehaviour {
 				able = true;
 			}
 		}
-		
+
 		if(able)
 		{
 			if(Roll == 1)
