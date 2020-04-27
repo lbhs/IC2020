@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/Crown Joules 8.92--Atom inventory limits, fixed unbonding of
-    O2, Badge infrastructure available but not used.unity
-  isLoaded: 1
-  isActive: 1

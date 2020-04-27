@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-Temp/
-.vs/
-=======
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -39,4 +35,3 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
->>>>>>> 028389d64a9519bfeadb6f7514a31f8571f6222c
