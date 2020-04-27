@@ -21,10 +21,6 @@ TagManager:
   - Radical
   - Chlorine
   - JouleInCorral
-  - PeakNS
-  - ValleyNS
-  - PeakDBNS
-  - ValleyDBNS
   layers:
   - Default
   - TransparentFX
@@ -34,9 +30,9 @@ TagManager:
   - UI
   - 
   - 
-  - Wall
-  - Die
-  - DoNotStack
+  - InFront
+  - 
+  - 
   - 
   - 
   - 

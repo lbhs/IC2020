@@ -34,6 +34,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 			if(PrefabToSpawn.tag == "Diatomic")
 			{
 				DisplayJoules.BonusPointTotal += 10;  //if prefabToSpawn is diatomic, add 10 BonusPts (no need to add to MOLECULEID LIST?)
+
 			}
 			
 			GameObject.Find("UI").GetComponent<Animator>().SetTrigger("Exit");

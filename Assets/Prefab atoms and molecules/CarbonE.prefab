@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2700571447991194391}
   - component: {fileID: 7443590847505137570}
-  - component: {fileID: 926416588344148176}
   m_Layer: 0
   m_Name: Valley (1)
   m_TagString: Valley
@@ -58,18 +57,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.061659627, y: 0.01}
   m_EdgeRadius: 0
---- !u!114 &926416588344148176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2229341240339597419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d8453bd7f7505e4fbc09fc0287cb63b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3165713786430717543
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,9 +204,7 @@ MonoBehaviour:
   bondArrayID: 1
   MoleculeID: 0
   SoundFX: {fileID: 0}
-  DragCollider: {fileID: 0}
   Badge: {fileID: 8102388750531633721, guid: 3db93df9fc98f21428ca69afad213320, type: 3}
-  Overlapping: []
 --- !u!61 &2504367646903285636
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -232,7 +217,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0.015}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -327,7 +312,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5402351837431363502}
   - component: {fileID: 6352579516641285975}
-  - component: {fileID: 7375464001359905562}
   m_Layer: 0
   m_Name: Peak (1)
   m_TagString: Peak
@@ -375,18 +359,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.08439255, y: 0.01}
   m_EdgeRadius: 0
---- !u!114 &7375464001359905562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4124594428835375705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d8453bd7f7505e4fbc09fc0287cb63b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5364500037088676356
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,7 +369,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4457615774652165223}
   - component: {fileID: 4014933619610814160}
-  - component: {fileID: 3064655749208507152}
   m_Layer: 0
   m_Name: Valley
   m_TagString: Valley
@@ -445,18 +416,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 0.094376564}
   m_EdgeRadius: 0
---- !u!114 &3064655749208507152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5364500037088676356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d8453bd7f7505e4fbc09fc0287cb63b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5675854885878350843
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +426,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2214554349304744505}
   - component: {fileID: 3383828662948089178}
-  - component: {fileID: 1191246856846655741}
   m_Layer: 0
   m_Name: Valley
   m_TagString: Valley
@@ -515,18 +473,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.06595391, y: 0.01}
   m_EdgeRadius: 0
---- !u!114 &1191246856846655741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5675854885878350843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d8453bd7f7505e4fbc09fc0287cb63b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5679429160495888991
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +540,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6605154956013634369}
   - component: {fileID: 5981842437392306393}
-  - component: {fileID: 8111626676273332107}
   m_Layer: 0
   m_Name: Peak (2)
   m_TagString: Peak
@@ -642,18 +587,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 0.06621383}
   m_EdgeRadius: 0
---- !u!114 &8111626676273332107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5911751800012182522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d8453bd7f7505e4fbc09fc0287cb63b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5914337243593441298
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +597,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2850491684658677444}
   - component: {fileID: 5074127165039487307}
-  - component: {fileID: 6401315341578508482}
   m_Layer: 0
   m_Name: Peak
   m_TagString: Peak
@@ -712,18 +644,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.07367778, y: 0.01}
   m_EdgeRadius: 0
---- !u!114 &6401315341578508482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5914337243593441298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d8453bd7f7505e4fbc09fc0287cb63b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5956257009388086734
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,7 +711,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5587634412112253877}
   - component: {fileID: 4018444655812467800}
-  - component: {fileID: 7540382549939971939}
   m_Layer: 0
   m_Name: Valley (2)
   m_TagString: Valley
@@ -839,18 +758,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 0.124062434}
   m_EdgeRadius: 0
---- !u!114 &7540382549939971939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5956336738436948995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d8453bd7f7505e4fbc09fc0287cb63b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6185405340969413039
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,7 +768,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8362483160744596906}
   - component: {fileID: 8194332108441600988}
-  - component: {fileID: 7843052684702279777}
   m_Layer: 0
   m_Name: Peak
   m_TagString: Peak
@@ -909,18 +815,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 0.07319981}
   m_EdgeRadius: 0
---- !u!114 &7843052684702279777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6185405340969413039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d8453bd7f7505e4fbc09fc0287cb63b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8078178089426328651
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,8 +16,6 @@ GameObject:
   - component: {fileID: 5665381326587552875}
   - component: {fileID: 819311316482164813}
   - component: {fileID: 743404817817905305}
-  - component: {fileID: 634506176388801361}
-  - component: {fileID: 9092357833142822863}
   m_Layer: 0
   m_Name: OxygenEB
   m_TagString: Oxygen
@@ -141,9 +139,6 @@ MonoBehaviour:
   bondArrayID: 2
   MoleculeID: 0
   SoundFX: {fileID: 0}
-  DragCollider: {fileID: 0}
-  Badge: {fileID: 0}
-  Overlapping: []
 --- !u!114 &5665381326587552875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,8 +163,8 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 1
-  m_Offset: {x: -0.23574829, y: 0.847353}
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.23574829, y: 0.23}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -180,7 +175,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.3, y: 4.534706}
+  m_Size: {x: 3.3, y: 3.3}
   m_EdgeRadius: 0
 --- !u!114 &743404817817905305
 MonoBehaviour:
@@ -196,81 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PrefabToBecome: {fileID: 3165713786430717543, guid: 593c7fff8c94f4bd7a7b7fb70bb74a35,
     type: 3}
---- !u!61 &634506176388801361
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3165713786430717543}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 1
-  m_Offset: {x: -2.498811, y: 0.24988127}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.21, y: 6.21}
-    newSize: {x: 6.21, y: 6.21}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.212378, y: 3.2996216}
-  m_EdgeRadius: 0
---- !u!66 &9092357833142822863
-CompositeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3165713786430717543}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_GeometryType: 1
-  m_GenerationType: 0
-  m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 634506176388801361}
-    m_ColliderPaths:
-    - - X: -9463110
-        Y: 9498460
-      - X: -15525000
-        Y: 9498460
-      - X: -15525000
-        Y: -6999647
-      - X: -9463110
-        Y: -6999647
-  - m_Collider: {fileID: 819311316482164813}
-    m_ColliderPaths:
-    - - X: 7071258
-        Y: 15573530
-      - X: -9428741
-        Y: 15573530
-      - X: -9428741
-        Y: -7100000
-      - X: 7071258
-        Y: -7100000
-  m_CompositePaths:
-    m_Paths:
-    - - {x: 0.7071258, y: 1.557353}
-      - {x: -0.94287413, y: 1.557353}
-      - {x: -0.94287413, y: -0.71}
-      - {x: 0.7071258, y: -0.71}
-    - - {x: -0.946311, y: 0.949846}
-      - {x: -1.5525, y: 0.949846}
-      - {x: -1.5525, y: -0.6999647}
-      - {x: -0.946311, y: -0.6999647}
-  m_VertexDistance: 0.0005
+  Prefab: {fileID: 3165713786430717543}
 --- !u!1 &5364500037088676356
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,55 +37,9 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
         }
         //GameObject.Find("GameSetup").GetComponent<GameSetupContrller>().NetowrkSpawn(objectToUse.GetComponent<UIDragNDrop>().PrefabToSpawn, prefabWorldPosition);
         GameObject.Find("UI").GetComponent<Animator>().SetTrigger("Exit");
-        GameObject Instantiated = Instantiate(objectToUse.GetComponent<UIDragNDrop>().PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
-        StartCoroutine(PreventStacking(Instantiated));
+            Instantiate(objectToUse.GetComponent<UIDragNDrop>().PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
+
         //}
-    }
-
-    IEnumerator PreventStacking(GameObject NewlyInstantiated)
-    {
-        foreach (Transform child in NewlyInstantiated.transform)
-        {
-            Debug.Log(child.name);
-            if (child.tag == "Peak")
-            {
-                child.tag = "PeakNS";
-            }
-            else if (child.tag == "Valley")
-            {
-                child.tag = "ValleyNS";
-            }
-            else if (child.tag == "PeakDB")
-            {
-                child.tag = "PeakDBNS";
-            }
-            else
-            {
-                child.tag = "ValleyDBNS";
-            }
-        }
-
-        yield return new WaitForSeconds(5f);
-
-        foreach (Transform child in NewlyInstantiated.transform)
-        {
-            if (child.tag == "PeakNS")
-            {
-                child.tag = "Peak";
-            }
-            else if (child.tag == "ValleyNS")
-            {
-                child.tag = "Valley";
-            }
-            else if (child.tag == "PeakDBNS")
-            {
-                child.tag = "PeakDB";
-            }
-            else
-            {
-                child.tag = "ValleyDB";
-            }
-        }
     }
 
 }
