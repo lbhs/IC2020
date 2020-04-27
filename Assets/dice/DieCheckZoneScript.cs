@@ -17,6 +17,7 @@ public class DieCheckZoneScript : MonoBehaviour {
 	public GameObject chlorine;
 	public GameObject chlorinediatomic;
 	public GameObject carbon;
+	public GameObject carbondouble;
 
 	public List<GameObject>[] atoms;
 
@@ -25,11 +26,11 @@ public class DieCheckZoneScript : MonoBehaviour {
 		atoms = new List<GameObject>[]
 		{
 			new List<GameObject> {hydrogen},
-			new List<GameObject> {carbon},
+			new List<GameObject> {carbon, carbondouble},
 			new List<GameObject> {oxygen},
 			new List<GameObject> {chlorine},
 			new List<GameObject> {hydrogendiatomic, oxygendiatomic, chlorinediatomic},
-			new List<GameObject> {hydrogen, hydrogendiatomic, oxygen, oxygendiatomic, chlorine, chlorinediatomic, carbon}
+			new List<GameObject> {hydrogen, hydrogendiatomic, oxygen, oxygendiatomic, chlorine, chlorinediatomic, carbon, carbondouble}
 		};
 	}
 

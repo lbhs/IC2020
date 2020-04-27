@@ -6,8 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Crown Joules 8.9--Atom inventory limits.unity
-    guid: 8a7cdbcfe9ac0da4bb3d9b1cdc491b11
+    path: Assets/Scenes/Crown Joules 8.92--Atom inventory limits, fixed unbonding
+      of O2, Badge infrastructure available but not used.unity
+    guid: e3e1e4ef2333de64493b40c92c8fd48a
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 3da2df55d327db24cb01eeec44e4b8a4
