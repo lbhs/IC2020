@@ -142,6 +142,9 @@ MonoBehaviour:
     type: 3}
   uvphoton: {fileID: 1879455925598239054, guid: ccaeebea488f4214bb91502b4a01f383,
     type: 3}
+  color: 1
+  colortxt: {fileID: 3434764259517633027, guid: 772919849bf96554fbe8403df380bb93,
+    type: 3}
 --- !u!114 &2792982994307260683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +157,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8a6ab35df6be474cacf451e2be7feb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoints: 0
   scoreboard: {fileID: 7739150116106630804, guid: d074fe9e931c5a74cbc7b2d3279433f2,
     type: 3}

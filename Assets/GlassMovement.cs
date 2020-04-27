@@ -24,7 +24,7 @@ public class GlassMovement : MonoBehaviour
 		{
 			toggle = 1;
 		}
-		if(timer == -221)
+		if(timer == -220)
 		{
 			toggle = -1;
 			timer = 220;

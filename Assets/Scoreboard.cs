@@ -13,20 +13,28 @@ public class Scoreboard : MonoBehaviour
 	public Text health;
 	public int multime = 120;
 	public static int coltot;
+	public Text tutorial1;
+	public Text tutorial2;
+	public Text tutorial3;
 	public GameObject glass;
+	
     // Start is called before the first frame update
     void Start()
     {
         scoretot = 0;
 		hitpoints = 10;
 		coltot = 0;
+		tutorial1.text = "Press 'Up' to fire a photon";
+		tutorial2.text = "Press 'Down' to change photon color";
+		tutorial3.text = "Use the left and right keys to move";
+		
     }
 
     // Update is called once per frame
     void Update()
     {
          
-		scoretxt.text = "Score: " + scoretot.ToString();
+		scoretxt.text = "Score: " + scoretot.ToString() + "0";
 		multitxt.text = "Score Multiplier: " + multitot.ToString();
 		health.text = "Health: " + hitpoints.ToString();
         if(hitpoints == 0)
@@ -43,11 +51,23 @@ public class Scoreboard : MonoBehaviour
 			{
 				multitot -= 1;
 			}
+	//collision events
+		}
+		if(coltot == 1)
+		{
+			tutorial1.text = "Avoid chlorine atoms and HCl molecules";
+			tutorial2.text = " ";
+			tutorial3.text = " ";
 		}
 		if(coltot == 10)
 		{
 			coltot = coltot + 1;
 			Instantiate(glass, new Vector3(-8f, 2f, 0), Quaternion.identity);
+			tutorial1.text = "Glass will absorb UV photons";
+		}
+		if(coltot == 20)
+		{
+			tutorial1.text = " ";
 		}
 		if(coltot == 60)
 		{
@@ -84,7 +104,15 @@ public class Scoreboard : MonoBehaviour
 	}
 	public void MultiRes()
 	{
-		multitot = 1;
+		if(multitot > 11)
+		{
+		multitot -= 10;
+		}
+		else 
+		{
+			multitot = 1;
+			
+		}
 		hitpoints -=1;
 	}
 }

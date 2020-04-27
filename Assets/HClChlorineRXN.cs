@@ -34,10 +34,10 @@ public class HClChlorineRXN : MonoBehaviour
 			ColPosition = collider.gameObject.transform.position;
 			
 			Destroy(gameObject);
-			Destroy(collider.gameObject);
+			//Destroy(collider.gameObject);
 			Instantiate(HCl, new Vector3(ColPosition.x + 1, ColPosition.y, 0), Quaternion.identity);
 			Instantiate(Hydrogen, new Vector3(ColPosition.x, ColPosition.y, 0), Quaternion.identity);
-			Instantiate(HTwo, new Vector3(Random.Range(-8f, 8f), Random.Range(1f, 5.3f), 0), Quaternion.identity);
+			collider.gameObject.transform.position = new Vector3(Random.Range(-8f, 8f), Random.Range(1f, 5.3f),0);
 		}
 		
 	}

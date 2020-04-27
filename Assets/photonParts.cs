@@ -60,10 +60,10 @@ public class photonParts : MonoBehaviour
 			ColPosition = collider.gameObject.transform.position;
 			scoreboard.MultiUp();
 			Destroy(gameObject);
-			Destroy(collider.gameObject);
+			//Destroy(collider.gameObject);
 			Instantiate(DissociationProduct,ColPosition,Quaternion.identity);
 			Instantiate(DissociationProduct,new Vector3(ColPosition.x+1,ColPosition.y,0),Quaternion.identity);
-			Instantiate(TargetMol,new Vector3(Random.Range(-8f, 8f), Random.Range(1f, 5.3f),0),Quaternion.identity);
+			collider.gameObject.transform.position = new Vector3(Random.Range(-8f, 8f), Random.Range(1f, 5.3f),0);
 			
 		}
 		
@@ -73,10 +73,10 @@ public class photonParts : MonoBehaviour
 			ColPosition = collider.gameObject.transform.position;
 			scoreboard.MultiUp();
 			Destroy(gameObject);
-			Destroy(collider.gameObject);
+			//Destroy(collider.gameObject);
 			Instantiate(DissociationProduct2,ColPosition,Quaternion.identity);
 			Instantiate(DissociationProduct2,new Vector3(ColPosition.x+1,ColPosition.y,0),Quaternion.identity);
-			Instantiate(TargetMol2,new Vector3(Random.Range(-8f, 8f), Random.Range(1f, 5.3f),0),Quaternion.identity);
+			collider.gameObject.transform.position = new Vector3(Random.Range(-8f, 8f), Random.Range(1f, 5.3f),0);
 			
 		}
 		//if(gameObject.tag == "UV" && collider.gameObject.tag == "glass")
