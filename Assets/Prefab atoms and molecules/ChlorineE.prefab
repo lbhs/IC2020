@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: 7215969141904262616}
   - component: {fileID: 2504367646903285636}
   - component: {fileID: 8040108735180187251}
+  - component: {fileID: 7143445423799355848}
+  - component: {fileID: 6852633059102156530}
+  - component: {fileID: 4417810307991453660}
   m_Layer: 0
   m_Name: ChlorineE
   m_TagString: Chlorine
@@ -138,7 +141,9 @@ MonoBehaviour:
   bondArrayID: 3
   MoleculeID: 0
   SoundFX: {fileID: 0}
+  DragCollider: {fileID: 0}
   Badge: {fileID: 8102388750531633721, guid: 3db93df9fc98f21428ca69afad213320, type: 3}
+  Overlapping: []
 --- !u!61 &2504367646903285636
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -151,8 +156,8 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.23823619, y: -0.01}
+  m_UsedByComposite: 1
+  m_Offset: {x: -0.8348594, y: -0.00999999}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -163,7 +168,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.29, y: 3.3}
+  m_Size: {x: 4.483247, y: 3.3}
   m_EdgeRadius: 0
 --- !u!114 &8040108735180187251
 MonoBehaviour:
@@ -177,6 +182,121 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c345f079466195b41b2d52a63c90e95e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &7143445423799355848
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165713786430717543}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: -0.19788456, y: 2.2756557}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.21, y: 5.73}
+    newSize: {x: 6.21, y: 6.21}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.3265553, y: 1.1786885}
+  m_EdgeRadius: 0
+--- !u!61 &6852633059102156530
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165713786430717543}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: -0.24028802, y: -2.2756538}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.21, y: 5.73}
+    newSize: {x: 6.21, y: 6.21}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.3548236, y: 1.1786923}
+  m_EdgeRadius: 0
+--- !u!66 &4417810307991453660
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165713786430717543}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 1
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 6852633059102156530}
+    m_ColliderPaths:
+    - - X: 7185619
+        Y: -8431538
+      - X: -9588499
+        Y: -8431538
+      - X: -9588499
+        Y: -14325000
+      - X: 7185619
+        Y: -14325000
+  - m_Collider: {fileID: 7143445423799355848}
+    m_ColliderPaths:
+    - - X: 7326965
+        Y: 14325000
+      - X: -9305811
+        Y: 14325000
+      - X: -9305811
+        Y: 8431557
+      - X: 7326965
+        Y: 8431557
+  - m_Collider: {fileID: 2504367646903285636}
+    m_ColliderPaths:
+    - - X: 7033820
+        Y: 8200000
+      - X: -15382414
+        Y: 8200000
+      - X: -15382414
+        Y: -8300000
+      - X: 7033820
+        Y: -8300000
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 0.73269653, y: 1.4325}
+      - {x: -0.9305811, y: 1.4325}
+      - {x: -0.9305811, y: 0.8431557}
+      - {x: 0.73269653, y: 0.8431557}
+    - - {x: 0.703382, y: 0.82}
+      - {x: -1.5382414, y: 0.82}
+      - {x: -1.5382414, y: -0.83}
+      - {x: 0.703382, y: -0.83}
+    - - {x: 0.7185619, y: -0.84315383}
+      - {x: -0.9588499, y: -0.84315383}
+      - {x: -0.9588499, y: -1.4325}
+      - {x: 0.7185619, y: -1.4325}
+  m_VertexDistance: 0.0005
 --- !u!1 &5675854885878350843
 GameObject:
   m_ObjectHideFlags: 0

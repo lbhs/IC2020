@@ -61,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AtomInventory.cs" />
+    <Compile Include="Assets\AtomInventoryRemaining.cs" />
+    <Compile Include="Assets\badge\ImageFollower.cs" />
     <Compile Include="Assets\BondEnergyValues.cs" />
     <Compile Include="Assets\BondMaker.cs" />
     <Compile Include="Assets\CannotBreakBond.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Assets\DisplayJoules.cs" />
     <Compile Include="Assets\DragIt.cs" />
     <Compile Include="Assets\DragJoule.cs" />
+    <Compile Include="Assets\GameOver.cs" />
     <Compile Include="Assets\JouleHolderScript.cs" />
     <Compile Include="Assets\LabelAssigner.cs" />
     <Compile Include="Assets\LableManager.cs" />

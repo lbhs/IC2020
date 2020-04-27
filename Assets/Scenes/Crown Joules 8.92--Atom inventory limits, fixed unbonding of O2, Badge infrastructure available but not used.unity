@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 5552506}
   - component: {fileID: 5552505}
   - component: {fileID: 5552504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: right wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 136489361}
   - component: {fileID: 136489362}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Side4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -992,7 +992,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 378411758}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: dice_stuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1154,7 +1154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 386179166}
   - component: {fileID: 386179167}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Side3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1407,7 +1407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 537915830}
   - component: {fileID: 537915831}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Side2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1450,7 +1450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 576275204}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: die_walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2243,7 +2243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 911880445}
   - component: {fileID: 911880446}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Side6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2505,7 +2505,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1011110514}
   - component: {fileID: 1011110515}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Side5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3203,7 +3203,7 @@ GameObject:
   - component: {fileID: 1347930582}
   - component: {fileID: 1347930581}
   - component: {fileID: 1347930580}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: left wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3597,7 +3597,7 @@ GameObject:
   - component: {fileID: 1571556175}
   - component: {fileID: 1571556178}
   - component: {fileID: 1571556176}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: die_object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3708,7 +3708,7 @@ GameObject:
   - component: {fileID: 1635407807}
   - component: {fileID: 1635407806}
   - component: {fileID: 1635407805}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: upper wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4053,7 +4053,7 @@ GameObject:
   - component: {fileID: 1730481320}
   - component: {fileID: 1730481322}
   - component: {fileID: 1730481321}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: die_check_zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4456,7 +4456,7 @@ GameObject:
   - component: {fileID: 1904268370}
   - component: {fileID: 1904268372}
   - component: {fileID: 1904268371}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: die_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4532,7 +4532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1987333171}
   - component: {fileID: 1987333172}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Side1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4578,7 +4578,7 @@ GameObject:
   - component: {fileID: 1989174603}
   - component: {fileID: 1989174602}
   - component: {fileID: 1989174601}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: die_floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4764,7 +4764,7 @@ GameObject:
   - component: {fileID: 2080963592}
   - component: {fileID: 2080963591}
   - component: {fileID: 2080963590}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lower wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

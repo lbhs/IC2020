@@ -427,6 +427,9 @@ MonoBehaviour:
   bondArrayID: 2
   MoleculeID: 0
   SoundFX: {fileID: 0}
+  DragCollider: {fileID: 0}
+  Badge: {fileID: 0}
+  Overlapping: []
 --- !u!114 &4061651494687081267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,7 +455,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01, y: 0}
+  m_Offset: {x: 0.00999999, y: -0.014718413}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -463,7 +466,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.28, y: 3.3}
+  m_Size: {x: 3.28, y: 5.7432823}
   m_EdgeRadius: 0
 --- !u!114 &835574139168941951
 MonoBehaviour:

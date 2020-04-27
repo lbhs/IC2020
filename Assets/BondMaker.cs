@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BondMaker: MonoBehaviour
 {
@@ -26,8 +27,9 @@ public class BondMaker: MonoBehaviour
     private GameObject MCToken;
     public AudioSource SoundFX;     //Bond Formed Sound
     private AudioSource SoundFX3;   //Molecule Completion sound
-    public Collider2D DragCollider;
+    public Collider2D DragCollider; // Detects overlap
     public GameObject Badge;
+    public List<GameObject> Overlapping; // Database of all overlapping elements
 
           
 
@@ -40,14 +42,14 @@ public class BondMaker: MonoBehaviour
         SoundFX = GameObject.Find("BondMadeSound").GetComponent<AudioSource>();
         SoundFX3 = GameObject.Find("MoleculeCompleteSound").GetComponent<AudioSource>();
 
-        if (GetComponent<BoxCollider2D>() != null)
-            DragCollider = GetComponent<BoxCollider2D>();
-        else if (GetComponent<CircleCollider2D>() != null)
-            DragCollider = GetComponent<CircleCollider2D>();
-        else
+        if (GetComponent<CompositeCollider2D>() != null)
+            DragCollider = GetComponent<CompositeCollider2D>();
+        else if (GetComponent<CapsuleCollider2D>() != null)
             DragCollider = GetComponent<CapsuleCollider2D>();
+        else
+            DragCollider = GetComponent<BoxCollider2D>();
 
-        StartCoroutine(PreventStacking());
+        Overlapping = new List<GameObject>();
     }
 
     public void OnTriggerEnter2D(Collider2D collider)  //triggered by an object colliding with a "Valley"
@@ -205,36 +207,74 @@ public class BondMaker: MonoBehaviour
     {
         colliderCount = 0;   //resets a faulty bonding attempt--without this reset, the atom stays in the "activated" state and can trigger faulty bonding events in future
         totalValleysRem = 0;  //reset the open bonding slot count so that the next collision starts at zero
-    }
 
-    IEnumerator PreventStacking()
-    {
-        float PollTime = 1 / Time.deltaTime;
+        // overlap is different from Overlapping -- overlap contains colliders, not GameObjects!
+        Collider2D[] overlap = Physics2D.OverlapAreaAll(DragCollider.bounds.min, DragCollider.bounds.max);
 
-        while (enabled)
+        // Purge GameObjects that are no longer overlapping, but are still in the Overlapping list
+        for (int i = 0; i < Overlapping.Count; i++)
         {
-            bool NoOverlap = true;
-            foreach (GameObject GO in Object.FindObjectsOfType<GameObject>())
+            if (Overlapping[i].GetComponent<BondMaker>() != null)
             {
-                if (GO.activeInHierarchy)
+                if (!overlap.Contains(Overlapping[i].GetComponent<BondMaker>().DragCollider))
                 {
-                    if (GO.GetComponent<BondMaker>() != null && GO != gameObject)
+                    Overlapping.Remove(Overlapping[i]);
+                }
+            }
+            else
+            {
+                if (!overlap.Contains(Overlapping[i].GetComponent<DiatomicScript>().DragCollider))
+                {
+                    Overlapping.Remove(Overlapping[i]);
+                }
+            }
+        }
+
+        foreach (GameObject GO in Object.FindObjectsOfType<GameObject>())
+        {
+            if (GO.activeInHierarchy)
+            {
+                if ((GO.GetComponent<BondMaker>() != null 
+                    || GO.GetComponent<DiatomicScript>() != null) 
+                    && GO != gameObject 
+                    && !Overlapping.Contains(GO))
+                {
+
+                    if (GO.GetComponent<BondMaker>() != null)
                     {
-                        Collider2D[] overlap = Physics2D.OverlapAreaAll(DragCollider.bounds.min, DragCollider.bounds.max);
-                        for (int i = 0; i < overlap.Length; i++)
+                        if (overlap.Contains(GO.GetComponent<BondMaker>().DragCollider))
                         {
-                            if (overlap[i].transform.root.gameObject == GO)
-                            {
-                                NoOverlap = false;
-                                GO.GetComponent<Rigidbody2D>().MovePosition(Vector2.left * Time.deltaTime);
-                                yield return new WaitForSeconds(PollTime);
-                            }
+                            Overlapping.Add(GO);
+                        }
+                    }
+                    else
+                    {
+                        if (overlap.Contains(GO.GetComponent<DiatomicScript>().DragCollider))
+                        {
+                            Overlapping.Add(GO);
                         }
                     }
                 }
             }
-            if (NoOverlap)
-                yield break;
+        }
+
+        if (Overlapping.Count == 0)
+        {
+            ChangeLayer(0);
+        }
+        else
+        {
+            ChangeLayer(10);
         }
     }
+
+    private void ChangeLayer(int LayerID)
+    {
+        gameObject.layer = LayerID;
+        foreach (Transform child in gameObject.GetComponentsInChildren<Transform>())
+        {
+            child.gameObject.layer = LayerID;
+        }
+    }
+
 }
