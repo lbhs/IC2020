@@ -35,3 +35,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/Google Sheets to Unity/Resources/GSTU_Config.asset
