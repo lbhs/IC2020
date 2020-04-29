@@ -158,6 +158,7 @@ MonoBehaviour:
   DragCollider: {fileID: 0}
   Badge: {fileID: 8102388750531633721, guid: 3db93df9fc98f21428ca69afad213320, type: 3}
   Overlapping: []
+  Monovalent: 1
 --- !u!114 &354148424913744562
 MonoBehaviour:
   m_ObjectHideFlags: 0
