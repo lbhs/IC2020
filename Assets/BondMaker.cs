@@ -8,6 +8,8 @@ public class BondMaker : MonoBehaviour
     //This script makes a bond (fixed joint) when triggered by simultaneous collision of "peaks" and "valleys" Double Handshake
 
     FixedJoint2D joint;
+    FixedJoint2D joint1;
+    FixedJoint2D joint2;
 
     public bool bonded;     //when bonded, atom no longer rotates
     public int colliderCount;  //the trigger value--need double handshake for a bond to form
@@ -30,7 +32,7 @@ public class BondMaker : MonoBehaviour
     public Collider2D DragCollider; // Detects overlap
     public GameObject Badge;
     public List<GameObject> Overlapping; // Database of all overlapping elements
-
+    public bool Monovalent;
 
 
     // Start is called before the first frame update
@@ -109,12 +111,17 @@ public class BondMaker : MonoBehaviour
                 }
                 else
                 {
-                    joint = BondingPartner.AddComponent<FixedJoint2D>();            //BondingPartner could be H, O, C, Cl. . .
-                    joint.connectedBody = gameObject.GetComponent<Rigidbody2D>();    //PERHAPS THIS CAN BE USED TO TRACE CONTACTS. . .
-                }
+                    joint1 = BondingPartner.AddComponent<FixedJoint2D>();            //BondingPartner could be H, O, C, Cl. . .
+                    joint1.connectedBody = gameObject.GetComponent<Rigidbody2D>();    //PERHAPS THIS CAN BE USED TO TRACE CONTACTS. . .
+                    joint2 = gameObject.AddComponent<FixedJoint2D>();
+                    joint2.connectedBody = BondingPartner.GetComponent<Rigidbody2D>();  //joints on both bonding atoms!!
 
-                joint.autoConfigureConnectedAnchor = false;              //if this bool is true, the joint won't hold when object is dragged!
-                joint.enableCollision = false;                         //so no additional joints will be created (avoid infinite loop)
+                    joint1.autoConfigureConnectedAnchor = false;              //if this bool is true, the joint won't hold when object is dragged!
+                    joint1.enableCollision = false;                         //so no additional joints will be created (avoid infinite loop)
+                    joint2.autoConfigureConnectedAnchor = false;              //if this bool is true, the joint won't hold when object is dragged!
+                    joint2.enableCollision = false;                         //so no additional joints will be created (avoid infinite loop)
+
+                }
 
                 TempAtomList = AtomInventory.MoleculeList[MoleculeID];      //TempAtomList gets the stored list from MoleculeList Array
 

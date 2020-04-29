@@ -61,16 +61,16 @@ public class DieCheckZoneScript : MonoBehaviour {
 					break;
 				case "Side2":
                     dieNumber = 5;
-					break;
+                    break;
 				case "Side3":
                     dieNumber = 4;
-					break;
+                    break;
 				case "Side4":
                     dieNumber = 3;
 					break;
 				case "Side5":
-					dieNumber = 2;
-					break;
+                    dieNumber = 2;
+                    break;
 				case "Side6":
                     dieNumber = 1;
 					break;
