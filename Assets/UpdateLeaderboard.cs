@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using GoogleSheetsToUnity;
 using System.Linq;
-
+using SimpleJSON;
+#pragma warning disable CS0618 // Type or member is obsolete
 public class Player
 {
     public string Name;
@@ -19,19 +19,60 @@ public class UpdateLeaderboard : MonoBehaviour
     private void OnEnable()
     {
         clear();
-        StartCoroutine(WorkAround());
-        SpreadsheetManager.ReadPublicSpreadsheet(new GSTU_Search("163XTG4mOdzoAZv-HHcKGoRtDum-XvTOsajDYoiO97VA", "Leaderboard"), getScores);
+        StartCoroutine(GetString());
+        //"163XTG4mOdzoAZv-HHcKGoRtDum-XvTOsajDYoiO97VA", "Leaderboard")
     }
 
-    void getScores(GstuSpreadSheet spreadsheetRef)
+    IEnumerator GetString()
     {
-        for (int i = 2; i < 999; i++)
+        string url = "https://sheets.googleapis.com/v4/spreadsheets/163XTG4mOdzoAZv-HHcKGoRtDum-XvTOsajDYoiO97VA/values/Leaderboard!" + "B2" + ":" + "C1001" + "?key=" + SecretKey.GSkey;
+        WWW www = new WWW(url);
+        yield return www;
+        string RecivedJSON;
+        RecivedJSON = www.text;
+        var J = JSON.Parse(RecivedJSON);
+        for (int i = 2; i < 1001; i++)
+        {
+            Player p = new Player();
+            string n = J["values"][i][0].Value;
+            p.Name = n;
+            string s = J["values"][i][1].Value;
+            int a;
+            if (int.TryParse(s, out a))
+            {
+                p.Score = int.Parse(s);
+                players.Add(p);
+            }
+        }
+        players = players.OrderByDescending(i => i.Score).ToList();
+        applyUpdates();
+
+        /*string url1 = "https://sheets.googleapis.com/v4/spreadsheets/163XTG4mOdzoAZv-HHcKGoRtDum-XvTOsajDYoiO97VA/values/Leaderboard!B" + row + ":B" + row + "?key=" + SecretKey.GSkey;
+        WWW www = new WWW(url1);
+        yield return www;
+        RecivedJSON = www.text;
+        var J = JSON.Parse(RecivedJSON);
+        string name = J["values"][0][0].Value;
+
+        string url2 = "https://sheets.googleapis.com/v4/spreadsheets/163XTG4mOdzoAZv-HHcKGoRtDum-XvTOsajDYoiO97VA/values/Leaderboard!C" + row + ":C" + row + "?key=" + SecretKey.GSkey;
+        WWW www2 = new WWW(url2);
+        yield return www2;
+        RecivedJSON = www2.text;
+        var J2 = JSON.Parse(RecivedJSON);
+        string score = J2["values"][0][0].Value;
+
+        if (name == null || score == null)
         {
             var p = new Player();
-            p.Name = spreadsheetRef["B" + i].value;
-            p.Score = int.Parse(spreadsheetRef["C" + i].value);
+            p.Name = name;
+            p.Score = int.Parse(score);
             players.Add(p);
+            Debug.Log(p.Name + " " + p.Score);
         }
+        else
+        {
+            print("found empty cell");
+        }*/
     }
 
     void applyUpdates()
@@ -59,10 +100,5 @@ public class UpdateLeaderboard : MonoBehaviour
             i++;
         }
     }
-
-    IEnumerator WorkAround()
-    {
-        yield return new WaitForSecondsRealtime(5);
-        applyUpdates();
-    }
 }
+#pragma warning restore CS0618 // Type or member is obsolete
