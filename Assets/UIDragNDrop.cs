@@ -41,7 +41,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 		}
 		else
 		{
-			GameObject.Find("NotEnoughJoulesDisplay").GetComponent<CannotBreakBond>().OutOfInventory2();
+			GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().OutOfInventory2();
 			transform.localPosition = Vector3.zero;
 		}
         
