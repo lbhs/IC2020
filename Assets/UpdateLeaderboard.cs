@@ -38,10 +38,6 @@ public class UpdateLeaderboard : MonoBehaviour
     {
         //players.Sort((s1, s2) => s1.Score.CompareTo(s2.Score));
         players = players.OrderByDescending(i => i.Score).ToList();
-        foreach (var item in players)
-        {
-            Debug.Log(item.Name + " " + item.Score);
-        }
         int num = 0;
         foreach (var item in textBoxes)
         {
