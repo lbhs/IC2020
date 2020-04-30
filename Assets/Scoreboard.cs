@@ -39,7 +39,7 @@ public class Scoreboard : MonoBehaviour
 		scoretxt.text = "Score: " + scoretot.ToString() + "0";
 		multitxt.text = "Score Multiplier: " + multitot.ToString();
 		health.text = "Health: " + hitpoints.ToString();
-		boostertest.text = booster.ToString();
+		boostertest.text = " ";
         if(hitpoints == 0)
 		{
 			print("lose");
