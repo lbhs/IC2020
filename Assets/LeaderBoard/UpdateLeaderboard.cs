@@ -33,12 +33,13 @@ public class UpdateLeaderboard : MonoBehaviour
 
     IEnumerator GetString()
     {
-        string url = "https://sheets.googleapis.com/v4/spreadsheets/163XTG4mOdzoAZv-HHcKGoRtDum-XvTOsajDYoiO97VA/values/Leaderboard!" + "B2" + ":" + "C1001" + "?key=" + SecretKey.GSkey;
+        string url = "https://sheets.googleapis.com/v4/spreadsheets/163XTG4mOdzoAZv-HHcKGoRtDum-XvTOsajDYoiO97VA/values/Leaderboard!" + "B2" + ":" + "G1001" + "?key=" + SecretKey.GSkey;
         WWW www = new WWW(url);
         yield return www;
         string RecivedJSON;
         RecivedJSON = www.text;
         var J = JSON.Parse(RecivedJSON);
+        Debug.Log(J);
         for (int i = 2; i < 1001; i++)
         {
             Player p = new Player();
@@ -52,7 +53,13 @@ public class UpdateLeaderboard : MonoBehaviour
                 players.Add(p);
             }
         }
-                           players = players.OrderByDescending(i => i.Score).ToList();
+        players = players.OrderByDescending(i => i.Score).ToList();
+
+        for (int i = 2; i < 24; i++)
+        {
+            Team t = new Team();
+        }
+
         applyUpdates();
     }
 
@@ -61,7 +68,6 @@ public class UpdateLeaderboard : MonoBehaviour
 
        
         //solitaire version code:
-        players = players.OrderByDescending(i => i.Score).ToList();
 
         int num = 0;
         foreach (var item in textBoxes)
