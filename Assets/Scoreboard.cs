@@ -49,7 +49,7 @@ public class Scoreboard : MonoBehaviour
 		multime -= 1;
 		if(multime == 0)
 		{
-			multime = 60;
+			multime = 50;
 			if(multitot >= 2)
 			{
 				multitot -= 1;
@@ -98,7 +98,7 @@ public class Scoreboard : MonoBehaviour
 	public void MultiUp()
 	{
 		multitot += 1;
-		multime = 120;
+		multime = 100;
 	}
 	public void MultiDown()
 	{
