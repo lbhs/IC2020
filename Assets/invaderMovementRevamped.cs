@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class invaderMovementRevamped : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public class invaderMovementRevamped : MonoBehaviour
     // public Vector3 targetVelocity;
     public Vector3 targetPosition;
     private int transitNumber;
-
-
+	public static int Speedboost;
+	public static int booster = 0;
+	
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +21,7 @@ public class invaderMovementRevamped : MonoBehaviour
         targetPosition = target.position;
         //targetVelocity = target.velocity;
         transitNumber = 0;
-
+		Speedboost = 10;
     }
 
     public void move()
@@ -32,7 +34,7 @@ public class invaderMovementRevamped : MonoBehaviour
             }
             else
             {
-                target.velocity = new Vector3(15, 0, 0);
+                target.velocity = new Vector3(Speedboost, 0, 0);
             }
         }
         else
@@ -43,7 +45,7 @@ public class invaderMovementRevamped : MonoBehaviour
             }
             else
             {
-                target.velocity = new Vector3(-15, 0, 0);
+                target.velocity = new Vector3((Speedboost * -1), 0, 0);
             }
         }
     }
@@ -61,9 +63,16 @@ public class invaderMovementRevamped : MonoBehaviour
             transitNumber += 1;
         }
     }
+	public void movespeed()
+	{
+		
+		Speedboost = Speedboost + 1;
+		
+	}
     // Update is called once per frame
     void Update()
     {
         move();
+		
     }
 }

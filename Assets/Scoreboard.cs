@@ -17,7 +17,9 @@ public class Scoreboard : MonoBehaviour
 	public Text tutorial2;
 	public Text tutorial3;
 	public GameObject glass;
-	
+	public invaderMovementRevamped invadermovementrevamped;
+	public static int booster = 0;
+	public Text boostertest;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class Scoreboard : MonoBehaviour
 		scoretxt.text = "Score: " + scoretot.ToString() + "0";
 		multitxt.text = "Score Multiplier: " + multitot.ToString();
 		health.text = "Health: " + hitpoints.ToString();
+		boostertest.text = booster.ToString();
         if(hitpoints == 0)
 		{
 			print("lose");
@@ -51,6 +54,12 @@ public class Scoreboard : MonoBehaviour
 			{
 				multitot -= 1;
 			}
+		if(booster >= 4)
+		{
+			booster = 0;
+			invadermovementrevamped.movespeed();
+		}
+		
 	//collision events
 		}
 		if(coltot == 1)
@@ -84,6 +93,7 @@ public class Scoreboard : MonoBehaviour
 	{
 		scoretot += 1 * multitot;
 		coltot = coltot + 1;
+		booster += 1;
 	}
 	public void MultiUp()
 	{
