@@ -317,7 +317,7 @@ Transform:
   m_GameObject: {fileID: 8280458384227402504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.198, y: 1.416, z: 0}
-  m_LocalScale: {x: 0.42, y: 0.42, z: 0.5}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 6911536839936812513}
   - {fileID: 1403229271191941657}
@@ -388,7 +388,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -427,8 +427,6 @@ MonoBehaviour:
   bondArrayID: 2
   MoleculeID: 0
   SoundFX: {fileID: 0}
-  Badge: {fileID: 0}
-  Monovalent: 0
 --- !u!114 &4061651494687081267
 MonoBehaviour:
   m_ObjectHideFlags: 0

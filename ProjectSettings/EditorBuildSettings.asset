@@ -6,8 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Crown Joules 8.97--Rescaling prefabs.unity
-    guid: 7530d9498f0a8af4695cbb7fb638a8b1
+    path: Assets/Scenes/Crown Joules 8.92--Atom inventory limits, fixed unbonding
+      of O2, Badge infrastructure available but not used.unity
+    guid: e3e1e4ef2333de64493b40c92c8fd48a
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 3da2df55d327db24cb01eeec44e4b8a4

@@ -43,7 +43,7 @@ public class DieCheckZoneScript : MonoBehaviour {
 		{
 			//send the outcome of the roll to the main program
 			Debug.Log("roll: " + dieNumber.ToString());
-			RollDice(dieNumber);   //set this back to dieNumber!!!
+			RollDice(dieNumber);
 			dieNumber = 0;
 			DieScript.rolling++;
 			die.GetComponent<DieFade>().startFade();
@@ -57,22 +57,22 @@ public class DieCheckZoneScript : MonoBehaviour {
 			switch (col.gameObject.name)
 			{
 				case "Side1":
-					dieNumber = 6;
+                    dieNumber = 6;
 					break;
 				case "Side2":
-					dieNumber = 5;
-					break;
+                    dieNumber = 5;
+                    break;
 				case "Side3":
-					dieNumber = 4;
-					break;
+                    dieNumber = 4;
+                    break;
 				case "Side4":
-					dieNumber = 3;
+                    dieNumber = 3;
 					break;
 				case "Side5":
-					dieNumber = 2;
-					break;
+                    dieNumber = 2;
+                    break;
 				case "Side6":
-					dieNumber = 1;
+                    dieNumber = 1;
 					break;
 			}
 		}
@@ -122,13 +122,11 @@ public class DieCheckZoneScript : MonoBehaviour {
 				UIAnim.SetTrigger("DoubleDown");
 				// PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleDown");
 			}
-		}
-
-        else {
-			GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().OutOfInventory();
+		} else {
+			GameObject.Find("NotEnoughJoulesDisplay").GetComponent<CannotBreakBond>().OutOfInventory();
 			if(DieScript.totalRolls == 12)
 			{
-				ConversationTextDisplayScript.final = false;
+				CannotBreakBond.final = false;
 			}
 			DieScript.totalRolls--;
 			DieScript.rolling++;

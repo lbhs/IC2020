@@ -16,7 +16,7 @@ public class TurnNumberDisplayScript : MonoBehaviour
 			rolls = DieScript.totalRolls;
 			if(DieScript.totalRolls == 12)
 			{
-				GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().finalTurn();
+				GameObject.Find("NotEnoughJoulesDisplay").GetComponent<CannotBreakBond>().finalTurn();
 			}
 			TurnNumber.text = "Turn Number = " + DieScript.totalRolls;
 		}

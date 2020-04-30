@@ -88,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 3165713786430717543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.588, y: -0.247, z: -0.114365526}
-  m_LocalScale: {x: 0.42, y: 0.42, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 2850491684658677444}
   - {fileID: 2214554349304744505}
@@ -165,7 +165,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -204,8 +204,9 @@ MonoBehaviour:
   bondArrayID: 1
   MoleculeID: 0
   SoundFX: {fileID: 0}
+  DragCollider: {fileID: 0}
   Badge: {fileID: 8102388750531633721, guid: 3db93df9fc98f21428ca69afad213320, type: 3}
-  Monovalent: 0
+  Overlapping: []
 --- !u!61 &2504367646903285636
 BoxCollider2D:
   m_ObjectHideFlags: 0
