@@ -16,6 +16,7 @@ public class ImageFollower : MonoBehaviour
         {
             lableCanvas = Instantiate(CanvasPrefab);
             lableCanvas.name = "LabelCanvas";
+            lableCanvas.GetComponent<Canvas>().worldCamera = Camera.main;
         }
         gameObject.transform.SetParent(lableCanvas.transform);
     }
