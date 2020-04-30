@@ -11,16 +11,24 @@ public class Player
     public int Score;
 }
 
+public struct Team
+{
+    public string TeamName;
+    public string P1, P2, P3;
+    public int Score;
+}
+
 public class UpdateLeaderboard : MonoBehaviour
 {
     public List<Player> players = new List<Player>();
+    public List<Team> teams = new List<Team>();
     public GameObject[] textBoxes;
 
     private void OnEnable()
     {
         clear();
         StartCoroutine(GetString());
-        //"163XTG4mOdzoAZv-HHcKGoRtDum-XvTOsajDYoiO97VA", "Leaderboard")
+        // Google Sheet ID: "163XTG4mOdzoAZv-HHcKGoRtDum-XvTOsajDYoiO97VA" Sub Sheet name: "Leaderboard")
     }
 
     IEnumerator GetString()
@@ -44,44 +52,21 @@ public class UpdateLeaderboard : MonoBehaviour
                 players.Add(p);
             }
         }
-        players = players.OrderByDescending(i => i.Score).ToList();
+                           players = players.OrderByDescending(i => i.Score).ToList();
         applyUpdates();
-
-        /*string url1 = "https://sheets.googleapis.com/v4/spreadsheets/163XTG4mOdzoAZv-HHcKGoRtDum-XvTOsajDYoiO97VA/values/Leaderboard!B" + row + ":B" + row + "?key=" + SecretKey.GSkey;
-        WWW www = new WWW(url1);
-        yield return www;
-        RecivedJSON = www.text;
-        var J = JSON.Parse(RecivedJSON);
-        string name = J["values"][0][0].Value;
-
-        string url2 = "https://sheets.googleapis.com/v4/spreadsheets/163XTG4mOdzoAZv-HHcKGoRtDum-XvTOsajDYoiO97VA/values/Leaderboard!C" + row + ":C" + row + "?key=" + SecretKey.GSkey;
-        WWW www2 = new WWW(url2);
-        yield return www2;
-        RecivedJSON = www2.text;
-        var J2 = JSON.Parse(RecivedJSON);
-        string score = J2["values"][0][0].Value;
-
-        if (name == null || score == null)
-        {
-            var p = new Player();
-            p.Name = name;
-            p.Score = int.Parse(score);
-            players.Add(p);
-            Debug.Log(p.Name + " " + p.Score);
-        }
-        else
-        {
-            print("found empty cell");
-        }*/
     }
 
     void applyUpdates()
     {
-        //players.Sort((s1, s2) => s1.Score.CompareTo(s2.Score));
+
+       
+        //solitaire version code:
         players = players.OrderByDescending(i => i.Score).ToList();
+
         int num = 0;
         foreach (var item in textBoxes)
         {
+            item.transform.GetChild(0).GetComponent<Text>().text = num + 1 + ":";
             item.transform.GetChild(1).GetComponent<Text>().text = players[num].Name;
             item.transform.GetChild(2).GetComponent<Text>().text = players[num].Score.ToString();
             num++;
