@@ -82,6 +82,7 @@ public class UpdateLeaderboard : MonoBehaviour
         int num = 0;
         foreach (var item in textBoxes)
         {
+            item.transform.GetChild(0).GetComponent<Text>().text = num + 1 + ":";
             item.transform.GetChild(1).GetComponent<Text>().text = players[num].Name;
             item.transform.GetChild(2).GetComponent<Text>().text = players[num].Score.ToString();
             num++;
