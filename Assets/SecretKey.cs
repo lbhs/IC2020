@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SecretKey : MonoBehaviour
 {
-    public static string GSkey = "AIzaSyAQS27nuVpXbPrnbZCDd1ASHu92QqaOms8";
+    public static string GSkey = "";
 
     // Start is called before the first frame update
     void Start()
