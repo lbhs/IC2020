@@ -43,25 +43,14 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 			}
 		}
 		
-		//current method for checking if overlapping with existing atom, only works on mouse position
-		foreach(var go in Physics2D.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition).origin, Vector3.forward))
-		{
-			if(go.transform.gameObject.name.Contains("(Clone)"))
-			{
-				Debug.Log(go.transform.gameObject.name);
-				ableToSpawn = false;
-				GameObject.Find("NotEnoughJoulesDisplay").GetComponent<CannotBreakBond>().noStack();
-			}
-		}
-		
-		/* attempt at raycasting overlap prevention
+		//new method at raycasting overlap prevention, checks entire atom for overlap
 		GameObject dummyObject = Instantiate(PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
-		int range = 100;
-		Debug.Log(Input.mousePosition.x );
-		Debug.Log(Input.mousePosition.y);
-		for(int x = (int)Input.mousePosition.x - range; x < (int)Input.mousePosition.x + range; x+=10)
+		int range = (int)(Screen.width*0.15);
+		int accuracy = 5; //1 is pixel perfect accuracy but causes freezing, 5 is a great performance but could allow minor overlap
+		
+		for(int x = (int)Input.mousePosition.x - range; x < (int)Input.mousePosition.x + range; x+=accuracy)
 		{
-			for(int y = (int)Input.mousePosition.y - range; x < (int)Input.mousePosition.y + range; y+=10)
+			for(int y = (int)Input.mousePosition.y - range; y < (int)Input.mousePosition.y + range; y+=accuracy)
 			{
 				foreach(var go in Physics2D.RaycastAll(Camera.main.ScreenPointToRay(new Vector3(x, y, Input.mousePosition.y)).origin, Vector3.forward))
 				{
@@ -70,12 +59,13 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 						if(Physics2D.RaycastAll(Camera.main.ScreenPointToRay(new Vector3(x, y, Input.mousePosition.y)).origin, Vector3.forward).Length > 1)
 						{
 							ableToSpawn = false;
+							GameObject.Find("NotEnoughJoulesDisplay").GetComponent<CannotBreakBond>().noStack();
 						}
 					}
 				}
 			}
 		}
-		Destroy(dummyObject);*/
+		Destroy(dummyObject);
 		
 		if(ableToSpawn/*should be true when cursor isn't over UI or another game object*/)
 		{ 

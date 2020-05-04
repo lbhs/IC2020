@@ -54,7 +54,8 @@ public class CannotBreakBond : MonoBehaviour
 
     private IEnumerator countdown()  //this is a co-routine, can run in parallel with other scripts/functions
     {
-        yield return new WaitForSeconds(5);
+		StopAllCoroutines();
+		yield return new WaitForSeconds(5);
 		if(final)
 		{
 			NotEnoughJoulesTextbox.text = "Final Turn! Roll again to end the game!";
