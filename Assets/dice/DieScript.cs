@@ -9,7 +9,7 @@ public class DieScript : MonoBehaviour {
 	private Vector3 startPos;
 	private Quaternion startRot;
 	public static int rolling = 0;
-    public static int totalRolls = 0; //reset to 0 when kenneth is done working on gameover screen
+    public static int totalRolls = 0; //reset to 0 when done working on gameover screen
     public AudioSource DieRoll;
 
 	void Start()

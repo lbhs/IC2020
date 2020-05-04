@@ -2893,8 +2893,8 @@ Canvas:
   m_GameObject: {fileID: 598322828}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1680840474}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2946,6 +2946,15 @@ MonoBehaviour:
   FinalGameOverScore: 10
   FinalScoreText: {fileID: 556961768}
   CurrentDisplayScore: 0
+  CopperMedal: {fileID: 8425487807915608, guid: 80891593f979759438a91cf7de54dba3,
+    type: 3}
+  SilverMedal: {fileID: 5069176279325511593, guid: 19e120b367670f9459008a63e305dc44,
+    type: 3}
+  GoldMedal: {fileID: 2891778957782872787, guid: f4928a5144e5d5f4cba0e1a4278356a3,
+    type: 3}
+  PlatMedal: {fileID: 3610715015289171658, guid: c4ef4d1321bab71468e63df532b8c016,
+    type: 3}
+  PointCountUpConcluded: 0
 --- !u!1 &601563902
 GameObject:
   m_ObjectHideFlags: 0

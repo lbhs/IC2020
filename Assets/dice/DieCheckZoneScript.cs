@@ -35,7 +35,7 @@ public class DieCheckZoneScript : MonoBehaviour {
 		};
 	}
 
-	void FixedUpdate ()
+    void FixedUpdate ()
 	{
 		dieVelocity = die.GetComponent<DieScript>().dieVelocity;
 
@@ -67,13 +67,13 @@ public class DieCheckZoneScript : MonoBehaviour {
                     break;
 				case "Side4":
                     dieNumber = 3;
-					break;
+                    break;
 				case "Side5":
                     dieNumber = 2;
                     break;
 				case "Side6":
                     dieNumber = 1;
-					break;
+                    break;
 			}
 		}
 	}
@@ -99,29 +99,29 @@ public class DieCheckZoneScript : MonoBehaviour {
 			}
 			else if (Roll == 2)
 			{
-				UIAnim.SetTrigger("C");
-				//PV.RPC("AnimateRollMenu", RpcTarget.All, "O");
-			}
+                UIAnim.SetTrigger("C");
+                //PV.RPC("AnimateRollMenu", RpcTarget.All, "O");
+            }
 			else if (Roll == 3)
 			{
 				UIAnim.SetTrigger("O");
-				//PV.RPC("AnimateRollMenu", RpcTarget.All, "C");
-			}
+                //PV.RPC("AnimateRollMenu", RpcTarget.All, "C");
+            }
 			else if (Roll == 4)
 			{
-				UIAnim.SetTrigger("CL");
-				// PV.RPC("AnimateRollMenu", RpcTarget.All, "CL");
-			}
+                UIAnim.SetTrigger("CL");
+                // PV.RPC("AnimateRollMenu", RpcTarget.All, "CL");
+            }
 			else if (Roll == 5)
 			{
 				UIAnim.SetTrigger("DoubleOnly");
-				// PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleOnly");
-			}
+                // PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleOnly");
+            }
 			else if (Roll == 6)
 			{
 				UIAnim.SetTrigger("DoubleDown");
-				// PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleDown");
-			}
+                // PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleDown");
+            }
 		} else {
 			GameObject.Find("NotEnoughJoulesDisplay").GetComponent<CannotBreakBond>().OutOfInventory();
 			if(DieScript.totalRolls == 12)
@@ -133,3 +133,4 @@ public class DieCheckZoneScript : MonoBehaviour {
 		}
     }
 }
+
