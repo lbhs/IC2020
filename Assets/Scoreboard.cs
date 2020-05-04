@@ -68,24 +68,25 @@ public class Scoreboard : MonoBehaviour
 			tutorial2.text = " ";
 			tutorial3.text = " ";
 		}
-		if(coltot == 10)
+		if(coltot > 8 && coltot < 12)
 		{
-			coltot = coltot + 1;
+			coltot = coltot + 3;
 			Instantiate(glass, new Vector3(-8f, 2f, 0), Quaternion.identity);
 			tutorial1.text = "Glass will absorb UV photons";
 		}
-		if(coltot == 20)
+		if(coltot > 18 && coltot < 22)
 		{
+			coltot = coltot + 3;
 			tutorial1.text = " ";
 		}
-		if(coltot == 60)
+		if(coltot > 58 && coltot < 62)
 		{
-			coltot = coltot + 1;
+			coltot = coltot + 3;
 			Instantiate(glass, new Vector3(-8f, -1f, 0), Quaternion.identity);
 		}
-		if(coltot == 160)
+		if(coltot > 158 && coltot < 162)
 		{
-			coltot = coltot + 1;
+			coltot = coltot + 3;
 			Instantiate(glass, new Vector3(-8f, -4f, 0), Quaternion.identity);
 		}
     }
@@ -94,6 +95,7 @@ public class Scoreboard : MonoBehaviour
 		scoretot += 1 * multitot;
 		coltot = coltot + 1;
 		booster += 1;
+		print(coltot);
 	}
 	public void MultiUp()
 	{
