@@ -244,7 +244,7 @@ public class BondMaker: MonoBehaviour
 
                         print("applying badge now");
                         GameObject.Find("Badge").GetComponent<ImageFollower>().objectToFollow = BadgeRecipient;
-                        GameObject.Find("Badge").GetComponent<ImageFollower>().AddBadge();
+                        //GameObject.Find("Badge").GetComponent<ImageFollower>().AddBadge();
                     }  //END OF NEW STUFF*/
                 }
             }
