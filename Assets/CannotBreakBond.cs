@@ -45,6 +45,12 @@ public class CannotBreakBond : MonoBehaviour
         NotEnoughJoulesTextbox.text = "Final Turn! Roll again to end the game!";
         StartCoroutine(countdown());
     }
+	
+	public void noStack()
+    {
+        NotEnoughJoulesTextbox.text = "Don't try to stack atoms on top of existing ones!";
+        StartCoroutine(countdown());
+    }
 
     private IEnumerator countdown()  //this is a co-routine, can run in parallel with other scripts/functions
     {

@@ -36,6 +36,7 @@ public class DieScript : MonoBehaviour {
         {
             if (totalRolls < 12)
             {
+				GameObject.Find("UI").GetComponent<Animator>().SetBool("Exiting", false);
                 DieRoll.Play();
                 rolling++;
                 totalRolls++;
