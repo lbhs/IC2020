@@ -25,9 +25,9 @@ public class ClHit : MonoBehaviour
 		{
 			
 			scoreboard.MultiRes();
-		}
-		gameObject.GetComponent<Renderer>().material.color = Color.red;
-        StartCoroutine(ExecuteAfterTime(0.05f));
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
+            StartCoroutine(ExecuteAfterTime(0.05f));
+        }
 	}
     IEnumerator ExecuteAfterTime(float time)
     {
