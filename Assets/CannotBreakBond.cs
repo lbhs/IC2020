@@ -54,7 +54,6 @@ public class CannotBreakBond : MonoBehaviour
 
     private IEnumerator countdown()  //this is a co-routine, can run in parallel with other scripts/functions
     {
-		StopAllCoroutines();
 		yield return new WaitForSeconds(5);
 		if(final)
 		{
