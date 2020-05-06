@@ -50,6 +50,8 @@ MonoBehaviour:
   - ChangeScreenDisplaying
   - ChangeScoreUniformly
   - AssignNewID
+  - GenerateID
+  - TransferSingleElement
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

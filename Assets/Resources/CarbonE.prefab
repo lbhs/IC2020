@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBonded: 0
-  MoleculeElementsIdx: 0
+  MoleculeID: 0
   SingleBondingOpportunities: 0
   EnergyMatrixPosition: 0
   CurrentSingleBondingOpportunities: 0

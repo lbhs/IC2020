@@ -13,7 +13,7 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     public bool isBonded = false;
 
-    public int MoleculeElementsIdx;
+    public int MoleculeID;
 
     public int SingleBondingOpportunities;
 
@@ -68,22 +68,6 @@ public class AtomController : MonoBehaviourPunCallbacks
     //        }
     //    }
     //    CurrentSingleBondingOpportunities = SingleBondingOpportunities - BondsMade;
-    //}
-
-    //public void BondingFunction(Collider2D collision)
-    //{
-    //    FixedJoint2D joint;
-    //    joint = gameObject.AddComponent<FixedJoint2D>();
-    //    joint.connectedBody = collision.transform.root.gameObject.GetComponent<Rigidbody2D>();
-    //    joint.enableCollision = false;
-       
-    //    EvaluatePoints();
-    //    collision.transform.root.GetComponent<AtomController>().EvaluatePoints();
-
-    //    int BondScore = BEV.bondEnergyArray[EnergyMatrixPosition,
-    //                                        collision.transform.root.GetComponent<AtomController>().EnergyMatrixPosition];
-    //    int TotalBonusScore = GSC.TotalBonusPoints(transform.root.gameObject);
-    //    GSC.GetComponent<PhotonView>().RPC("ChangeScoreUniformly", RpcTarget.All, BondScore, TotalBonusScore);
     //}
 
     private void Update()
@@ -141,30 +125,31 @@ public class AtomController : MonoBehaviourPunCallbacks
             GameObject peer = collider.transform.root.gameObject;
             if (peer.GetComponent<AtomController>().CollisionEventRegistered)
             {
-                if (MoleculeElementsIdx == 0 && peer.GetComponent<AtomController>().MoleculeElementsIdx == 0)
+                if (MoleculeID == 0 && peer.GetComponent<AtomController>().MoleculeID == 0)
                 {
-                    GSC.GetComponent<PhotonView>().RPC("AddToList", RpcTarget.All, PVID);
-                    peer.GetComponent<AtomController>().MoleculeElementsIdx = MoleculeElementsIdx;
+                    GSC.GetComponent<PhotonView>().RPC("GenerateID", RpcTarget.All, PVID, peer.GetComponent<AtomController>().PVID);
                 }
 
-                else if (MoleculeElementsIdx == 0 && peer.GetComponent<AtomController>().MoleculeElementsIdx > 0)
+                else if (MoleculeID == 0 && peer.GetComponent<AtomController>().MoleculeID > 0)
                 {
-                    MoleculeElementsIdx = peer.GetComponent<AtomController>().MoleculeElementsIdx;
+                    GSC.GetComponent<PhotonView>().RPC("TransferSingleElement", RpcTarget.All, PVID, peer.GetComponent<AtomController>().MoleculeID);
                 }
 
-                else if (MoleculeElementsIdx > 0 && peer.GetComponent<AtomController>().MoleculeElementsIdx == 0)
+                else if (MoleculeID > 0 && peer.GetComponent<AtomController>().MoleculeID == 0)
                 {
-                    peer.GetComponent<AtomController>().MoleculeElementsIdx = MoleculeElementsIdx;
+                    GSC.GetComponent<PhotonView>().RPC("TransferSingleElement", RpcTarget.All, peer.GetComponent<AtomController>().PVID, MoleculeID);
                 }
 
                 else
                 {
-                    GSC.GetComponent<PhotonView>().RPC("AssignNewID", RpcTarget.All, MoleculeElementsIdx, peer.GetComponent<AtomController>().MoleculeElementsIdx);
+                    GSC.GetComponent<PhotonView>().RPC("MergeMoleculeLists", RpcTarget.All, MoleculeID, peer.GetComponent<AtomController>().MoleculeID);
                 }
 
                 FixedJoint2D joint = gameObject.AddComponent<FixedJoint2D>();
                 joint.connectedBody = peer.GetComponent<Rigidbody2D>();
-
+                joint.autoConfigureConnectedAnchor = false;
+                joint.enableCollision = false;
+         
                 peer.GetComponent<AtomController>().isBonded = true;
             }
         }

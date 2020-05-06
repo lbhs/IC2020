@@ -197,119 +197,41 @@ public class GameSetupContrller : MonoBehaviour
         }
     }
 
-    public bool InSubList(GameObject GOToFind, int SublistIdx)
-    {
-        if (SublistIdx < MoleculeElements.Count)
-        {
-            foreach (GameObject Element in MoleculeElements[SublistIdx])
-            {
-                if (Element == GOToFind)
-                    return true;
-            }
-        }
-        return false;
-    }
-
     [PunRPC]
-    public void AddToList(int PVID)
+    public void GenerateID(int PVID, int PeerPVID)
     {
+        // Two elements with a MoleculeID of 0 collide
         GameObject GOToAdd = PhotonView.Find(PVID).gameObject;
-        if (GOToAdd.GetComponent<AtomController>().MoleculeElementsIdx == 0)
-        {
-            List<GameObject> NewElement = new List<GameObject>();
-            NewElement.Add(GOToAdd);
-            MoleculeElements.Add(NewElement);
-            GOToAdd.GetComponent<AtomController>().MoleculeElementsIdx = MoleculeElements.IndexOf(NewElement) + 1;
-        }
+        GameObject SecondGOToAdd = PhotonView.Find(PVID).gameObject;
+
+        List<GameObject> NewMolecule = new List<GameObject>();
+        NewMolecule.Add(GOToAdd);
+        NewMolecule.Add(SecondGOToAdd);
+        MoleculeElements.Add(NewMolecule);
+        GOToAdd.GetComponent<AtomController>().MoleculeID = MoleculeElements.IndexOf(NewMolecule) + 1;
+        SecondGOToAdd.GetComponent<AtomController>().MoleculeID = MoleculeElements.IndexOf(NewMolecule) + 1;
     }
 
-    //[PunRPC]
-    //public void MergeMoleculeLists(int ListToMergeIdx, int ListToMergeInto)
-    //{
-    //    for (int idx = 0; idx < MoleculeElements[ListToMergeIdx].Count; idx++)
-    //    {
-    //        GameObject GO = MoleculeElements[ListToMergeIdx][idx];
-    //        GO.GetComponent<AtomController>().MoleculeElementsIdx = ListToMergeInto;
-    //        MoleculeElements[ListToMergeInto].Add(GO);
-    //        MoleculeElements[ListToMergeIdx][idx] = null;
-    //    }
-    //}
-
-    // Replaces MergeMoleculeLists
     [PunRPC]
-    public void AssignNewID(int ListToMergeIDOne, int ListToMergeIDTwo)
+    public void MergeMoleculeLists(int IDToMerge, int IDToMergeInto)
     {
-        List<GameObject> NewLocation = new List<GameObject>();
-
-        for (int idx = 0; idx < MoleculeElements[ListToMergeIDOne - 1].Count; idx++)
+        // Both IDToMerge and IDToMergeInto are not equal to 0
+        for (int idx = 0; idx < MoleculeElements[IDToMerge - 1].Count; idx++)
         {
-            NewLocation.Add(MoleculeElements[ListToMergeIDOne - 1][idx]);
-            MoleculeElements[ListToMergeIDOne - 1][idx] = null;
+            GameObject GO = MoleculeElements[IDToMerge - 1][idx];
+            GO.GetComponent<AtomController>().MoleculeID = IDToMergeInto;
+            MoleculeElements[IDToMergeInto - 1].Add(GO);
+            MoleculeElements[IDToMerge - 1][idx] = null;
         }
-
-        for (int idx = 0; idx < MoleculeElements[ListToMergeIDTwo - 1].Count; idx++)
-        {
-            NewLocation.Add(MoleculeElements[ListToMergeIDTwo - 1][idx]);
-            MoleculeElements[ListToMergeIDTwo - 1][idx] = null;
-        }
-
-        for (int idx = 0; idx < NewLocation.Count; idx++)
-        {
-            NewLocation[idx].GetComponent<AtomController>().MoleculeElementsIdx = MoleculeElements.Count + 1;
-        }
-
-        MoleculeElements.Add(NewLocation);
     }
 
-    public List<int> CompletedMolecules(GameObject caller)
+    [PunRPC]
+    public void TransferSingleElement(int PVID, int IDToMergeInto)
     {
-        bool MoleculeCompleted = true;
-        List<int> CompletedMoleculesIdxs = new List<int>();
-        foreach (List<GameObject> Molecule in MoleculeElements)
-        {
-            foreach (GameObject Element in Molecule)
-            {
-                if (Element != null)
-                {
-                    if (Element.GetComponent<PhotonView>().Owner == caller.GetComponent<PhotonView>().Owner)
-                    {
-                        if (!(Element.GetComponent<AtomController>().CurrentSingleBondingOpportunities == 0))
-                        {
-                            MoleculeCompleted = false;
-                        }
-                    }
-                }
-                else
-                {
-                    MoleculeCompleted = false;
-                }
-            }
-            if (MoleculeCompleted)
-            {
-                Debug.Log(MoleculeElements.IndexOf(Molecule) + " has been completed");
-                CompletedMoleculesIdxs.Add(MoleculeElements.IndexOf(Molecule));
-            }
-            MoleculeCompleted = true;
-        }
-        return CompletedMoleculesIdxs;
-    }
-
-    public int TotalBonusPoints(GameObject caller)
-    {
-        int score = 0;
-        List<int> CompletedMoleculesList = CompletedMolecules(caller);
-        foreach (int idx in CompletedMoleculesList)
-        {
-            if (MoleculeElements[idx].Count < 6)
-            {
-                score += (MoleculeElements[idx].Count - 1) * 10;
-            }
-            else
-            {
-                score += 60;
-            }
-        }
-        return score;
+        // The GameObject identified by PVID has a MoleculeID of 0
+        GameObject GOToAdd = PhotonView.Find(PVID).gameObject;
+        GOToAdd.GetComponent<AtomController>().MoleculeID = IDToMergeInto;
+        MoleculeElements[IDToMergeInto - 1].Add(GOToAdd);
     }
 
     [PunRPC]
