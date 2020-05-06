@@ -90,17 +90,17 @@ public class GameOver : MonoBehaviour
     IEnumerator InstantiateSilver()
     {
       yield return new WaitForSeconds (0.75f);
-      Instantiate(SilverMedal, new Vector3( 4.58f, 1.09f, 0f), Quaternion.identity);
+      Instantiate(SilverMedal, new Vector3( 5.95f, 1.19f, 0f), Quaternion.identity);
     }
     IEnumerator InstantiateGold()
     {
       yield return new WaitForSeconds (0.75f);
-      Instantiate(GoldMedal, new Vector3(3.49f, 1.1f, 0f), Quaternion.identity);
+      Instantiate(GoldMedal, new Vector3(4.65f, 1.51f, 0f), Quaternion.identity);
     }
     IEnumerator InstantiatePlat()
     {
       yield return new WaitForSeconds(0.75f);
-      Instantiate(PlatMedal, new Vector3(5.14f, 0.47f, 0f), Quaternion.identity);
+      Instantiate(PlatMedal, new Vector3(7.44f, 0.61f, 0f), Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -115,7 +115,7 @@ public class GameOver : MonoBehaviour
           StartCoroutine(BlinkScore());
           if (FinalGameOverScore < 300)
             {
-              Instantiate (CopperMedal, new Vector3( 3.69f, 1.13f, 0f), Quaternion.identity);
+              Instantiate (CopperMedal, new Vector3( 4.87f, 1.1f, 0f), Quaternion.identity);
               Debug.Log("Copper Medal Instantiated");
               SpriteRenderer testCopperMedal = CopperMedal.GetComponent<SpriteRenderer>();
               var TestColor = testCopperMedal.color;
