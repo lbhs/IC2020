@@ -13,9 +13,7 @@ public class GameSetupContrller : MonoBehaviour
     private PhotonView PV;
     public GameObject TurnScreen;
     public GameObject OPrefab;
-    public GameObject NPrefab;
     public GameObject HPrefab;
-    public GameObject NAPrefab;
     public GameObject CPrefab;
     public GameObject CLPrefab;
     public Animator UIAnim;
@@ -54,20 +52,21 @@ public class GameSetupContrller : MonoBehaviour
     }
 
      void Update()
-    {
+     {
         if (!PhotonNetwork.IsMasterClient)
             return;
         if(state == GameState.Start)
         {
             PV.RPC("ChangeState", RpcTarget.All, GameState.Player1Turn);
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[0]);
-            P1Display.SetActive(true);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[1]);
         }
     }
 
     public void RollDice(int Roll)
     {
+        Vector3 InstantiationPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));
+
         if (Roll == 1)
         {
             UIAnim.SetTrigger("H");
@@ -107,13 +106,11 @@ public class GameSetupContrller : MonoBehaviour
         {
             GO = PhotonNetwork.Instantiate(Prefab.name, pos, Quaternion.identity);
             GO.GetComponent<PhotonView>().RequestOwnership();
-            PV.RPC("AddToList", RpcTarget.All, GO.GetComponent<PhotonView>().ViewID);
         }
         else if (state == GameState.Player2Turn)
         {
             GO = PhotonNetwork.Instantiate(Prefab.name, pos, Quaternion.identity);
             GO.GetComponent<PhotonView>().RequestOwnership();
-            PV.RPC("AddToList", RpcTarget.All, GO.GetComponent<PhotonView>().ViewID);
         }
     }
 
@@ -174,7 +171,7 @@ public class GameSetupContrller : MonoBehaviour
         //Debug.Log("2");
         TurnScreen.SetActive(false);
         // DieScript.rolling = 0;
-        PV.RPC("ChangeScreenDisplaying", RpcTarget.All, state);
+        // PV.RPC("ChangeScreenDisplaying", RpcTarget.All, state);
         GameObject.Find("UI").transform.GetChild(1).gameObject.GetComponent<Button>().interactable = true;
         // Debug.Log("Rolling: " + DieScript.rolling);
     }
@@ -214,25 +211,54 @@ public class GameSetupContrller : MonoBehaviour
     }
 
     [PunRPC]
-    private void AddToList(int PVID)
+    public void AddToList(int PVID)
     {
         GameObject GOToAdd = PhotonView.Find(PVID).gameObject;
-        List<GameObject> NewElement = new List<GameObject>();
-        NewElement.Add(GOToAdd);
-        MoleculeElements.Add(NewElement);
-        GOToAdd.GetComponent<AtomController>().MoleculeElementsIdx = MoleculeElements.IndexOf(NewElement);
+        if (GOToAdd.GetComponent<AtomController>().MoleculeElementsIdx == 0)
+        {
+            List<GameObject> NewElement = new List<GameObject>();
+            NewElement.Add(GOToAdd);
+            MoleculeElements.Add(NewElement);
+            GOToAdd.GetComponent<AtomController>().MoleculeElementsIdx = MoleculeElements.IndexOf(NewElement) + 1;
+        }
     }
 
+    //[PunRPC]
+    //public void MergeMoleculeLists(int ListToMergeIdx, int ListToMergeInto)
+    //{
+    //    for (int idx = 0; idx < MoleculeElements[ListToMergeIdx].Count; idx++)
+    //    {
+    //        GameObject GO = MoleculeElements[ListToMergeIdx][idx];
+    //        GO.GetComponent<AtomController>().MoleculeElementsIdx = ListToMergeInto;
+    //        MoleculeElements[ListToMergeInto].Add(GO);
+    //        MoleculeElements[ListToMergeIdx][idx] = null;
+    //    }
+    //}
+
+
     [PunRPC]
-    public void MergeMoleculeLists(int ListToMergeIdx, int ListToMergeInto)
+    public void AssignNewID(int ListToMergeIDOne, int ListToMergeIDTwo)
     {
-        for (int idx = 0; idx < MoleculeElements[ListToMergeIdx].Count; idx++)
+        List<GameObject> NewLocation = new List<GameObject>();
+
+        for (int idx = 0; idx < MoleculeElements[ListToMergeIDOne - 1].Count; idx++)
         {
-            GameObject GO = MoleculeElements[ListToMergeIdx][idx];
-            GO.GetComponent<AtomController>().MoleculeElementsIdx = ListToMergeInto;
-            MoleculeElements[ListToMergeInto].Add(GO);
-            MoleculeElements[ListToMergeIdx][idx] = null;
+            NewLocation.Add(MoleculeElements[ListToMergeIDOne - 1][idx]);
+            MoleculeElements[ListToMergeIDOne - 1][idx] = null;
         }
+
+        for (int idx = 0; idx < MoleculeElements[ListToMergeIDTwo - 1].Count; idx++)
+        {
+            NewLocation.Add(MoleculeElements[ListToMergeIDTwo - 1][idx]);
+            MoleculeElements[ListToMergeIDTwo - 1][idx] = null;
+        }
+
+        for (int idx = 0; idx < NewLocation.Count; idx++)
+        {
+            NewLocation[idx].GetComponent<AtomController>().MoleculeElementsIdx = MoleculeElements.Count + 1;
+        }
+
+        MoleculeElements.Add(NewLocation);
     }
 
     public List<int> CompletedMolecules(GameObject caller)
@@ -286,17 +312,25 @@ public class GameSetupContrller : MonoBehaviour
         return score;
     }
 
+    [PunRPC]
+    public void ChangeScoreUniformly(int BondScore, int BonusScore)
+    {
+        if (state == GameState.Player1Turn)
+        {
+            P1Display.GetComponent<TextController>().BondScore = BondScore;
+            P1Display.GetComponent<TextController>().BonusScore = BonusScore;
+        }
+        else
+        {
+            P2Display.GetComponent<TextController>().BondScore = BondScore;
+            P2Display.GetComponent<TextController>().BonusScore = BonusScore;
+        }
+    }
+
     public void CalExit()
     {
         UIAnim.SetTrigger("Exit");
         //PV.RPC("ExitAnimCam", RpcTarget.All);
         //Debug.Log("callExit");
     }
-
-    //IEnumerator HideAnimation()
-    //{
-    //    yield return new WaitForSeconds(2f);
-    //    UIAnim.gameObject.transform.GetChild(3).gameObject.SetActive(false);
-    //}
-
 }

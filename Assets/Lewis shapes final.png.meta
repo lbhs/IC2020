@@ -2,7 +2,7 @@ fileFormatVersion: 2
 guid: beda887389ebeaa4baf977f4e345c34e
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Lewis shapes final_0
+    21300000: HydrogenComplete
     21300002: Lewis shapes final_1
     21300004: Lewis shapes final_2
     21300006: Lewis shapes final_3
@@ -13,6 +13,8 @@ TextureImporter:
     21300016: Lewis shapes final_8
     21300018: Lewis shapes final_9
     21300020: Lewis shapes final_10
+    21300022: DotBody
+    21300024: H-Body
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -117,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lewis shapes final_0
+      name: H-Body
       rect:
         serializedVersion: 2
         x: 619
@@ -131,7 +133,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2adada25ff740e44c83c8a472d25798b
+      spriteID: 82cf7df35b8e66c4fbdbb28295db8129
       vertices: []
       indices: 
       edges: []
@@ -151,7 +153,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d9b1b4b58299d5409c1bde020419366
+      spriteID: 0d63cbfd62cdc9e42b335e80709c8c14
       vertices: []
       indices: 
       edges: []
@@ -171,7 +173,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 462585b7d1355a540bef41c2ad7b1803
+      spriteID: ad8d30706ed1a9e45a48ec76791d5b2c
       vertices: []
       indices: 
       edges: []
@@ -191,7 +193,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0552634d95c421542bb4b63d7f1b0aa0
+      spriteID: 3f9fb94251db0104a81aa47d3003c7ef
       vertices: []
       indices: 
       edges: []
@@ -211,7 +213,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3034915281a39e94989ee36720bcabdb
+      spriteID: 9ba6068c6195861468bd49562ca8dc7c
       vertices: []
       indices: 
       edges: []
@@ -231,7 +233,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ffd32ef610329049a11513e8d376b6c
+      spriteID: e9cef22ec3112b2469935d11ea9eac8f
       vertices: []
       indices: 
       edges: []
@@ -251,7 +253,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49657f67a53006a4eb30af41d02029e4
+      spriteID: 4f94daeb8efa8594db1c45fbe546ee27
       vertices: []
       indices: 
       edges: []
@@ -271,7 +273,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c9a04f3628077e45b543859aa9cc125
+      spriteID: d1ca5b2c658afa74ba622080784f8b82
       vertices: []
       indices: 
       edges: []
@@ -291,7 +293,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7120ce98218331c4f8955a86a05d3575
+      spriteID: 6d37f80992571f646a8e4ad9df034748
       vertices: []
       indices: 
       edges: []
@@ -311,7 +313,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abc53581afbac064498bd302ea782691
+      spriteID: 8d20d225b9a1cda459146d28a56720d2
       vertices: []
       indices: 
       edges: []
@@ -331,7 +333,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b7ee1a3b27482a49bdb573feb6a5143
+      spriteID: b51283ed732b0104d801bae05f00c2f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DotBody
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 2643
+        width: 168
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4093f6f23d117cb4c9376b6f3a19a623
       vertices: []
       indices: 
       edges: []

@@ -3,7 +3,20 @@ guid: 27192b403bec1eb44ab99e290a4dda51
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - TurnScreen: {instanceID: 0}
+  - OPrefab: {instanceID: 0}
+  - NPrefab: {instanceID: 0}
+  - HPrefab: {instanceID: 0}
+  - NAPrefab: {instanceID: 0}
+  - CPrefab: {fileID: 3165713786430717543, guid: 4acc94ba656cd4a6e8f51dac6d000156,
+      type: 3}
+  - CLPrefab: {fileID: 3165713786430717543, guid: 3421cb4bef0f944d99c34d172b93389f,
+      type: 3}
+  - UIAnim: {instanceID: 0}
+  - CamAnim: {instanceID: 0}
+  - JouleHolder: {instanceID: 0}
+  - JoulePrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

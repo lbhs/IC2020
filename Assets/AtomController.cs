@@ -11,8 +11,6 @@ public class AtomController : MonoBehaviourPunCallbacks
     private PhotonView PV;
     private GameSetupContrller GSC;
 
-    public List<GameObject> variants = new List<GameObject>();
-    private int variantCounter;
     public bool isBonded = false;
 
     public int MoleculeElementsIdx;
@@ -23,28 +21,23 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     public int CurrentSingleBondingOpportunities;
 
-    private TextController TC;
-
     private BondEnergyValues BEV;
+
+    public bool CollisionEventRegistered;
+
+    int PVID;
 
     private void Start()
     {
+        CollisionEventRegistered = false;
         CurrentSingleBondingOpportunities = SingleBondingOpportunities;
         PV = GetComponent<PhotonView>();
+        PVID = PV.ViewID;
     }
 
     void Awake()
     {
         GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>();
-
-        if (transform.root.GetComponent<PhotonView>().Owner == PhotonNetwork.PlayerList[0])
-        {
-            TC = GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>();
-        }
-        else
-        {
-            TC = GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>();
-        }
 
         BEV = GameObject.Find("BondEnergyMatrix").GetComponent<BondEnergyValues>();
     }
@@ -88,35 +81,37 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     }
 
-    public void EvaluatePoints()
-    {
-        int BondsMade = 0;
-        foreach (Transform child in transform.GetChild(variantCounter))
-        {
-            if (child.gameObject.GetComponent<BondEventScript>() != null)
-            {
-                if (child.gameObject.GetComponent<BondEventScript>().Bonded)
-                {
-                    BondsMade++;
-                }
-            }
-        }
-        CurrentSingleBondingOpportunities = SingleBondingOpportunities - BondsMade;
-        TC.BonusScore = GSC.TotalBonusPoints(transform.root.gameObject);
-    }
+    //public void EvaluatePoints()
+    //{
+    //    int BondsMade = 0;
+    //    foreach (Transform child in transform.GetChild(variantCounter))
+    //    {
+    //        if (child.gameObject.GetComponent<BondEventScript>() != null)
+    //        {
+    //            if (child.gameObject.GetComponent<BondEventScript>().Bonded)
+    //            {
+    //                BondsMade++;
+    //            }
+    //        }
+    //    }
+    //    CurrentSingleBondingOpportunities = SingleBondingOpportunities - BondsMade;
+    //}
 
-    public void BondingFunction(Collider2D collision)
-    {
-        FixedJoint2D joint;
-        joint = gameObject.AddComponent<FixedJoint2D>();
-        joint.connectedBody = collision.transform.root.gameObject.GetComponent<Rigidbody2D>();
-        joint.enableCollision = false;
-        
-        TC.BondScore += BEV.bondEnergyArray[EnergyMatrixPosition,
-                                            collision.transform.root.GetComponent<AtomController>().EnergyMatrixPosition];
-        EvaluatePoints();
-        collision.transform.root.GetComponent<AtomController>().EvaluatePoints();
-    }
+    //public void BondingFunction(Collider2D collision)
+    //{
+    //    FixedJoint2D joint;
+    //    joint = gameObject.AddComponent<FixedJoint2D>();
+    //    joint.connectedBody = collision.transform.root.gameObject.GetComponent<Rigidbody2D>();
+    //    joint.enableCollision = false;
+       
+    //    EvaluatePoints();
+    //    collision.transform.root.GetComponent<AtomController>().EvaluatePoints();
+
+    //    int BondScore = BEV.bondEnergyArray[EnergyMatrixPosition,
+    //                                        collision.transform.root.GetComponent<AtomController>().EnergyMatrixPosition];
+    //    int TotalBonusScore = GSC.TotalBonusPoints(transform.root.gameObject);
+    //    GSC.GetComponent<PhotonView>().RPC("ChangeScoreUniformly", RpcTarget.All, BondScore, TotalBonusScore);
+    //}
 
     private void Update()
     {
@@ -159,18 +154,6 @@ public class AtomController : MonoBehaviourPunCallbacks
         }
     }
 
-    [PunRPC]
-    public void RotateGO()
-    {
-        variants[variantCounter].SetActive(false);
-        variantCounter++;
-        if (variantCounter >= variants.Count)
-        {
-            variantCounter = 0;
-        }
-        variants[variantCounter].SetActive(true);
-    }
-
     private Vector3 GetMouseAsWorldPoint()
     {
         // Pixel coordinates of mouse (x,y)
@@ -179,5 +162,51 @@ public class AtomController : MonoBehaviourPunCallbacks
         mousePoint.z = mZCoord;
         // Convert it to world points
         return Camera.main.ScreenToWorldPoint(mousePoint);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag == "Peak" || collider.tag == "PeakDB")
+        {
+            CollisionEventRegistered = true;
+            GameObject peer = collider.transform.root.gameObject;
+            if (peer.GetComponent<AtomController>().CollisionEventRegistered)
+            {
+                if (MoleculeElementsIdx == 0 && peer.GetComponent<AtomController>().MoleculeElementsIdx == 0)
+                {
+                    GSC.GetComponent<PhotonView>().RPC("AddToList", RpcTarget.All, PVID);
+                    peer.GetComponent<AtomController>().MoleculeElementsIdx = MoleculeElementsIdx;
+                }
+
+                else if (MoleculeElementsIdx == 0 && peer.GetComponent<AtomController>().MoleculeElementsIdx > 0)
+                {
+                    MoleculeElementsIdx = peer.GetComponent<AtomController>().MoleculeElementsIdx;
+                }
+
+                else if (MoleculeElementsIdx > 0 && peer.GetComponent<AtomController>().MoleculeElementsIdx == 0)
+                {
+                    peer.GetComponent<AtomController>().MoleculeElementsIdx = MoleculeElementsIdx;
+                }
+
+                else
+                {
+                    GSC.GetComponent<PhotonView>().RPC("AssignNewID", RpcTarget.All, MoleculeElementsIdx, peer.GetComponent<AtomController>().MoleculeElementsIdx);
+                }
+
+                FixedJoint2D joint = gameObject.AddComponent<FixedJoint2D>();
+                joint.connectedBody = peer.GetComponent<Rigidbody2D>();
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        CollisionEventRegistered = false;
+    }
+
+    [PunRPC]
+    public void RotateGO()
+    {
+        GetComponent<Rigidbody2D>().rotation -= 90f; 
     }
 }

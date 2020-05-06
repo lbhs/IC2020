@@ -38,9 +38,12 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                 objectToUse = item.gameObject;
             }
         }
-        GameObject.Find("GameSetup").GetComponent<GameSetupContrller>().NetowrkSpawn(objectToUse.GetComponent<UIDragNDrop>().PrefabToSpawn, prefabWorldPosition);
+        if (objectToUse != null)
+        {
+            GameObject.Find("GameSetup").GetComponent<GameSetupContrller>().NetowrkSpawn(objectToUse.GetComponent<UIDragNDrop>().PrefabToSpawn, prefabWorldPosition);
+        }
         GameObject.Find("GameSetup").GetComponent<GameSetupContrller>().CalExit();
-            //Instantiate(objectToUse.GetComponent<UIDragNDrop>().PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
+        //Instantiate(objectToUse.GetComponent<UIDragNDrop>().PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
 
         //}
     }
