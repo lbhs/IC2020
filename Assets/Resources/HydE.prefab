@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2253915611208636342}
   - component: {fileID: 5631284157482275661}
   - component: {fileID: 7659203814466102313}
+  - component: {fileID: 4749468044180117133}
   m_Layer: 0
   m_Name: HydE
   m_TagString: Hydrogen
@@ -206,6 +207,18 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &4749468044180117133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444421772686509034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48ae5b2371634542b129a26470c8c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5457061116414237935
 GameObject:
   m_ObjectHideFlags: 0

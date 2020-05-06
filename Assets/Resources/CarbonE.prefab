@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 5339051823415253653}
   - component: {fileID: 6825689092294163326}
   - component: {fileID: 6296699146976932418}
+  - component: {fileID: 8974600861658600029}
   m_Layer: 0
   m_Name: CarbonE
   m_TagString: Carbon
@@ -255,6 +256,18 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &8974600861658600029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165713786430717543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48ae5b2371634542b129a26470c8c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3701683146779844129
 GameObject:
   m_ObjectHideFlags: 0

@@ -235,7 +235,7 @@ public class GameSetupContrller : MonoBehaviour
     //    }
     //}
 
-
+    // Replaces MergeMoleculeLists
     [PunRPC]
     public void AssignNewID(int ListToMergeIDOne, int ListToMergeIDTwo)
     {

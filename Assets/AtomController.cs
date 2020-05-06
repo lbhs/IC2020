@@ -46,39 +46,12 @@ public class AtomController : MonoBehaviourPunCallbacks
     {
         if (PV.IsMine == false)
             return;
-        if (GameObject.Find("TurnScreen") == null)
+        else
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                float deg;
-                //   if (isBonded == true)
-                //  deg = 90f;
-                //else
-                //   deg = 45f;
-                if (isBonded != true)
-                    deg = 90f;
-                else
-                    deg = 0f;
-                GetComponent<Rigidbody2D>().rotation -= deg;
-                GetComponent<Rigidbody2D>().rotation = Mathf.Round (GetComponent<Rigidbody2D>().rotation);
-                //GetComponent<Rigidbody2D>().MoveRotation( transform.rotation.z + -45 );
-                //transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -45);
-            }
-            else if (Input.GetKey(KeyCode.LeftControl))
-            {
-                if (isBonded == false)
-                {
-                    PV.RPC("RotateGO", RpcTarget.All);
-                }
-            }
-            else
-            {
-                mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-                // Store offset = gameobject world pos - mouse world pos
-                mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
-            }
+            mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+            // Store offset = gameobject world pos - mouse world pos
+            mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
         }
-
     }
 
     //public void EvaluatePoints()
@@ -117,11 +90,7 @@ public class AtomController : MonoBehaviourPunCallbacks
     {
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         GetComponent<Rigidbody2D>().angularVelocity = 0f;
-        if (GetComponent<FixedJoint2D>() == null)
-        {
-            isBonded = false;
-        }
-        else
+        if (GetComponent<FixedJoint2D>() != null)
         {
             isBonded = true;
         }
@@ -195,6 +164,8 @@ public class AtomController : MonoBehaviourPunCallbacks
 
                 FixedJoint2D joint = gameObject.AddComponent<FixedJoint2D>();
                 joint.connectedBody = peer.GetComponent<Rigidbody2D>();
+
+                peer.GetComponent<AtomController>().isBonded = true;
             }
         }
     }
@@ -202,11 +173,5 @@ public class AtomController : MonoBehaviourPunCallbacks
     private void FixedUpdate()
     {
         CollisionEventRegistered = false;
-    }
-
-    [PunRPC]
-    public void RotateGO()
-    {
-        GetComponent<Rigidbody2D>().rotation -= 90f; 
     }
 }
