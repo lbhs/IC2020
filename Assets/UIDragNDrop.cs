@@ -59,7 +59,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 						if(Physics2D.RaycastAll(Camera.main.ScreenPointToRay(new Vector3(x, y, Input.mousePosition.y)).origin, Vector3.forward).Length > 1)
 						{
 							ableToSpawn = false;
-							GameObject.Find("NotEnoughJoulesDisplay").GetComponent<CannotBreakBond>().noStack();
+							GameObject.Find("ConversationDisplay").GetComponent<CannotBreakBond>().noStack();
 						}
 					}
 				}
