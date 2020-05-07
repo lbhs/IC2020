@@ -36,6 +36,7 @@ public class DieScript : MonoBehaviour {
         {
             if (totalRolls < 12)
             {
+				GameObject.Find("UI").GetComponent<Animator>().SetBool("Exiting", false);
                 DieRoll.Play();
                 rolling++;
                 totalRolls++;
@@ -61,6 +62,7 @@ public class DieScript : MonoBehaviour {
 	{
 		transform.position = startPos;
 		transform.rotation = startRot;
+        rb.velocity = Vector3.zero;
 	}
 
     private IEnumerator countdown()  //this is a co-routine, can run in parallel with other scripts/functions

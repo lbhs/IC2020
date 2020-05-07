@@ -222,7 +222,7 @@ public class BondMaker: MonoBehaviour
                     MCToken = GameObject.Find("MoleculeListKeeper").GetComponent<MoleculeCompletionPtArray>().MoleculeCompletionToken[i];
                     AtomInventory.MoleculeList[MoleculeID].Add(MCToken);  //adds a MoleculeCompletionToken to the MoleculeList Array
                     //HERE'S THE NEW STUFF!!!
-                    print("i =" + i);
+                    /*print("i =" + i);
                     if (i > 2)
                     {
                         foreach (GameObject atom in TempAtomList)
