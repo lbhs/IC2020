@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class ImageFollower : MonoBehaviour
 {
-    public GameObject objectToFollow;
-    public GameObject CanvasPrefab;
-    private GameObject lableCanvas;
+
+}
+/*
+{
+    //This script is attached to the "Badge" GameObject
+    public GameObject objectToFollow;  //This attaches the badge to a specific atom
+    public GameObject CanvasPrefab;  //the Badge UI element is on a Canvas
+    private GameObject lableCanvas;  //This is the Canvas that the badge resides upon
 
     void Start()
     {
@@ -16,9 +21,22 @@ public class ImageFollower : MonoBehaviour
         {
             lableCanvas = Instantiate(CanvasPrefab);
             lableCanvas.name = "LabelCanvas";
-            lableCanvas.GetComponent<Canvas>().worldCamera = Camera.main;
+            lableCanvas.GetComponent<Canvas>().worldCamera = Camera.main;  //needed to make the badge appear in the right spot
         }
-        gameObject.transform.SetParent(lableCanvas.transform);
+        gameObject.transform.SetParent(lableCanvas.transform);  //Badge is a child of LabelCanvas
+    }
+    
+    public void AddBadge()
+    {
+        print("got to the image follower script)");
+        lableCanvas = GameObject.Find("LabelCanvas");
+        if(lableCanvas == null)
+        {
+            lableCanvas = Instantiate(CanvasPrefab);
+            lableCanvas.name = "LabelCanvas";
+            lableCanvas.GetComponent<Canvas>().worldCamera = Camera.main;  //needed to make the badge appear in the right spot
+        }
+        gameObject.transform.SetParent(lableCanvas.transform);  //gameObject = the Badge.  The Badge is a child of LabelCanvas
     }
 
     // Update is called once per frame
@@ -47,4 +65,4 @@ public class ImageFollower : MonoBehaviour
         return parentCanvas.transform.TransformPoint(movePos);
     }
 
-}
+}*/

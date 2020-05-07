@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 3165713786430717543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.007, y: -1.413, z: -0.114365526}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.42, y: 0.42, z: 1}
   m_Children:
   - {fileID: 2850491684658677444}
   - {fileID: 4457615774652165223}
@@ -100,7 +100,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -139,6 +139,16 @@ MonoBehaviour:
   bondArrayID: 2
   MoleculeID: 0
   SoundFX: {fileID: 0}
+  Monovalent: 0
+  BadgeRecipient: {fileID: 0}
+  BadgeToPin:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 7910228619348699048, guid: 32ad790c4c7432341b0df2f729868abe, type: 3}
+  - {fileID: 7910228619348699048, guid: 143d4c63985379f45b747038510af63c, type: 3}
+  - {fileID: 7910228619348699048, guid: 1c9d5c550e50be84ea58658fe9802071, type: 3}
+  - {fileID: 7910228619348699048, guid: dbd68b5f50d120c47a3ead714bf430f1, type: 3}
 --- !u!114 &5665381326587552875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +201,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PrefabToBecome: {fileID: 3165713786430717543, guid: 593c7fff8c94f4bd7a7b7fb70bb74a35,
     type: 3}
-  Prefab: {fileID: 3165713786430717543}
 --- !u!1 &5364500037088676356
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class DieScript : MonoBehaviour {
 	private Vector3 startPos;
 	private Quaternion startRot;
 	public static int rolling = 0;
-    public static int totalRolls = 0; //reset to 0 when done working on gameover screen
+    public static int totalRolls = 0; //reset to 0 when kenneth is done working on gameover screen
     public AudioSource DieRoll;
 
 	void Start()
@@ -36,7 +36,7 @@ public class DieScript : MonoBehaviour {
         {
             if (totalRolls < 12)
             {
-				GameObject.Find("UI").GetComponent<Animator>().SetBool("Exiting", false);
+                GameObject.Find("UI").GetComponent<Animator>().SetBool("Exiting", false);
                 DieRoll.Play();
                 rolling++;
                 totalRolls++;
@@ -62,7 +62,6 @@ public class DieScript : MonoBehaviour {
 	{
 		transform.position = startPos;
 		transform.rotation = startRot;
-        rb.velocity = Vector3.zero;
 	}
 
     private IEnumerator countdown()  //this is a co-routine, can run in parallel with other scripts/functions

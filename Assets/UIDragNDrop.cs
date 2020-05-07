@@ -42,31 +42,35 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 				if(go.gameObject.transform.parent.gameObject.name == "RollPannelDouble"){ableToSpawn = false;}
 			}
 		}
-		
-		//new method at raycasting overlap prevention, checks entire atom for overlap
-		GameObject dummyObject = Instantiate(PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
-		int range = (int)(Screen.width*0.15);
-		int accuracy = 5; //1 is pixel perfect accuracy but causes freezing, 5 is a great performance but could allow minor overlap
-		
-		for(int x = (int)Input.mousePosition.x - range; x < (int)Input.mousePosition.x + range; x+=accuracy)
-		{
-			for(int y = (int)Input.mousePosition.y - range; y < (int)Input.mousePosition.y + range; y+=accuracy)
-			{
-				foreach(var go in Physics2D.RaycastAll(Camera.main.ScreenPointToRay(new Vector3(x, y, Input.mousePosition.y)).origin, Vector3.forward))
-				{
-					if(go == dummyObject)
-					{
-						if(Physics2D.RaycastAll(Camera.main.ScreenPointToRay(new Vector3(x, y, Input.mousePosition.y)).origin, Vector3.forward).Length > 1)
-						{
-							ableToSpawn = false;
-							GameObject.Find("ConversationDisplay").GetComponent<CannotBreakBond>().noStack();
-						}
-					}
-				}
-			}
-		}
-		Destroy(dummyObject);
-		
+
+        /*
+        //new method at raycasting overlap prevention, checks entire atom for overlap
+        if (ableToSpawn)
+        {
+            GameObject dummyObject = Instantiate(PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
+            int range = (int)(Screen.width * 0.15);
+            int accuracy = 5; //1 is pixel perfect accuracy but causes freezing, 5 is a great performance but could allow minor overlap
+
+            for (int x = (int)Input.mousePosition.x - range; x < (int)Input.mousePosition.x + range; x += accuracy)
+            {
+                for (int y = (int)Input.mousePosition.y - range; y < (int)Input.mousePosition.y + range; y += accuracy)
+                {
+                    foreach (var go in Physics2D.RaycastAll(Camera.main.ScreenPointToRay(new Vector3(x, y, Input.mousePosition.y)).origin, Vector3.forward))
+                    {
+                        if (go == dummyObject)
+                        {
+                            if (Physics2D.RaycastAll(Camera.main.ScreenPointToRay(new Vector3(x, y, Input.mousePosition.y)).origin, Vector3.forward).Length > 1)
+                            {
+                                ableToSpawn = false;
+                                GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().noStack();
+                            }
+                        }
+                    }
+                }
+            }
+            Destroy(dummyObject);
+        }*/
+
 		if(ableToSpawn/*should be true when cursor isn't over UI or another game object*/)
 		{ 
 			if(AtomInventoryRemaining.removePiece(PrefabToSpawn, true) >= 1)
@@ -90,13 +94,13 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 			}
 			else
 			{
-				GameObject.Find("NotEnoughJoulesDisplay").GetComponent<CannotBreakBond>().OutOfInventory2();
+				GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().OutOfInventory2();
 				transform.localPosition = Vector3.zero;
 			}
 		}
 		else
 		{
-			transform.localPosition = Vector3.zero;
+			transform.localPosition = Vector3.zero;  //UI object snaps back to where it came from
 		}
     }
 }
