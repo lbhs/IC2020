@@ -12,7 +12,7 @@ public class MusicManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isPlaying = true; 
+        isPlaying = true;
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class MusicManager : MonoBehaviour
     public void songChange2()
     {
         BackgroundMusic.Stop();
-        BackgroundMusic.loop = true;
+        BackgroundMusic.loop = true; //test
         BackgroundMusic.PlayOneShot(song1);
     }
     public void stopMusic()
