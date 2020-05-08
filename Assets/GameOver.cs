@@ -24,7 +24,7 @@ public class GameOver : MonoBehaviour
     void Start()
     {
         Debug.Log("New Scene Started");
-        FinalGameOverScore = resetScene.FinalScore + 380; //erase the +200!!!!!
+        FinalGameOverScore = resetScene.FinalScore; //
         FinalScoreText.text = "You got ...";
         Debug.Log("Final score is " + FinalGameOverScore);
         MedalAwardSound = GameObject.Find("MedalAwardSource").GetComponent<AudioSource>();

@@ -18,7 +18,7 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             songChange1();
         }
@@ -37,21 +37,21 @@ public class MusicManager : MonoBehaviour
             {
                 playMusic();
             }
-        }*/
+        }
     }
 
     public void songChange1()
     {
         BackgroundMusic.Stop();
         BackgroundMusic.loop = true;
-        BackgroundMusic.PlayOneShot(song2);
+        BackgroundMusic.PlayOneShot(song1);
     }
 
     public void songChange2()
     {
         BackgroundMusic.Stop();
-        BackgroundMusic.loop = true; //test
-        BackgroundMusic.PlayOneShot(song1);
+        BackgroundMusic.loop = true;
+        BackgroundMusic.PlayOneShot(song2);
     }
     public void stopMusic()
     {

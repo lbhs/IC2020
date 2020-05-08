@@ -23,7 +23,7 @@ public class SwapIt : MonoBehaviour
 					case 0:
 						if(PrefabToBecome.GetComponent<SwapIt>().PrefabToBecome.name + "(Clone)" == gameObject.name || AtomInventoryRemaining.pieceToName(gameObject) == "OxygenEB(Clone)")
 						{
-							GameObject.Find("NotEnoughJoulesDisplay").GetComponent<CannotBreakBond>().OutOfInventory3();
+							GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().OutOfInventory3();
 						} else {
 							Instantiate(PrefabToBecome.GetComponent<SwapIt>().PrefabToBecome, transform.position, Quaternion.identity);
 							Destroy(gameObject);

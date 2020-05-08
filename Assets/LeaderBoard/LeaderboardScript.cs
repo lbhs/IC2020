@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#pragma warning disable CS0618 // Type or member is obsolete
+
 public class LeaderboardScript : MonoBehaviour
 {
     private string BASE_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdfRfapmI3she14Wkyye5eAhlzUIpyzc7iFDUUS1SVAWcdQzA/formResponse";
@@ -41,4 +41,3 @@ public class LeaderboardScript : MonoBehaviour
         yield return www;
     }
 }
-#pragma warning restore CS0618 // Type or member is obsolete
