@@ -29,7 +29,7 @@ public class DieScript : MonoBehaviour {
 
     public void RollDiceAnimation()
     {
-        if(rolling == 4)
+        if(rolling >= 4)
         {
             rolling = 0;
         }
