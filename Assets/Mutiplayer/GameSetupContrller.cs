@@ -28,18 +28,14 @@ public class GameSetupContrller : MonoBehaviour
     private GameObject RollPanelOptions;
     private List<List<GameObject>> MoleculeElements;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         CreatePlayer();
         state = GameState.Start;
         PV = GetComponent<PhotonView>();
         CamAnim = Camera.main.GetComponent<Animator>();
         MoleculeElements = new List<List<GameObject>>();
-    }
 
-    private void Awake()
-    {
         RollPanelOptions = GameObject.Find("UI").transform.GetChild(3).gameObject;
         P1Display = GameObject.Find("UI").transform.GetChild(6).gameObject;
         P2Display = GameObject.Find("UI").transform.GetChild(7).gameObject;
@@ -60,13 +56,12 @@ public class GameSetupContrller : MonoBehaviour
             PV.RPC("ChangeState", RpcTarget.All, GameState.Player1Turn);
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[0]);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[1]);
+            PV.RPC("ChangeScreenDisplaying", RpcTarget.All, GameState.Player1Turn);
         }
     }
 
     public void RollDice(int Roll)
-    {
-        Vector3 InstantiationPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));
-
+    { 
         if (Roll == 1)
         {
             UIAnim.SetTrigger("H");
@@ -131,6 +126,7 @@ public class GameSetupContrller : MonoBehaviour
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[1]);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[0]);
             PV.RPC("AnimateCam", RpcTarget.All, false);
+            PV.RPC("ChangeScreenDisplaying", RpcTarget.All, GameState.Player2Turn);
         }
         else if(state == GameState.Player2Turn)
         {
@@ -139,6 +135,7 @@ public class GameSetupContrller : MonoBehaviour
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[0]);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[1]);
             PV.RPC("AnimateCam", RpcTarget.All, true);
+            PV.RPC("ChangeScreenDisplaying", RpcTarget.All, GameState.Player1Turn);
         }
     }
 
@@ -202,14 +199,15 @@ public class GameSetupContrller : MonoBehaviour
     {
         // Two elements with a MoleculeID of 0 collide
         GameObject GOToAdd = PhotonView.Find(PVID).gameObject;
-        GameObject SecondGOToAdd = PhotonView.Find(PVID).gameObject;
+        GameObject SecondGOToAdd = PhotonView.Find(PeerPVID).gameObject;
+
+        GOToAdd.GetComponent<AtomController>().MoleculeID = MoleculeElements.Count + 1;
+        SecondGOToAdd.GetComponent<AtomController>().MoleculeID = MoleculeElements.Count + 1;
 
         List<GameObject> NewMolecule = new List<GameObject>();
         NewMolecule.Add(GOToAdd);
         NewMolecule.Add(SecondGOToAdd);
         MoleculeElements.Add(NewMolecule);
-        GOToAdd.GetComponent<AtomController>().MoleculeID = MoleculeElements.IndexOf(NewMolecule) + 1;
-        SecondGOToAdd.GetComponent<AtomController>().MoleculeID = MoleculeElements.IndexOf(NewMolecule) + 1;
     }
 
     [PunRPC]
@@ -239,13 +237,43 @@ public class GameSetupContrller : MonoBehaviour
     {
         if (state == GameState.Player1Turn)
         {
-            P1Display.GetComponent<TextController>().BondScore = BondScore;
-            P1Display.GetComponent<TextController>().BonusScore = BonusScore;
+            P1Display.GetComponent<TextController>().BondScore += BondScore;
+            P1Display.GetComponent<TextController>().BonusScore += BonusScore;
         }
         else
         {
-            P2Display.GetComponent<TextController>().BondScore = BondScore;
-            P2Display.GetComponent<TextController>().BonusScore = BonusScore;
+            P2Display.GetComponent<TextController>().BondScore += BondScore;
+            P2Display.GetComponent<TextController>().BonusScore += BonusScore;
+        }
+    }
+
+    public int ReturnCompletionSize(int MoleculeID)
+    {
+        int MoleculeSize = 0;
+        foreach (GameObject GO in MoleculeElements[MoleculeID - 1])
+        {
+            if (GO.GetComponent<AtomController>().BondingOpportunities != 0)
+            {
+                return 0;
+            }
+            MoleculeSize++;
+        }
+        return MoleculeSize;
+    }
+
+    public void MoleculeElementsViewership()
+    {
+        int StartMoleculeID = 1;
+        foreach (List<GameObject> IndMolecule in MoleculeElements)
+        {
+            string str = "";
+            Debug.Log("MoleculeID: " + StartMoleculeID);
+            foreach (GameObject GO in IndMolecule)
+            {
+                str += (GO.name + " " + GO.GetComponent<AtomController>().PVID);
+            }
+            Debug.Log(str);
+            StartMoleculeID++;
         }
     }
 

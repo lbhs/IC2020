@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 2504367646903285636}
   - component: {fileID: 7379986881625408048}
   - component: {fileID: 6135928613754807758}
-  - component: {fileID: 4839300439939482981}
   - component: {fileID: 4417715721249314982}
+  - component: {fileID: 1666481822432485569}
+  - component: {fileID: 4606379405608779330}
   m_Layer: 0
   m_Name: ChlorineE
   m_TagString: Chlorine
@@ -148,11 +149,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBonded: 0
-  MoleculeElementsIdx: 0
-  SingleBondingOpportunities: 0
-  EnergyMatrixPosition: 0
-  CurrentSingleBondingOpportunities: 0
+  MoleculeID: 0
+  BondingOpportunities: 1
+  EnergyMatrixPosition: 3
   CollisionEventRegistered: 0
+  PVID: 0
+  Monovalent: 1
+  CorrespondingCollider: {fileID: 0}
 --- !u!114 &6135928613754807758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,11 +174,24 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 4839300439939482981}
+  - {fileID: 4606379405608779330}
+  - {fileID: 1666481822432485569}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &4839300439939482981
+--- !u!114 &4417715721249314982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165713786430717543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48ae5b2371634542b129a26470c8c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1666481822432485569
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,7 +206,7 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
---- !u!114 &4417715721249314982
+--- !u!114 &4606379405608779330
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,9 +215,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3165713786430717543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b48ae5b2371634542b129a26470c8c16, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &5675854885878350843
 GameObject:
   m_ObjectHideFlags: 0

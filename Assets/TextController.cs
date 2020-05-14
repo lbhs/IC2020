@@ -12,12 +12,14 @@ public class TextController : MonoBehaviour
     public int BondScore;
     public int BonusScore;
 
+    public int PreviousTotalScore;
+
     // Start is called before the first frame update
     void Start()
     {
         BondScoreText = transform.GetChild(0).GetComponent<Text>();
-        TotalScoreText = transform.GetChild(1).GetComponent<Text>();
-        BonusPointsText = transform.GetChild(2).GetComponent<Text>();
+        TotalScoreText = transform.GetChild(2).GetComponent<Text>();
+        BonusPointsText = transform.GetChild(1).GetComponent<Text>();
 
         BondScore = 0;
         BonusScore = 0;
@@ -26,8 +28,12 @@ public class TextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BondScoreText.text = "Heat Collected: " + BondScore; 
-        BonusPointsText.text = "Molecule Bonus Points: " + BonusScore;
-        TotalScoreText.text = "Total Points: " + (BondScore + BonusScore);
+        if (PreviousTotalScore != (BondScore + BonusScore))
+        {
+            BondScoreText.text = "Heat Collected: " + BondScore;
+            BonusPointsText.text = "Molecule Bonus Points: " + BonusScore;
+            TotalScoreText.text = "Total Points: " + (BondScore + BonusScore);
+            PreviousTotalScore = BondScore + BonusScore;
+        }
     }
 }

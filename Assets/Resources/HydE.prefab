@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 3365225845529034908}
   - component: {fileID: 2253915611208636342}
   - component: {fileID: 5631284157482275661}
-  - component: {fileID: 7659203814466102313}
   - component: {fileID: 4749468044180117133}
+  - component: {fileID: 7134579713074529128}
+  - component: {fileID: 1381028650251206319}
   m_Layer: 0
   m_Name: HydE
   m_TagString: Hydrogen
@@ -106,7 +107,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -165,11 +166,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBonded: 0
-  MoleculeElementsIdx: 0
-  SingleBondingOpportunities: 0
+  MoleculeID: 0
+  BondingOpportunities: 1
   EnergyMatrixPosition: 0
-  CurrentSingleBondingOpportunities: 0
   CollisionEventRegistered: 0
+  PVID: 0
+  Monovalent: 1
+  CorrespondingCollider: {fileID: 0}
 --- !u!114 &5631284157482275661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,11 +191,40 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 7659203814466102313}
+  - {fileID: 7134579713074529128}
+  - {fileID: 1381028650251206319}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &7659203814466102313
+--- !u!114 &4749468044180117133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444421772686509034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48ae5b2371634542b129a26470c8c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7134579713074529128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444421772686509034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &1381028650251206319
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -207,18 +239,6 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
---- !u!114 &4749468044180117133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1444421772686509034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b48ae5b2371634542b129a26470c8c16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5457061116414237935
 GameObject:
   m_ObjectHideFlags: 0

@@ -127,9 +127,10 @@ GameObject:
   - component: {fileID: 835548492600358375}
   - component: {fileID: 819311316482164813}
   - component: {fileID: 8950742963916243026}
-  - component: {fileID: 2964066591919938186}
-  - component: {fileID: 3751059169297817581}
   - component: {fileID: 6285869616993819256}
+  - component: {fileID: 7496671563437898994}
+  - component: {fileID: 340840736624825419}
+  - component: {fileID: 7299511019035929162}
   m_Layer: 0
   m_Name: CarbonEsp2
   m_TagString: Carbon
@@ -268,12 +269,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBonded: 0
-  MoleculeElementsIdx: 0
-  SingleBondingOpportunities: 0
-  EnergyMatrixPosition: 0
-  CurrentSingleBondingOpportunities: 0
+  MoleculeID: 0
+  BondingOpportunities: 4
+  EnergyMatrixPosition: 1
   CollisionEventRegistered: 0
---- !u!114 &2964066591919938186
+  PVID: 0
+  Monovalent: 0
+  CorrespondingCollider: {fileID: 0}
+--- !u!114 &6285869616993819256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165713786430717543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48ae5b2371634542b129a26470c8c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7496671563437898994
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -291,11 +306,12 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 3751059169297817581}
+  - {fileID: 340840736624825419}
+  - {fileID: 7299511019035929162}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &3751059169297817581
+--- !u!114 &340840736624825419
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -310,7 +326,7 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
---- !u!114 &6285869616993819256
+--- !u!114 &7299511019035929162
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,9 +335,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3165713786430717543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b48ae5b2371634542b129a26470c8c16, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &4124594428835375705
 GameObject:
   m_ObjectHideFlags: 0
