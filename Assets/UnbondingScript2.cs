@@ -28,6 +28,7 @@ public class UnbondingScript2 : MonoBehaviour
     private GameObject JouleToDestroy;
     private GameObject[] JoulesInCorral;
     public static int DontBondAgain;
+    public static int WaitABit;
     
     
 
@@ -364,10 +365,16 @@ public class UnbondingScript2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Atom1 = null;
-        Atom2 = null;
-        DotCount = 0;
-        Destroy(Joule);
+        WaitABit--;
+        
+        if(WaitABit <1)
+        {
+            Destroy(Joule);
+            Atom1 = null;
+            Atom2 = null;
+            DotCount = 0;
+        }
+        
     }
 
 }
