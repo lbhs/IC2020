@@ -9,7 +9,7 @@ public class DieScript : MonoBehaviour {
 	private Vector3 startPos;
 	private Quaternion startRot;
 	public static int rolling = 0;
-    public static int totalRolls = 0; //reset to 0 when done working on gameover screen
+    public static int totalRolls = 0; //reset to 0 when kenneth is done working on gameover screen
     public AudioSource DieRoll;
 
 	void Start()
@@ -20,15 +20,16 @@ public class DieScript : MonoBehaviour {
         totalRolls = 0; //reset to 0
         DieRoll = GameObject.Find("DieRollSound").GetComponent<AudioSource>();
     }
-
+	
 	void Update()
 	{
-		dieVelocity = rb.velocity;
-    }
+		//Debug.Log(rolling);
+		dieVelocity = rb.velocity; //looks useless but very important for other scripts
+	}
 
     public void RollDiceAnimation()
     {
-        if(rolling == 4)
+        if(rolling >= 4)
         {
             rolling = 0;
         }
@@ -36,18 +37,10 @@ public class DieScript : MonoBehaviour {
         {
             if (totalRolls < 12)
             {
-				GameObject.Find("UI").GetComponent<Animator>().SetBool("Exiting", false);
-                DieRoll.Play();
-                rolling++;
-                totalRolls++;
-                rb.velocity = Vector3.zero;
-                float dirX = Random.Range(-500, 500);
-                float dirY = Random.Range(-500, 500);
-                float dirZ = Random.Range(-500, 500);
-                transform.position = startPos;
-                transform.rotation = Random.rotation;
-                rb.AddForce(new Vector3(Random.Range(-100f, 100f), 1000, 0));
-                rb.AddTorque(dirX, dirY, dirZ);
+                Roll();
+				rolling++;
+				totalRolls++;
+				StopAllCoroutines(); //only allows one instance of the countdown at a time, the most recent one
                 StartCoroutine(countdown());
             }
             else
@@ -62,7 +55,6 @@ public class DieScript : MonoBehaviour {
 	{
 		transform.position = startPos;
 		transform.rotation = startRot;
-        rb.velocity = Vector3.zero;
 	}
 
     private IEnumerator countdown()  //this is a co-routine, can run in parallel with other scripts/functions
@@ -70,16 +62,24 @@ public class DieScript : MonoBehaviour {
         yield return new WaitForSeconds(5);
         if (rolling == 1)
         {
-            rb.velocity = Vector3.zero;
-            float dirX = Random.Range(-500, 500);
-            float dirY = Random.Range(-500, 500);
-            float dirZ = Random.Range(-500, 500);
-            transform.localPosition = startPos;
-            transform.rotation = Random.rotation;
-            rb.AddForce(new Vector3(Random.Range(-100f, 100f), 1000, 0));
-            rb.AddTorque(dirX, dirY, dirZ);
+            Roll();
+			Debug.Log("try again");
             StartCoroutine(countdown());
         }
         yield break;
     }
+	
+	public void Roll()
+	{
+		GameObject.Find("UI").GetComponent<Animator>().SetBool("Exiting", false);
+		DieRoll.Play();
+		rb.velocity = Vector3.zero;
+		float dirX = Random.Range(-500, 500);
+		float dirY = Random.Range(-500, 500);
+		float dirZ = Random.Range(-500, 500);
+		transform.position = startPos;
+		transform.rotation = Random.rotation;
+		rb.AddForce(new Vector3(Random.Range(-100f, 100f), 1000, 0));
+		rb.AddTorque(dirX, dirY, dirZ);
+	}
 }

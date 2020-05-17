@@ -46,6 +46,12 @@ public class ConversationTextDisplayScript: MonoBehaviour
         StartCoroutine(countdown());
     }
 
+    public void noStack()
+    {
+        ConversationTextBox.text = "Don't stack atoms on top of each other!";
+        StartCoroutine(countdown());
+    }
+
     private IEnumerator countdown()  //this is a co-routine, can run in parallel with other scripts/functions
     {
         yield return new WaitForSeconds(5);

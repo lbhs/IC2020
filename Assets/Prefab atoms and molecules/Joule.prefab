@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8565454377649884571}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.04, y: -4.62, z: 2.0860584}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: -151409201
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: c764d0f2c56735344b42c60cc69019d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c34bf17f97d1f164d9c17a9dbf6206cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -144,3 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebcb290ca8b47b42a7d525ed39b4f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  JointArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  NewMoleculeID: 0

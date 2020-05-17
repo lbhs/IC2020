@@ -27,6 +27,8 @@ public class UnbondingScript2 : MonoBehaviour
     private AudioSource SoundFX2;
     private GameObject JouleToDestroy;
     private GameObject[] JoulesInCorral;
+    public static int DontBondAgain;
+    public static int WaitABit;
     
     
 
@@ -118,7 +120,7 @@ public class UnbondingScript2 : MonoBehaviour
                     print("JouleCost =" + JouleCost);  //JouleCost comes from the bondArray[], which is a copy of the Master Array attached to BondEnergyMatrix GameObject
                     if (JouleCost > DisplayJoules.JouleTotal)
                     {
-                        GameObject.Find("NotEnoughJoulesDisplay").GetComponent<ConversationTextDisplayScript>().Denied(); //prints "You don't have enough joules to break this bond";
+                        GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().Denied(); //prints "You don't have enough joules to break this bond";
                         return;
                     }
 
@@ -136,7 +138,8 @@ public class UnbondingScript2 : MonoBehaviour
 
                     MCTokenSearch();  //THIS IS A FUNCTION:  If a MoleculeCompletionToken is in this list, remove it and decrement pt value
 
-                    if (AtomInventory.MoleculeList[MolIDValue].Count == 2)  //THIS IS CASE 2--ONLY TWO ATOMS TO UNBOND
+                    //CASE2
+                    if (AtomInventory.MoleculeList[MolIDValue].Count == 2)  //CASE 2--ONLY TWO ATOMS TO UNBOND
                     {
                         ClearMoleculeList();  //THIS FUNCTION SETS EACH ATOM TO UNBONDED-0 STATE AND REMOVES JOINT THAT BONDS THEM
                         MoveAtomsAndAdjustValleys();
@@ -145,15 +148,8 @@ public class UnbondingScript2 : MonoBehaviour
                     }
 
 
-                    /*else if (Atom1.GetComponent<BondMaker>().Monovalent) //(Atom1.tag == "Hydrogen" || Atom1.tag == "Chlorine")
-                    {
-                        Destroy(Atom1.GetComponent<FixedJoint2D>());
-                        Atom1.GetComponent<BondMaker>().MoleculeID = 0;   //If Atom1 is H or Cl, must now be a single, unbonded atom
-                        AtomInventory.MoleculeList[MolIDValue].Remove(Atom1);  
-                        Atom1.GetComponent<BondMaker>().bonded = false;
-                    }*/  //DON'T NEED THIS BECAUSE ATOM2 IS MONOVALENT, AND IF ATOM1 IS MONOVALENT, CASE 2 APPLIES
-
-                    else if (Atom2.GetComponent<BondMaker>().Monovalent)   //THIS IS CASE3--SPLITTING A MONOVALENT FROM A GROUP OF AT LEAST 2 ATOMS
+                    //CASE3
+                    else if (Atom2.GetComponent<BondMaker>().Monovalent)   //CASE3--SPLITTING A MONOVALENT FROM A GROUP OF AT LEAST 2 ATOMS
                     {
                         print("CASE3 initiated--dissociate monovalent atom");
                         Destroy(Atom2.GetComponent<FixedJoint2D>());  //every monovalent has a fixed joint
@@ -166,9 +162,9 @@ public class UnbondingScript2 : MonoBehaviour
                     }
 
 
+                    //CASE4 No monovalent involved in this unbonding:  At least one cluster of atoms is involved bc CASE2 was not met
+                    else
 
-                    else //No monovalent involved in this unbonding:  At least one cluster of atoms is involved bc CASE2 was not met                   
-                    
                     {
                         print("CASE4:  carbon-carbon bond is now broken");
                         print(AtomInventory.MoleculeList[MolIDValue].Count + " AtomInvCount");
@@ -221,7 +217,7 @@ public class UnbondingScript2 : MonoBehaviour
                                 }
                             }
 
-                            //ATOM2 WILL BE MOVED WITH ALL ITS CONNECTED ATOMS
+                            //STILL CASE4--ATOM2 WILL BE MOVED WITH ALL ITS CONNECTED ATOMS 
                             foreach (Rigidbody2D atomRB in BondingPartnerList)   //this list is currently only carbons and oxygens--hydrogens added later
                             {
                                 print("Atom2 BondingPartnerList contains " + atomRB);  //just a check to see if the list is complete
@@ -231,7 +227,7 @@ public class UnbondingScript2 : MonoBehaviour
                             {
                                 foreach (GameObject atom in AtomInventory.MoleculeList[MolIDValue])  //This is to move the hydrogens attached to carbons
                                 {
-                                    //THIS IS IT--THIS SCRIPT NOW LOOKS AT EVERY JOINT ON A POLYVALENT ATOM!!!!
+                                    //THIS SCRIPT NOW LOOKS AT EVERY JOINT ON A POLYVALENT ATOM!!!!
                                     JointArray = atom.GetComponents<FixedJoint2D>();  //this will get all the joints on "atom"
 
                                     foreach (FixedJoint2D joint in JointArray)  //look at the joints one at a time
@@ -313,6 +309,15 @@ public class UnbondingScript2 : MonoBehaviour
     {
         foreach (GameObject MCToken in AtomInventory.MoleculeList[MolIDValue])
         {
+            foreach(Transform child in MCToken.transform)
+            {
+                if(child.tag == "MCToken")  //searching for an MCToken as child.  Only exists if this was a completed molecule
+                {
+                    Destroy(child.gameObject);  //this is the MCToken (20, 30, 40, 60 pts)
+                    print("child MCToken destroyed");
+                }
+            }
+
             if (MCToken.tag == "MCToken")         //Unbonding removes the COMPLETED MOLECULE TOKEN from the MoleculeList 
             {
                 print("MC Token Found and Removed");
@@ -323,7 +328,7 @@ public class UnbondingScript2 : MonoBehaviour
         }
     }
 
-    private void ClearMoleculeList()
+    private void ClearMoleculeList()  //this is called when only two atoms are in the molecule when unbonding occurs
     {
         print("hello world");
         AtomInventory.MoleculeList[MolIDValue].Clear();   //Empty the molecule list b/c both atoms become unbonded
@@ -338,7 +343,7 @@ public class UnbondingScript2 : MonoBehaviour
         {
             Destroy(Atom1.GetComponent<FixedJoint2D>());
         }
-        if (Atom2.GetComponent<FixedJoint2D>())
+        if (Atom2.GetComponent<FixedJoint2D>())   
         {
             Destroy(Atom2.GetComponent<FixedJoint2D>());
         }
@@ -352,14 +357,24 @@ public class UnbondingScript2 : MonoBehaviour
         Atom1.GetComponent<BondMaker>().valleysRemaining++;   //an empty bonding slot has appeared on Atom1
         Atom2.GetComponent<BondMaker>().valleysRemaining++;    //an empty bonding slot has appeared on Atom2
         SoundFX2.Play();   //Plays Unbonding Sound
+        DontBondAgain = 20;
+        print("DontBondAgain set to 20");
     }
-    
+
+   
     // Update is called once per frame
     void Update()
     {
-        Atom1 = null;
-        Atom2 = null;
-        DotCount = 0;
-        Destroy(Joule);
+        WaitABit--;
+        
+        if(WaitABit <1)
+        {
+            Destroy(Joule);
+            Atom1 = null;
+            Atom2 = null;
+            DotCount = 0;
+        }
+        
     }
+
 }

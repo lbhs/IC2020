@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BondMaker: MonoBehaviour
+public class BondMaker : MonoBehaviour
 {
     //This script makes a bond (fixed joint) when triggered by simultaneous collision of "peaks" and "valleys" Double Handshake
 
     FixedJoint2D joint;
     FixedJoint2D joint1;
     FixedJoint2D joint2;
-    
+
     public bool bonded;     //when bonded, atom no longer rotates
     public int colliderCount;  //the trigger value--need double handshake for a bond to form
     private int otherColliderCount;  //trigger on the other collider--completes double handshake
@@ -21,17 +21,18 @@ public class BondMaker: MonoBehaviour
     private GameObject BondingPartner;  //the atom to which this atom has bonded
     private int i;  //counting integer in "for" loop
     public static int Index = 1;  //temporary variable used to assign Molecule ID values
-    public int MoleculeID;          
+    public int MoleculeID;
     private int BondingPartnerMoleculeID;
-    private List<GameObject> TempAtomList;       //used to make hydrogens always go in Atom2 slot (unless it's H2)
+    private List<GameObject>TempAtomList;
+    private List<GameObject> NewMoleculeList;
     private int BonusPts;           //Bonus Pt value for completed molecule
     private GameObject MCToken;
     public AudioSource SoundFX;     //Bond Formed Sound
     private AudioSource SoundFX3;   //Molecule Completion sound
-    public GameObject Badge;
     public bool Monovalent;
-    private GameObject AtomHere;
     public GameObject BadgeRecipient;
+    public GameObject[] BadgeToPin = new GameObject[7];
+    private float BadgeRotation;
 
           
 
@@ -41,12 +42,19 @@ public class BondMaker: MonoBehaviour
     {
         bonded = false;
         TempAtomList = new List<GameObject>();
+        NewMoleculeList = new List<GameObject>();
         SoundFX = GameObject.Find("BondMadeSound").GetComponent<AudioSource>();
         SoundFX3 = GameObject.Find("MoleculeCompleteSound").GetComponent<AudioSource>();
+        
 
     }
     void OnTriggerEnter2D(Collider2D collider)  //triggered by an object colliding with a "Valley"
     {
+        if(UnbondingScript2.DontBondAgain >0)  //Unbonding event sets DontBondAgain to 20--it counts down from there.  This delays bonding until unbonding is completed!
+        {
+            print("Can't bond yet");  //DontBondAgain decrements in Fixed Update, so get 20 frames (0.4 seconds) of delay
+            return;
+        }
        
         if(collider.tag == "Peak" || collider.tag == "PeakDB")     //only "Peaks" can make bonds with "Valleys"
         {
@@ -57,23 +65,25 @@ public class BondMaker: MonoBehaviour
              {
                 BondingPartner = collider.transform.root.gameObject;  //add bonding partner to array of molecule's atoms
                 BondingPartnerMoleculeID = BondingPartner.GetComponent<BondMaker>().MoleculeID;   //see what the Bonding partner's MoleculeID is
-                //AtomHere = gameObject;
-                
+                                
                 if (MoleculeID == 0  && BondingPartnerMoleculeID == 0)  //New molecule has begun!  Only occurs when both MoleculeID = zero
                 {
                     print("0-0, started a new molecule");
+                    //NewMoleculeList.Clear();  //DANGEROUS BECAUSE IT COULD CLEAR A MOLECULELIST THAT SHOULDN'T BE EMPTIED!!!
                     for (i=1;i<13;i++)   //Slots 1-12 in the array are used to store Molecules (atoms in the molecule)
                     {
                         if (AtomInventory.MoleculeList[i]== null || AtomInventory.MoleculeList[i].Count==0)
                         {
                             Index = i;      //Index finds the lowest empty MoleculeList slot
+                            print("lowest open slot = " + i);
                             break;          //to abort the loop after the first empty slot is found
                         }
                     }
                     MoleculeID = Index;   //Index is used to assign an unused MoleculeID value (max MoleculeID = 12)
                     BondingPartner.GetComponent<BondMaker>().MoleculeID = Index;    //assign the same MoleculeID to both bonding atoms
-                    TempAtomList.Add(gameObject);         //added one atom to the new MoleculeList
-                    AtomInventory.MoleculeList[MoleculeID]=TempAtomList;   //push this new list to MoleculeList array to avoid a null error message when trying to access an empty list
+                    AtomInventory.MoleculeList[Index] = new List<GameObject>();  // Initialize NewMoleculeList!  IMPORTANT--otherwise Unity says "instance does not exist"
+                    AtomInventory.MoleculeList[Index].Add(gameObject);  //put this atom in the list
+                    AtomInventory.MoleculeList[Index].Add(BondingPartner);  //put bonding partner in the list
                 }
 
                 else if (MoleculeID == 0 && BondingPartnerMoleculeID > 0)  //this means the Bonding Partner already has a MoleculeID
@@ -91,7 +101,7 @@ public class BondMaker: MonoBehaviour
                 else //if (MoleculeID > 0 && BondingPartnerMoleculeID > 0)  //&& MoleculeID != BondingPartnerMoleculeID
                 {
                     print("Merging Molecule Lists");
-                    print("MoleculeID of this gameObject");
+                    print("MoleculeID of this gameObject = " + MoleculeID);
                     print("BondingPartnerMoleculeID =" + BondingPartnerMoleculeID);
                     //Merging lists--all atoms take on MoleculeID of this Molecule--then BondingPartnerMoleculeID is emptied
                     foreach (GameObject atom in AtomInventory.MoleculeList[BondingPartnerMoleculeID])  
@@ -103,6 +113,7 @@ public class BondMaker: MonoBehaviour
                     AtomInventory.MoleculeList[BondingPartnerMoleculeID].Clear();  //makes the list empty, but not "null"
                 }
 
+                //NEXT SECTION ADDS FIXEDJOINT2D TO THE APPROPRIATE ATOMS--TWO JOINTS CREATED WHEN POLYVALENT ATOMS BOND
                 if (gameObject.tag == "Hydrogen" || gameObject.tag == "Chlorine")          //joints preferentially localized on hydrogen/Cl atoms--easier to unbond
                 {
                     print("Joint added to Monovalent atom");     //Monovalent atoms get only one joint
@@ -122,10 +133,10 @@ public class BondMaker: MonoBehaviour
 
                 else if (!gameObject.GetComponent<BondMaker>().Monovalent && !BondingPartner.GetComponent<BondMaker>().Monovalent)    //if neither atom is Monovalent, add joints to both atoms!
                 {
-                    print("Joint added to Bonding Partner (not monovalent)");
+                    print("Joints added to polyvalent Bonding Partner AND to this atom");
                     joint1 = BondingPartner.AddComponent<FixedJoint2D>();            //BondingPartner can only be O or C 
-                    joint1.connectedBody = gameObject.GetComponent<Rigidbody2D>();    //PERHAPS THIS CAN BE USED TO TRACE CONTACTS. . .
-                    joint2 = gameObject.AddComponent<FixedJoint2D>();
+                    joint1.connectedBody = gameObject.GetComponent<Rigidbody2D>();    //THIS CAN BE USED TO TRACE CONTACTS
+                    joint2 = gameObject.AddComponent<FixedJoint2D>();          //Adding double joints helps contact tracing in the Unbonding script!
                     joint2.connectedBody = BondingPartner.GetComponent<Rigidbody2D>();  //joints on both bonding atoms!!
                     joint1.autoConfigureConnectedAnchor = false;              //if this bool is true, the joint won't hold when object is dragged!
                     joint1.enableCollision = false;                         //so no additional joints will be created (avoid infinite loop)
@@ -133,16 +144,10 @@ public class BondMaker: MonoBehaviour
                     joint2.enableCollision = false;
                 }
 
-                /*
-                joint1.autoConfigureConnectedAnchor = false;              //if this bool is true, the joint won't hold when object is dragged!
-                joint1.enableCollision = false;                         //so no additional joints will be created (avoid infinite loop)
-                joint2.autoConfigureConnectedAnchor = false;
-                joint2.enableCollision = false;
-                */
-
+               
+                //This section is used to put atoms in appropriate MoleculeLists using MoleculeID values
                 TempAtomList = AtomInventory.MoleculeList[MoleculeID];      //TempAtomList gets the stored list from MoleculeList Array
-
-
+                
                 if (TempAtomList.Contains(gameObject))    
                 {
                     print(gameObject + " already in list");  //avoid duplication of GameObjects in the list
@@ -155,7 +160,6 @@ public class BondMaker: MonoBehaviour
                     AtomInventory.MoleculeList[MoleculeID] = TempAtomList;  //pushes the TempAtomList into this molecule's ListKeeper Slot
                 }
                
-
                 if (TempAtomList.Contains(BondingPartner))   
                 { 
                     print("BP already in list");  //no duplication of atoms desired!
@@ -170,7 +174,6 @@ public class BondMaker: MonoBehaviour
                 
 
                 //maintenance of bonding states and valley counts
-
                 bonded = true;          //bonded state disables atom rotation
                 valleysRemaining--;         //decrement number of bonding spots to fill on this atom
                 collider.transform.root.gameObject.GetComponent<BondMaker>().valleysRemaining--;    //decrease bonding slots on BondingPartner
@@ -221,31 +224,39 @@ public class BondMaker: MonoBehaviour
                     DisplayJoules.BonusPointTotal += BonusPts;          //update BonusPointTotal static variable
                     MCToken = GameObject.Find("MoleculeListKeeper").GetComponent<MoleculeCompletionPtArray>().MoleculeCompletionToken[i];
                     AtomInventory.MoleculeList[MoleculeID].Add(MCToken);  //adds a MoleculeCompletionToken to the MoleculeList Array
-                    //HERE'S THE NEW STUFF!!!
-                    /*print("i =" + i);
-                    if (i > 2)
+                    
+                    //HERE'S WHERE MCTOKENS GET ATTACHED TO MOLECULES
+                    print("i =" + i);
+                    if(i == 2)   ///applies to newly formed diatomic molecules (including HCl)
+                    {
+                        BadgeRecipient = gameObject;
+                    }
+
+                    else if (i > 2)  //the molecule has a carbon or oxygen center
                     {
                         foreach (GameObject atom in TempAtomList)
                         {
-                            if (atom.tag == "Carbon")
+                            if (atom.tag == "Oxygen")
                             {
                                 BadgeRecipient = atom;
                                 print("BadgeRecipient =" + BadgeRecipient);
-                                break;
-                            }
-                            else if (atom.tag == "Oxygen")
-                            {
-                                BadgeRecipient = atom;
-                                print("BadgeRecipient =" + BadgeRecipient);
-                                break;
                             }
 
+                            if (atom.tag == "Carbon")  //carbon takes precedence over oxygen
+                            {
+                                BadgeRecipient = atom;
+                                print("BadgeRecipient =" + BadgeRecipient);
+                                break;
+                            }
                         }
+                    }  
 
-                        print("applying badge now");
-                        GameObject.Find("Badge").GetComponent<ImageFollower>().objectToFollow = BadgeRecipient;
-                        //GameObject.Find("Badge").GetComponent<ImageFollower>().AddBadge();
-                    }  //END OF NEW STUFF*/
+                    print("applying badge now");
+                    GameObject NewBadge = Instantiate(MCToken, BadgeRecipient.transform);  //MCToken is now a Sprite!  BadgeRecipient.transform = the parent
+                    print("Instantiated Badge #" + i);
+                    NewBadge.transform.localPosition = new Vector3(-1.2f, 1f, 0);  //positions badge relative to the BadgeRecipient parent
+                    BadgeRotation = BadgeRecipient.transform.rotation.eulerAngles.z;//Get the Z-component of eulerAngles!!!
+                    NewBadge.transform.Rotate(0, 0, -BadgeRotation);  //undoes the THE z-component of parent Euler Angles!
                 }
             }
         }
@@ -258,5 +269,12 @@ public class BondMaker: MonoBehaviour
         colliderCount = 0;   //resets a faulty bonding attempt--without this reset, the atom stays in the "activated" state and can trigger faulty bonding events in future
         otherColliderCount = 0;
         totalValleysRem = 0;  //reset the open bonding slot count so that the next collision starts at zero
+
+        if (UnbondingScript2.DontBondAgain > 0)
+        {
+           UnbondingScript2.DontBondAgain--;  //this is the delay "timer" so that unbonding and bonding don't occur simultaneously
+           //print(UnbondingScript2.DontBondAgain);
+        } 
+        
     }
 }
