@@ -97,7 +97,7 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 						{
 							foreach(var go2 in hits)
 							{
-								if(go2.rigidbody.gameObject != dummyObject && go2.rigidbody.gameObject.GetComponent<BondMaker>() != null)
+								if(go2.rigidbody.gameObject != dummyObject && (go2.rigidbody.gameObject.GetComponent<DragIt>() != null || go2.rigidbody.gameObject.tag == "Diatomic"))
 								{
 									Destroy(dummyObject);
 									Debug.DrawRay(Camera.main.ScreenPointToRay(new Vector3(x, y, 0)).origin, transform.TransformDirection(Vector3.forward) * 100, Color.green, 10f, false);
