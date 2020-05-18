@@ -18,12 +18,12 @@ public class UIDrop2World : MonoBehaviour, IDropHandler
     {
         
         RectTransform panel = transform as RectTransform;
-        
+
         //the point where the particle should be spawned
         prefabWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         prefabWorldPosition.z = 0;
-		Debug.Log(gameObject);
         Instantiate(PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
+        UnbondingScript2.WaitABit = 8;  //this makes the unbonding Joule remain on screen for 8 Updates (about 0.16 sec)
                 
     }
 

@@ -227,7 +227,12 @@ public class BondMaker : MonoBehaviour
                     
                     //HERE'S WHERE MCTOKENS GET ATTACHED TO MOLECULES
                     print("i =" + i);
-                    if (i > 2)
+                    if(i == 2)   ///applies to newly formed diatomic molecules (including HCl)
+                    {
+                        BadgeRecipient = gameObject;
+                    }
+
+                    else if (i > 2)  //the molecule has a carbon or oxygen center
                     {
                         foreach (GameObject atom in TempAtomList)
                         {
@@ -237,22 +242,21 @@ public class BondMaker : MonoBehaviour
                                 print("BadgeRecipient =" + BadgeRecipient);
                             }
 
-                            if (atom.tag == "Carbon")
+                            if (atom.tag == "Carbon")  //carbon takes precedence over oxygen
                             {
                                 BadgeRecipient = atom;
                                 print("BadgeRecipient =" + BadgeRecipient);
                                 break;
                             }
                         }
+                    }  
 
-                        print("applying badge now");
-                        GameObject NewBadge = Instantiate(MCToken, BadgeRecipient.transform);  //MCToken is now a Sprite!  BadgeRecipient.transform = the parent
-                        print("Instantiated Badge #" + i);
-                        NewBadge.transform.localPosition= new Vector3(-1.2f,1f,0);  //positions badge relative to the BadgeRecipient parent
-                        BadgeRotation = BadgeRecipient.transform.rotation.eulerAngles.z;//Get the Z-component of eulerAngles!!!
-                        NewBadge.transform.Rotate(0,0,-BadgeRotation);  //undoes the THE z-component of parent Euler Angles!
-                       
-                    }  //END OF NEW STUFF 
+                    print("applying badge now");
+                    GameObject NewBadge = Instantiate(MCToken, BadgeRecipient.transform);  //MCToken is now a Sprite!  BadgeRecipient.transform = the parent
+                    print("Instantiated Badge #" + i);
+                    NewBadge.transform.localPosition = new Vector3(-1.2f, 1f, 0);  //positions badge relative to the BadgeRecipient parent
+                    BadgeRotation = BadgeRecipient.transform.rotation.eulerAngles.z;//Get the Z-component of eulerAngles!!!
+                    NewBadge.transform.Rotate(0, 0, -BadgeRotation);  //undoes the THE z-component of parent Euler Angles!
                 }
             }
         }
