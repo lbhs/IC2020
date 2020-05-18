@@ -36,3 +36,5 @@ sysinfo.txt
 *.apk
 *.unitypackage
 /.tmp.drivedownload/*
+Assets/LeaderBoard/SecretKey.cs
+Assets/LeaderBoard/SecretKey.cs.meta
