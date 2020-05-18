@@ -80,8 +80,8 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 		}
 		
 		GameObject dummyObject = Instantiate(PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
-		int range = (int)(Screen.width*0.15);
 		int accuracy = 5; //1 is pixel perfect accuracy but causes stutter, 5 is a great performance but could allow minor overlap
+		int range = Screen.height/2;
 		
 		for(int x = (int)Input.mousePosition.x - range; x < (int)Input.mousePosition.x + range; x+=accuracy)
 		{
@@ -89,14 +89,23 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 			{
 				RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenPointToRay(new Vector3(x, y, 0)).origin, Vector2.zero);
 				//Debug.DrawRay(Camera.main.ScreenPointToRay(new Vector3(x, y, 0)).origin, transform.TransformDirection(Vector3.forward) * 100, Color.green, 10f, false);
-				foreach(var go in hits)
+				if(hits.Length > 1)
 				{
-					if(go == dummyObject && hits.Length > 1)
+					foreach(var go in hits)
 					{
-						Destroy(dummyObject);
-						Debug.DrawRay(Camera.main.ScreenPointToRay(new Vector3(x, y, 0)).origin, transform.TransformDirection(Vector3.forward) * 100, Color.green, 10f, false);
-						GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().noStack();
-						return false;
+						if(go.rigidbody.gameObject == dummyObject)
+						{
+							foreach(var go2 in hits)
+							{
+								if(go2.rigidbody.gameObject != dummyObject && go2.rigidbody.gameObject.GetComponent<BondMaker>() != null)
+								{
+									Destroy(dummyObject);
+									Debug.DrawRay(Camera.main.ScreenPointToRay(new Vector3(x, y, 0)).origin, transform.TransformDirection(Vector3.forward) * 100, Color.green, 10f, false);
+									GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().noStack();
+									return false;
+								}
+							}
+						}
 					}
 				}
 			}
