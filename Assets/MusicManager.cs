@@ -12,52 +12,34 @@ public class MusicManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isPlaying = true;
+        isPlaying = true; 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            songChange1();
-        }
-        else if (Input.GetKeyDown(KeyCode.N))
-        {
-            songChange2();
-        }
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            if (isPlaying == true)
-            {
-                stopMusic();
-            }
-            else if (isPlaying == false)
-            {
-                playMusic();
-            }
-        }
-    }
+       
 
     public void songChange1()
     {
         BackgroundMusic.Stop();
         BackgroundMusic.loop = true;
-        BackgroundMusic.PlayOneShot(song1);
+        BackgroundMusic.clip = song1;
+        BackgroundMusic.Play();
     }
 
     public void songChange2()
     {
         BackgroundMusic.Stop();
         BackgroundMusic.loop = true;
-        BackgroundMusic.PlayOneShot(song2);
+        BackgroundMusic.clip = song2;
+        BackgroundMusic.Play();
     }
+
     public void stopMusic()
     {
         isPlaying = false;
         BackgroundMusic.Stop();
     }
+
+
     public void playMusic()
     {
         isPlaying = true;

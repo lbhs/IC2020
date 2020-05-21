@@ -103,14 +103,23 @@ public class BondMaker : MonoBehaviour
                     print("Merging Molecule Lists");
                     print("MoleculeID of this gameObject = " + MoleculeID);
                     print("BondingPartnerMoleculeID =" + BondingPartnerMoleculeID);
-                    //Merging lists--all atoms take on MoleculeID of this Molecule--then BondingPartnerMoleculeID is emptied
-                    foreach (GameObject atom in AtomInventory.MoleculeList[BondingPartnerMoleculeID])  
+                    if(MoleculeID == BondingPartnerMoleculeID)
                     {
-                        AtomInventory.MoleculeList[MoleculeID].Add(atom);          //add each atom in Bonding Partner List to this MoleculeList[ID]
-                        atom.GetComponent<BondMaker>().MoleculeID = MoleculeID;              //change the MoleculeID of each atom that is moved to new list
+                        print("Cyclic molecule formed!");
+
                     }
-                    print("emptied Bonding Partner Molecule List");
-                    AtomInventory.MoleculeList[BondingPartnerMoleculeID].Clear();  //makes the list empty, but not "null"
+
+
+                    else       //Merging lists--all atoms take on MoleculeID of this Molecule--then BondingPartnerMoleculeID is emptied
+                    { 
+                        foreach (GameObject atom in AtomInventory.MoleculeList[BondingPartnerMoleculeID])  
+                        {
+                            AtomInventory.MoleculeList[MoleculeID].Add(atom);          //add each atom in Bonding Partner List to this MoleculeList[ID]
+                            atom.GetComponent<BondMaker>().MoleculeID = MoleculeID;              //change the MoleculeID of each atom that is moved to new list
+                        }
+                        print("emptied Bonding Partner Molecule List");
+                        AtomInventory.MoleculeList[BondingPartnerMoleculeID].Clear();  //makes the list empty, but not "null"
+                    }
                 }
 
                 //NEXT SECTION ADDS FIXEDJOINT2D TO THE APPROPRIATE ATOMS--TWO JOINTS CREATED WHEN POLYVALENT ATOMS BOND

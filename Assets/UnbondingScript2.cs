@@ -29,6 +29,8 @@ public class UnbondingScript2 : MonoBehaviour
     private GameObject[] JoulesInCorral;
     public static int DontBondAgain;
     public static int WaitABit;
+    private int MolID1;   //used to check whether this "bond" isn't really a bond--could just be atoms juxtaposed (esp in cyclic molecules)
+    private int MolID2;   //if this is a proper molecule, MolID1 = MolID2 because the bonded atoms are part of the same molecule list
     
     
 
@@ -67,8 +69,8 @@ public class UnbondingScript2 : MonoBehaviour
                     DisplayJoules.JouleTotal -= Diatomic.GetComponent<DiatomicScript>().BondDissociationEnergy;  //BDE is a public defined in DiatomicScript
                     DisplayJoules.BonusPointTotal -= 10;   //diatomic molecule = 10 bonus pts, need to subtract when molecule is destroyed
                     DiatomicPosition = Diatomic.transform.position;
-                    Instantiate(Diatomic.GetComponent<DiatomicScript>().DissociationProduct, DiatomicPosition, Quaternion.identity);  //Dissociation Produce is a public GameObject defined in DiatomicScript (H, Cl or O)
-                    Instantiate(Diatomic.GetComponent<DiatomicScript>().DissociationProduct, new Vector3(DiatomicPosition.x + 2.5f, DiatomicPosition.y, 0f), Quaternion.Euler(0f, 0f, 180f));
+                    Instantiate(Diatomic.GetComponent<DiatomicScript>().DissociationProduct, new Vector3(DiatomicPosition.x -1.0f, DiatomicPosition.y, 0f), Quaternion.identity);  //Dissociation Produce is a public GameObject defined in DiatomicScript (H, Cl or O)
+                    Instantiate(Diatomic.GetComponent<DiatomicScript>().DissociationProduct, new Vector3(DiatomicPosition.x + 1.2f, DiatomicPosition.y, 0f), Quaternion.Euler(0f, 0f, 180f));
                     Destroy(Diatomic);  //the line above spawns the second atom rotated 180  degrees from the first
                     SoundFX2.Play();   //Bond breaking sound
                     JoulesInCorral = GameObject.FindGameObjectsWithTag("JouleInCorral");   //fill array with all the joules in the corral
@@ -76,6 +78,7 @@ public class UnbondingScript2 : MonoBehaviour
                     {
                         Destroy(JoulesInCorral[i]);
                     }
+                    Destroy(Joule);
                     print("Case 1 (diatomic) complete");
                     return;  //DIATOMIC DISSOCIATION IS CASE 1 AND NEEDS NO OTHER SCRIPTS
                 }
@@ -94,6 +97,30 @@ public class UnbondingScript2 : MonoBehaviour
                 Atom2 = collider.transform.root.gameObject;
                 print("Atom2 = " + Atom2);
 
+                MolID1 = Atom1.GetComponent<BondMaker>().MoleculeID;
+                MolID2 = Atom2.GetComponent<BondMaker>().MoleculeID;
+
+                if (MolID1 != MolID2)   //this means that two atoms that are of different molecules are juxtaposed so that they look like they are bonded
+                {
+                    GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().NoBondToBreak();
+                    return;
+                }
+
+                if (MolID1 ==0 || MolID2 ==0)  //means one of these atoms is not bonded to anything
+                {
+                    GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().NoBondToBreak();
+                    return;
+                }
+
+                if (Atom1.GetComponent<BondMaker>().Monovalent)  //If there is a Monovalent atom, put it in Atom2 slot--simplifies later case work 
+                {
+                    SwapAtom = Atom2;
+                    Atom2 = Atom1;
+                    Atom1 = SwapAtom;
+                    print("Atom1 and Atom2 swapped");
+                }
+
+                               
                 if (Atom1.GetComponent<BondMaker>().Monovalent)  //If there is a Monovalent atom, put it in Atom2 slot--simplifies later case work 
                 {
                     SwapAtom = Atom2;
@@ -353,7 +380,7 @@ public class UnbondingScript2 : MonoBehaviour
     {
         //the line of code below moves the unbonded atoms apart by a reasonable distance
         bondDirection = (Atom2.transform.position - Atom1.transform.position); //finds the vector that lines up the two atoms
-        Atom2.transform.position = new Vector2(Atom2.transform.position.x + 0.4f * bondDirection.x, Atom2.transform.position.y + 0.4f * bondDirection.y);
+        Atom2.transform.position = new Vector2(Atom2.transform.position.x + 0.23f * bondDirection.x, Atom2.transform.position.y + 0.23f * bondDirection.y);
         Atom1.GetComponent<BondMaker>().valleysRemaining++;   //an empty bonding slot has appeared on Atom1
         Atom2.GetComponent<BondMaker>().valleysRemaining++;    //an empty bonding slot has appeared on Atom2
         SoundFX2.Play();   //Plays Unbonding Sound

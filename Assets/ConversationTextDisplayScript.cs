@@ -52,6 +52,12 @@ public class ConversationTextDisplayScript: MonoBehaviour
         StartCoroutine(countdown());
     }
 
+    public void NoBondToBreak()
+    {
+        ConversationTextBox.text = "This Bond is Already Broken";
+        StartCoroutine(countdown());
+    }
+
     private IEnumerator countdown()  //this is a co-routine, can run in parallel with other scripts/functions
     {
         yield return new WaitForSeconds(5);
