@@ -23,7 +23,7 @@ public class checkLosing : MonoBehaviour
 
         if (collider.gameObject.tag == "ChlorineMol" || collider.gameObject.tag == "HMol")
         {
-            collider.gameObject.transform.position = new Vector3(-15, 0, -15);
+           // collider.gameObject.transform.position = new Vector3(-15, 0, -15);
             print("lose");
             GameObject.Find("LoseText").GetComponent<RectTransform>().localScale = Vector3.one;
             Time.timeScale = 0;

@@ -36,7 +36,7 @@ public class Scoreboard : MonoBehaviour
     void Update()
     {
          
-		scoretxt.text = "Score: " + scoretot.ToString() + "0";
+		scoretxt.text = "Score: " + scoretot.ToString() + "00";
 		multitxt.text = "Score Multiplier: " + multitot.ToString();
 		health.text = "Health: " + hitpoints.ToString();
 		boostertest.text = " ";
@@ -54,7 +54,7 @@ public class Scoreboard : MonoBehaviour
 			{
 				multitot -= 1;
 			}
-		if(booster >= 4)
+		if(booster >= 6)
 		{
 			booster = 0;
 			invadermovementrevamped.movespeed();
@@ -62,7 +62,7 @@ public class Scoreboard : MonoBehaviour
 		
 	//collision events
 		}
-		if(coltot == 1)
+		if(coltot >= 1 && coltot < 8)
 		{
 			tutorial1.text = "Avoid chlorine atoms and HCl molecules";
 			tutorial2.text = " ";

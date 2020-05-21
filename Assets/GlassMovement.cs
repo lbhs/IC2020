@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GlassMovement : MonoBehaviour
 {
-	public Vector3 velocity;
+	private Vector3 velocity;
 	public Rigidbody glass;
 	public int toggle;
 	public int timer;
@@ -12,22 +12,22 @@ public class GlassMovement : MonoBehaviour
     void Start()
     {
         glass = gameObject.GetComponent<Rigidbody>();
-		toggle = 1;
-		timer = 0;
+		toggle = -1;
+		
     }
 
     // Update is called once per frame
     void Update()
     {
-		timer = timer - 1;
-		if(timer == 0)
-		{
-			toggle = 1;
-		}
-		if(timer == -220)
+		
+		if(transform.position.x >= 16)
 		{
 			toggle = -1;
-			timer = 220;
+		}
+		if(transform.position.x <= -10)
+		{
+			toggle = 1;
+		
 		}
         glass.MovePosition(transform.position + transform.right * Time.fixedDeltaTime * 25 * toggle);
 		

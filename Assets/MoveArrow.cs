@@ -21,17 +21,18 @@ public class MoveArrow : MonoBehaviour
     {
         if (Input.GetKey("right"))
 		{
-			//print("their our know rules two english");
-			//cannon.move
-			//transform.position += Vector3.forward * Time.deltaTime;
-			//xpos == xpos - 0.1;
+			if(transform.position.x <= 16)
+			{
 			cannon.MovePosition(transform.position + transform.right * Time.fixedDeltaTime * 35);
 			//transform.position = new Vector3(-3.0f, 0.0f, 0.0f);
+			}
     }
 		if (Input.GetKey("left"))
 		{
+			if(transform.position.x >= -10)
+			{
 			cannon.MovePosition(transform.position - transform.right * Time.fixedDeltaTime * 35);
-		
+			}
 		}
 	}
 }
