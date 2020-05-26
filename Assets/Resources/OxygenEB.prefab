@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 4060509568381095305}
   - component: {fileID: 5281122883038633307}
   - component: {fileID: 1421139028862320687}
-  - component: {fileID: 3502315809565845221}
   - component: {fileID: 8990797735670489448}
   m_Layer: 0
   m_Name: OxygenEB
@@ -154,7 +153,6 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 3502315809565845221}
   - {fileID: 8990797735670489448}
   viewIdField: 0
   InstantiationId: 0
@@ -190,23 +188,7 @@ MonoBehaviour:
   CollisionEventRegistered: 0
   PVID: 0
   Monovalent: 0
-  ControlEnabled: 0
---- !u!114 &3502315809565845221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3165713786430717543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 1
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
+  CorrespondingCollider: {fileID: 0}
 --- !u!114 &8990797735670489448
 MonoBehaviour:
   m_ObjectHideFlags: 0

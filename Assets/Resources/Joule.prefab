@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 8565454377649884575}
   - component: {fileID: 8565454377649884568}
   - component: {fileID: 8565454377649884569}
-  - component: {fileID: 6228851680265943261}
   - component: {fileID: 3770309670961069985}
-  - component: {fileID: 7628581717826402669}
+  - component: {fileID: 3690344409974065254}
+  - component: {fileID: 5473564700625594223}
+  - component: {fileID: 3642040824617873442}
+  - component: {fileID: 787862928091627318}
   m_Layer: 0
   m_Name: Joule
   m_TagString: Joule
@@ -30,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 8565454377649884571}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.04, y: -4.62, z: 2.0860584}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -70,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -151409201
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c764d0f2c56735344b42c60cc69019d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -104,18 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6228851680265943261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8565454377649884571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3221a68887f61414985625696b917a8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &3770309670961069985
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +122,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
   m_Radius: 1
---- !u!114 &7628581717826402669
+--- !u!114 &3690344409974065254
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,3 +134,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebcb290ca8b47b42a7d525ed39b4f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  JointArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  NewMoleculeID: 0
+--- !u!114 &5473564700625594223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8565454377649884571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f652204158500ed4e9f81399cda65eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3642040824617873442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8565454377649884571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 787862928091627318}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &787862928091627318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8565454377649884571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0

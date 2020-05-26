@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2600891095706499263}
   - component: {fileID: 3966627588473417288}
   - component: {fileID: 8886060633161139328}
-  - component: {fileID: 6103346422474197704}
   - component: {fileID: 4135001888781602440}
   m_Layer: 0
   m_Name: OxygenE
@@ -177,7 +176,6 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 6103346422474197704}
   - {fileID: 4135001888781602440}
   viewIdField: 0
   InstantiationId: 0
@@ -194,22 +192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48ae5b2371634542b129a26470c8c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6103346422474197704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3165713786430717543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 1
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!114 &4135001888781602440
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,11 +21,14 @@ public class RotateIt : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(1) 
-            && !gameObject.GetComponent<AtomController>().isBonded
-            && gameObject.GetComponent<PhotonView>().IsMine)
+        if (gameObject.activeSelf)
         {
-            gameObject.GetComponent<Rigidbody2D>().rotation += 90f;
+            if (Input.GetMouseButtonDown(1)
+                && !gameObject.GetComponent<AtomController>().isBonded
+                && gameObject.GetComponent<PhotonView>().IsMine)
+            {
+                transform.Rotate(0f, 0f, 90f);
+            }
         }
     }
 }

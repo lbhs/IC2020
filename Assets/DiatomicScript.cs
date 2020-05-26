@@ -5,8 +5,8 @@ using Photon.Pun;
 
 public class DiatomicScript : MonoBehaviour
 {
-    public GameObject DisassociationProduct;
-    public int DisassociationEnergy;
+    public GameObject DissociationProduct;
+    public int BondDissociationEnergy;
 
     private float mZCoord;
     private Vector3 mOffset;

@@ -19,14 +19,14 @@ public class GameSetupContrller : MonoBehaviour
     public Animator UIAnim;
     [HideInInspector]
     public Animator CamAnim;
-    public GameObject JouleHolder;
-    public GameObject JoulePrefab;
 
     private GameObject P1Display;
     private GameObject P2Display;
 
     private GameObject RollPanelOptions;
     private List<List<GameObject>> MoleculeElements;
+
+    private JouleDisplayController JDC;
 
     private void Start()
     {
@@ -39,6 +39,8 @@ public class GameSetupContrller : MonoBehaviour
         RollPanelOptions = GameObject.Find("UI").transform.GetChild(3).gameObject;
         P1Display = GameObject.Find("UI").transform.GetChild(6).gameObject;
         P2Display = GameObject.Find("UI").transform.GetChild(7).gameObject;
+
+        JDC = GameObject.Find("UI").transform.GetChild(2).GetComponent<JouleDisplayController>();
     }
 
     private void CreatePlayer()
@@ -97,24 +99,13 @@ public class GameSetupContrller : MonoBehaviour
     public void NetowrkSpawn(GameObject Prefab, Vector3 pos)
     {
         GameObject GO;
-        if (state == GameState.Player1Turn)
-        {
-            GO = PhotonNetwork.Instantiate(Prefab.name, pos, Quaternion.identity);
-            GO.GetComponent<PhotonView>().RequestOwnership();
-        }
-        else if (state == GameState.Player2Turn)
-        {
-            GO = PhotonNetwork.Instantiate(Prefab.name, pos, Quaternion.identity);
-            GO.GetComponent<PhotonView>().RequestOwnership();
-        }
+        GO = PhotonNetwork.Instantiate(Prefab.name, pos, Quaternion.identity);
+        GO.GetComponent<PhotonView>().RequestOwnership();
     }
 
     public void SpawnJoule()
     {
-        Debug.Log("Joule spawned!");
-        GameObject GO;
-        GO = Instantiate(JoulePrefab, JouleHolder.transform);
-        GO.transform.localPosition = new Vector3(Random.Range(-35, 35), Random.Range(-35, 35), 0);
+        JDC.AddJoules(1);
     }
 
     public void EndTurnButton()
@@ -233,16 +224,16 @@ public class GameSetupContrller : MonoBehaviour
     }
 
     [PunRPC]
-    public void ChangeScoreUniformly(int BondScore, int BonusScore)
+    public void ChangeScoreUniformly(int BondEnergy, int BonusScore)
     {
         if (state == GameState.Player1Turn)
         {
-            P1Display.GetComponent<TextController>().BondScore += BondScore;
+            P1Display.GetComponent<TextController>().BondScore += BondEnergy;
             P1Display.GetComponent<TextController>().BonusScore += BonusScore;
         }
         else
         {
-            P2Display.GetComponent<TextController>().BondScore += BondScore;
+            P2Display.GetComponent<TextController>().BondScore += BondEnergy;
             P2Display.GetComponent<TextController>().BonusScore += BonusScore;
         }
     }

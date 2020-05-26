@@ -28,12 +28,12 @@ public class TextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PreviousTotalScore != (BondScore + BonusScore))
+        if (PreviousTotalScore != (BondScore * 10 + BonusScore))
         {
-            BondScoreText.text = "Heat Collected: " + BondScore;
+            BondScoreText.text = "Heat Collected: " + BondScore * 10;
             BonusPointsText.text = "Molecule Bonus Points: " + BonusScore;
-            TotalScoreText.text = "Total Points: " + (BondScore + BonusScore);
-            PreviousTotalScore = BondScore + BonusScore;
+            TotalScoreText.text = "Total Points: " + (BondScore * 10 + BonusScore);
+            PreviousTotalScore = BondScore * 10 + BonusScore;
         }
     }
 }
