@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class JouleDisplayController : MonoBehaviour
 {
-    public int TotalJoulesDisplaying;
+    public int[] TotalJoulesDisplaying;
+    private int[] LastCopyJoulesDisplaying;
     public GameObject Joule;
 
     // Start is called before the first frame update
     void Start()
     {
-        TotalJoulesDisplaying = 0;   
+        TotalJoulesDisplaying = new int[2] { 0, 0 };
+        LastCopyJoulesDisplaying = new int[2] { 0, 0 };
     }
 
-    public void AddJoules(int JoulesToAdd)
+    private void DisplayJoules(int JouleCount)
     {
-        TotalJoulesDisplaying += JoulesToAdd;
-        for (int i = 0; i < JoulesToAdd; i++)
+        for (int i = 0; i < JouleCount; i++)
         {
             GameObject GO;
             GO = Instantiate(Joule, gameObject.transform);
@@ -24,21 +25,39 @@ public class JouleDisplayController : MonoBehaviour
         }
     }
 
-    public void RemoveJoules(int JoulesToRemove)
+    private void RemoveJoules(int JoulesToRemove)
     {
-        if (JoulesToRemove <= TotalJoulesDisplaying)
+        for (int i = 0; i < JoulesToRemove; i++)
         {
-            TotalJoulesDisplaying -= JoulesToRemove;
-            for (int i = 0; i < JoulesToRemove; i++)
-            {
-                GameObject.Destroy(transform.GetChild(i).gameObject);
-            }
+            GameObject.Destroy(transform.GetChild(i).gameObject);
         }
+    }
+
+    // The following methods are only for use with the GSC during player transitions
+    public void DisplayJoulesP1()
+    {
+        RemoveJoules(TotalJoulesDisplaying[1]);
+        DisplayJoules(TotalJoulesDisplaying[0]);
+    }
+
+    public void DisplayJoulesP2()
+    {
+        RemoveJoules(TotalJoulesDisplaying[0]);
+        DisplayJoules(TotalJoulesDisplaying[1]);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (LastCopyJoulesDisplaying[0] != TotalJoulesDisplaying[0])
+        {
+            DisplayJoules(TotalJoulesDisplaying[0] - LastCopyJoulesDisplaying[0]);
+            TotalJoulesDisplaying.CopyTo(LastCopyJoulesDisplaying, 0);
+        }
+        else if (LastCopyJoulesDisplaying[1] != TotalJoulesDisplaying[1])
+        {
+            DisplayJoules(TotalJoulesDisplaying[1] - LastCopyJoulesDisplaying[1]);
+            TotalJoulesDisplaying.CopyTo(LastCopyJoulesDisplaying, 0);
+        }
     }
 }

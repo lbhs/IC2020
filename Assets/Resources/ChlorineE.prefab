@@ -154,7 +154,6 @@ MonoBehaviour:
   CollisionEventRegistered: 0
   PVID: 0
   Monovalent: 1
-  CorrespondingCollider: {fileID: 0}
 --- !u!114 &6135928613754807758
 MonoBehaviour:
   m_ObjectHideFlags: 0

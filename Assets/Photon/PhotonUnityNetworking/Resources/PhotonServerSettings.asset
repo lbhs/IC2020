@@ -53,6 +53,12 @@ MonoBehaviour:
   - GenerateID
   - TransferSingleElement
   - NetworkDeletion
+  - ClearMoleculeList
+  - DeleteJointOverNetwork
+  - RemoveGivenElements
+  - CalExit
+  - IncrementJDC
+  - JouleHolderTransition
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

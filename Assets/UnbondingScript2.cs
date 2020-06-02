@@ -32,6 +32,7 @@ public class UnbondingScript2 : MonoBehaviour
     private JouleDisplayController JDC;
     private int FrameActiveCount;
     private GameSetupContrller GSC;
+    private int CheckIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,15 @@ public class UnbondingScript2 : MonoBehaviour
         JDC = GameObject.Find("UI").transform.GetChild(2).GetComponent<JouleDisplayController>();
 
         GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>();
+
+        if (GetComponent<PhotonView>().Owner == PhotonNetwork.PlayerList[0])
+        {
+            CheckIndex = 0;
+        }
+        else
+        {
+            CheckIndex = 1;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -61,14 +71,14 @@ public class UnbondingScript2 : MonoBehaviour
             {
                 print("dissociate diatomic!");
                 Diatomic = collider.transform.root.gameObject;
-                if (Diatomic.GetComponent<DiatomicScript>().BondDissociationEnergy > JDC.TotalJoulesDisplaying)
+                if (Diatomic.GetComponent<DiatomicScript>().BondDissociationEnergy > JDC.TotalJoulesDisplaying[CheckIndex])
                 {
                     Debug.Log("You don't have enough joules to break this bond!");
                     return;
                 }
                 else
                 {
-                    JDC.RemoveJoules(Diatomic.GetComponent<DiatomicScript>().BondDissociationEnergy);  //BDE is a public defined in DiatomicScript
+                    GetComponent<PhotonView>().RPC("IncrementJDC", RpcTarget.All, -Diatomic.GetComponent<DiatomicScript>().BondDissociationEnergy);
                     GSC.GetComponent<PhotonView>().RPC("ChangeScoreUniformly", RpcTarget.All, 0, -10);   //diatomic molecule = 10 bonus pts, need to subtract when molecule is destroyed
 
                     DiatomicPosition = Diatomic.transform.position;
@@ -116,14 +126,39 @@ public class UnbondingScript2 : MonoBehaviour
                     }
 
                     print("JouleCost =" + JouleCost);  //JouleCost comes from the bondArray[], which is a copy of the Master Array attached to BondEnergyMatrix GameObject
-                    if (JouleCost > JDC.TotalJoulesDisplaying)
+                    if (JouleCost > JDC.TotalJoulesDisplaying[CheckIndex])
                     {
                         Debug.Log("You don't have enough joules to break this bond!");
                         return;
                     }
 
-                    JDC.RemoveJoules(JouleCost);
-                    // 5/25 -- Continue from line 164 of UnbondingScript2.cs (Solitaire)
+                    GetComponent<PhotonView>().RPC("IncrementJDC", RpcTarget.All, -JouleCost);
+
+                    MolIDValue = Atom1.GetComponent<AtomController>().MoleculeID;
+
+                    GSC.GetComponent<PhotonView>().RPC("ChangeScoreUniformly", RpcTarget.All, -JouleCost, -GSC.ReturnCompletionScore(MolIDValue));
+
+                    if (GSC.NumElementsInMolecule(MolIDValue) == 2)
+                    {
+                        GSC.GetComponent<PhotonView>().RPC("ClearMoleculeList", RpcTarget.All, MolIDValue);
+                        if (Atom1.GetComponent<FixedJoint2D>())    //remove the bond!
+                        {
+                            GetComponent<PhotonView>().RPC("DeleteJointOverNetwork", RpcTarget.All, Atom1.GetComponent<AtomController>().PVID);
+                        }
+                        if (Atom2.GetComponent<FixedJoint2D>())
+                        {
+                            GetComponent<PhotonView>().RPC("DeleteJointOverNetwork", RpcTarget.All, Atom2.GetComponent<AtomController>().PVID);
+                        }
+                        return;
+                    }
+
+                    else if (Atom2.GetComponent<AtomController>().Monovalent)
+                    {
+                        GetComponent<PhotonView>().RPC("DeleteJointOverNetwork", RpcTarget.All, Atom2.GetComponent<AtomController>().PVID);
+                        Atom2.GetComponent<AtomController>().MoleculeID = 0;
+                        Atom2.GetComponent<AtomController>().isBonded = false;
+                        GSC.GetComponent<PhotonView>().RPC("RemoveGivenElements", RpcTarget.All, new int[1] { Atom2.GetComponent<AtomController>().PVID });
+                    }
                 }
             }
             
@@ -141,4 +176,15 @@ public class UnbondingScript2 : MonoBehaviour
         }
     }
 
+    [PunRPC]
+    private void DeleteJointOverNetwork(int PVID)
+    {
+        Destroy(PhotonView.Find(PVID).GetComponent<FixedJoint2D>());
+    }
+
+    [PunRPC]
+    private void IncrementJDC(int AmountToIncrement)
+    {
+        JDC.TotalJoulesDisplaying[CheckIndex] += AmountToIncrement;
+    }
 }

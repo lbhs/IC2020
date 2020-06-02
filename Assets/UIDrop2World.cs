@@ -25,13 +25,10 @@ public class UIDrop2World : MonoBehaviour, IDropHandler
         RectTransform panel = transform as RectTransform;
 
         //the point where the particle should be spawned
-        prefabWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
-                                                                         Input.mousePosition.y,
-                                                                         Camera.main.nearClipPlane));
-        //prefabWorldPosition.z = 0;
+        prefabWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
+        prefabWorldPosition.z = 0;
 
-        //GSC.GetComponent<PhotonView>().RPC("NetowrkSpawn", RpcTarget.All, PrefabToSpawn, prefabWorldPosition);
-        Instantiate(PrefabToSpawn, prefabWorldPosition, Quaternion.identity);
+        PhotonNetwork.Instantiate(PrefabToSpawn.name, prefabWorldPosition, Quaternion.identity);
         UnbondingScript2.WaitABit = 8;  //this makes the unbonding Joule remain on screen for 8 Updates (about 0.16 sec)
     }
 

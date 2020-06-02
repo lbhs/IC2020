@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class AtomController : MonoBehaviourPunCallbacks
 {
+    // Dragging
     private Vector3 mOffset;
     private float mZCoord;
+
     private PhotonView PV;
     private GameSetupContrller GSC;
 
@@ -23,20 +25,21 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     public bool CollisionEventRegistered;
 
+    // PhotonView ID -- used to retrieve the GameObject during RPC calls
     public int PVID;
 
     public bool Monovalent;
 
     private TextController ScoringSystem;
 
-    public Collider2D CorrespondingCollider;
-
     GameObject peer;
 
     FixedJoint2D joint;
     FixedJoint2D joint1;
 
-    RelativeJoint2D ExperimentalJoint;
+    private JouleDisplayController JDC;
+
+    private int BondEnergy;
 
     void Start()
     {
@@ -44,6 +47,7 @@ public class AtomController : MonoBehaviourPunCallbacks
         BEV = GameObject.Find("BondEnergyMatrix").GetComponent<BondEnergyValues>();
 
         CollisionEventRegistered = false;
+
         PV = GetComponent<PhotonView>();
         PVID = PV.ViewID;
 
@@ -55,6 +59,10 @@ public class AtomController : MonoBehaviourPunCallbacks
         {
             ScoringSystem = GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>();
         }
+
+        JDC = GameObject.Find("UI").transform.GetChild(2).GetComponent<JouleDisplayController>();
+
+        BondEnergy = 0;
     }
 
     void OnMouseDown()
@@ -112,12 +120,13 @@ public class AtomController : MonoBehaviourPunCallbacks
         if (collider.tag == "Peak" || collider.tag == "PeakDB")
         {
             peer = collider.transform.root.gameObject;
+            // If the bonding elements are not mine, the joint mechanism is implemented differently to prevent crashes
             if (PV.IsMine)
             {
-                CorrespondingCollider = collider;
                 CollisionEventRegistered = true;
                 if (peer.GetComponent<AtomController>().CollisionEventRegistered)
                 {
+                    // RPCs are used for the ID methods because these changes should affect both players' ID databases
                     if (MoleculeID == 0 && peer.GetComponent<AtomController>().MoleculeID == 0)
                     {
                         GSC.GetComponent<PhotonView>().RPC("GenerateID", RpcTarget.All, PVID, peer.GetComponent<AtomController>().PVID);
@@ -141,6 +150,7 @@ public class AtomController : MonoBehaviourPunCallbacks
                     GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     GetComponent<Rigidbody2D>().angularVelocity = 0f;
 
+                    // Optimized bonding
                     if (Monovalent)
                     {
                         joint = gameObject.AddComponent<FixedJoint2D>();
@@ -173,8 +183,6 @@ public class AtomController : MonoBehaviourPunCallbacks
                     isBonded = true;
                     peer.GetComponent<AtomController>().isBonded = true;
 
-                    int BondEnergy = 0;
-
                     if (collider.tag == "PeakDB")
                     {
                         BondEnergy = BEV.bondEnergyArray[EnergyMatrixPosition + 3,
@@ -190,27 +198,9 @@ public class AtomController : MonoBehaviourPunCallbacks
                         peer.GetComponent<AtomController>().BondingOpportunities--;
                     }
 
-                    for (int NumJoules = 0; NumJoules < BondEnergy; NumJoules++)
-                    {
-                        GSC.SpawnJoule();
-                    }
+                    PV.RPC("IncrementJDC", RpcTarget.All, BondEnergy);
 
-                    int PotentialBonusSize = GSC.ReturnCompletionSize(MoleculeID);
-                    int BonusScore = 0;
-
-                    if (PotentialBonusSize != 0)
-                    {
-                        if (PotentialBonusSize < 6)
-                        {
-                            BonusScore = 10 * (PotentialBonusSize - 1);
-                        }
-                        else
-                        {
-                            BonusScore = 60;
-                        }
-                    }
-
-                    GSC.GetComponent<PhotonView>().RPC("ChangeScoreUniformly", RpcTarget.All, BondEnergy, BonusScore);
+                    GSC.GetComponent<PhotonView>().RPC("ChangeScoreUniformly", RpcTarget.All, BondEnergy, GSC.ReturnCompletionScore(MoleculeID));
                 }
             }
             else
@@ -221,6 +211,19 @@ public class AtomController : MonoBehaviourPunCallbacks
                 isBonded = true;
                 peer.GetComponent<AtomController>().isBonded = true;
             }
+        }
+    }
+
+    [PunRPC]
+    private void IncrementJDC(int AmountToIncrement)
+    {
+        if (PV.Owner == PhotonNetwork.PlayerList[0])
+        {
+            JDC.TotalJoulesDisplaying[0] += AmountToIncrement;
+        }
+        else
+        {
+            JDC.TotalJoulesDisplaying[1] += AmountToIncrement;
         }
     }
 

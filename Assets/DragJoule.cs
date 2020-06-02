@@ -25,7 +25,7 @@ public class DragJoule : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         if (returnToZero == true)
         {
-            transform.localPosition = Vector3.zero;
+            GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         }
         UseingMe = false;
         

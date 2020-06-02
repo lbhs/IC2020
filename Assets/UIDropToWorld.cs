@@ -62,7 +62,7 @@ public class UIDropToWorld : MonoBehaviour, IDropHandler
                         GameObject.Find("GameSetup").GetComponent<PhotonView>().RPC("ChangeScoreUniformly", RpcTarget.All, 0, 10);
                     }
                 }
-                GameObject.Find("GameSetup").GetComponent<GameSetupContrller>().CalExit();
+                GameObject.Find("GameSetup").GetComponent<PhotonView>().RPC("CalExit", RpcTarget.All);
             }
             else
             {

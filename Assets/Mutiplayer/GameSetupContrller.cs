@@ -66,33 +66,27 @@ public class GameSetupContrller : MonoBehaviour
     { 
         if (Roll == 1)
         {
-            UIAnim.SetTrigger("H");
-            //PV.RPC("AnimateRollMenu", RpcTarget.All, "H");
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "H");
         }
         else if (Roll == 2)
         {
-            UIAnim.SetTrigger("C");
-            //PV.RPC("AnimateRollMenu", RpcTarget.All, "O");
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "O");
         }
         else if (Roll == 3)
         {
-            UIAnim.SetTrigger("O");
-            //PV.RPC("AnimateRollMenu", RpcTarget.All, "C");
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "C");
         }
         else if (Roll == 4)
         {
-            UIAnim.SetTrigger("CL");
-            // PV.RPC("AnimateRollMenu", RpcTarget.All, "CL");
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "CL");
         }
         else if (Roll == 5)
         {
-            UIAnim.SetTrigger("DoubleOnly");
-            // PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleOnly");
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleOnly");
         }
         else if (Roll == 6)
         {
-            UIAnim.SetTrigger("DoubleDown");
-            // PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleDown");
+            PV.RPC("AnimateRollMenu", RpcTarget.All, "DoubleDown");
         }
     }
 
@@ -101,11 +95,6 @@ public class GameSetupContrller : MonoBehaviour
         GameObject GO;
         GO = PhotonNetwork.Instantiate(Prefab.name, pos, Quaternion.identity);
         GO.GetComponent<PhotonView>().RequestOwnership();
-    }
-
-    public void SpawnJoule()
-    {
-        JDC.AddJoules(1);
     }
 
     public void EndTurnButton()
@@ -128,6 +117,7 @@ public class GameSetupContrller : MonoBehaviour
             PV.RPC("AnimateCam", RpcTarget.All, true);
             PV.RPC("ChangeScreenDisplaying", RpcTarget.All, GameState.Player1Turn);
         }
+        PV.RPC("JouleHolderTransition", RpcTarget.All);
     }
 
     [PunRPC]
@@ -238,7 +228,7 @@ public class GameSetupContrller : MonoBehaviour
         }
     }
 
-    public int ReturnCompletionSize(int MoleculeID)
+    public int ReturnCompletionScore(int MoleculeID)
     {
         int MoleculeSize = 0;
         foreach (GameObject GO in MoleculeElements[MoleculeID - 1])
@@ -249,29 +239,55 @@ public class GameSetupContrller : MonoBehaviour
             }
             MoleculeSize++;
         }
-        return MoleculeSize;
-    }
 
-    public void MoleculeElementsViewership()
-    {
-        int StartMoleculeID = 1;
-        foreach (List<GameObject> IndMolecule in MoleculeElements)
+        if (MoleculeSize < 6)
         {
-            string str = "";
-            Debug.Log("MoleculeID: " + StartMoleculeID);
-            foreach (GameObject GO in IndMolecule)
-            {
-                str += (GO.name + " " + GO.GetComponent<AtomController>().PVID);
-            }
-            Debug.Log(str);
-            StartMoleculeID++;
+            return 10 * (MoleculeSize - 1);
+        }
+        else
+        {
+            return 60;
         }
     }
 
+    public int NumElementsInMolecule(int MoleculeID) 
+    {
+        return MoleculeElements[MoleculeID - 1].Count;
+    }
+
+    [PunRPC]
+    public void ClearMoleculeList(int MoleculeID)
+    {
+        MoleculeElements[MoleculeID - 1].Clear();
+    }
+
+    [PunRPC]
+    public void RemoveGivenElements(int[] GOToRemove)
+    {
+        for (int i = 0; i < GOToRemove.Length; i++)
+        {
+            MoleculeElements[PhotonView.Find(GOToRemove[i]).GetComponent<AtomController>().MoleculeID - 1].Remove(PhotonView.Find(GOToRemove[i]).gameObject);
+        }
+    }
+
+    [PunRPC]
     public void CalExit()
     {
         UIAnim.SetTrigger("Exit");
         //PV.RPC("ExitAnimCam", RpcTarget.All);
         //Debug.Log("callExit");
+    }
+
+    [PunRPC]
+    private void JouleHolderTransition()
+    {
+        if (state == GameState.Player1Turn)
+        {
+            JDC.DisplayJoulesP1();
+        }
+        else
+        {
+            JDC.DisplayJoulesP2();
+        }
     }
 }
