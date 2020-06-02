@@ -5,50 +5,29 @@ using UnityEngine.UI;
 
 public class DragIt : MonoBehaviour
 {
-    private bool isDragging;
     private Vector2 mousePosition;
-    private Vector2 MovePosition;
-    private float deltaX;
-    private float deltaY;
-    private Rigidbody2D rb;
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    private Vector2 lastMousePosition;
 
     public void OnMouseDown()
     {
-        
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        deltaX = mousePosition.x - transform.position.x;
-        deltaY = mousePosition.y - transform.position.y;
-        
+		lastMousePosition = mousePosition;
     }
-
-    public void OnMouseUp()
-    {
-        
-    }
-
-   
-    
-    void OnMouseDrag()
+	
+	void OnMouseDrag()
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        rb.MovePosition(new Vector2(mousePosition.x-deltaX, mousePosition.y-deltaY));
-        //transform.position = new Vector2(mousePosition.x-deltaX, mousePosition.y-deltaY);
-		
+		getParent().Translate(mousePosition-lastMousePosition);
+		lastMousePosition = mousePosition;
     }
-
-    // Start is called before the first frame update
-    
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = 0f;
-    }
+	
+	public Transform getParent()
+	{
+		Transform parent = transform.parent;
+		if(parent == null)
+		{
+			parent = transform;
+		}
+		return parent;
+	}
 }
