@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class newBondMaker : MonoBehaviour
+public class newbondmaker : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D col)
     {
 		GameObject go = col.rigidbody.gameObject;
 		GameObject othergo = col.otherRigidbody.gameObject;
-		bondlattice lattice1 = go.GetComponent<DragIt>().getParent().gameObject.GetComponent<bondlattice>();
-		bondlattice lattice2 = othergo.GetComponent<DragIt>().getParent().gameObject.GetComponent<bondlattice>();
+		bondlattice lattice1 = go.GetComponent<drag>().getParent().gameObject.GetComponent<bondlattice>();
+		bondlattice lattice2 = othergo.GetComponent<drag>().getParent().gameObject.GetComponent<bondlattice>();
 		
         if(lattice1 == null && lattice2 == null)
 		{
