@@ -59,6 +59,7 @@ MonoBehaviour:
   - CalExit
   - IncrementJDC
   - JouleHolderTransition
+  - TransmitPositionOffset
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

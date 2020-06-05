@@ -28,6 +28,8 @@ public class GameSetupContrller : MonoBehaviour
 
     private JouleDisplayController JDC;
 
+    public bool Unbonding;
+
     private void Start()
     {
         CreatePlayer();
@@ -41,6 +43,8 @@ public class GameSetupContrller : MonoBehaviour
         P2Display = GameObject.Find("UI").transform.GetChild(7).gameObject;
 
         JDC = GameObject.Find("UI").transform.GetChild(2).GetComponent<JouleDisplayController>();
+
+        Unbonding = false;
     }
 
     private void CreatePlayer()
@@ -140,6 +144,7 @@ public class GameSetupContrller : MonoBehaviour
         TurnScreen.SetActive(true);
         // DieScript.rolling = 1;
         GameObject.Find("UI").transform.GetChild(1).gameObject.GetComponent<Button>().interactable = false;
+        GameObject.Find("UI").transform.GetChild(8).gameObject.GetComponent<Button>().interactable = false;
         // Debug.Log("No longer rolling: " + DieScript.rolling);
     }
 
@@ -151,6 +156,7 @@ public class GameSetupContrller : MonoBehaviour
         // DieScript.rolling = 0;
         // PV.RPC("ChangeScreenDisplaying", RpcTarget.All, state);
         GameObject.Find("UI").transform.GetChild(1).gameObject.GetComponent<Button>().interactable = true;
+        GameObject.Find("UI").transform.GetChild(8).gameObject.GetComponent<Button>().interactable = true;
         // Debug.Log("Rolling: " + DieScript.rolling);
     }
     
@@ -289,5 +295,10 @@ public class GameSetupContrller : MonoBehaviour
         {
             JDC.DisplayJoulesP2();
         }
+    }
+
+    public void ChangeUnbondingState()
+    {
+        Unbonding = !Unbonding;
     }
 }

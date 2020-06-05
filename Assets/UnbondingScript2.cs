@@ -172,7 +172,7 @@ public class UnbondingScript2 : MonoBehaviour
         FrameActiveCount++;
         if (FrameActiveCount == WaitABit)
         {
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
         }
     }
 

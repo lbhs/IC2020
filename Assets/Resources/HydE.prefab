@@ -171,6 +171,8 @@ MonoBehaviour:
   CollisionEventRegistered: 0
   PVID: 0
   Monovalent: 1
+  UnbondingJoule: {fileID: 8565454377649884571, guid: 55fcd445d739da04ab092527b8e60e70,
+    type: 3}
 --- !u!114 &5631284157482275661
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -41,6 +41,8 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     private int BondEnergy;
 
+    public GameObject UnbondingJoule;
+
     void Start()
     {
         GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>();
@@ -71,6 +73,14 @@ public class AtomController : MonoBehaviourPunCallbacks
         {
             return;
         }
+        else if (GSC.Unbonding)
+        {
+            Vector3 NewMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            NewMousePosition.z = 0;
+            PhotonNetwork.Instantiate(UnbondingJoule.name, NewMousePosition, Quaternion.identity);
+            UnbondingScript2.WaitABit = 8;
+            Debug.Log("Unbonding initiated");
+        }
         else
         {
             mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
@@ -86,7 +96,7 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     void OnMouseDrag()
     {
-        if (PV.IsMine == false)
+        if (!PV.IsMine || GSC.Unbonding)
             return;
         if (GameObject.Find("TurnScreen") == null)
         {

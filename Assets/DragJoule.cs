@@ -7,10 +7,12 @@ using Photon.Pun;
 public class DragJoule : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     public bool returnToZero = false; //default value is false
-    //public GameObject PrefabToSpawn;
-    //private Vector3 prefabWorldPosition;
-
     public bool UseingMe;
+
+    void Start()
+    {
+
+    }
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -25,9 +27,8 @@ public class DragJoule : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         if (returnToZero == true)
         {
-            GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            transform.localPosition = Vector3.zero;
         }
         UseingMe = false;
-        
     }
 }
