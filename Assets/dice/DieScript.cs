@@ -79,7 +79,7 @@ public class DieScript : MonoBehaviour {
 		float dirZ = Random.Range(-500, 500);
 		transform.position = startPos;
 		transform.rotation = Random.rotation;
-		rb.AddForce(new Vector3(Random.Range(-100f, 100f), 1000, 0));
+		rb.AddForce(new Vector3(Random.Range(-100f, 100f), 800, 0));
 		rb.AddTorque(dirX, dirY, dirZ);
 	}
 }

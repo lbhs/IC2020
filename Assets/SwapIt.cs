@@ -5,49 +5,68 @@ using UnityEditor;
 
 public class SwapIt : MonoBehaviour
 {	
-	public GameObject PrefabToBecome;
-	private float LastClickTime;
-	private float TimeSinceLastClick;
-	public const double DoubleClickThreshold = 0.2;
-	private static GameObject prefab;
+	public GameObject PrefabToBecome;	
+    private Vector3 InitalPos;
+    private float DistanceThreshold = 0.2f; //must be within 0.2 units of initial position to be swappable so it doesn't swap while atom is moving
+	private float timeThreshold = 0.8f; //hold down for 0.8 seconds to switch atom type
+	private bool heldDown = false;
+	private Coroutine currentTimer;
 	
-	void OnMouseOver()
-	{
-		if(Input.GetMouseButtonDown(0) && GetComponent<BondMaker>().bonded == false)
-		{
-			TimeSinceLastClick = Time.time - LastClickTime;
-            if (TimeSinceLastClick <= DoubleClickThreshold)
-            {
-				switch(AtomInventoryRemaining.removePiece(PrefabToBecome, true))
-				{
-					case 0:
-						if(PrefabToBecome.GetComponent<SwapIt>().PrefabToBecome.name + "(Clone)" == gameObject.name || AtomInventoryRemaining.pieceToName(gameObject) == "OxygenEB(Clone)")
-						{
-							GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().OutOfInventory3();
-						} else {
-							Instantiate(PrefabToBecome.GetComponent<SwapIt>().PrefabToBecome, transform.position, Quaternion.identity);
-							Destroy(gameObject);
-						}
-						break;
-					case 1:
-						AtomInventoryRemaining.addPiece(AtomInventoryRemaining.pieceToName(gameObject));
-						Instantiate(PrefabToBecome, transform.position, Quaternion.identity);
-						Destroy(gameObject);
-						break;
-					case 2:
-						Instantiate(PrefabToBecome, transform.position, Quaternion.identity);
-						Destroy(gameObject);
-						break;
-				}
-			}
-		}
-    }
-
-    void Update()
+	
+    private void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            LastClickTime = Time.time;
-        }
+		heldDown = true;
+        InitalPos = transform.position;
+        currentTimer = StartCoroutine(seeIfStillHeldDown());
     }
+	
+    private void OnMouseUp()
+    {
+		heldDown = false;
+		StopCoroutine(currentTimer);
+    }
+	
+	private IEnumerator seeIfStillHeldDown()
+	{
+		yield return new WaitForSeconds(timeThreshold);
+		float distance = Vector3.Distance(InitalPos, transform.position);
+		if(heldDown && distance < DistanceThreshold && gameObject.GetComponent<BondMaker>().bonded == false)
+		{
+			swapAtom();
+		}
+		heldDown = false;
+	}
+	
+	void Update()
+	{
+		if(Input.GetMouseButtonDown(1))
+		{
+			swapAtom();
+		}
+	}
+	
+	public void swapAtom()
+	{
+		switch(AtomInventoryRemaining.removePiece(PrefabToBecome, true))
+		{
+			case 0:
+				if(PrefabToBecome.GetComponent<SwapIt>().PrefabToBecome.name + "(Clone)" == gameObject.name || AtomInventoryRemaining.pieceToName(gameObject) == "OxygenEB(Clone)")
+				{
+					GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().OutOfInventory3();
+				} else {
+					Instantiate(PrefabToBecome.GetComponent<SwapIt>().PrefabToBecome, transform.position, Quaternion.identity);
+					Destroy(gameObject);
+				}
+				break;
+			case 1:
+				AtomInventoryRemaining.addPiece(AtomInventoryRemaining.pieceToName(gameObject));
+				Instantiate(PrefabToBecome, transform.position, Quaternion.identity);
+				Destroy(gameObject);
+				break;
+			case 2:
+				Instantiate(PrefabToBecome, transform.position, Quaternion.identity);
+				Destroy(gameObject);
+				break;
+		}
+	}
 }
