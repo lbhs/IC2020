@@ -60,6 +60,12 @@ MonoBehaviour:
   - IncrementJDC
   - JouleHolderTransition
   - TransmitPositionOffset
+  - ChangeBondingState
+  - MoveAtomsAndAdjustValleys
+  - SynchronizeArray
+  - DeleteJointOverNetworkByIndex
+  - GenerateBatchID
+  - RemoveSetOfElements
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

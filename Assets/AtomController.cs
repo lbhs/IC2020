@@ -3,15 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class AtomController : MonoBehaviourPunCallbacks
 {
-    // Dragging
-    private Vector3 mOffset;
-    private float mZCoord;
-
     private PhotonView PV;
-    private GameSetupContrller GSC;
 
     public bool isBonded = false;
 
@@ -34,18 +28,14 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     GameObject peer;
 
-    FixedJoint2D joint;
-    FixedJoint2D joint1;
-
-    private JouleDisplayController JDC;
+    private ComponentData CD;
 
     private int BondEnergy;
 
-    public GameObject UnbondingJoule;
-
     void Start()
     {
-        GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>();
+        CD = GameObject.Find("ComponentReferences").GetComponent<ComponentData>();
+
         BEV = GameObject.Find("BondEnergyMatrix").GetComponent<BondEnergyValues>();
 
         CollisionEventRegistered = false;
@@ -53,76 +43,7 @@ public class AtomController : MonoBehaviourPunCallbacks
         PV = GetComponent<PhotonView>();
         PVID = PV.ViewID;
 
-        if (PV.Owner == PhotonNetwork.PlayerList[0])
-        {
-            ScoringSystem = GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>();
-        }
-        else
-        {
-            ScoringSystem = GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>();
-        }
-
-        JDC = GameObject.Find("UI").transform.GetChild(2).GetComponent<JouleDisplayController>();
-
         BondEnergy = 0;
-    }
-
-    void OnMouseDown()
-    {
-        if (PV.IsMine == false)
-        {
-            return;
-        }
-        else if (GSC.Unbonding)
-        {
-            Vector3 NewMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            NewMousePosition.z = 0;
-            PhotonNetwork.Instantiate(UnbondingJoule.name, NewMousePosition, Quaternion.identity);
-            UnbondingScript2.WaitABit = 8;
-            Debug.Log("Unbonding initiated");
-        }
-        else
-        {
-            mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-            // Store offset = gameobject world pos - mouse world pos
-            mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
-        }
-    }
-
-    private void Update()
-    {
-
-    }
-
-    void OnMouseDrag()
-    {
-        if (!PV.IsMine || GSC.Unbonding)
-            return;
-        if (GameObject.Find("TurnScreen") == null)
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                return;
-            }
-            else if (Input.GetKey(KeyCode.LeftControl))
-            {
-                return;
-            }
-            else
-            {
-                GetComponent<Rigidbody2D>().MovePosition(GetMouseAsWorldPoint() + mOffset);
-            }
-        }
-    }
-
-    private Vector3 GetMouseAsWorldPoint()
-    {
-        // Pixel coordinates of mouse (x,y)
-        Vector3 mousePoint = Input.mousePosition;
-        // z coordinate of game object on screen
-        mousePoint.z = mZCoord;
-        // Convert it to world points
-        return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -130,6 +51,13 @@ public class AtomController : MonoBehaviourPunCallbacks
         if (collider.tag == "Peak" || collider.tag == "PeakDB")
         {
             peer = collider.transform.root.gameObject;
+
+            if (UnbondingScript2.DontBondAgain > 0)
+            {
+                Debug.Log("Cannot bond yet");
+                return;
+            }
+
             // If the bonding elements are not mine, the joint mechanism is implemented differently to prevent crashes
             if (PV.IsMine)
             {
@@ -139,31 +67,32 @@ public class AtomController : MonoBehaviourPunCallbacks
                     // RPCs are used for the ID methods because these changes should affect both players' ID databases
                     if (MoleculeID == 0 && peer.GetComponent<AtomController>().MoleculeID == 0)
                     {
-                        GSC.GetComponent<PhotonView>().RPC("GenerateID", RpcTarget.All, PVID, peer.GetComponent<AtomController>().PVID);
+                        CD.GameSetupPhotonView.RPC("GenerateID", RpcTarget.All, PVID, peer.GetComponent<AtomController>().PVID);
+                        Debug.Log("GenerateID called");
                     }
 
                     else if (MoleculeID == 0 && peer.GetComponent<AtomController>().MoleculeID > 0)
                     {
-                        GSC.GetComponent<PhotonView>().RPC("TransferSingleElement", RpcTarget.All, PVID, peer.GetComponent<AtomController>().MoleculeID);
+                        CD.GameSetupPhotonView.RPC("TransferSingleElement", RpcTarget.All, PVID, peer.GetComponent<AtomController>().MoleculeID);
+                        Debug.Log("TransferSingleElement called");
                     }
 
                     else if (MoleculeID > 0 && peer.GetComponent<AtomController>().MoleculeID == 0)
                     {
-                        GSC.GetComponent<PhotonView>().RPC("TransferSingleElement", RpcTarget.All, peer.GetComponent<AtomController>().PVID, MoleculeID);
+                        CD.GameSetupPhotonView.RPC("TransferSingleElement", RpcTarget.All, peer.GetComponent<AtomController>().PVID, MoleculeID);
+                        Debug.Log("TransferSingleElement called");
                     }
 
                     else
                     {
-                        GSC.GetComponent<PhotonView>().RPC("MergeMoleculeLists", RpcTarget.All, MoleculeID, peer.GetComponent<AtomController>().MoleculeID);
+                        CD.GameSetupPhotonView.RPC("MergeMoleculeLists", RpcTarget.All, MoleculeID, peer.GetComponent<AtomController>().MoleculeID);
+                        Debug.Log("MergeMoleculeLists called");
                     }
-
-                    GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                    GetComponent<Rigidbody2D>().angularVelocity = 0f;
 
                     // Optimized bonding
                     if (Monovalent)
                     {
-                        joint = gameObject.AddComponent<FixedJoint2D>();
+                        FixedJoint2D joint = gameObject.AddComponent<FixedJoint2D>();
                         joint.connectedBody = peer.GetComponent<Rigidbody2D>();
                         joint.enableCollision = false;
                     }
@@ -171,8 +100,9 @@ public class AtomController : MonoBehaviourPunCallbacks
                     // The other element solely is monovalent
                     else if (peer.GetComponent<AtomController>().Monovalent)
                     {
-                        joint = peer.AddComponent<FixedJoint2D>();
+                        FixedJoint2D joint = peer.AddComponent<FixedJoint2D>();
                         joint.connectedBody = gameObject.GetComponent<Rigidbody2D>();
+                        joint.autoConfigureConnectedAnchor = false;
                         joint.enableCollision = false;
                         joint.dampingRatio = 1f;
                     }
@@ -181,11 +111,13 @@ public class AtomController : MonoBehaviourPunCallbacks
                     {
                         FixedJoint2D joint = peer.AddComponent<FixedJoint2D>();
                         joint.connectedBody = gameObject.GetComponent<Rigidbody2D>();
+                        joint.autoConfigureConnectedAnchor = false;
                         joint.enableCollision = false;
                         joint.dampingRatio = 1f;
 
                         FixedJoint2D joint1 = gameObject.AddComponent<FixedJoint2D>();
                         joint1.connectedBody = peer.GetComponent<Rigidbody2D>();
+                        joint1.autoConfigureConnectedAnchor = false;
                         joint1.enableCollision = false;
                         joint1.dampingRatio = 1f;
                     }
@@ -208,42 +140,63 @@ public class AtomController : MonoBehaviourPunCallbacks
                         peer.GetComponent<AtomController>().BondingOpportunities--;
                     }
 
-                    PV.RPC("IncrementJDC", RpcTarget.All, BondEnergy);
-
-                    GSC.GetComponent<PhotonView>().RPC("ChangeScoreUniformly", RpcTarget.All, BondEnergy, GSC.ReturnCompletionScore(MoleculeID));
+                    CD.JDC.GetComponent<PhotonView>().RPC("IncrementJDC", RpcTarget.All, BondEnergy, PVID, 0);
                 }
             }
             else
             {
-                joint = gameObject.AddComponent<FixedJoint2D>();
-                joint.connectedBody = peer.GetComponent<Rigidbody2D>();
+                CollisionEventRegistered = true;
+                if (peer.GetComponent<AtomController>().CollisionEventRegistered)
+                {
+                    FixedJoint2D joint = gameObject.AddComponent<FixedJoint2D>();
+                    joint.connectedBody = peer.GetComponent<Rigidbody2D>();
 
-                isBonded = true;
-                peer.GetComponent<AtomController>().isBonded = true;
+                    FixedJoint2D joint1 = peer.AddComponent<FixedJoint2D>();
+                    joint1.connectedBody = gameObject.GetComponent<Rigidbody2D>();
+
+                    isBonded = true;
+                    peer.GetComponent<AtomController>().isBonded = true;
+
+                    if (collider.tag == "PeakDB")
+                    {
+                        BondingOpportunities -= 2;
+                        peer.GetComponent<AtomController>().BondingOpportunities -= 2;
+                    }
+                    else
+                    {
+                        BondingOpportunities--;
+                        peer.GetComponent<AtomController>().BondingOpportunities--;
+                    }
+                }
             }
-        }
-    }
-
-    [PunRPC]
-    private void IncrementJDC(int AmountToIncrement)
-    {
-        if (PV.Owner == PhotonNetwork.PlayerList[0])
-        {
-            JDC.TotalJoulesDisplaying[0] += AmountToIncrement;
-        }
-        else
-        {
-            JDC.TotalJoulesDisplaying[1] += AmountToIncrement;
         }
     }
 
     private void FixedUpdate()
     {
+        if (UnbondingScript2.DontBondAgain > 0)
+        {
+            UnbondingScript2.DontBondAgain--;
+        }
+
         CollisionEventRegistered = false;
-        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        GetComponent<Rigidbody2D>().angularVelocity = 0f;
         if (PV.IsMine == true)
             return;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
     }
+
+    //public void GetConnections()
+    //{
+    //    if (CD.GSC.CurrentUnbonding.Contains(gameObject))
+    //    {
+    //        return;
+    //    }
+
+    //    CD.GSC.CurrentUnbonding.Add(gameObject);
+    //    FixedJoint2D[] connections = GetComponents<FixedJoint2D>();
+    //    foreach (FixedJoint2D connection in connections)
+    //    {
+    //        connection.connectedBody.gameObject.GetComponent<AtomController>().GetConnections();
+    //    }
+    //}
 }

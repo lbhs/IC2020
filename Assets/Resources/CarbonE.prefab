@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 8974600861658600029}
   - component: {fileID: 1539381555268317889}
   - component: {fileID: 1483630323077472294}
+  - component: {fileID: 5257767499480713705}
   m_Layer: 0
   m_Name: CarbonE
   m_TagString: Carbon
@@ -173,7 +174,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &2504367646903285636
 BoxCollider2D:
@@ -220,8 +221,6 @@ MonoBehaviour:
   CollisionEventRegistered: 0
   PVID: 0
   Monovalent: 0
-  UnbondingJoule: {fileID: 8565454377649884571, guid: 55fcd445d739da04ab092527b8e60e70,
-    type: 3}
 --- !u!114 &8974600861658600029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +270,20 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &5257767499480713705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165713786430717543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f652204158500ed4e9f81399cda65eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnbondingJoule: {fileID: 8565454377649884571, guid: 55fcd445d739da04ab092527b8e60e70,
+    type: 3}
 --- !u!1 &3701683146779844129
 GameObject:
   m_ObjectHideFlags: 0

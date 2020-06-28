@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 8565454377649884569}
   - component: {fileID: 3770309670961069985}
   - component: {fileID: 3690344409974065254}
-  - component: {fileID: 5473564700625594223}
-  - component: {fileID: 3642040824617873442}
-  - component: {fileID: 787862928091627318}
+  - component: {fileID: 3363174890995345014}
+  - component: {fileID: 1561768141648877742}
   m_Layer: 0
   m_Name: Joule
   m_TagString: Joule
@@ -141,19 +140,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   NewMoleculeID: 0
---- !u!114 &5473564700625594223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8565454377649884571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f652204158500ed4e9f81399cda65eb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3642040824617873442
+--- !u!114 &3363174890995345014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,11 +158,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 787862928091627318}
+  - {fileID: 1561768141648877742}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &787862928091627318
+--- !u!114 &1561768141648877742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

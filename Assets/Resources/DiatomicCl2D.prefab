@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5305861474948091704}
   - component: {fileID: 6770228901108572628}
   - component: {fileID: 5422923247513649504}
-  - component: {fileID: 834878146919819763}
+  - component: {fileID: 6256844743173562894}
   m_Layer: 0
   m_Name: DiatomicCl2D
   m_TagString: Diatomic
@@ -187,7 +187,7 @@ MonoBehaviour:
   DissociationProduct: {fileID: 3165713786430717543, guid: 3421cb4bef0f944d99c34d172b93389f,
     type: 3}
   BondDissociationEnergy: 1
---- !u!114 &834878146919819763
+--- !u!114 &6256844743173562894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,6 +196,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1475710560346704025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b48ae5b2371634542b129a26470c8c16, type: 3}
+  m_Script: {fileID: 11500000, guid: f652204158500ed4e9f81399cda65eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UnbondingJoule: {fileID: 8565454377649884571, guid: 55fcd445d739da04ab092527b8e60e70,
+    type: 3}

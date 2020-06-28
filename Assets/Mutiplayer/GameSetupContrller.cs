@@ -17,34 +17,29 @@ public class GameSetupContrller : MonoBehaviour
     public GameObject CPrefab;
     public GameObject CLPrefab;
     public Animator UIAnim;
+    private ComponentData CD;
+
     [HideInInspector]
     public Animator CamAnim;
-
-    private GameObject P1Display;
-    private GameObject P2Display;
 
     private GameObject RollPanelOptions;
     private List<List<GameObject>> MoleculeElements;
 
-    private JouleDisplayController JDC;
-
     public bool Unbonding;
+
+    public List<GameObject> CurrentUnbonding;
 
     private void Start()
     {
+        CD = GameObject.Find("ComponentReferences").GetComponent<ComponentData>();
         CreatePlayer();
         state = GameState.Start;
         PV = GetComponent<PhotonView>();
         CamAnim = Camera.main.GetComponent<Animator>();
         MoleculeElements = new List<List<GameObject>>();
-
         RollPanelOptions = GameObject.Find("UI").transform.GetChild(3).gameObject;
-        P1Display = GameObject.Find("UI").transform.GetChild(6).gameObject;
-        P2Display = GameObject.Find("UI").transform.GetChild(7).gameObject;
-
-        JDC = GameObject.Find("UI").transform.GetChild(2).GetComponent<JouleDisplayController>();
-
         Unbonding = false;
+        CurrentUnbonding = new List<GameObject>();
     }
 
     private void CreatePlayer()
@@ -171,13 +166,13 @@ public class GameSetupContrller : MonoBehaviour
     {
         if (s == GameState.Player1Turn)
         {
-            P1Display.SetActive(true);
-            P2Display.SetActive(false);
+            GameObject.Find("UI").transform.GetChild(6).gameObject.SetActive(true);
+            GameObject.Find("UI").transform.GetChild(7).gameObject.SetActive(false);
         } 
         else
         {
-            P2Display.SetActive(true);
-            P1Display.SetActive(false);
+            GameObject.Find("UI").transform.GetChild(6).gameObject.SetActive(false);
+            GameObject.Find("UI").transform.GetChild(7).gameObject.SetActive(true);
         }
     }
 
@@ -198,6 +193,18 @@ public class GameSetupContrller : MonoBehaviour
     }
 
     [PunRPC]
+    public void GenerateBatchID(int[] PVID)
+    {
+        List<GameObject> NewMolecule = new List<GameObject>();
+        foreach (int IndPVID in PVID)
+        {
+            PhotonView.Find(IndPVID).gameObject.GetComponent<AtomController>().MoleculeID = MoleculeElements.Count + 1;
+            NewMolecule.Add(PhotonView.Find(IndPVID).gameObject);
+        }
+        MoleculeElements.Add(NewMolecule);
+    }
+
+    [PunRPC]
     public void MergeMoleculeLists(int IDToMerge, int IDToMergeInto)
     {
         // Both IDToMerge and IDToMergeInto are not equal to 0
@@ -213,26 +220,19 @@ public class GameSetupContrller : MonoBehaviour
     [PunRPC]
     public void TransferSingleElement(int PVID, int IDToMergeInto)
     {
-        // The GameObject identified by PVID has a MoleculeID of 0
         GameObject GOToAdd = PhotonView.Find(PVID).gameObject;
+        if (GOToAdd.GetComponent<AtomController>().MoleculeID != 0)
+            MoleculeElements[GOToAdd.GetComponent<AtomController>().MoleculeID - 1].Remove(GOToAdd);
         GOToAdd.GetComponent<AtomController>().MoleculeID = IDToMergeInto;
-        MoleculeElements[IDToMergeInto - 1].Add(GOToAdd);
+        if (IDToMergeInto != 0)
+            MoleculeElements[IDToMergeInto - 1].Add(GOToAdd);
     }
 
-    [PunRPC]
-    public void ChangeScoreUniformly(int BondEnergy, int BonusScore)
-    {
-        if (state == GameState.Player1Turn)
-        {
-            P1Display.GetComponent<TextController>().BondScore += BondEnergy;
-            P1Display.GetComponent<TextController>().BonusScore += BonusScore;
-        }
-        else
-        {
-            P2Display.GetComponent<TextController>().BondScore += BondEnergy;
-            P2Display.GetComponent<TextController>().BonusScore += BonusScore;
-        }
-    }
+    //[PunRPC]
+    //public void RemoveElementFromMoleculeDB(int PVID)
+    //{
+    //    MoleculeElements[PhotonView.Find(PVID).GetComponent<AtomController>().MoleculeID].Remove(PhotonView.Find(PVID).gameObject);
+    //}
 
     public int ReturnCompletionScore(int MoleculeID)
     {
@@ -262,18 +262,29 @@ public class GameSetupContrller : MonoBehaviour
     }
 
     [PunRPC]
-    public void ClearMoleculeList(int MoleculeID)
+    public void RemoveGivenElements(int MoleculeID)
     {
+        foreach (GameObject GO in MoleculeElements[MoleculeID - 1])
+        {
+            GO.GetComponent<AtomController>().MoleculeID = 0;
+        }
         MoleculeElements[MoleculeID - 1].Clear();
     }
 
     [PunRPC]
-    public void RemoveGivenElements(int[] GOToRemove)
+    public void RemoveSetOfElements(int[] GOToRemove)
     {
         for (int i = 0; i < GOToRemove.Length; i++)
         {
-            MoleculeElements[PhotonView.Find(GOToRemove[i]).GetComponent<AtomController>().MoleculeID - 1].Remove(PhotonView.Find(GOToRemove[i]).gameObject);
+            GameObject ActualGOToRemove = PhotonView.Find(GOToRemove[i]).gameObject;
+            MoleculeElements[ActualGOToRemove.GetComponent<AtomController>().MoleculeID - 1].Remove(ActualGOToRemove);
+            ActualGOToRemove.GetComponent<AtomController>().MoleculeID = 0;
         }
+    }
+
+    public List<GameObject> GetElementsAtGivenPosition(int MoleculeID)
+    {
+        return MoleculeElements[MoleculeID - 1];
     }
 
     [PunRPC]
@@ -289,11 +300,11 @@ public class GameSetupContrller : MonoBehaviour
     {
         if (state == GameState.Player1Turn)
         {
-            JDC.DisplayJoulesP1();
+            CD.JDC.DisplayJoulesP1();
         }
         else
         {
-            JDC.DisplayJoulesP2();
+            CD.JDC.DisplayJoulesP2();
         }
     }
 

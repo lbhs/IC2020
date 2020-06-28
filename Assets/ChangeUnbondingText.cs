@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class ChangeUnbondingText : MonoBehaviour
 {
-    GameSetupContrller GSC;
+    private ComponentData CD;
 
     // Start is called before the first frame update
     void Start()
     {
-        GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>();
+        CD = GameObject.Find("ComponentReferences").GetComponent<ComponentData>();
     }
 
     public void UnbondingStateChange()
     {
-        if (GSC.Unbonding)
+        if (CD.GSC.Unbonding)
         {
             transform.GetChild(1).gameObject.SetActive(true);
             transform.GetChild(0).gameObject.SetActive(false);
