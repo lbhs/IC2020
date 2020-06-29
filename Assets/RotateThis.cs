@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class RotateThis : MonoBehaviour
 {
-	private float LastClickTime = 0;
-	private float TimeSinceLastClick;
-	public const double DoubleClickThreshold = 0.5; //must tap/click twice within 0.5 seconds to rotate
+	private float holdTime = 0;
+	public const double holdTimeThreshold = 0.2; //let go within 0.2 seconds to rotate
+	
     private void OnMouseDown()
     {
-		if(gameObject.GetComponent<BondMaker>().bonded == false)
+		holdTime = 0;
+    }
+	void Update()
+	{
+		holdTime += Time.deltaTime;
+	}
+	private void OnMouseUp()
+    {
+		if(gameObject.GetComponent<BondMaker>().bonded == false && holdTime < holdTimeThreshold)
 		{
-			TimeSinceLastClick = Time.time - LastClickTime;
-			if(TimeSinceLastClick <= DoubleClickThreshold)
-			{
-				transform.Rotate(0, 0, 90);
-			}
-			else
-			{
-				LastClickTime = Time.time;
-			}
+			transform.Rotate(0, 0, 90);
 		}
     }
 }
