@@ -29,8 +29,7 @@ public class Scoreboard : MonoBehaviour
 		tutorial1.text = "Press 'Up' to fire a photon";
 		tutorial2.text = "Press 'Down' to change photon color";
 		tutorial3.text = "Use the left and right keys to move";
-		
-    }
+	}
 
     // Update is called once per frame
     void Update()
@@ -79,16 +78,17 @@ public class Scoreboard : MonoBehaviour
 			coltot = coltot + 3;
 			tutorial1.text = " ";
 		}
+
 		if(coltot > 58 && coltot < 62)
 		{
 			coltot = coltot + 3;
 			Instantiate(glass, new Vector3(-8f, -1f, 0), Quaternion.identity);
 		}
-		if(coltot > 158 && coltot < 162)
+		/*if(coltot > 158 && coltot < 162)
 		{
 			coltot = coltot + 3;
 			Instantiate(glass, new Vector3(-8f, -4f, 0), Quaternion.identity);
-		}
+		}*/
     }
 	public void UpdateScore()
 	{

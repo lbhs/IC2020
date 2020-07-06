@@ -69,6 +69,19 @@ public class invaderMovementRevamped : MonoBehaviour
 		Speedboost = Speedboost + 1;
 		
 	}
+
+    private void OnCollisionEnter(Collision collider)
+    {
+        if ((collider.gameObject.tag == "ChlorineMol" && target.tag == "HMol") ||
+            (collider.gameObject.tag == "HMol" && target.tag == "ChlorineMol") ||
+            (collider.gameObject.tag == "HMol" && target.tag == "HMol") ||
+            (collider.gameObject.tag == "ChlorineMol" && target.tag == "ChlorineMol") ||
+            (collider.gameObject.tag == "ChlorineMol" && target.tag == "H Atom") ||
+            (collider.gameObject.tag == "HMol" && target.tag == "H Atom"))
+        {
+            Physics.IgnoreCollision(collider.gameObject.GetComponent<Collider>(), target.GetComponent<Collider>());
+        }
+    }
     // Update is called once per frame
     void Update()
     {

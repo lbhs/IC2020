@@ -136,7 +136,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5046700012404117192}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0a86380fa4264d76825bcea6c874dcc, type: 3}
   m_Name: 
@@ -220,6 +220,7 @@ MonoBehaviour:
   Chlorine: {fileID: 1098218046657226139, guid: 8b4de00ce468691499d1613c2a749132,
     type: 3}
   ClTwo: {fileID: 8444572533511891286, guid: c790de6575e5992418451d6d140b85eb, type: 3}
+  photonParts: {fileID: 0}
   scoreboard: {fileID: 7739150116106630804, guid: d074fe9e931c5a74cbc7b2d3279433f2,
     type: 3}
 --- !u!114 &7054217703765013907

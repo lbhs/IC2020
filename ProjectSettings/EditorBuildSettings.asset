@@ -27,6 +27,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Exothermic Reaction 3.1--nFE+RedoxWT+light.unity
     guid: d2f7c0f543714de449bf24b2a3f07dee
   - enabled: 1
-    path: Assets/Scenes/SpaceInvaders 3.unity
+    path: Assets/Scenes/PhotonTorpedoes/SpaceInvaders 3.unity
     guid: b918acd052d17074f84c42f3a6974f13
+  - enabled: 1
+    path: Assets/Scenes/PhotonTorpedoes/Photon Torpedo Intro.unity
+    guid: 9e1a41151fb7f4a5a8c650b4fd37a132
+  - enabled: 1
+    path: Assets/Scenes/PhotonTorpedoes/Photon Tutorial Screen 1.unity
+    guid: cd311b498a275442196a87b354bbed40
+  - enabled: 1
+    path: Assets/Scenes/PhotonTorpedoes/Photon Tutorial Screen 2.unity
+    guid: 5a9422534dd3a4f7797677d825463f2c
   m_configObjects: {}
