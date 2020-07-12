@@ -13,12 +13,12 @@ public class turnCheck : MonoBehaviour
 	{
 		Debug.Log(GameSetup.GetComponent<GameSetupContrller>().state);
 		
-		if(GameSetup.GetComponent<GameSetupContrller>().state == GameState.Player1Turn)
+		if(GameSetupContrller.Instance.state == GameState.Player1Turn)
 		{
 			Debug.Log("roll die 1");
 			die1.GetComponent<DieScript>().RollDiceAnimation();
 		}
-		else if(GameSetup.GetComponent<GameSetupContrller>().state == GameState.Player2Turn)
+		else if(GameSetupContrller.Instance.state == GameState.Player2Turn)
 		{
 			Debug.Log("roll die 2");
 			die2.GetComponent<OwnershipTransfer>().steal();

@@ -12,12 +12,6 @@ public class UIDrop2World : MonoBehaviour, IDropHandler
     //  Variable Definitions
     private Vector3 prefabWorldPosition; // Position that the prefab spawns in.
     public GameObject PrefabToSpawn;
-    private GameSetupContrller GSC;
-
-    private void Start()
-    {
-        GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>(); 
-    }
 
     public void OnDrop(PointerEventData eventData)
     {

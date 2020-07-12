@@ -3,19 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AtomController : MonoBehaviourPunCallbacks
+public class AtomController : MonoBehaviour
 {
-    private PhotonView PV;
+    #region Public Member Variables
 
+    // isBonded: dictates whether the atom can be rotated
     public bool isBonded = false;
 
     public int MoleculeID;
 
+    // single bond: -1 bonding opportunities
+    // double bond: -2 bonding opportunities
     public int BondingOpportunities;
 
+    // Used to calculate bond energy from a matrix of values
     public int EnergyMatrixPosition;
-
-    private BondEnergyValues BEV;
 
     public bool CollisionEventRegistered;
 
@@ -24,20 +26,21 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     public bool Monovalent;
 
-    private TextController ScoringSystem;
+    #endregion
 
-    GameObject peer;
+    #region Private Member Values
 
-    private ComponentData CD;
+    // peer: the GameObject that this current GameObject is bonding with
+    private GameObject peer;
 
     private int BondEnergy;
 
+    private PhotonView PV;
+
+    #endregion
+
     void Start()
     {
-        CD = GameObject.Find("ComponentReferences").GetComponent<ComponentData>();
-
-        BEV = GameObject.Find("BondEnergyMatrix").GetComponent<BondEnergyValues>();
-
         CollisionEventRegistered = false;
 
         PV = GetComponent<PhotonView>();
@@ -48,6 +51,12 @@ public class AtomController : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        if (UnbondingScript2.DontBondAgain > 0)
+        {
+            Debug.Log("Not ready to bond");
+            return;
+        }
+
         if (collider.tag == "Peak" || collider.tag == "PeakDB")
         {
             peer = collider.transform.root.gameObject;
@@ -64,47 +73,51 @@ public class AtomController : MonoBehaviourPunCallbacks
                 CollisionEventRegistered = true;
                 if (peer.GetComponent<AtomController>().CollisionEventRegistered)
                 {
+                    #region Handling MoleculeIDs
                     // RPCs are used for the ID methods because these changes should affect both players' ID databases
                     if (MoleculeID == 0 && peer.GetComponent<AtomController>().MoleculeID == 0)
                     {
-                        CD.GameSetupPhotonView.RPC("GenerateID", RpcTarget.All, PVID, peer.GetComponent<AtomController>().PVID);
-                        Debug.Log("GenerateID called");
+                        // Create an ID for both atoms
+                        MoleculeIDHandler.Instance.GetComponent<PhotonView>().RPC("GenerateID", RpcTarget.All, PVID, peer.GetComponent<AtomController>().PVID);
                     }
 
                     else if (MoleculeID == 0 && peer.GetComponent<AtomController>().MoleculeID > 0)
                     {
-                        CD.GameSetupPhotonView.RPC("TransferSingleElement", RpcTarget.All, PVID, peer.GetComponent<AtomController>().MoleculeID);
-                        Debug.Log("TransferSingleElement called");
+                        // Give this GameObject the same MoleculeID as the peer
+                        MoleculeIDHandler.Instance.GetComponent<PhotonView>().RPC("TransferSingleElement", RpcTarget.All, PVID, peer.GetComponent<AtomController>().MoleculeID);
                     }
 
                     else if (MoleculeID > 0 && peer.GetComponent<AtomController>().MoleculeID == 0)
                     {
-                        CD.GameSetupPhotonView.RPC("TransferSingleElement", RpcTarget.All, peer.GetComponent<AtomController>().PVID, MoleculeID);
-                        Debug.Log("TransferSingleElement called");
+                        // Give peer the same MoleculeID as this GameObject
+                        MoleculeIDHandler.Instance.GetComponent<PhotonView>().RPC("TransferSingleElement", RpcTarget.All, peer.GetComponent<AtomController>().PVID, MoleculeID);
                     }
 
                     else
                     {
-                        CD.GameSetupPhotonView.RPC("MergeMoleculeLists", RpcTarget.All, MoleculeID, peer.GetComponent<AtomController>().MoleculeID);
-                        Debug.Log("MergeMoleculeLists called");
+                        // Give the GameObjects attached to this GameObject the same MoleculeID as peer's atoms
+                        MoleculeIDHandler.Instance.GetComponent<PhotonView>().RPC("MergeMoleculeLists", RpcTarget.All, MoleculeID, peer.GetComponent<AtomController>().MoleculeID);
                     }
+                    #endregion
+
+                    #region Bonding Strategies
 
                     // Optimized bonding
                     if (Monovalent)
                     {
                         FixedJoint2D joint = gameObject.AddComponent<FixedJoint2D>();
                         joint.connectedBody = peer.GetComponent<Rigidbody2D>();
+                        joint.autoConfigureConnectedAnchor = false;
                         joint.enableCollision = false;
                     }
 
-                    // The other element solely is monovalent
+                    // Solely the other element is monovalent
                     else if (peer.GetComponent<AtomController>().Monovalent)
                     {
                         FixedJoint2D joint = peer.AddComponent<FixedJoint2D>();
                         joint.connectedBody = gameObject.GetComponent<Rigidbody2D>();
                         joint.autoConfigureConnectedAnchor = false;
                         joint.enableCollision = false;
-                        joint.dampingRatio = 1f;
                     }
 
                     else
@@ -113,34 +126,41 @@ public class AtomController : MonoBehaviourPunCallbacks
                         joint.connectedBody = gameObject.GetComponent<Rigidbody2D>();
                         joint.autoConfigureConnectedAnchor = false;
                         joint.enableCollision = false;
-                        joint.dampingRatio = 1f;
 
                         FixedJoint2D joint1 = gameObject.AddComponent<FixedJoint2D>();
                         joint1.connectedBody = peer.GetComponent<Rigidbody2D>();
                         joint1.autoConfigureConnectedAnchor = false;
                         joint1.enableCollision = false;
-                        joint1.dampingRatio = 1f;
                     }
 
                     isBonded = true;
                     peer.GetComponent<AtomController>().isBonded = true;
 
+                    #endregion
+
+                    #region Obtaining Bond Energy & Modifying the Score
+
                     if (collider.tag == "PeakDB")
                     {
-                        BondEnergy = BEV.bondEnergyArray[EnergyMatrixPosition + 3,
-                                                         peer.GetComponent<AtomController>().EnergyMatrixPosition + 3];
+                        // Formation of a double bond
+                        BondEnergy = BondEnergyValues.Instance.ComputeBondEnergy(EnergyMatrixPosition + 3, peer.GetComponent<AtomController>().EnergyMatrixPosition + 3);
+                        // There are 2 less bonding opportunities for both this GameObject and its peer
                         BondingOpportunities -= 2;
                         peer.GetComponent<AtomController>().BondingOpportunities -= 2;
                     }
                     else
                     {
-                        BondEnergy = BEV.bondEnergyArray[EnergyMatrixPosition,
-                                                         peer.GetComponent<AtomController>().EnergyMatrixPosition];
+                        // Formation of a single bond
+                        BondEnergy = BondEnergyValues.Instance.ComputeBondEnergy(EnergyMatrixPosition, peer.GetComponent<AtomController>().EnergyMatrixPosition);
+                        // There is 1 less bonding opportunity for both this GameObject and peer
                         BondingOpportunities--;
                         peer.GetComponent<AtomController>().BondingOpportunities--;
                     }
 
-                    CD.JDC.GetComponent<PhotonView>().RPC("IncrementJDC", RpcTarget.All, BondEnergy, PVID, 0);
+                    // IncrementJDC handles both the joule holder AND scoring
+                    JouleDisplayController.Instance.GetComponent<PhotonView>().RPC("IncrementJDC", RpcTarget.All, BondEnergy, PVID, 0);
+
+                    #endregion
                 }
             }
             else
@@ -148,6 +168,7 @@ public class AtomController : MonoBehaviourPunCallbacks
                 CollisionEventRegistered = true;
                 if (peer.GetComponent<AtomController>().CollisionEventRegistered)
                 {
+                    #region Bonding Strategies (Modified for Other Player)
                     FixedJoint2D joint = gameObject.AddComponent<FixedJoint2D>();
                     joint.connectedBody = peer.GetComponent<Rigidbody2D>();
 
@@ -157,6 +178,9 @@ public class AtomController : MonoBehaviourPunCallbacks
                     isBonded = true;
                     peer.GetComponent<AtomController>().isBonded = true;
 
+                    #endregion
+
+                    #region Decrement Bonding Opportunities
                     if (collider.tag == "PeakDB")
                     {
                         BondingOpportunities -= 2;
@@ -167,6 +191,7 @@ public class AtomController : MonoBehaviourPunCallbacks
                         BondingOpportunities--;
                         peer.GetComponent<AtomController>().BondingOpportunities--;
                     }
+                    #endregion
                 }
             }
         }
@@ -184,19 +209,4 @@ public class AtomController : MonoBehaviourPunCallbacks
             return;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
     }
-
-    //public void GetConnections()
-    //{
-    //    if (CD.GSC.CurrentUnbonding.Contains(gameObject))
-    //    {
-    //        return;
-    //    }
-
-    //    CD.GSC.CurrentUnbonding.Add(gameObject);
-    //    FixedJoint2D[] connections = GetComponents<FixedJoint2D>();
-    //    foreach (FixedJoint2D connection in connections)
-    //    {
-    //        connection.connectedBody.gameObject.GetComponent<AtomController>().GetConnections();
-    //    }
-    //}
 }

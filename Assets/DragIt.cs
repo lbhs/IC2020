@@ -7,7 +7,6 @@ using Photon.Pun;
 public class DragIt : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private GameSetupContrller GSC;
     private PhotonView PV;
 
     private Vector3 mOffset;
@@ -18,7 +17,6 @@ public class DragIt : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        GSC = GameObject.Find("GameSetup").GetComponent<GameSetupContrller>();
         PV = GetComponent<PhotonView>();
     }
 
@@ -28,7 +26,7 @@ public class DragIt : MonoBehaviour
         {
             return;
         }
-        else if (GSC.Unbonding)
+        else if (GameSetupContrller.Instance.Unbonding)
         {
             Vector3 NewMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             NewMousePosition.z = 0;
@@ -47,7 +45,7 @@ public class DragIt : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (!PV.IsMine || GSC.Unbonding)
+        if (!PV.IsMine || GameSetupContrller.Instance.Unbonding)
             return;
         if (GameObject.Find("TurnScreen") == null)
         {

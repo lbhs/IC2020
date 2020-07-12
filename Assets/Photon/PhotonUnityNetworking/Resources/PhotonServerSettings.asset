@@ -66,6 +66,15 @@ MonoBehaviour:
   - DeleteJointOverNetworkByIndex
   - GenerateBatchID
   - RemoveSetOfElements
+  - RemoveArrayOfElements
+  - RemoveElementListByID
+  - DeleteJointsBetweenAtom1Atom2
+  - IncrementPlayerTurns
+  - StateTransition
+  - IncrementCount
+  - TurnsStateTransition
+  - ChangeAnimBoolExiting
+  - AdvertiseUsername
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

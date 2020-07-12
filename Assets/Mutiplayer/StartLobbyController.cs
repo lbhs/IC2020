@@ -3,6 +3,7 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartLobbyController : MonoBehaviourPunCallbacks
 {
@@ -13,10 +14,20 @@ public class StartLobbyController : MonoBehaviourPunCallbacks
     [SerializeField]
     private int RoomSize; // number of player in a game
 
+    private InputField UsernameField;
+
+    public static string FinalUsername;
+
+    private void Start()
+    {
+        UsernameField = GameObject.Find("UI").transform.GetChild(1).transform.GetChild(0).GetComponent<InputField>();
+        DontDestroyOnLoad(gameObject);
+    }
+
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        StartButton.SetActive(true);
+        StartButton.SetActive(false);
     }
 
     public void StartButtonFunction() //called when pressing the start button
@@ -25,6 +36,7 @@ public class StartLobbyController : MonoBehaviourPunCallbacks
         CancelButton.SetActive(true);
         PhotonNetwork.JoinRandomRoom(); // first tries to find a room to join 
         Debug.Log("Searching for rooms");
+        FinalUsername = UsernameField.text;
     }
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
@@ -52,5 +64,17 @@ public class StartLobbyController : MonoBehaviourPunCallbacks
         CancelButton.SetActive(false);
         StartButton.SetActive(true);
         PhotonNetwork.LeaveRoom();
+    }
+
+    public void UsernameEntered()
+    {
+        if (UsernameField.text.Length > 0)
+        {
+            StartButton.SetActive(true);
+        }
+        else
+        {
+            StartButton.SetActive(false);
+        }
     }
 }

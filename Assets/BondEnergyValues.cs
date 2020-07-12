@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class BondEnergyValues : MonoBehaviour
 {
-    public int[,] bondEnergyArray;
-    public int Atom1;
-    public int Atom2;
+    private int[,] bondEnergyArray;
+    public static BondEnergyValues Instance { get; private set; }
     
-
     // Start is called before the first frame update
     void Start()
     {
-        
-
         //H = 0, C = 1, O = 2, Cl = 3, C with double bond = 4, O with double bond = 5
         bondEnergyArray = new int[6, 6];
         bondEnergyArray[0, 0] = 2;
@@ -37,11 +33,15 @@ public class BondEnergyValues : MonoBehaviour
         bondEnergyArray[5, 4] = 4;
         bondEnergyArray[5, 5] = 3;
 
+        // Singleton design pattern
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public int ComputeBondEnergy(int atom1MatrixPosition, int atom2MatrixPosition)
     {
-       
+        return bondEnergyArray[atom1MatrixPosition, atom2MatrixPosition];
     }
 }
