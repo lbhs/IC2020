@@ -141,14 +141,25 @@ public class UnbondingScript2 : MonoBehaviour
                     // It doesn't matter whether we pass the PVID of Atom 1 or 2 -- they both have the same owner 
                     JouleDisplayController.Instance.GetComponent<PhotonView>().RPC("IncrementJDC", RpcTarget.All, -JouleCost, Atom1.GetComponent<AtomController>().PVID, -MoleculeIDHandler.Instance.ReturnCompletionScore(MolIDValue));
 
+                    if (collider.tag == "UnbondingTriggerDB")
+                    {
+                        Atom1.GetComponent<AtomController>().BondingOpportunities += 2;
+                        Atom2.GetComponent<AtomController>().BondingOpportunities += 2;
+                    }
+                    else
+                    {
+                        Atom1.GetComponent<AtomController>().BondingOpportunities++;
+                        Atom2.GetComponent<AtomController>().BondingOpportunities++;
+                    }
+
                     if (MoleculeIDHandler.Instance.NumElementsInMolecule(MolIDValue) == 2)
                     {
                         Debug.Log("Unbond two elements!");
                         MoleculeIDHandler.Instance.GetComponent<PhotonView>().RPC("RemoveElementListByID", RpcTarget.All, MolIDValue);
                         PV.RPC("DeleteJointsBetweenAtom1Atom2", RpcTarget.All, Atom1.GetComponent<AtomController>().PVID, Atom2.GetComponent<AtomController>().PVID);
-                        PV.RPC("ChangeBondingState", RpcTarget.All, Atom1.GetComponent<AtomController>().PVID, false);
-                        PV.RPC("ChangeBondingState", RpcTarget.All, Atom2.GetComponent<AtomController>().PVID, false);
-                        PV.RPC("MoveAtomsAndAdjustValleys", RpcTarget.All, collider.tag);
+                        Atom1.GetComponent<AtomController>().isBonded = false;
+                        Atom2.GetComponent<AtomController>().isBonded = false;
+                        MoveAtomsAndAdjustValleys();
                         return;
                     }
 
@@ -156,9 +167,9 @@ public class UnbondingScript2 : MonoBehaviour
                     {
                         Debug.Log("Atom2 is a monovalent!");
                         PV.RPC("DeleteJointsBetweenAtom1Atom2", RpcTarget.All, Atom1.GetComponent<AtomController>().PVID, Atom2.GetComponent<AtomController>().PVID);
-                        PV.RPC("ChangeBondingState", RpcTarget.All, Atom2.GetComponent<AtomController>().PVID, false);
+                        Atom2.GetComponent<AtomController>().isBonded = false;
                         MoleculeIDHandler.Instance.GetComponent<PhotonView>().RPC("RemoveArrayOfElements", RpcTarget.All, new int[1] { Atom2.GetComponent<AtomController>().PVID });
-                        PV.RPC("MoveAtomsAndAdjustValleys", RpcTarget.All, collider.tag);
+                        MoveAtomsAndAdjustValleys();
                         return;
                     }
 
@@ -223,8 +234,7 @@ public class UnbondingScript2 : MonoBehaviour
 
                             if (BondingPartnerList.Count == 1)
                             {
-                                // Atom2 inventory removal handled by TransferSingleElement...no need to worry
-                                PV.RPC("ChangeBondingState", RpcTarget.All, Atom2.GetComponent<AtomController>().PVID, false);
+                                Atom2.GetComponent<AtomController>().isBonded = false;
                                 MoleculeIDHandler.Instance.GetComponent<PhotonView>().RPC("TransferSingleElement", RpcTarget.All, Atom2.GetComponent<AtomController>().PVID, 0);
                             }
 
@@ -244,10 +254,10 @@ public class UnbondingScript2 : MonoBehaviour
                             if (MoleculeIDHandler.Instance.NumElementsInMolecule(MolIDValue) == 1)
                             {
                                 MoleculeIDHandler.Instance.GetComponent<PhotonView>().RPC("TransferSingleElement", RpcTarget.All, Atom1.GetComponent<AtomController>().PVID, 0);
-                                PV.RPC("ChangeBondingState", RpcTarget.All, Atom1.GetComponent<AtomController>().PVID, false);
+                                Atom1.GetComponent<AtomController>().isBonded = false;
                             }
 
-                            PV.RPC("MoveAtomsAndAdjustValleys", RpcTarget.All, collider.tag);
+                            MoveAtomsAndAdjustValleys();
                         }
                     }
                 }
@@ -289,29 +299,12 @@ public class UnbondingScript2 : MonoBehaviour
         }
     }
 
-    [PunRPC]
-    private void ChangeBondingState(int PVID, bool state)
+    private void MoveAtomsAndAdjustValleys()
     {
-        PhotonView.Find(PVID).GetComponent<AtomController>().isBonded = state;
-    }
-
-    [PunRPC]
-    private void MoveAtomsAndAdjustValleys(string ColliderTag)
-    {
-        //the line of code below moves the unbonded atoms apart by a reasonable distance
         bondDirection = (Atom2.transform.position - Atom1.transform.position); //finds the vector that lines up the two atoms
         Vector3 DesiredPosition = new Vector3(Atom2.transform.position.x + 0.23f * bondDirection.x, Atom2.transform.position.y + 0.23f * bondDirection.y);
         StartCoroutine(MoveAtom2(DesiredPosition));
-        if (ColliderTag == "UnbondingTriggerDB")
-        {
-            Atom1.GetComponent<AtomController>().BondingOpportunities += 2;
-            Atom2.GetComponent<AtomController>().BondingOpportunities += 2;
-        }
-        else
-        {
-            Atom1.GetComponent<AtomController>().BondingOpportunities++;
-            Atom2.GetComponent<AtomController>().BondingOpportunities++;
-        }
+
         DontBondAgain = 20;
         print("DontBondAgain set to 20");
     }

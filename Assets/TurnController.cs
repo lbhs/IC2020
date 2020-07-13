@@ -39,26 +39,27 @@ public class TurnController : MonoBehaviour
         if (GameSetupContrller.Instance.state == GameState.Player1Turn)
         {
             transform.GetChild(1).GetComponent<Text>().text = (++TotalTurnsDisplaying[0]).ToString();
-            //if (TotalTurnsDisplaying[0] >= 4)
-            //{
-            //    Debug.LogFormat("Player 1: {0} to Player 2: {1}", GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>().PreviousTotalScore, GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>().PreviousTotalScore);
+            if (TotalTurnsDisplaying[0] >= 4)
+            {
+                Debug.LogFormat("Player 1: {0} to Player 2: {1}", GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>().PreviousTotalScore, GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>().PreviousTotalScore);
+                Debug.LogFormat("Sender: {0}", info.Sender);
 
-            //    if ((GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>().PreviousTotalScore
-            //        > GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>().PreviousTotalScore)
-            //        && GameObject.Find("UI").transform.GetChild(0).GetComponent<Button>().interactable)
-            //    {
-            //        SceneManager.LoadScene("WinScene", LoadSceneMode.Single);
-            //    }
-            //    else if (GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>().PreviousTotalScore
-            //             < GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>().PreviousTotalScore)
-            //    {
-            //        SceneManager.LoadScene("LoseScene", LoadSceneMode.Single);
-            //    }
-            //    else
-            //    {
-            //        SceneManager.LoadScene("TieScene", LoadSceneMode.Single);
-            //    }
-            //}
+                //if ((GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>().PreviousTotalScore
+                //    > GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>().PreviousTotalScore)
+                //    && info.photonView.IsMine)
+                //{
+                //    SceneManager.LoadScene("WinScene", LoadSceneMode.Single);
+                //}
+                //else if (GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>().PreviousTotalScore
+                //         < GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>().PreviousTotalScore)
+                //{
+                //    SceneManager.LoadScene("LoseScene", LoadSceneMode.Single);
+                //}
+                //else
+                //{
+                //    SceneManager.LoadScene("TieScene", LoadSceneMode.Single);
+                //}
+            }
         }
         else
         {

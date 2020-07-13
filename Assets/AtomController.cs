@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AtomController : MonoBehaviour
+public class AtomController : MonoBehaviour, IPunObservable
 {
     #region Public Member Variables
 
@@ -158,7 +158,7 @@ public class AtomController : MonoBehaviour
                     }
 
                     // IncrementJDC handles both the joule holder AND scoring
-                    JouleDisplayController.Instance.GetComponent<PhotonView>().RPC("IncrementJDC", RpcTarget.All, BondEnergy, PVID, 0);
+                    JouleDisplayController.Instance.GetComponent<PhotonView>().RPC("IncrementJDC", RpcTarget.All, BondEnergy, PVID, MoleculeIDHandler.Instance.ReturnCompletionScore(GetComponent<AtomController>().MoleculeID));
 
                     #endregion
                 }
@@ -168,30 +168,11 @@ public class AtomController : MonoBehaviour
                 CollisionEventRegistered = true;
                 if (peer.GetComponent<AtomController>().CollisionEventRegistered)
                 {
-                    #region Bonding Strategies (Modified for Other Player)
                     FixedJoint2D joint = gameObject.AddComponent<FixedJoint2D>();
                     joint.connectedBody = peer.GetComponent<Rigidbody2D>();
 
                     FixedJoint2D joint1 = peer.AddComponent<FixedJoint2D>();
                     joint1.connectedBody = gameObject.GetComponent<Rigidbody2D>();
-
-                    isBonded = true;
-                    peer.GetComponent<AtomController>().isBonded = true;
-
-                    #endregion
-
-                    #region Decrement Bonding Opportunities
-                    if (collider.tag == "PeakDB")
-                    {
-                        BondingOpportunities -= 2;
-                        peer.GetComponent<AtomController>().BondingOpportunities -= 2;
-                    }
-                    else
-                    {
-                        BondingOpportunities--;
-                        peer.GetComponent<AtomController>().BondingOpportunities--;
-                    }
-                    #endregion
                 }
             }
         }
@@ -205,8 +186,25 @@ public class AtomController : MonoBehaviour
         }
 
         CollisionEventRegistered = false;
+
         if (PV.IsMine == true)
             return;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(isBonded);
+            stream.SendNext(MoleculeID);
+            stream.SendNext(BondingOpportunities);
+        }
+        else if (stream.IsReading)
+        {
+            isBonded = (bool)stream.ReceiveNext();
+            MoleculeID = (int)stream.ReceiveNext();
+            BondingOpportunities = (int)stream.ReceiveNext();
+        }
     }
 }

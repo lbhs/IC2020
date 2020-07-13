@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class MoleculeIDHandler : MonoBehaviour
 {
@@ -84,6 +85,7 @@ public class MoleculeIDHandler : MonoBehaviour
         int MoleculeSize = 0;
         foreach (GameObject GO in MoleculeElements[MoleculeID - 1])
         {
+            Debug.LogFormat("{0} has {1} bonding opportunities", GO.name, GO.GetComponent<AtomController>().BondingOpportunities);
             if (GO.GetComponent<AtomController>().BondingOpportunities != 0)
             {
                 return 0;
@@ -138,4 +140,15 @@ public class MoleculeIDHandler : MonoBehaviour
         }
     }
     #endregion
+
+    public void ViewContentsOfID()
+    {
+        int MoleculeID = int.Parse(GameObject.Find("UI").transform.GetChild(12).transform.GetChild(2).GetComponent<Text>().text);
+        string elements = "";
+        foreach (GameObject GO in MoleculeElements[MoleculeID - 1])
+        {
+            elements += GO.name;
+        }
+        Debug.Log(elements);
+    }
 }

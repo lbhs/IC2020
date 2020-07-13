@@ -66,7 +66,7 @@ public class JouleDisplayController : MonoBehaviour
     {
         // AmountToIncrement is added to the correct player's bond score
         // The GameObject identified by PVID is used to determine for which player points should be incremented/decremented
-        // ManuallySetBonus adds bonus points for the correct player (manually)--for most cases, keep ManuallySetBonus at 0
+        // ManuallySetBonus adds bonus points for the correct player 
         if (PhotonView.Find(PVID) != null)
         {
             GameObject GO = PhotonView.Find(PVID).gameObject;
@@ -74,19 +74,13 @@ public class JouleDisplayController : MonoBehaviour
             {
                 TotalJoulesDisplaying[0] += AmountToIncrement;
                 GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>().BondScore += AmountToIncrement;
-                if (ManuallySetBonus == 0)
-                    GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>().BonusScore += MoleculeIDHandler.Instance.ReturnCompletionScore(GO.GetComponent<AtomController>().MoleculeID);
-                else
-                    GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>().BonusScore += ManuallySetBonus;
+                GameObject.Find("UI").transform.GetChild(6).GetComponent<TextController>().BonusScore += ManuallySetBonus;
             }
             else
             {
                 TotalJoulesDisplaying[1] += AmountToIncrement;
                 GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>().BondScore += AmountToIncrement;
-                if (ManuallySetBonus == 0)
-                    GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>().BonusScore += MoleculeIDHandler.Instance.ReturnCompletionScore(GO.GetComponent<AtomController>().MoleculeID);
-                else
-                    GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>().BonusScore += ManuallySetBonus;
+                GameObject.Find("UI").transform.GetChild(7).GetComponent<TextController>().BonusScore += ManuallySetBonus;
             }
         }
 
