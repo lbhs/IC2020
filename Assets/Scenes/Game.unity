@@ -2255,7 +2255,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 5}
   m_SizeDelta: {x: 700, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &919450891
@@ -3436,7 +3436,7 @@ PrefabInstance:
     - target: {fileID: 4955482841478018294, guid: 9c440f948124fd74a89f4a70c1b829d4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -16.5
+      value: -36.5
       objectReference: {fileID: 0}
     - target: {fileID: 4955482842369297924, guid: 9c440f948124fd74a89f4a70c1b829d4,
         type: 3}
@@ -3446,7 +3446,7 @@ PrefabInstance:
     - target: {fileID: 4955482842369297924, guid: 9c440f948124fd74a89f4a70c1b829d4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 40.5
+      value: -36.5
       objectReference: {fileID: 0}
     - target: {fileID: 4955482841478018295, guid: 9c440f948124fd74a89f4a70c1b829d4,
         type: 3}
@@ -3701,7 +3701,7 @@ PrefabInstance:
     - target: {fileID: 4137630346953346856, guid: 09fd64f1ae49fd840897941bc2e31466,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -16.5
+      value: -36.5
       objectReference: {fileID: 0}
     - target: {fileID: 4137630346953346856, guid: 09fd64f1ae49fd840897941bc2e31466,
         type: 3}
@@ -3711,7 +3711,7 @@ PrefabInstance:
     - target: {fileID: 4137630345734412022, guid: 09fd64f1ae49fd840897941bc2e31466,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 40.5
+      value: -36.5
       objectReference: {fileID: 0}
     - target: {fileID: 4137630345734412022, guid: 09fd64f1ae49fd840897941bc2e31466,
         type: 3}
@@ -3824,7 +3824,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 25}
+  m_AnchoredPosition: {x: 0, y: -43}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1374101183

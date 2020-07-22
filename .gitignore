@@ -38,3 +38,5 @@ sysinfo.txt
 /.tmp.drivedownload/*
 Assets/LeaderBoard/SecretKey.cs
 Assets/LeaderBoard/SecretKey.cs.meta
+"WebGL Builds"/
+Android/

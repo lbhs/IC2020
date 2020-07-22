@@ -36,24 +36,24 @@ public class DieCheckZoneScript : MonoBehaviour {
                     dieNumber = 6;
                     break;
 				case "Side2":
-                    //dieNumber = 5;
-                    dieNumber = 6;
+                    dieNumber = 5;
+                    //dieNumber = 6;
                     break;
 				case "Side3":
-                    //dieNumber = 4;
-                    dieNumber = 6;
+                    dieNumber = 4;
+                    //dieNumber = 6;
                     break;
 				case "Side4":
-                    //dieNumber = 3;
-                    dieNumber = 6;
+                    dieNumber = 3;
+                    //dieNumber = 6;
                     break;
 				case "Side5":
-                    //dieNumber = 2;
-                    dieNumber = 6;
+                    dieNumber = 2;
+                    //dieNumber = 6;
                     break;
 				case "Side6":
-                    //dieNumber = 1;
-                    dieNumber = 6;
+                    dieNumber = 1;
+                    //dieNumber = 6;
                     break;
 			}
 		}
