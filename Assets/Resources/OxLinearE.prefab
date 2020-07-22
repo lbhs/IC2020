@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 7263199337722132646}
   - component: {fileID: 8504007055282645628}
   - component: {fileID: 3465139878390066872}
+  - component: {fileID: 387342629672362314}
   m_Layer: 0
   m_Name: OxLinearE
   m_TagString: Oxygen
@@ -506,6 +507,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnbondingJoule: {fileID: 8565454377649884571, guid: 55fcd445d739da04ab092527b8e60e70,
+    type: 3}
+--- !u!114 &387342629672362314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280458384227402504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf25c852636a844b882b0758de4dcd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrefabToBecome: {fileID: 3165713786430717543, guid: 92c002d64bc15bc41a1c8ee7fe8c35cc,
     type: 3}
 --- !u!1 &9204335004933918262
 GameObject:

@@ -22,6 +22,7 @@ public class StartLobbyController : MonoBehaviourPunCallbacks
     {
         UsernameField = GameObject.Find("UI").transform.GetChild(1).transform.GetChild(0).GetComponent<InputField>();
         DontDestroyOnLoad(gameObject);
+        gameObject.tag = "DontDestroyOnLoad";
     }
 
     public override void OnConnectedToMaster()

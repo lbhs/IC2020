@@ -7,6 +7,17 @@ TagManager:
   - BondArea
   - Peak
   - Valley
+  - Diatomic
+  - Carbon
+  - Chlorine
+  - Hydrogen
+  - Oxygen
+  - Joule
+  - UnbondingTrigger
+  - ValleyDB
+  - PeakDB
+  - UnbondingTriggerDB
+  - DontDestroyOnLoad
   layers:
   - Default
   - TransparentFX

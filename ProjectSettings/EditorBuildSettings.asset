@@ -6,21 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/WelcomeScene.unity
+    path: Assets/Scenes/WelcomeScene.unity
     guid: d001e6834f1d10e4fadde0ce573722e6
   - enabled: 1
     path: Assets/Mutiplayer/WaitingRoom.unity
     guid: 059d244a43a677645a18d09c1370933f
   - enabled: 1
-    path: Assets/Game.unity
+    path: Assets/Scenes/Game.unity
     guid: ccc95aa1d6866e946bb0a67ab623784b
   - enabled: 1
-    path: Assets/WinScene.unity
+    path: Assets/Scenes/EndScene.unity
     guid: 44a02bc4e1616804492b1ab8f7422a77
-  - enabled: 1
+  - enabled: 0
     path: Assets/LoseScene.unity
     guid: 72daed825dd88104d88794b33b078220
-  - enabled: 1
+  - enabled: 0
     path: Assets/TieScene.unity
     guid: 1cc3ec1798171864085f232fb6eb13c7
   m_configObjects: {}

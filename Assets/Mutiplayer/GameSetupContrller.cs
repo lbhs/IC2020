@@ -13,10 +13,10 @@ public class GameSetupContrller : MonoBehaviour
     public GameState state;
     public GameObject TurnScreen;
     public Animator UIAnim;
-    public bool Unbonding;
     public PhotonView PV;
     public static GameSetupContrller Instance { get; private set; }
     public static string PeerUserName;
+    public GameObject Player;
     #endregion
 
     #region Private Member Variables
@@ -33,7 +33,6 @@ public class GameSetupContrller : MonoBehaviour
         // Camera is moved to view Player 1's and Player 2's actions
         CamAnim = Camera.main.GetComponent<Animator>();
         RollPanelOptions = GameObject.Find("UI").transform.GetChild(3).gameObject;
-        Unbonding = false;
         CreatePlayer(); 
 
         // Singleton design pattern
@@ -46,7 +45,7 @@ public class GameSetupContrller : MonoBehaviour
     private void CreatePlayer()
     {
         Debug.Log("Creating Player");
-        PhotonNetwork.Instantiate(Path.Combine("Prefabs", "PlayerPreafab"), Vector3.zero, Quaternion.identity);
+        Player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "PlayerPreafab"), Vector3.zero, Quaternion.identity);
     }
 
      void Update()
@@ -103,6 +102,10 @@ public class GameSetupContrller : MonoBehaviour
         if(state == GameState.Player1Turn)
         {
             Debug.Log("Player 1 turn ending");
+            if (GameObject.Find("UI").transform.GetChild(1).GetComponent<Button>().interactable)
+            {
+                TurnController.Instance.IncrementCountWrapper();
+            }
             PV.RPC("ChangeState", RpcTarget.All, GameState.Player2Turn);
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[1]);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[0]);
@@ -112,6 +115,10 @@ public class GameSetupContrller : MonoBehaviour
         else if(state == GameState.Player2Turn)
         {
             Debug.Log("Player 2 turn ending");
+            if (GameObject.Find("UI").transform.GetChild(1).GetComponent<Button>().interactable)
+            {
+                TurnController.Instance.IncrementCountWrapper();
+            }
             PV.RPC("ChangeState", RpcTarget.All, GameState.Player1Turn);
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[0]);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[1]);
@@ -207,10 +214,5 @@ public class GameSetupContrller : MonoBehaviour
             TurnController.Instance.DisplayTurnsP1();
         else
             TurnController.Instance.DisplayTurnsP2();
-    }
-
-    public void ChangeUnbondingState()
-    {
-        Unbonding = !Unbonding;
     }
 }

@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 1539381555268317889}
   - component: {fileID: 1483630323077472294}
   - component: {fileID: 5257767499480713705}
+  - component: {fileID: 3451058487791916391}
   m_Layer: 0
   m_Name: CarbonE
   m_TagString: Carbon
@@ -284,6 +285,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnbondingJoule: {fileID: 8565454377649884571, guid: 55fcd445d739da04ab092527b8e60e70,
+    type: 3}
+--- !u!114 &3451058487791916391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165713786430717543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf25c852636a844b882b0758de4dcd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrefabToBecome: {fileID: 3165713786430717543, guid: 2741d929d340c954bb34b68071057983,
     type: 3}
 --- !u!1 &3701683146779844129
 GameObject:

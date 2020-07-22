@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1421139028862320687}
   - component: {fileID: 8990797735670489448}
   - component: {fileID: 2965351715016148784}
+  - component: {fileID: 2230097194038728580}
   m_Layer: 0
   m_Name: OxygenEB
   m_TagString: Oxygen
@@ -218,6 +219,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnbondingJoule: {fileID: 8565454377649884571, guid: 55fcd445d739da04ab092527b8e60e70,
+    type: 3}
+--- !u!114 &2230097194038728580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165713786430717543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf25c852636a844b882b0758de4dcd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrefabToBecome: {fileID: 3165713786430717543, guid: 593c7fff8c94f4bd7a7b7fb70bb74a35,
     type: 3}
 --- !u!1 &5364500037088676356
 GameObject:
