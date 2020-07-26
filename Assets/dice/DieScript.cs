@@ -79,7 +79,9 @@ public class DieScript : MonoBehaviour {
 		float dirZ = Random.Range(-500, 500);
 		transform.position = startPos;
 		transform.rotation = Random.rotation;
-		rb.AddForce(new Vector3(Random.Range(-100f, 100f), 800, 0));
+		int throwvel = 800;
+		if(DetectTablet.isTablet()) { throwvel = 1000; }
+		rb.AddForce(new Vector3(Random.Range(-100f, 100f), throwvel, 0));
 		rb.AddTorque(dirX, dirY, dirZ);
 	}
 }
