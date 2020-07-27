@@ -6,28 +6,30 @@ public class LeaderboardScript : MonoBehaviour
 {
     private string BASE_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdfRfapmI3she14Wkyye5eAhlzUIpyzc7iFDUUS1SVAWcdQzA/formResponse";
     //will return true if successful
-    public bool Send(string email, int score)
+    public bool Send(string name, int score)
     {
-        if (!email.Contains("@lbusd.org"))
-        {
-            //not a valid name/score
-            return false;
-        }
-        else
-        {
-            //code to format name
-            string firstName;
-            string lastName;
-            string[] n = email.Split('@');
-            string[] s = n[0].Split('.');
-            firstName = s[0];
-            firstName = char.ToUpper(firstName[0]) + firstName.Substring(1);
-            lastName = s[1];
-            lastName = char.ToUpper(lastName[0]) + lastName.Substring(1);
-            string name = firstName + " " + lastName;
-            StartCoroutine(Post(name, score.ToString()));
-            return true;
-        }
+        //if (!email.Contains("@lbusd.org"))
+        //{
+        //    //not a valid name/score
+        //    return false;
+        //}
+        //else
+        //{
+        //    //code to format name
+        //    string firstName;
+        //    string lastName;
+        //    string[] n = email.Split('@');
+        //    string[] s = n[0].Split('.');
+        //    firstName = s[0];
+        //    firstName = char.ToUpper(firstName[0]) + firstName.Substring(1);
+        //    lastName = s[1];
+        //    lastName = char.ToUpper(lastName[0]) + lastName.Substring(1);
+        //    string name = firstName + " " + lastName;
+        //    StartCoroutine(Post(name, score.ToString()));
+        //    return true;
+        //}
+        StartCoroutine(Post(name, score.ToString()));
+        return true;
     }
 
     //code from https://www.youtube.com/watch?v=z9b5aRfrz7M
