@@ -12,6 +12,7 @@ public class ConversationTextDisplayScript: MonoBehaviour
     public Color DieColor;
     public Color ScoreColor;
     public GameObject DiceActiveOrNot;
+	public Sprite endgametextsprite;
 
     // Start is called before the first frame update
     void Start()
@@ -235,7 +236,8 @@ public class ConversationTextDisplayScript: MonoBehaviour
     {
         final = true;
         ConversationTextBox.text = "Final Turn! Make all your moves, then click the die to end the game!";
-        StartCoroutine(countdown());
+		GameObject.Find("DiceButton").GetComponent<Image>().sprite = endgametextsprite;
+		StartCoroutine(countdown());
     }
 
     public void noStack()
@@ -287,6 +289,7 @@ public class ConversationTextDisplayScript: MonoBehaviour
         {
             ConversationTextBox.text = "Final Turn! Make all your moves, then click the die to end the game!";
             ConversationTextBox.color = Color.yellow;
+			GameObject.Find("DiceButton").GetComponent<Image>().sprite = endgametextsprite;
         }
         
         else if (GameObject.Find("TutorialMarker").GetComponent<TutorialScript>().Tutorial == true && DieScript.totalRolls == 3)

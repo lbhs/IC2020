@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DieCheckZoneScript : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class DieCheckZoneScript : MonoBehaviour {
 	public static int dieNumber;
 	Vector3 dieVelocity;
     public bool BondMessageGiven;
+	public Sprite originaldiebuttonsprite;
 
 	public GameObject hydrogen;
 	public GameObject hydrogendiatomic;
@@ -160,6 +162,7 @@ public class DieCheckZoneScript : MonoBehaviour {
 			if(DieScript.totalRolls == 12)
 			{
 				ConversationTextDisplayScript.final = false;
+				GameObject.Find("DiceButton").GetComponent<Image>().sprite = originaldiebuttonsprite;
 			}
 			DieScript.totalRolls--;
 			DieScript.rolling++;
