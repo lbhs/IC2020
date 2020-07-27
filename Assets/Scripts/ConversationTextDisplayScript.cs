@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class ConversationTextDisplayScript : MonoBehaviour
+public class ConversationTextDisplayScript : MonoBehaviour, IPunObservable
 {
     private Text ConversationTextBox;
     private bool final;
@@ -59,6 +60,12 @@ public class ConversationTextDisplayScript : MonoBehaviour
         StartCoroutine(countdown());
     }
 
+    [PunRPC]
+    public void finalTurnWrapper()
+    {
+        finalTurn();
+    }
+
     public void noStack()
     {
         ConversationTextBox.text = "Don't stack atoms on top of each other!";
@@ -81,6 +88,18 @@ public class ConversationTextDisplayScript : MonoBehaviour
         }
     }
 
+    public void GameStartTutorial()
+    {
+        ConversationTextBox.text = "Press the die to roll, and press End Turn once you are done";
+        StartCoroutine(countdown());
+    }
+
+    public void NoRoll()
+    {
+        ConversationTextBox.text = "You need to roll the die before ending your turn!";
+        StartCoroutine(countdown());
+    }
+
     private IEnumerator countdown()  //this is a co-routine, can run in parallel with other scripts/functions
     {
         yield return new WaitForSeconds(5);
@@ -95,4 +114,15 @@ public class ConversationTextDisplayScript : MonoBehaviour
         yield break;
     }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(ConversationTextBox.text);
+        }
+        else if (stream.IsReading)
+        {
+            ConversationTextBox.text = (string)stream.ReceiveNext();
+        }
+    }
 }

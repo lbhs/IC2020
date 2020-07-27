@@ -19,9 +19,13 @@ public class ResultsDisplay : MonoBehaviour
     [SerializeField]
     private Text scoreComparison;
 
+    private string BASE_URL = "https://docs.google.com/forms/u/1/d/e/1FAIpQLSe4SJBjv-A6yLFS-dGUHRmd_bVUj_JT95OlOMwgGFmXcZhPtQ/formResponse";
+
     // Start is called before the first frame update
     private void Start()
     {
+        StartCoroutine(Post(GameEndInfo.Player1Name, GameEndInfo.Player2Name, GameEndInfo.Player1Score, GameEndInfo.Player2Score));
+
         if (GameEndInfo.Player1Score > GameEndInfo.Player2Score)
         {
             if (GameEndInfo.LocalPlayer == PhotonNetwork.PlayerList[0])
@@ -50,18 +54,6 @@ public class ResultsDisplay : MonoBehaviour
             }
             scoreComparison.text = string.Format("By {0} Points!", GameEndInfo.Player2Score - GameEndInfo.Player1Score);
         }
-
-        StartCoroutine(BlinkScoreDifference());
-    }
-    
-    private IEnumerator BlinkScoreDifference()
-    {
-        while (true)
-        {
-            scoreComparison.gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
-            scoreComparison.gameObject.SetActive(false);
-        }
     }
 
     public void RestartGame()
@@ -77,5 +69,18 @@ public class ResultsDisplay : MonoBehaviour
         {
             Destroy(GO);
         }
+    }
+
+    private IEnumerator Post(string player1Name, string player2Name, int player1Score, int player2Score)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("entry.951314203", player1Name);
+        form.AddField("entry.520589148", player2Name);
+        form.AddField("entry.1175776431", player1Score);
+        form.AddField("entry.1666552715", player2Score);
+        byte[] data = form.data;
+
+        WWW www = new WWW(BASE_URL, data);
+        yield return www;
     }
 }

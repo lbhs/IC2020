@@ -28,6 +28,7 @@ public class GameSetupContrller : MonoBehaviour
 
     private void Start()
     {
+
         state = GameState.Start;
         PV = GetComponent<PhotonView>();
         // Camera is moved to view Player 1's and Player 2's actions
@@ -101,32 +102,26 @@ public class GameSetupContrller : MonoBehaviour
     { 
         if(state == GameState.Player1Turn)
         {
-            Debug.Log("Player 1 turn ending");
-            if (GameObject.Find("UI").transform.GetChild(1).GetComponent<Button>().interactable)
-            {
-                TurnController.Instance.IncrementCountWrapper();
-            }
             PV.RPC("ChangeState", RpcTarget.All, GameState.Player2Turn);
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[1]);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[0]);
             PV.RPC("AnimateCam", RpcTarget.All, false);
             PV.RPC("ChangeScreenDisplaying", RpcTarget.All, GameState.Player2Turn);
+
+            PV.RPC("StateTransition", RpcTarget.All);
+            PV.RPC("TurnsStateTransition", RpcTarget.All);
         }
         else if(state == GameState.Player2Turn)
         {
-            Debug.Log("Player 2 turn ending");
-            if (GameObject.Find("UI").transform.GetChild(1).GetComponent<Button>().interactable)
-            {
-                TurnController.Instance.IncrementCountWrapper();
-            }
             PV.RPC("ChangeState", RpcTarget.All, GameState.Player1Turn);
             PV.RPC("StartTurn", PhotonNetwork.PlayerList[0]);
             PV.RPC("EndTurn", PhotonNetwork.PlayerList[1]);
             PV.RPC("AnimateCam", RpcTarget.All, true);
             PV.RPC("ChangeScreenDisplaying", RpcTarget.All, GameState.Player1Turn);
+
+            PV.RPC("StateTransition", RpcTarget.All);
+            PV.RPC("TurnsStateTransition", RpcTarget.All);
         }
-        PV.RPC("StateTransition", RpcTarget.All);
-        PV.RPC("TurnsStateTransition", RpcTarget.All);
     }
 
     [PunRPC]
@@ -145,12 +140,9 @@ public class GameSetupContrller : MonoBehaviour
     [PunRPC]
     public void EndTurn()
     {
-        //Debug.Log("1");
         TurnScreen.SetActive(true);
-        // DieScript.rolling = 1;
         GameObject.Find("UI").transform.GetChild(1).gameObject.GetComponent<Button>().interactable = false;
         GameObject.Find("UI").transform.GetChild(8).gameObject.GetComponent<Button>().interactable = false;
-        // Debug.Log("No longer rolling: " + DieScript.rolling);
     }
 
     [PunRPC]
@@ -160,6 +152,7 @@ public class GameSetupContrller : MonoBehaviour
         TurnScreen.SetActive(false);
         // DieScript.rolling = 0;
         // PV.RPC("ChangeScreenDisplaying", RpcTarget.All, state);
+        GameObject.Find("UI").transform.GetChild(0).gameObject.GetComponent<Button>().interactable = false;
         GameObject.Find("UI").transform.GetChild(1).gameObject.GetComponent<Button>().interactable = true;
         GameObject.Find("UI").transform.GetChild(8).gameObject.GetComponent<Button>().interactable = true;
         // Debug.Log("Rolling: " + DieScript.rolling);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public delegate void OnMouseClickUnbondHandler();
 public delegate void OnMouseClickDontUnbondHandler();
@@ -28,19 +29,25 @@ public class ChangeUnbondingText : MonoBehaviour
 
     public void UnbondingStateChange()
     {
+        GetComponent<PhotonView>().RPC("MultiplayerEventInvocation", RpcTarget.All);
+    }
+
+    [PunRPC]
+    private void MultiplayerEventInvocation()
+    {
         if (unbonding)
         {
             unbonding = false;
+            OnMouseClickDontUnbond?.Invoke();
             transform.GetChild(0).gameObject.SetActive(true);
             transform.GetChild(1).gameObject.SetActive(false);
-            OnMouseClickDontUnbond?.Invoke();
         }
         else
         {
             unbonding = true;
+            OnMouseClickUnbond?.Invoke();
             transform.GetChild(1).gameObject.SetActive(true);
             transform.GetChild(0).gameObject.SetActive(false);
-            OnMouseClickUnbond?.Invoke();
         }
     }
 }

@@ -37,6 +37,13 @@ public class AtomController : MonoBehaviour, IPunObservable
 
     private PhotonView PV;
 
+    // Badges are given when a molecule is completed
+    private GameObject BadgeRecipient;
+
+    // BadgeData is a scriptable object
+    [SerializeField]
+    private BadgePrefabs BadgeData;
+
     #endregion
 
     void Start()
@@ -70,11 +77,11 @@ public class AtomController : MonoBehaviour, IPunObservable
             // If the bonding elements are not mine, the joint mechanism is implemented differently to prevent crashes
             if (PV.IsMine)
             {
-                GameSoundEffectsController.Instance.BondFormed();
-
                 CollisionEventRegistered = true;
                 if (peer.GetComponent<AtomController>().CollisionEventRegistered)
                 {
+                    GameSoundEffectsController.Instance.BondFormed();
+
                     #region Handling MoleculeIDs
                     // RPCs are used for the ID methods because these changes should affect both players' ID databases
                     if (MoleculeID == 0 && peer.GetComponent<AtomController>().MoleculeID == 0)
@@ -163,6 +170,8 @@ public class AtomController : MonoBehaviour, IPunObservable
                     JouleDisplayController.Instance.GetComponent<PhotonView>().RPC("IncrementJDC", RpcTarget.All, BondEnergy, PVID, MoleculeIDHandler.Instance.ReturnCompletionScore(GetComponent<AtomController>().MoleculeID));
 
                     #endregion
+
+                    DetermineBadge();
                 }
             }
             else
@@ -208,5 +217,49 @@ public class AtomController : MonoBehaviour, IPunObservable
             MoleculeID = (int)stream.ReceiveNext();
             BondingOpportunities = (int)stream.ReceiveNext();
         }
+    }
+
+    private void DetermineBadge()
+    {
+        int CompletionScore = MoleculeIDHandler.Instance.ReturnCompletionScore(MoleculeID);
+        if (CompletionScore > 0)
+        {
+            if (CompletionScore == 10)
+            {
+                BadgeRecipient = gameObject;
+            }
+            else
+            {
+                foreach (GameObject GO in MoleculeIDHandler.Instance.GetElementsAtGivenPosition(MoleculeID))
+                {
+                    if (GO.tag == "Oxygen")
+                    {
+                        BadgeRecipient = GO;
+                    }
+
+                    if (GO.tag == "Carbon")
+                    {
+                        BadgeRecipient = GO;
+                        // Carbon takes precedence
+                        break;
+                    }
+                }
+            }
+
+            PV.RPC("ApplyBadge", RpcTarget.All, (CompletionScore - 10) / 10, BadgeRecipient.GetComponent<AtomController>().PVID);
+        }
+    }
+
+    [PunRPC]
+    private void ApplyBadge(int BadgePrefabIndex, int RecipientPVID)
+    {
+        GameObject BadgeRecipient = PhotonView.Find(RecipientPVID).gameObject;
+        GameObject Badge = Instantiate(BadgeData.Badges[BadgePrefabIndex], BadgeRecipient.transform);
+        //// offsets the badge by the height of the recipient
+        Badge.transform.localPosition = new Vector3(Badge.transform.localPosition.x,
+                                                    Badge.transform.localPosition.y,
+                                                    -Mathf.Abs(BadgeRecipient.transform.position.z));
+        Badge.transform.localPosition = new Vector3(-1.2f, 1f);
+        //Badge.transform.Rotate(0, 0, -BadgeRecipient.transform.rotation.eulerAngles.z);
     }
 }

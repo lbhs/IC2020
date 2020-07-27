@@ -222,6 +222,7 @@ MonoBehaviour:
   CollisionEventRegistered: 0
   PVID: 0
   Monovalent: 0
+  BadgeData: {fileID: 11400000, guid: cbce9a9b4d8ed974a912a061becaba4c, type: 2}
 --- !u!114 &8974600861658600029
 MonoBehaviour:
   m_ObjectHideFlags: 0

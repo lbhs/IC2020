@@ -1392,6 +1392,7 @@ GameObject:
   - component: {fileID: 752731998}
   - component: {fileID: 752731997}
   - component: {fileID: 752732000}
+  - component: {fileID: 752732001}
   m_Layer: 5
   m_Name: UnbondingButton
   m_TagString: Untagged
@@ -1460,17 +1461,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 278617376}
-        m_MethodName: ChangeUnbondingState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 752732000}
         m_MethodName: UnbondingStateChange
         m_Mode: 1
@@ -1533,6 +1523,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50e56f0c870cb540b036e14ed746b12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &752732001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752731995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 6
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &770668033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,20 +2031,20 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: d25eb6dd42448b743904b8f99e040170,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 5357d8bb11ddcaa4bb0bef65543fcf8a, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: afe1a34605f82c648995c4149adb9700, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 5357d8bb11ddcaa4bb0bef65543fcf8a, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 904435926}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1516595738}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 278617376}
+        m_MethodName: EndTurnButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2041,9 +2053,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 278617376}
-        m_MethodName: EndTurnButton
-        m_Mode: 1
+      - m_Target: {fileID: 426300746}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2232,6 +2244,7 @@ GameObject:
   - component: {fileID: 919450892}
   - component: {fileID: 919450891}
   - component: {fileID: 919450893}
+  - component: {fileID: 919450894}
   m_Layer: 5
   m_Name: ConversationDisplay
   m_TagString: Untagged
@@ -2312,6 +2325,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07fd2109e2bef34c8082729f4f16db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &919450894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919450889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 919450893}
+  viewIdField: 7
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &933149663
 GameObject:
   m_ObjectHideFlags: 0
@@ -2592,6 +2627,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 904435925}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -3165,7 +3211,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.64, g: 0.64, b: 0.64, a: 0}
+  m_BackGroundColor: {r: 0.6039216, g: 0.60784316, b: 0.62352943, a: 0.003921569}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}

@@ -46,7 +46,7 @@ public class TurnController : MonoBehaviour
         if (GameSetupContrller.Instance.state == GameState.Player1Turn)
         {
             transform.GetChild(1).GetComponent<Text>().text = (++TotalTurnsDisplaying[0]).ToString();
-            if (TotalTurnsDisplaying[0] >= 13)
+            if (TotalTurnsDisplaying[0] >= 4)
             {
                 // If each player has n turns, when Player 1 is about to press the die and start their (n + 1)th turn, load the win/lose/tie scene
                 // Note that players cannot stall by pressing the End Turn button without rolling -- refer to the EndTurnButton() method of GameSetupContrller.cs for more information
@@ -71,7 +71,19 @@ public class TurnController : MonoBehaviour
                 }
 
                 if (MyPlayer != null)
+                {
                     GameEndInfo.LocalPlayer = MyPlayer.GetComponent<PhotonView>().Owner;
+                    if (GameEndInfo.LocalPlayer == PhotonNetwork.PlayerList[0])
+                    {
+                        GameEndInfo.Player1Name = StartLobbyController.FinalUsername;
+                        GameEndInfo.Player2Name = PeerUserName;
+                    } 
+                    else
+                    {
+                        GameEndInfo.Player1Name = PeerUserName;
+                        GameEndInfo.Player2Name = StartLobbyController.FinalUsername;
+                    }
+                }
 
                 SceneManager.LoadScene(3);
             }

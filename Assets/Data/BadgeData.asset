@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2bc9ba4a1e599e4e8a8b6be13ecc6de, type: 3}
+  m_Name: BadgeData
+  m_EditorClassIdentifier: 
+  Badges:
+  - {fileID: 6993059123128080916, guid: ef4244cf5771c1747adc4ce98bd96018, type: 3}
+  - {fileID: 5774065084276324260, guid: a504089d6c223f14ebd124c432dbff40, type: 3}
+  - {fileID: 2396064748338697601, guid: 3d0227595e2c2334bb66082b532b6473, type: 3}
+  - {fileID: 8015138472492918248, guid: 9bf4f67566cebf24fa49abb57f0f7d5f, type: 3}
+  - {fileID: 3797211897369245017, guid: 00b9ce921c54448479e9c0f47b697735, type: 3}
+  - {fileID: 902893146384844612, guid: 213a9bec250292d4f9ee256fa79aa5de, type: 3}
