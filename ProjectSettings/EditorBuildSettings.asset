@@ -7,14 +7,14 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Crown Joules 9.940AO--OpeningScene.unity
-    guid: 681431c851a10d344948868bf7bf7c91
-  - enabled: 1
-    path: Assets/Scenes/Crown Joules 9.941AT-- Android Tutorial Build.unity
-    guid: aa0c888e6d41c9045bc626530ea9c91a
+    guid: ad66325b7f23d5b4d9ee4cf13a4d3e16
   - enabled: 1
     path: Assets/Scenes/Crown Joules 9.942AS-- Android Build (Standard).unity
-    guid: 1bcee4af11036c843a233931d511f073
+    guid: 480fa80b520ca0c4c9fb74ef0052771c
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 3da2df55d327db24cb01eeec44e4b8a4
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoadCreditsScene : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public void CreditsSceneLoader()
     {
-        
+        SceneManager.LoadScene(3);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ReturnToCallerScene()
     {
-        
+        SceneManager.LoadScene(0);
     }
 }
