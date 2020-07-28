@@ -52,36 +52,9 @@ public class SwapItMobile : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
-
     public void swapAtom()
     {
-        switch (AtomInventoryRemaining.removePiece(PrefabToBecome, true))   //AtomInventoryRemaining script is attached to UI GameObject
-        {
-
-            case 0:  //switching from oxygen linear to bent, but not to double bond (OxygenEB)
-                if (PrefabToBecome.GetComponent<SwapItMobile>().PrefabToBecome.name + "(Clone)" == gameObject.name || AtomInventoryRemaining.pieceToName(gameObject) == "OxygenEB(Clone)")
-                {
-                    GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().OutOfInventory3();  //no atoms of this type remain
-                }
-                else
-                {
-                    Instantiate(PrefabToBecome.GetComponent<SwapItMobile>().PrefabToBecome, transform.position, Quaternion.identity);
-                    Destroy(gameObject);
-                }
-                break;
-            case 1:   //removePiece function returns a 0, 1 or 2 depending on the specific case.  Case 1 means swap is possible.
-                AtomInventoryRemaining.addPiece(AtomInventoryRemaining.pieceToName(gameObject));
-                Instantiate(PrefabToBecome, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-                break;
-            case 2:
-                Instantiate(PrefabToBecome, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-                break;
-        }
+		Instantiate(PrefabToBecome, transform.position, Quaternion.identity);
+		Destroy(gameObject);
     }
 }

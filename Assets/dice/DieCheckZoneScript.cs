@@ -115,7 +115,7 @@ public class DieCheckZoneScript : MonoBehaviour {
 
 		foreach(GameObject atom in atoms[Roll - 1])
 		{
-			if(AtomInventoryRemaining.removePiece(atom, false) >= 1)
+			if(AtomInventoryRemaining.removePiece(atom, false))
 			{
 				able = true;
 			}

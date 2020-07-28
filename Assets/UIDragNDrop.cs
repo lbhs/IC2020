@@ -35,8 +35,8 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 		prefabWorldPosition.z = 0;
 		
 		if(ableToSpawn() && !GameObject.Find("UI").GetComponent<Animator>().GetBool("Exiting"))
-		{ 
-			if(AtomInventoryRemaining.removePiece(PrefabToSpawn, true) >= 1)
+		{
+			if(AtomInventoryRemaining.removePiece(PrefabToSpawn, true))
             {
 				if (returnToZero == true)
 				{

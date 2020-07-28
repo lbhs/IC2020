@@ -25,11 +25,11 @@ public class AtomInventoryRemaining : MonoBehaviour
 		
 		foreach(GameObject piece in pieces)
 		{
-			names.Add(piece.name + "(Clone)");
+			names.Add(piece.name);
 		}
 	}
 	
-	public static int removePiece(GameObject piece, bool removeFromInventory)
+	public static bool removePiece(GameObject piece, bool removeFromInventory)
 	{
 		int count = 1;
 		if(piece.tag == "Diatomic")
@@ -37,34 +37,36 @@ public class AtomInventoryRemaining : MonoBehaviour
 			count = 2;  //a diatomic counts as two individual atoms of this type
 			piece = correspondingPieces[Array.IndexOf(diatomics, piece)];
 		}
-
-		if(Array.IndexOf(pieces, piece) == -1)  //NO atoms available to make this swap (or to choose from dropdown menu)
+        string correspondingpiece = pieceToName(piece);
+		if(correspondingpiece.Substring(Math.Max(0, correspondingpiece.Length - 7)) == "(Clone)")
 		{
-            return 2;   //becomes Case 2 in SwapIt Script
-            
+			correspondingpiece = correspondingpiece.Remove(correspondingpiece.Length - 7, 7);
 		}
-		if(amounts[Array.IndexOf(pieces, piece)] - count >= 0)   //inventory is available, 
+		if(amounts[names.IndexOf(correspondingpiece)] - count >= 0)   //inventory is available, 
 		{
 			if(removeFromInventory)
 			{
-				amounts[Array.IndexOf(pieces, piece)] -= count;
+				amounts[names.IndexOf(correspondingpiece)] -= count;
 				Debug.Log("Removed " + count + " " + piece.name + " from inventory.");
             }
-			return 1;  //yes, able to remove (or swap) atom forms
-            
+			return true;  //yes, able to remove (or swap) atom forms
 		}
 		else
 		{
-            return 0;  //this means that no more OxygenEB pieces are available--only swaps linear and bent Oxygens  
+            return false;  //this means that no more OxygenEB pieces are available--only swaps linear and bent Oxygens  
             //SEQUENCE MUST BE OxygenEB links to OxygenE which links to OxygenELinear
         }
     }
 	
 	public static string pieceToName(GameObject piece)
 	{
-		if(piece.name == "OxygenELinear(Clone)")
+		if(piece.name == "OxygenELinear(Clone)" || piece.name == "OxygenEB(Clone)" || piece.name == "OxygenELinear" || piece.name == "OxygenEB")
 		{
-			piece.name = "OxygenE(Clone)";
+			return "OxygenE";
+		}
+		if(piece.name == "CarbonEsp2(Clone)" || piece.name == "CarbonEsp2")
+		{
+			return "CarbonE";
 		}
 		return piece.name;
 	}
