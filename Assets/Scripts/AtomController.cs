@@ -255,11 +255,7 @@ public class AtomController : MonoBehaviour, IPunObservable
     {
         GameObject BadgeRecipient = PhotonView.Find(RecipientPVID).gameObject;
         GameObject Badge = Instantiate(BadgeData.Badges[BadgePrefabIndex], BadgeRecipient.transform);
-        //// offsets the badge by the height of the recipient
-        Badge.transform.localPosition = new Vector3(Badge.transform.localPosition.x,
-                                                    Badge.transform.localPosition.y,
-                                                    -Mathf.Abs(BadgeRecipient.transform.position.z));
-        Badge.transform.localPosition = new Vector3(-1.2f, 1f);
-        //Badge.transform.Rotate(0, 0, -BadgeRecipient.transform.rotation.eulerAngles.z);
+        Badge.transform.localPosition = new Vector3(-1.2f, 1f, -.25f);
+        Badge.transform.Rotate(0, 0, Mathf.Abs(BadgeRecipient.transform.rotation.eulerAngles.z));
     }
 }

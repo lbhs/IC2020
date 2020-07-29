@@ -18,6 +18,12 @@ TagManager:
   - PeakDB
   - UnbondingTriggerDB
   - DontDestroyOnLoad
+  - PEJewel
+  - H2Molecule
+  - Bullet
+  - JouleInCorral
+  - CompleteMolecule
+  - Badge
   layers:
   - Default
   - TransparentFX

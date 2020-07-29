@@ -15,6 +15,10 @@ public class TurnController : MonoBehaviour
 
     private GameObject UI;
 
+    private GameObject MyPlayer;
+
+    private int MyPlayerIndex;
+
     [SerializeField]
     private GameObject EndGamePrefab;
 
@@ -23,6 +27,30 @@ public class TurnController : MonoBehaviour
     {
         // Index 0 is the number of joules belonging to Player 1, while Index 1 is the number of joules belonging to Player 2
         TotalTurnsDisplaying = new int[2] { 0, 0 };
+
+        // We are trying to determine the current player
+        // The GameObject that this component is attached to is a scene object, so its owner will be null
+        // So, we scan the object hierarchy for the player GameObject that was instantiated in the GameSetupController
+        MyPlayer = null;
+
+        foreach (GameObject GO in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (GO.GetComponent<PhotonView>().IsMine)
+            {
+                MyPlayer = GO;
+
+                if (GO.GetComponent<PhotonView>().Owner == PhotonNetwork.PlayerList[0])
+                {
+                    MyPlayerIndex = 0;
+                }
+                else
+                {
+                    MyPlayerIndex = 1;
+                }
+
+                break;
+            }
+        }
 
         // Singleton design pattern
         if (Instance == null)
@@ -46,7 +74,7 @@ public class TurnController : MonoBehaviour
         if (GameSetupContrller.Instance.state == GameState.Player1Turn)
         {
             transform.GetChild(1).GetComponent<Text>().text = (++TotalTurnsDisplaying[0]).ToString();
-            if (TotalTurnsDisplaying[0] >= 4)
+            if (TotalTurnsDisplaying[0] == 13)
             {
                 // If each player has n turns, when Player 1 is about to press the die and start their (n + 1)th turn, load the win/lose/tie scene
                 // Note that players cannot stall by pressing the End Turn button without rolling -- refer to the EndTurnButton() method of GameSetupContrller.cs for more information
@@ -56,19 +84,6 @@ public class TurnController : MonoBehaviour
 
                 GameEndInfo.Player1Score = UI.transform.GetChild(6).GetComponent<TextController>().PreviousTotalScore;
                 GameEndInfo.Player2Score = UI.transform.GetChild(7).GetComponent<TextController>().PreviousTotalScore;
-
-                // We are trying to determine the current player
-                // The GameObject that this component is attached to is a scene object, so its owner will be null
-                // So, we scan the object hierarchy for the player GameObject that was instantiated in the GameSetupController
-                GameObject MyPlayer = null;
-
-                foreach (GameObject GO in GameObject.FindGameObjectsWithTag("Player"))
-                {
-                    if (GO.GetComponent<PhotonView>().IsMine)
-                    {
-                        MyPlayer = GO;
-                    }
-                }
 
                 if (MyPlayer != null)
                 {
@@ -86,12 +101,15 @@ public class TurnController : MonoBehaviour
                 }
 
                 SceneManager.LoadScene(3);
-            }
+            } 
         }
         else
         {
             transform.GetChild(1).GetComponent<Text>().text = (++TotalTurnsDisplaying[1]).ToString();
         }
+
+        if (TotalTurnsDisplaying[MyPlayerIndex] == 12)
+            ConversationTextDisplayScript.Instance.finalTurn();
     }
 
     public void DisplayTurnsP1()

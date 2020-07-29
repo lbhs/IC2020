@@ -139,6 +139,8 @@ public class UnbondingScript2 : MonoBehaviour
 
                     MolIDValue = Atom1.GetComponent<AtomController>().MoleculeID;
 
+                    GetComponent<PhotonView>().RPC("DeleteBadge", RpcTarget.All, MolIDValue);
+
                     // It doesn't matter whether we pass the PVID of Atom 1 or 2 -- they both have the same owner 
                     JouleDisplayController.Instance.GetComponent<PhotonView>().RPC("IncrementJDC", RpcTarget.All, -JouleCost, Atom1.GetComponent<AtomController>().PVID, -MoleculeIDHandler.Instance.ReturnCompletionScore(MolIDValue));
 
@@ -277,7 +279,24 @@ public class UnbondingScript2 : MonoBehaviour
         FrameActiveCount++;
         if (FrameActiveCount == WaitABit)
         {
-            PhotonNetwork.Destroy(gameObject);
+            if (GetComponent<PhotonView>().IsMine)
+                PhotonNetwork.Destroy(gameObject);
+        }
+    }
+
+    [PunRPC]
+    private void DeleteBadge(int MoleculeID)
+    {
+        foreach (GameObject GO in MoleculeIDHandler.Instance.GetElementsAtGivenPosition(MoleculeID))
+        {
+            foreach (Transform child in GO.transform)
+            {
+                if (child.gameObject.tag == "Badge")
+                {
+                    Destroy(child.gameObject);
+                    break;
+                }
+            }
         }
     }
 

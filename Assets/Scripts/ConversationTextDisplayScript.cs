@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class ConversationTextDisplayScript : MonoBehaviour, IPunObservable
+public class ConversationTextDisplayScript : MonoBehaviour
 {
     private Text ConversationTextBox;
     private bool final;
     private bool unbondingMessageAlreadyGiven;
+    // If ConversationTextBox.text and lastTextDisplaying differ, then synchronize the other player's display
+    private string lastTextDisplaying;
 
     public static ConversationTextDisplayScript Instance { get; private set; }
 
@@ -56,14 +58,7 @@ public class ConversationTextDisplayScript : MonoBehaviour, IPunObservable
     public void finalTurn()
     {
         final = true;
-        ConversationTextBox.text = "Final Turn! Make all your moves, then click the die to end the game!";
         StartCoroutine(countdown());
-    }
-
-    [PunRPC]
-    public void finalTurnWrapper()
-    {
-        finalTurn();
     }
 
     public void noStack()
@@ -88,18 +83,6 @@ public class ConversationTextDisplayScript : MonoBehaviour, IPunObservable
         }
     }
 
-    public void GameStartTutorial()
-    {
-        ConversationTextBox.text = "Press the die to roll, and press End Turn once you are done";
-        StartCoroutine(countdown());
-    }
-
-    public void NoRoll()
-    {
-        ConversationTextBox.text = "You need to roll the die before ending your turn!";
-        StartCoroutine(countdown());
-    }
-
     private IEnumerator countdown()  //this is a co-routine, can run in parallel with other scripts/functions
     {
         yield return new WaitForSeconds(5);
@@ -114,15 +97,18 @@ public class ConversationTextDisplayScript : MonoBehaviour, IPunObservable
         yield break;
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    private void Update()
     {
-        if (stream.IsWriting)
+        if (ConversationTextBox.text != lastTextDisplaying)
         {
-            stream.SendNext(ConversationTextBox.text);
+            GetComponent<PhotonView>().RPC("SyncText", RpcTarget.Others, ConversationTextBox.text);
+            lastTextDisplaying = ConversationTextBox.text;
         }
-        else if (stream.IsReading)
-        {
-            ConversationTextBox.text = (string)stream.ReceiveNext();
-        }
+    }
+
+    [PunRPC]
+    private void SyncText(string value)
+    {
+        ConversationTextBox.text = value;
     }
 }

@@ -78,6 +78,8 @@ MonoBehaviour:
   - MultiplayerEventInvocation
   - finalTurnWrapper
   - ApplyBadge
+  - SyncText
+  - DeleteBadge
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
