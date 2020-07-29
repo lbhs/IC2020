@@ -657,6 +657,137 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744884658}
   m_CullTransparentMesh: 0
+--- !u!1001 &1807253042
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 9188535599646254694, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_Name
+      value: SceneLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188535599646254698, guid: f2beecc34a58d254d88d446c044d7b6f,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2beecc34a58d254d88d446c044d7b6f, type: 3}
+--- !u!114 &1861336136 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1348095439800965730, guid: f2beecc34a58d254d88d446c044d7b6f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1807253042}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba94504f8e29c349a4e2dfd94c261e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2000083602
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,7 +1016,6 @@ GameObject:
   - component: {fileID: 2132007232}
   - component: {fileID: 2132007231}
   - component: {fileID: 2132007230}
-  - component: {fileID: 2132007233}
   m_Layer: 5
   m_Name: CloseOutCreditsButton
   m_TagString: Untagged
@@ -953,9 +1083,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2132007233}
-        m_MethodName: OpeningSceneLoader
-        m_Mode: 1
+      - m_Target: {fileID: 1861336136}
+        m_MethodName: LoadScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -999,15 +1129,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132007228}
   m_CullTransparentMesh: 0
---- !u!114 &2132007233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132007228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb4d5f1a975c574d880e55ae4176c50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
