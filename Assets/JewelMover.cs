@@ -60,7 +60,7 @@ public class JewelMover : MonoBehaviour
             GameObject.Find("JouleHolder").GetComponent<JouleHolderScript>().JSpawn();
         }
         
-        if(BondMaker.MoleculeJustCompleted == true)
+        if(BondMaker.MoleculeJustCompleted == true && DieScript.totalRolls < 12)
         {
             GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().MoleculeCompletionEarnsBonusPts();
             BondMaker.MoleculeJustCompleted = false;

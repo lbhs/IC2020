@@ -237,8 +237,9 @@ public class ConversationTextDisplayScript: MonoBehaviour
     public void finalTurn()
     {
         final = true;
-        ConversationTextBox.text = "Final Turn! Make all your moves, then click the die to end the game!";
+        ConversationTextBox.text = "Final Turn! Make all your moves, then click END GAME to finalize your score!";
 		GameObject.Find("DiceButton").GetComponent<Image>().sprite = endgametextsprite;
+        ConversationTextBox.color = Color.yellow;
 		StartCoroutine(countdown());
     }
 
