@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9188535599646254692}
   - component: {fileID: 9188535599646254693}
   - component: {fileID: 9188535599646254697}
-  - component: {fileID: 1348095439800965730}
+  - component: {fileID: 1677780779370133180}
   m_Layer: 5
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9188535599646254694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9188535599646254694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
@@ -120,7 +120,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1348095439800965730
+--- !u!114 &1677780779370133180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9188535599646254694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bba94504f8e29c349a4e2dfd94c261e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 27b24153bbe881e409f7bf18efe3e84e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   FadeAnimator: {fileID: 9188535599646254697}
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9188535599974029239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -207,6 +207,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!225 &9188535599974029243
 CanvasGroup:
   m_ObjectHideFlags: 0
