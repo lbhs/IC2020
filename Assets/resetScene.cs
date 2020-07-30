@@ -13,15 +13,13 @@ public class resetScene : MonoBehaviour
     public void gameOver()
     {
         DontDestroyOnLoad(DisplayCanvas);
-		foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
-		    {
-			         Destroy(o);
-        }
         FinalScore = DisplayCanvasScript.ScoreTotal;
-        SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+        Destroy(DisplayCanvas);
+        StartCoroutine(LoadSceneTimer(3));
+        //SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
 
         Debug.Log(FinalScore);
-        SceneManager.LoadScene("GameOver");  
+        //SceneManager.LoadScene("GameOver");  
         //SceneManager.UnloadSceneAsync(0);
 
 
@@ -29,11 +27,16 @@ public class resetScene : MonoBehaviour
 
     public void reset()
     {
-        foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
-		{
-			Destroy(o);
-        }
-        SceneManager.LoadScene(2, LoadSceneMode.Additive);
+        StartCoroutine(LoadSceneTimer(2));
+        //SceneManager.LoadScene(2, LoadSceneMode.Additive);
 		//SceneManager.UnloadSceneAsync(1);
+    }
+    public Animator FadeAnimator;
+    public float FadeTime = 1;
+    IEnumerator LoadSceneTimer(int SceneToLoad)
+    {
+        FadeAnimator.SetTrigger("Start");
+        yield return new WaitForSeconds(FadeTime);
+        SceneManager.LoadScene(SceneToLoad);
     }
 }
