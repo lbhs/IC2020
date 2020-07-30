@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/base.unity
-    guid: 4b250195835e0e54ab11fe92f65beeb5
+    path: Assets/Scenes/Crown Joules 9.940AO--OpeningScene.unity
+    guid: 2e09b4b5da51f614d923b9b9f6908faa
+  - enabled: 1
+    path: Assets/Scenes/Crown Joules 9.941GT-- WebGL Tutorial Build.unity
+    guid: 39f2d9c60650c10418247fea20bd6dce
+  - enabled: 1
+    path: Assets/Scenes/Crown Joules 9.942GS-- WebGL Build (Standard).unity
+    guid: 1137907317e571e48a126587a1152c8e
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 3da2df55d327db24cb01eeec44e4b8a4
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
