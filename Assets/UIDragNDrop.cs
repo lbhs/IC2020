@@ -36,7 +36,14 @@ public class UIDragNDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 		
 		if(ableToSpawn() && !GameObject.Find("UI").GetComponent<Animator>().GetBool("Exiting"))
 		{
-			if(AtomInventoryRemaining.removePiece(PrefabToSpawn, true))
+            if (GameObject.Find("TutorialMarker").GetComponent<TutorialScript>().Tutorial == true && DieScript.totalRolls == 3)
+            {
+                //tutorial requests that the user choose diatomic H2 on turn 3
+                PrefabToSpawn = GameObject.Find("TutorialMarker").GetComponent<TutorialScript>().Turn3Prefab;
+                GameObject.Find("ConversationDisplay").GetComponent<ConversationTextDisplayScript>().BreakABond();
+            }
+
+            if (AtomInventoryRemaining.removePiece(PrefabToSpawn, true))
             {
 				if (returnToZero == true)
 				{
