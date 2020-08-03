@@ -175,7 +175,6 @@ MonoBehaviour:
   DissociationProduct: {fileID: 3165713786430717543, guid: 3421cb4bef0f944d99c34d172b93389f,
     type: 3}
   BondDissociationEnergy: 1
-  BadgeData: {fileID: 11400000, guid: cbce9a9b4d8ed974a912a061becaba4c, type: 2}
 --- !u!114 &6256844743173562894
 MonoBehaviour:
   m_ObjectHideFlags: 0

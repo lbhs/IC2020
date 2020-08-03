@@ -7,12 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class TurnController : MonoBehaviour
 {
+    #region Public Variables
     public static TurnController Instance { get; private set; }
 
     public int[] TotalTurnsDisplaying;
 
     public static string PeerUserName;
 
+    public int NumTurns;
+    #endregion
+
+    #region Private Variables
     private GameObject UI;
 
     private GameObject MyPlayer;
@@ -21,6 +26,7 @@ public class TurnController : MonoBehaviour
 
     [SerializeField]
     private GameObject EndGamePrefab;
+    #endregion
 
     // Start is called before the first frame update
     private void Start()
@@ -74,16 +80,21 @@ public class TurnController : MonoBehaviour
         if (GameSetupContrller.Instance.state == GameState.Player1Turn)
         {
             transform.GetChild(1).GetComponent<Text>().text = (++TotalTurnsDisplaying[0]).ToString();
-            if (TotalTurnsDisplaying[0] == 13)
+            if (TotalTurnsDisplaying[0] == NumTurns + 1)
             {
                 // If each player has n turns, when Player 1 is about to press the die and start their (n + 1)th turn, load the win/lose/tie scene
-                // Note that players cannot stall by pressing the End Turn button without rolling -- refer to the EndTurnButton() method of GameSetupContrller.cs for more information
+                // Note that players cannot stall by pressing the End Turn button without rolling
 
                 // EndGamePrefab has the GameEndInfo component, which records both players' scores and the identity of this player
                 Instantiate(EndGamePrefab, Vector3.zero, Quaternion.identity);
 
                 GameEndInfo.Player1Score = UI.transform.GetChild(6).GetComponent<TextController>().PreviousTotalScore;
                 GameEndInfo.Player2Score = UI.transform.GetChild(7).GetComponent<TextController>().PreviousTotalScore;
+
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    GameEndInfo.ScoreSender = true;
+                }
 
                 if (MyPlayer != null)
                 {
@@ -108,7 +119,8 @@ public class TurnController : MonoBehaviour
             transform.GetChild(1).GetComponent<Text>().text = (++TotalTurnsDisplaying[1]).ToString();
         }
 
-        if (TotalTurnsDisplaying[MyPlayerIndex] == 12)
+        // Warn the player that their nth turn has arrived
+        if (TotalTurnsDisplaying[MyPlayerIndex] == NumTurns)
             ConversationTextDisplayScript.Instance.finalTurn();
     }
 

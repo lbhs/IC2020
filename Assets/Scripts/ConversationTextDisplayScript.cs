@@ -7,7 +7,6 @@ using Photon.Pun;
 public class ConversationTextDisplayScript : MonoBehaviour
 {
     private Text ConversationTextBox;
-    private bool final;
     private bool unbondingMessageAlreadyGiven;
     // If ConversationTextBox.text and lastTextDisplaying differ, then synchronize the other player's display
     private string lastTextDisplaying;
@@ -18,7 +17,6 @@ public class ConversationTextDisplayScript : MonoBehaviour
     void Start()
     {
         ConversationTextBox = GetComponent<Text>();
-        final = false;
         unbondingMessageAlreadyGiven = false;
 
         ChangeUnbondingText.Instance.OnMouseClickUnbond += FirstTimeUnbonding;
@@ -51,13 +49,13 @@ public class ConversationTextDisplayScript : MonoBehaviour
 
     public void OutOfInventory3()
     {
-        ConversationTextBox.text = "You can't swap that atom, you alrady are at the Limit!";
+        ConversationTextBox.text = "You can't swap that atom, you already are at the Limit!";
         StartCoroutine(countdown());
     }
 
     public void finalTurn()
     {
-        final = true;
+        ConversationTextBox.text = "Final turn! The next time you press the die, the game will be over!";
         StartCoroutine(countdown());
     }
 
@@ -83,17 +81,15 @@ public class ConversationTextDisplayScript : MonoBehaviour
         }
     }
 
+    public void ForcedClear()
+    {
+        ConversationTextBox.text = "";
+    }
+
     private IEnumerator countdown()  //this is a co-routine, can run in parallel with other scripts/functions
     {
         yield return new WaitForSeconds(5);
-        if (final)
-        {
-            ConversationTextBox.text = "Final Turn! Make all your moves, then click the die to end the game!";
-        }
-        else
-        {
-            ConversationTextBox.text = "";
-        }
+        ConversationTextBox.text = "";
         yield break;
     }
 

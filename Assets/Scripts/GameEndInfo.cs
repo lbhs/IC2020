@@ -13,6 +13,8 @@ public class GameEndInfo : MonoBehaviour
 
     public static Player LocalPlayer;
 
+    public static bool ScoreSender;
+
     private void Start()
     {
         DontDestroyOnLoad(gameObject);

@@ -24,7 +24,8 @@ public class ResultsDisplay : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        StartCoroutine(Post(GameEndInfo.Player1Name, GameEndInfo.Player2Name, GameEndInfo.Player1Score, GameEndInfo.Player2Score));
+        if (GameEndInfo.ScoreSender)
+            StartCoroutine(Post(GameEndInfo.Player1Name, GameEndInfo.Player2Name, GameEndInfo.Player1Score, GameEndInfo.Player2Score));
 
         if (GameEndInfo.Player1Score > GameEndInfo.Player2Score)
         {
