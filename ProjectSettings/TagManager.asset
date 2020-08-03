@@ -4,7 +4,23 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Water
+  - CompleteMolecule
+  - Hydrogen
+  - Oxygen
+  - Peak
+  - Valley
+  - Carbon
+  - ValleyDB
+  - PeakDB
+  - Joule
+  - UnbondingTrigger
+  - MCToken
+  - UnbondingTriggerDB
+  - H2Molecule
+  - Diatomic
+  - Radical
+  - Chlorine
+  - JouleInCorral
   layers:
   - Default
   - TransparentFX
@@ -14,7 +30,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - InFront
   - 
   - 
   - 
@@ -39,6 +55,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Behind
+    uniqueID: 2644906739
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: InFront
+    uniqueID: 4143558095
     locked: 0
