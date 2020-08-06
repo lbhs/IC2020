@@ -19,7 +19,7 @@ AnimatorController:
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: DoubleOnly
     m_Type: 9
@@ -1329,7 +1329,7 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 1548, y: 60, z: 0}
-  m_EntryPosition: {x: 1152, y: -108, z: 0}
+  m_EntryPosition: {x: 1060, y: -100, z: 0}
   m_ExitPosition: {x: 1548, y: 144, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1102090261494393452}
