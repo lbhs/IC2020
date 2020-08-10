@@ -46,7 +46,7 @@ public class JewelMover : MonoBehaviour
             
         {
             JewelsInMotion = true;
-            transform.position = Vector3.MoveTowards(transform.position, targetForMovingJewels, 0.5f);   //third value is the speed at which Jewel moves
+            transform.position = Vector3.MoveTowards(transform.position, targetForMovingJewels, 30*Time.deltaTime);   //third value is the speed at which Jewel moves
             UnbondingScript2.DontBondAgain = 10;
             //print("DBA value" + UnbondingScript2.DontBondAgain);
             yield return new WaitForEndOfFrame();  

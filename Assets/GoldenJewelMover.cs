@@ -60,7 +60,7 @@ public class GoldenJewelMover : MonoBehaviour
         while (transform.position != targetForGoldenJewels)     //moves GoldenJewels to site of unbonding event        
         {
             JewelMover.JewelsInMotion = true;
-            transform.position = Vector3.MoveTowards(transform.position, targetForGoldenJewels, 0.50f);   //third value is the speed at which Jewel moves
+            transform.position = Vector3.MoveTowards(transform.position, targetForGoldenJewels, 30*Time.deltaTime);   //third value is the speed at which Jewel moves
             yield return new WaitForEndOfFrame();  
         }
 
@@ -100,7 +100,7 @@ public class GoldenJewelMover : MonoBehaviour
     {        
         while (transform.position != targetForGoldenJewels) 
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetForGoldenJewels, 0.5f);   //third value is the speed at which Jewel moves
+            transform.position = Vector3.MoveTowards(transform.position, targetForGoldenJewels, 30*Time.deltaTime);   //third value is the speed at which Jewel moves
             yield return new WaitForEndOfFrame();
         }
 
