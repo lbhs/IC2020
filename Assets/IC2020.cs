@@ -12,6 +12,7 @@
 - class "Particle" is a class used to design particles and then spawn them at will.
 - class "ParticleSpawner" is a class used to spawn water molecules (and eventually more molecules too).
 - static class "ICColor" is a class that holds all of the colors of particles used in IC2020.
+- use a gun to launch the particles together
 */
 
 using System;
@@ -44,6 +45,10 @@ namespace IC2020
         public static Color Magnesium = new Color32(42, 128, 42, 255);
         public static Color Calcium = new Color32(128, 128, 128, 255);
         public static Color Potassium = new Color32(255, 20, 147, 255);
+        public static Color Deuterium = new Color32(255, 182, 193, 255);
+        public static Color HeliumIsotope = new Color32(238, 221, 130, 255);
+        public static Color Neutrino = new Color32(255, 0, 0, 255);
+        public static Color HeliumIsotope4 = new Color32(255, 165, 0, 255);
     }
 
     public class Particle

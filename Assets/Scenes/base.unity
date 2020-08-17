@@ -1467,6 +1467,8 @@ MonoBehaviour:
   - {fileID: 1778059490039022324, guid: 43691fde131ee4143b8d7f1568678636, type: 3}
   - {fileID: 8520551613667858557, guid: b4d9ba947cdb3894fbb66450481d9f9b, type: 3}
   - {fileID: 8520551613667858557, guid: a6098b3de202abf45832b953cbc0f9ed, type: 3}
+  - {fileID: 8526863496484344483, guid: 510780d5c8db4f443a0df858bd24b975, type: 3}
+  - {fileID: 8006402977536635982, guid: 8315f809954548849a00d367e96f4d34, type: 3}
 --- !u!1 &428324403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2320,17 +2322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9c39c330c410642b32365f389ae0f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: {fileID: 0}
 --- !u!114 &727737757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5318,7 +5309,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Na+ in Water
       m_Image: {fileID: 0}
-    - m_Text: '...'
+    - m_Text: Nucleosynthesis
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

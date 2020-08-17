@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using IC2020;
+using System;
 
 public class ModelSlector : MonoBehaviour
 {
@@ -93,10 +94,12 @@ public class ModelSlector : MonoBehaviour
         
         //...
         else if (dropDownValue == 4)
-        {
-            //do stuff here
+        { 
             dropDownMenu.GetComponent<Dropdown>().value = 0;
             pannel.SetActive(false);
+            GameObject.Find("GameObject").AddComponent<NuclearSimulation>();
+            float k = GameObject.Find("GameObject").GetComponent<main>().k;
+            GameObject.Find("GameObject").GetComponent<forces>().initialize(1, k);
         }
     }
 	

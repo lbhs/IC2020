@@ -13,7 +13,7 @@ public class main : MonoBehaviour
 
     private void Start()
     {
-	    // Initializes forces
-		gameObject.AddComponent<forces>().initialize(G, k);
+        // Initializes forces
+        gameObject.AddComponent<forces>().initialize(G, k);
     }
 }
