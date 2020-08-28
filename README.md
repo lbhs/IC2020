@@ -3,26 +3,8 @@ IC2020 is the browser-based physics simulator for teaching chemistry and physics
 
 Built in Unity 2018.3.14f1 for WebGL
 
-[![Preprod Build Status](https://travis-ci.org/lbhs/IC2020.svg?branch=master)](https://travis-ci.org/lbhs/IC2020)
+# Crown Joules
 
-# To-Do
+The code for the Crown Joules game is under the repository "[CrownJoules9WebGL](https://github.com/lbhs/IC2020/tree/CrownJoules9WebGL)" and "[CrownJoules9Android](https://github.com/lbhs/IC2020/tree/CrownJoules9Android)" See the finised game at https://lbhs.github.io/Games/
 
--different shapes (triangles)
-
--add/make flasky
-
--forces arrow
-
--save and load scenes from drop down
-
--create scenes from within game
-
--edit buffet table from within game
-
--implement acids/bases with realistic functionality
-
-# Known bugs
-
--particles disappearing when timescale slider initially changed from 0x (only occurs in webgl builds)
-
--water molecule randomly spawns when adjusting temperature slider
+Built in Unity 2019.2.11f1 for WebGL, Android, and IOS
